@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>conquerorLei</title>
+  
+  <subtitle>further study make me better</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2021-05-22T09:51:18.850Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>李先雷</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Tomcat error</title>
+    <link href="http://example.com/2021/05/22/tomcatError/"/>
+    <id>http://example.com/2021/05/22/tomcatError/</id>
+    <published>2021-05-22T09:30:40.472Z</published>
+    <updated>2021-05-22T09:51:18.850Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p><span id="more"></span><h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p><h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p><h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p><p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;1099端口已经被占用&quot;&gt;&lt;a href=&quot;#1099端口已经被占用&quot; class=&quot;headerlink&quot; title=&quot;1099端口已经被占用&quot;&gt;&lt;/a&gt;1099端口已经被占用&lt;/h1&gt;&lt;p&gt;经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报&lt;code&gt;Address localhost:1099 is already in use&lt;/code&gt;的错误，本次学习到了如何强行关闭占用端口号的&lt;code&gt;java&lt;/code&gt;程序。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Program" scheme="http://example.com/categories/Program/"/>
+    
+    
+    <category term="Error" scheme="http://example.com/tags/Error/"/>
+    
+    <category term="Tomcat" scheme="http://example.com/tags/Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>http error</title>
+    <link href="http://example.com/2021/05/22/HTTP/"/>
+    <id>http://example.com/2021/05/22/HTTP/</id>
+    <published>2021-05-22T09:30:40.466Z</published>
+    <updated>2021-05-22T09:55:40.274Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h1><p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p><span id="more"></span><p>解决办法：</p><figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure><p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p><h1 id="500异常"><a href="#500异常" class="headerlink" title="500异常"></a>500异常</h1><p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p><h1 id="使用配对异常"><a href="#使用配对异常" class="headerlink" title="使用配对异常"></a>使用配对异常</h1><p>一般而言，若是对request进行属性设置，则需要使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure><p>进行数据转发，若使用</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure><p>就会出现无法获取request属性的错误</p><p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;404-not-found&quot;&gt;&lt;a href=&quot;#404-not-found&quot; class=&quot;headerlink&quot; title=&quot;404 not found&quot;&gt;&lt;/a&gt;404 not found&lt;/h1&gt;&lt;p&gt;404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Program" scheme="http://example.com/categories/Program/"/>
+    
+    
+    <category term="Http" scheme="http://example.com/tags/Http/"/>
+    
+    <category term="Error" scheme="http://example.com/tags/Error/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库</title>
+    <link href="http://example.com/2021/05/22/database/"/>
+    <id>http://example.com/2021/05/22/database/</id>
+    <published>2021-05-22T09:30:40.463Z</published>
+    <updated>2021-05-22T09:53:34.538Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p><span id="more"></span><h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p><h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure><p>如果此时前端发送过来的是空字符串，就会出现约束异常</p><h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;防止SQL注入&quot;&gt;&lt;a href=&quot;#防止SQL注入&quot; class=&quot;headerlink&quot; title=&quot;防止SQL注入&quot;&gt;&lt;/a&gt;防止SQL注入&lt;/h1&gt;&lt;p&gt;采用MyBatis防止SQL注入的问题，降低关系耦合&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Program" scheme="http://example.com/categories/Program/"/>
+    
+    
+    <category term="Mysql" scheme="http://example.com/tags/Mysql/"/>
+    
+    <category term="MyBatis" scheme="http://example.com/tags/MyBatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>picgo+gitee</title>
+    <link href="http://example.com/2021/05/22/picgo+gitee/"/>
+    <id>http://example.com/2021/05/22/picgo+gitee/</id>
+    <published>2021-05-22T09:04:37.399Z</published>
+    <updated>2021-05-22T09:13:59.209Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="picgo-gitee实现markdown图片上传自动化"><a href="#picgo-gitee实现markdown图片上传自动化" class="headerlink" title="picgo+gitee实现markdown图片上传自动化"></a>picgo+gitee实现markdown图片上传自动化</h1><span id="more"></span><h2 id="1-工具"><a href="#1-工具" class="headerlink" title="1 工具"></a>1 工具</h2><p>markdown编辑工具：typora</p><p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p><p>图床仓库：gitee</p><h2 id="2-picgo配置"><a href="#2-picgo配置" class="headerlink" title="2 picgo配置"></a>2 picgo配置</h2><p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p><h3 id="2-1-picgo插件下载"><a href="#2-1-picgo插件下载" class="headerlink" title="2.1 picgo插件下载"></a><strong>2.1</strong> picgo插件下载</h3><p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="image-20210226232647413"></p><h3 id="2-2-图床设置–-gt-gitee图床"><a href="#2-2-图床设置–-gt-gitee图床" class="headerlink" title="2.2  图床设置–&gt;gitee图床"></a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="image-20210226233412611"></p><p>初始进入以后上述输入框都应该是空的，相应的意思如下</p><ul><li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li><li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li><li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li><li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li><li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li></ul><h2 id="3-gitee图床仓库设置"><a href="#3-gitee图床仓库设置" class="headerlink" title="3 gitee图床仓库设置"></a>3 gitee图床仓库设置</h2><h3 id="3-1-新建仓库"><a href="#3-1-新建仓库" class="headerlink" title="3.1 新建仓库"></a>3.1 新建仓库</h3><p>和平常新建仓库没有什么区别，有几点注意事项</p><ul><li>需要设置为开源</li><li>需要使用Readme文件初始化仓库</li></ul><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="image-20210226234635222"></p><p>图中标注的地方需要注意一下</p><h3 id="3-2-创建个人令牌（token）"><a href="#3-2-创建个人令牌（token）" class="headerlink" title="3.2 创建个人令牌（token）"></a>3.2 创建个人令牌（token）</h3><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="image-20210226235243952"></p><p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p><p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p><p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p><p>这样picgo上传的图片就会上传到gitee中仓库里。</p><h2 id="4-typora与picgo结合使用"><a href="#4-typora与picgo结合使用" class="headerlink" title="4 typora与picgo结合使用"></a>4 typora与picgo结合使用</h2><h3 id="4-1-picgo设置"><a href="#4-1-picgo设置" class="headerlink" title="4.1 picgo设置"></a>4.1 picgo设置</h3><p>picgo中需要配置一下服务器，也就是<code>设置server</code></p><p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="image-20210227000426714"></p><h3 id="4-2-typora设置"><a href="#4-2-typora设置" class="headerlink" title="4.2 typora设置"></a>4.2 typora设置</h3><p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="image-20210227000143486"></p><p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="image-20210227000653809"></p><p>至此结束。</p>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;picgo-gitee实现markdown图片上传自动化&quot;&gt;&lt;a href=&quot;#picgo-gitee实现markdown图片上传自动化&quot; class=&quot;headerlink&quot; title=&quot;picgo+gitee实现markdown图片上传自动化&quot;&gt;&lt;/a&gt;picgo+gitee实现markdown图片上传自动化&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="Programming environment setup" scheme="http://example.com/categories/Programming-environment-setup/"/>
+    
+    
+    <category term="Sundry" scheme="http://example.com/tags/Sundry/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法·方阵</title>
+    <link href="http://example.com/2021/05/22/%E6%96%B9%E9%98%B5/"/>
+    <id>http://example.com/2021/05/22/%E6%96%B9%E9%98%B5/</id>
+    <published>2021-05-22T08:19:23.008Z</published>
+    <updated>2021-05-22T08:51:54.129Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="方阵"><a href="#方阵" class="headerlink" title="方阵"></a>方阵</h1><h2 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h2><p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p><p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p><p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p><p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p><span id="more"></span><h2 id="理解："><a href="#理解：" class="headerlink" title="理解："></a>理解：</h2><p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p><h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>由上面的理解可知，分两种情况讨论：</p><ol><li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li><li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li></ol>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;方阵&quot;&gt;&lt;a href=&quot;#方阵&quot; class=&quot;headerlink&quot; title=&quot;方阵&quot;&gt;&lt;/a&gt;方阵&lt;/h1&gt;&lt;h2 id=&quot;描述：&quot;&gt;&lt;a href=&quot;#描述：&quot; class=&quot;headerlink&quot; title=&quot;描述：&quot;&gt;&lt;/a&gt;描述：&lt;/h2&gt;&lt;p&gt;广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。&lt;/p&gt;
+&lt;p&gt;方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。&lt;/p&gt;
+&lt;p&gt;例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。&lt;/p&gt;
+&lt;p&gt;现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="algorithm" scheme="http://example.com/categories/algorithm/"/>
+    
+    
+    <category term="Daily" scheme="http://example.com/tags/Daily/"/>
+    
+  </entry>
+  
+</feed>
