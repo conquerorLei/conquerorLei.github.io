@@ -29,54 +29,6 @@
       </tags>
   </entry>
   <entry>
-    <title>picgo+gitee</title>
-    <url>/2021/05/22/picgo+gitee/</url>
-    <content><![CDATA[<h1 id="picgo-gitee实现markdown图片上传自动化"><a href="#picgo-gitee实现markdown图片上传自动化" class="headerlink" title="picgo+gitee实现markdown图片上传自动化"></a>picgo+gitee实现markdown图片上传自动化</h1><span id="more"></span>
-
-<h2 id="1-工具"><a href="#1-工具" class="headerlink" title="1 工具"></a>1 工具</h2><p>markdown编辑工具：typora</p>
-<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
-<p>图床仓库：gitee</p>
-<h2 id="2-picgo配置"><a href="#2-picgo配置" class="headerlink" title="2 picgo配置"></a>2 picgo配置</h2><p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="2-1-picgo插件下载"><a href="#2-1-picgo插件下载" class="headerlink" title="2.1 picgo插件下载"></a><strong>2.1</strong> picgo插件下载</h3><p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="image-20210226232647413"></p>
-<h3 id="2-2-图床设置–-gt-gitee图床"><a href="#2-2-图床设置–-gt-gitee图床" class="headerlink" title="2.2  图床设置–&gt;gitee图床"></a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="image-20210226233412611"></p>
-<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
-<ul>
-<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
-<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
-<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
-<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
-<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
-</ul>
-<h2 id="3-gitee图床仓库设置"><a href="#3-gitee图床仓库设置" class="headerlink" title="3 gitee图床仓库设置"></a>3 gitee图床仓库设置</h2><h3 id="3-1-新建仓库"><a href="#3-1-新建仓库" class="headerlink" title="3.1 新建仓库"></a>3.1 新建仓库</h3><p>和平常新建仓库没有什么区别，有几点注意事项</p>
-<ul>
-<li>需要设置为开源</li>
-<li>需要使用Readme文件初始化仓库</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="image-20210226234635222"></p>
-<p>图中标注的地方需要注意一下</p>
-<h3 id="3-2-创建个人令牌（token）"><a href="#3-2-创建个人令牌（token）" class="headerlink" title="3.2 创建个人令牌（token）"></a>3.2 创建个人令牌（token）</h3><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="image-20210226235243952"></p>
-<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
-<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
-<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
-<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="4-typora与picgo结合使用"><a href="#4-typora与picgo结合使用" class="headerlink" title="4 typora与picgo结合使用"></a>4 typora与picgo结合使用</h2><h3 id="4-1-picgo设置"><a href="#4-1-picgo设置" class="headerlink" title="4.1 picgo设置"></a>4.1 picgo设置</h3><p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
-<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="image-20210227000426714"></p>
-<h3 id="4-2-typora设置"><a href="#4-2-typora设置" class="headerlink" title="4.2 typora设置"></a>4.2 typora设置</h3><p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="image-20210227000143486"></p>
-<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="image-20210227000653809"></p>
-<p>至此结束。</p>
-]]></content>
-      <categories>
-        <category>Programming environment setup</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据库</title>
     <url>/2021/05/22/database/</url>
     <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
@@ -101,6 +53,8 @@
     <title>hexo+github搭建个人博客</title>
     <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
+<span id="more"></span>
+
 <p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
 <p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
 <p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
@@ -186,7 +140,7 @@
 <p>说明：</p>
 <ul>
 <li>:    后面有一个空格，一定要注意这一点</li>
-<li>另外就是repo使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
+<li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
 </ul>
 </blockquote>
 <p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
@@ -200,6 +154,54 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>picgo+gitee</title>
+    <url>/2021/05/22/picgo+gitee/</url>
+    <content><![CDATA[<h1 id="picgo-gitee实现markdown图片上传自动化"><a href="#picgo-gitee实现markdown图片上传自动化" class="headerlink" title="picgo+gitee实现markdown图片上传自动化"></a>picgo+gitee实现markdown图片上传自动化</h1><span id="more"></span>
+
+<h2 id="1-工具"><a href="#1-工具" class="headerlink" title="1 工具"></a>1 工具</h2><p>markdown编辑工具：typora</p>
+<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
+<p>图床仓库：gitee</p>
+<h2 id="2-picgo配置"><a href="#2-picgo配置" class="headerlink" title="2 picgo配置"></a>2 picgo配置</h2><p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
+<h3 id="2-1-picgo插件下载"><a href="#2-1-picgo插件下载" class="headerlink" title="2.1 picgo插件下载"></a><strong>2.1</strong> picgo插件下载</h3><p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="image-20210226232647413"></p>
+<h3 id="2-2-图床设置–-gt-gitee图床"><a href="#2-2-图床设置–-gt-gitee图床" class="headerlink" title="2.2  图床设置–&gt;gitee图床"></a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="image-20210226233412611"></p>
+<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
+<ul>
+<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
+<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
+<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
+<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
+<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
+</ul>
+<h2 id="3-gitee图床仓库设置"><a href="#3-gitee图床仓库设置" class="headerlink" title="3 gitee图床仓库设置"></a>3 gitee图床仓库设置</h2><h3 id="3-1-新建仓库"><a href="#3-1-新建仓库" class="headerlink" title="3.1 新建仓库"></a>3.1 新建仓库</h3><p>和平常新建仓库没有什么区别，有几点注意事项</p>
+<ul>
+<li>需要设置为开源</li>
+<li>需要使用Readme文件初始化仓库</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="image-20210226234635222"></p>
+<p>图中标注的地方需要注意一下</p>
+<h3 id="3-2-创建个人令牌（token）"><a href="#3-2-创建个人令牌（token）" class="headerlink" title="3.2 创建个人令牌（token）"></a>3.2 创建个人令牌（token）</h3><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="image-20210226235243952"></p>
+<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
+<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
+<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
+<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
+<h2 id="4-typora与picgo结合使用"><a href="#4-typora与picgo结合使用" class="headerlink" title="4 typora与picgo结合使用"></a>4 typora与picgo结合使用</h2><h3 id="4-1-picgo设置"><a href="#4-1-picgo设置" class="headerlink" title="4.1 picgo设置"></a>4.1 picgo设置</h3><p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
+<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="image-20210227000426714"></p>
+<h3 id="4-2-typora设置"><a href="#4-2-typora设置" class="headerlink" title="4.2 typora设置"></a>4.2 typora设置</h3><p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="image-20210227000143486"></p>
+<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="image-20210227000653809"></p>
+<p>至此结束。</p>
+]]></content>
+      <categories>
+        <category>环境配置</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
