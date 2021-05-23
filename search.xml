@@ -29,24 +29,25 @@
       </tags>
   </entry>
   <entry>
-    <title>数据库</title>
-    <url>/2021/05/22/database/</url>
-    <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+    <title>Tomcat error</title>
+    <url>/2021/05/22/tomcatError/</url>
+    <content><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
 <span id="more"></span>
 
-<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
 ]]></content>
       <categories>
         <category>Program</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
-        <tag>MyBatis</tag>
+        <tag>Error</tag>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -157,6 +158,27 @@
       </tags>
   </entry>
   <entry>
+    <title>数据库</title>
+    <url>/2021/05/22/database/</url>
+    <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+<span id="more"></span>
+
+<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
+<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>picgo+gitee</title>
     <url>/2021/05/22/picgo+gitee/</url>
     <content><![CDATA[<h1 id="picgo-gitee实现markdown图片上传自动化"><a href="#picgo-gitee实现markdown图片上传自动化" class="headerlink" title="picgo+gitee实现markdown图片上传自动化"></a>picgo+gitee实现markdown图片上传自动化</h1><span id="more"></span>
@@ -198,32 +220,10 @@
 <p>至此结束。</p>
 ]]></content>
       <categories>
-        <category>环境配置</category>
+        <category>环境搭建</category>
       </categories>
       <tags>
         <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat error</title>
-    <url>/2021/05/22/tomcatError/</url>
-    <content><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<span id="more"></span>
-
-<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>Error</tag>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
