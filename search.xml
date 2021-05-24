@@ -1,55 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>http error</title>
-    <url>/2021/05/22/HTTP/</url>
-    <content><![CDATA[<h1 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h1><p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
-<span id="more"></span>
-
-<p>解决办法：</p>
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
-<h1 id="500异常"><a href="#500异常" class="headerlink" title="500异常"></a>500异常</h1><p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
-<h1 id="使用配对异常"><a href="#使用配对异常" class="headerlink" title="使用配对异常"></a>使用配对异常</h1><p>一般而言，若是对request进行属性设置，则需要使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
-
-<p>进行数据转发，若使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>就会出现无法获取request属性的错误</p>
-<p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>Http</tag>
-        <tag>Error</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库</title>
-    <url>/2021/05/22/database/</url>
-    <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
-<span id="more"></span>
-
-<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo+github搭建个人博客</title>
     <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
@@ -184,25 +135,24 @@
       </tags>
   </entry>
   <entry>
-    <title>Tomcat error</title>
-    <url>/2021/05/22/tomcatError/</url>
-    <content><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+    <title>数据库</title>
+    <url>/2021/05/22/database/</url>
+    <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
 <span id="more"></span>
 
-<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
+<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
 ]]></content>
       <categories>
         <category>Program</category>
       </categories>
       <tags>
-        <tag>Error</tag>
-        <tag>Tomcat</tag>
+        <tag>Mysql</tag>
+        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -254,6 +204,34 @@
       </tags>
   </entry>
   <entry>
+    <title>http error</title>
+    <url>/2021/05/22/HTTP/</url>
+    <content><![CDATA[<h1 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h1><p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
+<span id="more"></span>
+
+<p>解决办法：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
+<h1 id="500异常"><a href="#500异常" class="headerlink" title="500异常"></a>500异常</h1><p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
+<h1 id="使用配对异常"><a href="#使用配对异常" class="headerlink" title="使用配对异常"></a>使用配对异常</h1><p>一般而言，若是对request进行属性设置，则需要使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+<p>进行数据转发，若使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>就会出现无法获取request属性的错误</p>
+<p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>Http</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>tensorflow-numpy-matplotlib线性回归</title>
     <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
     <content><![CDATA[]]></content>
@@ -289,6 +267,28 @@
       </categories>
       <tags>
         <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat error</title>
+    <url>/2021/05/22/tomcatError/</url>
+    <content><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<span id="more"></span>
+
+<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+]]></content>
+      <categories>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>Error</tag>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
 </search>
