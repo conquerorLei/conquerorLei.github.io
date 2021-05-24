@@ -3,11 +3,11 @@
   <title>conquerorLei</title>
   
   <subtitle>further study make me better</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://conquerorlei.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>2021-05-23T13:50:48.200Z</updated>
-  <id>http://example.com/</id>
+  <link href="https://conquerorlei.github.io/"/>
+  <updated>2021-05-24T13:39:22.147Z</updated>
+  <id>https://conquerorlei.github.io/</id>
   
   <author>
     <name>李先雷</name>
@@ -17,9 +17,58 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>tensorflow-numpy-matplotlib线性回归</title>
+    <link href="https://conquerorlei.github.io/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
+    <id>https://conquerorlei.github.io/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</id>
+    <published>2021-05-24T12:44:45.000Z</published>
+    <updated>2021-05-24T13:39:22.147Z</updated>
+    
+    
+    
+    
+    <category term="python" scheme="https://conquerorlei.github.io/categories/python/"/>
+    
+    <category term="神经网络与机器学习" scheme="https://conquerorlei.github.io/categories/python/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="Numpy" scheme="https://conquerorlei.github.io/tags/Numpy/"/>
+    
+    <category term="Matplotlib" scheme="https://conquerorlei.github.io/tags/Matplotlib/"/>
+    
+    <category term="Tensorflow" scheme="https://conquerorlei.github.io/tags/Tensorflow/"/>
+    
+    <category term="python" scheme="https://conquerorlei.github.io/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo+next配置</title>
+    <link href="https://conquerorlei.github.io/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/"/>
+    <id>https://conquerorlei.github.io/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/</id>
+    <published>2021-05-24T08:56:51.000Z</published>
+    <updated>2021-05-24T13:31:53.220Z</updated>
+    
+    <content type="html"><![CDATA[<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p><p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p><span id="more"></span><h1 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h1><h2 id="安装并更换Next主题"><a href="#安装并更换Next主题" class="headerlink" title="安装并更换Next主题"></a>安装并更换Next主题</h2><p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure><p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p><h2 id="个人信息修改"><a href="#个人信息修改" class="headerlink" title="个人信息修改"></a>个人信息修改</h2><p>修改一下根目录下的<code>_config.yml</code></p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure><blockquote><p>说明：站点无需解释，就是你通过<a href="http://localhost:4000/%E6%88%96%E8%80%85https://username.github.io/%E6%89%93%E5%BC%80%E7%9A%84%E7%BD%91%E9%A1%B5%EF%BC%8C%E9%82%A3%E4%B8%AA%E5%B0%B1%E6%98%AF%E4%BD%A0%E7%9A%84%E7%AB%99%E7%82%B9%E3%80%82%E7%AB%99%E7%82%B9%E7%9A%84%E6%A0%87%E9%A2%98%E5%B0%B1%E6%98%AF">http://localhost:4000/或者https://username.github.io/打开的网页，那个就是你的站点。站点的标题就是</a></p></blockquote><h2 id="next主题配置"><a href="#next主题配置" class="headerlink" title="next主题配置"></a>next主题配置</h2>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦&lt;/p&gt;
+&lt;p&gt;以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    
+    <category term="Hexo" scheme="https://conquerorlei.github.io/tags/Hexo/"/>
+    
+    <category term="Next" scheme="https://conquerorlei.github.io/tags/Next/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo+github搭建个人博客</title>
-    <link href="http://example.com/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://example.com/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
+    <link href="https://conquerorlei.github.io/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>https://conquerorlei.github.io/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</id>
     <published>2021-05-23T11:36:12.000Z</published>
     <updated>2021-05-23T13:50:48.200Z</updated>
     
@@ -30,19 +79,19 @@
     
     
     
-    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
     
-    <category term="Hexo" scheme="http://example.com/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://conquerorlei.github.io/tags/Hexo/"/>
     
-    <category term="Github" scheme="http://example.com/tags/Github/"/>
+    <category term="Github" scheme="https://conquerorlei.github.io/tags/Github/"/>
     
   </entry>
   
   <entry>
     <title>Tomcat error</title>
-    <link href="http://example.com/2021/05/22/tomcatError/"/>
-    <id>http://example.com/2021/05/22/tomcatError/</id>
+    <link href="https://conquerorlei.github.io/2021/05/22/tomcatError/"/>
+    <id>https://conquerorlei.github.io/2021/05/22/tomcatError/</id>
     <published>2021-05-22T09:30:40.472Z</published>
     <updated>2021-05-22T09:51:18.850Z</updated>
     
@@ -53,19 +102,19 @@
     
     
     
-    <category term="Program" scheme="http://example.com/categories/Program/"/>
+    <category term="Program" scheme="https://conquerorlei.github.io/categories/Program/"/>
     
     
-    <category term="Error" scheme="http://example.com/tags/Error/"/>
+    <category term="Error" scheme="https://conquerorlei.github.io/tags/Error/"/>
     
-    <category term="Tomcat" scheme="http://example.com/tags/Tomcat/"/>
+    <category term="Tomcat" scheme="https://conquerorlei.github.io/tags/Tomcat/"/>
     
   </entry>
   
   <entry>
     <title>http error</title>
-    <link href="http://example.com/2021/05/22/HTTP/"/>
-    <id>http://example.com/2021/05/22/HTTP/</id>
+    <link href="https://conquerorlei.github.io/2021/05/22/HTTP/"/>
+    <id>https://conquerorlei.github.io/2021/05/22/HTTP/</id>
     <published>2021-05-22T09:30:40.466Z</published>
     <updated>2021-05-22T09:55:40.274Z</updated>
     
@@ -76,19 +125,19 @@
     
     
     
-    <category term="Program" scheme="http://example.com/categories/Program/"/>
+    <category term="Program" scheme="https://conquerorlei.github.io/categories/Program/"/>
     
     
-    <category term="Http" scheme="http://example.com/tags/Http/"/>
+    <category term="Http" scheme="https://conquerorlei.github.io/tags/Http/"/>
     
-    <category term="Error" scheme="http://example.com/tags/Error/"/>
+    <category term="Error" scheme="https://conquerorlei.github.io/tags/Error/"/>
     
   </entry>
   
   <entry>
     <title>数据库</title>
-    <link href="http://example.com/2021/05/22/database/"/>
-    <id>http://example.com/2021/05/22/database/</id>
+    <link href="https://conquerorlei.github.io/2021/05/22/database/"/>
+    <id>https://conquerorlei.github.io/2021/05/22/database/</id>
     <published>2021-05-22T09:30:40.463Z</published>
     <updated>2021-05-22T09:53:34.538Z</updated>
     
@@ -99,19 +148,19 @@
     
     
     
-    <category term="Program" scheme="http://example.com/categories/Program/"/>
+    <category term="Program" scheme="https://conquerorlei.github.io/categories/Program/"/>
     
     
-    <category term="Mysql" scheme="http://example.com/tags/Mysql/"/>
+    <category term="Mysql" scheme="https://conquerorlei.github.io/tags/Mysql/"/>
     
-    <category term="MyBatis" scheme="http://example.com/tags/MyBatis/"/>
+    <category term="MyBatis" scheme="https://conquerorlei.github.io/tags/MyBatis/"/>
     
   </entry>
   
   <entry>
     <title>picgo+gitee</title>
-    <link href="http://example.com/2021/05/22/picgo+gitee/"/>
-    <id>http://example.com/2021/05/22/picgo+gitee/</id>
+    <link href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/"/>
+    <id>https://conquerorlei.github.io/2021/05/22/picgo+gitee/</id>
     <published>2021-05-22T09:04:37.399Z</published>
     <updated>2021-05-23T14:08:56.150Z</updated>
     
@@ -122,17 +171,17 @@
     
     
     
-    <category term="环境搭建" scheme="http://example.com/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
     
-    <category term="Sundry" scheme="http://example.com/tags/Sundry/"/>
+    <category term="Sundry" scheme="https://conquerorlei.github.io/tags/Sundry/"/>
     
   </entry>
   
   <entry>
     <title>算法·方阵</title>
-    <link href="http://example.com/2021/05/22/%E6%96%B9%E9%98%B5/"/>
-    <id>http://example.com/2021/05/22/%E6%96%B9%E9%98%B5/</id>
+    <link href="https://conquerorlei.github.io/2021/05/22/%E6%96%B9%E9%98%B5/"/>
+    <id>https://conquerorlei.github.io/2021/05/22/%E6%96%B9%E9%98%B5/</id>
     <published>2021-05-22T08:19:23.008Z</published>
     <updated>2021-05-22T08:51:54.129Z</updated>
     
@@ -146,10 +195,10 @@
     
     
     
-    <category term="algorithm" scheme="http://example.com/categories/algorithm/"/>
+    <category term="algorithm" scheme="https://conquerorlei.github.io/categories/algorithm/"/>
     
     
-    <category term="Daily" scheme="http://example.com/tags/Daily/"/>
+    <category term="Daily" scheme="https://conquerorlei.github.io/tags/Daily/"/>
     
   </entry>
   

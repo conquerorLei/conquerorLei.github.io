@@ -22,33 +22,31 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;conquerorlei.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:&quot;utterances&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null,&quot;activeClass&quot;:&quot;utterances&quot;},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
-<meta name="description" content="1099端口已经被占用经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报Address localhost:1099 is already in use的错误，本次学习到了如何强行关闭占用端口号的java程序。">
+<meta name="description" content="Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦 以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Tomcat error">
-<meta property="og:url" content="https://conquerorlei.github.io/2021/05/22/tomcatError/index.html">
+<meta property="og:title" content="hexo+next配置">
+<meta property="og:url" content="https://conquerorlei.github.io/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="1099端口已经被占用经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报Address localhost:1099 is already in use的错误，本次学习到了如何强行关闭占用端口号的java程序。">
+<meta property="og:description" content="Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦 以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png">
-<meta property="article:published_time" content="2021-05-22T09:30:40.472Z">
-<meta property="article:modified_time" content="2021-05-22T09:51:18.850Z">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png">
+<meta property="article:published_time" content="2021-05-24T08:56:51.000Z">
+<meta property="article:modified_time" content="2021-05-24T13:31:53.220Z">
 <meta property="article:author" content="李先雷">
-<meta property="article:tag" content="Error">
-<meta property="article:tag" content="Tomcat">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Next">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png">
 
 
-<link rel="canonical" href="https://conquerorlei.github.io/2021/05/22/tomcatError/">
+<link rel="canonical" href="https://conquerorlei.github.io/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;2021&#x2F;05&#x2F;22&#x2F;tomcatError&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;22&#x2F;tomcatError&#x2F;&quot;,&quot;title&quot;:&quot;Tomcat error&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;2021&#x2F;05&#x2F;24&#x2F;hexo-next%E9%85%8D%E7%BD%AE&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;05&#x2F;24&#x2F;hexo-next配置&#x2F;&quot;,&quot;title&quot;:&quot;hexo+next配置&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>Tomcat error | conquerorLei</title><script src="/js/config.js"></script>
+<title>hexo+next配置 | conquerorLei</title><script src="/js/config.js"></script>
   
 
 
@@ -129,7 +127,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1099%E7%AB%AF%E5%8F%A3%E5%B7%B2%E7%BB%8F%E8%A2%AB%E5%8D%A0%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">1099端口已经被占用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#win-R%E6%89%93%E5%BC%80%E6%8E%A7%E5%88%B6%E9%9D%A2%E6%9D%BF"><span class="nav-number">1.1.</span> <span class="nav-text">win+R打开控制面板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A21099"><span class="nav-number">1.2.</span> <span class="nav-text">查询1099</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A220560"><span class="nav-number">1.3.</span> <span class="nav-text">查询20560</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%80%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">杀进程</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">Hexo配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%B9%B6%E6%9B%B4%E6%8D%A2Next%E4%B8%BB%E9%A2%98"><span class="nav-number">1.1.</span> <span class="nav-text">安装并更换Next主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E4%BF%AE%E6%94%B9"><span class="nav-number">1.2.</span> <span class="nav-text">个人信息修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE"><span class="nav-number">1.3.</span> <span class="nav-text">next主题配置</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -206,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://conquerorlei.github.io/2021/05/22/tomcatError/">
+    <link itemprop="mainEntityOfPage" href="https://conquerorlei.github.io/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -219,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Tomcat error
+          hexo+next配置
         </h1>
 
         <div class="post-meta-container">
@@ -231,7 +229,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-05-22 17:30:40 / 修改时间：17:51:18" itemprop="dateCreated datePublished" datetime="2021-05-22T17:30:40+08:00">2021-05-22</time>
+      <time title="创建时间：2021-05-24 16:56:51 / 修改时间：21:31:53" itemprop="dateCreated datePublished" datetime="2021-05-24T16:56:51+08:00">2021-05-24</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -239,7 +237,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+          <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">环境搭建</span></a>
         </span>
     </span>
 
@@ -258,7 +256,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>379</span>
+      <span>549</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -276,17 +274,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+        <p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
+<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
 <span id="more"></span>
 
-<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<h1 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h1><h2 id="安装并更换Next主题"><a href="#安装并更换Next主题" class="headerlink" title="安装并更换Next主题"></a>安装并更换Next主题</h2><p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 
+<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
+<h2 id="个人信息修改"><a href="#个人信息修改" class="headerlink" title="个人信息修改"></a>个人信息修改</h2><p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：站点无需解释，就是你通过<a target="_blank" rel="noopener external nofollow noreferrer" href="http://localhost:4000/%E6%88%96%E8%80%85https://username.github.io/%E6%89%93%E5%BC%80%E7%9A%84%E7%BD%91%E9%A1%B5%EF%BC%8C%E9%82%A3%E4%B8%AA%E5%B0%B1%E6%98%AF%E4%BD%A0%E7%9A%84%E7%AB%99%E7%82%B9%E3%80%82%E7%AB%99%E7%82%B9%E7%9A%84%E6%A0%87%E9%A2%98%E5%B0%B1%E6%98%AF">http://localhost:4000/或者https://username.github.io/打开的网页，那个就是你的站点。站点的标题就是</a></p>
+</blockquote>
+<h2 id="next主题配置"><a href="#next主题配置" class="headerlink" title="next主题配置"></a>next主题配置</h2>
     </div>
 
     
@@ -303,7 +306,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://conquerorlei.github.io/2021/05/22/tomcatError/" title="Tomcat error">https://conquerorlei.github.io/2021/05/22/tomcatError/</a>
+      <a href="https://conquerorlei.github.io/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/" title="hexo+next配置">https://conquerorlei.github.io/2021/05/24/hexo-next配置/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -312,21 +315,21 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Error/" rel="tag"># Error</a>
-              <a href="/tags/Tomcat/" rel="tag"># Tomcat</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Next/" rel="tag"># Next</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/05/22/HTTP/" rel="prev" title="http error">
-                  <i class="fa fa-chevron-left"></i> http error
+                <a href="/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="prev" title="hexo+github搭建个人博客">
+                  <i class="fa fa-chevron-left"></i> hexo+github搭建个人博客
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="next" title="hexo+github搭建个人博客">
-                  hexo+github搭建个人博客 <i class="fa fa-chevron-right"></i>
+                <a href="/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/" rel="next" title="tensorflow-numpy-matplotlib线性回归">
+                  tensorflow-numpy-matplotlib线性回归 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -414,7 +417,7 @@
 
 
   <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;2021&#x2F;05&#x2F;22&#x2F;tomcatError&#x2F;&quot;}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;2021&#x2F;05&#x2F;24&#x2F;hexo-next%E9%85%8D%E7%BD%AE&#x2F;&quot;}</script>
   <script src="/js/third-party/quicklink.js"></script>
 <script class="next-config" data-name="utterances" type="application/json">{&quot;enable&quot;:true,&quot;repo&quot;:&quot;conquerorLei&#x2F;conquerorLei.github.io&quot;,&quot;issue_term&quot;:&quot;pathname&quot;,&quot;theme&quot;:&quot;github-light&quot;}</script>
 <script src="/js/third-party/comments/utterances.js"></script>
