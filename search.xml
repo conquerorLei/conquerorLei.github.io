@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>http error</title>
+    <url>/2021/05/22/HTTP/</url>
+    <content><![CDATA[<h1 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h1><p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
+<span id="more"></span>
+
+<p>解决办法：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
+<h1 id="500异常"><a href="#500异常" class="headerlink" title="500异常"></a>500异常</h1><p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
+<h1 id="使用配对异常"><a href="#使用配对异常" class="headerlink" title="使用配对异常"></a>使用配对异常</h1><p>一般而言，若是对request进行属性设置，则需要使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+
+<p>进行数据转发，若使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>就会出现无法获取request属性的错误</p>
+<p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Http</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo+github搭建个人博客</title>
     <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
@@ -108,6 +136,40 @@
       </tags>
   </entry>
   <entry>
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+]]></content>
+      <categories>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目中数据库问题</title>
+    <url>/2021/05/22/database/</url>
+    <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+<span id="more"></span>
+
+<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
+<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Database</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo+next配置</title>
     <url>/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
@@ -132,27 +194,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据库</title>
-    <url>/2021/05/22/database/</url>
-    <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
-<span id="more"></span>
-
-<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -201,34 +242,6 @@
       </categories>
       <tags>
         <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>http error</title>
-    <url>/2021/05/22/HTTP/</url>
-    <content><![CDATA[<h1 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h1><p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
-<span id="more"></span>
-
-<p>解决办法：</p>
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
-<h1 id="500异常"><a href="#500异常" class="headerlink" title="500异常"></a>500异常</h1><p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
-<h1 id="使用配对异常"><a href="#使用配对异常" class="headerlink" title="使用配对异常"></a>使用配对异常</h1><p>一般而言，若是对request进行属性设置，则需要使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
-
-<p>进行数据转发，若使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>就会出现无法获取request属性的错误</p>
-<p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
-]]></content>
-      <categories>
-        <category>Program</category>
-      </categories>
-      <tags>
-        <tag>Http</tag>
-        <tag>Error</tag>
       </tags>
   </entry>
   <entry>
@@ -285,10 +298,109 @@
 ]]></content>
       <categories>
         <category>Program</category>
+        <category>Error</category>
       </categories>
       <tags>
-        <tag>Error</tag>
         <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql常用命令</title>
+    <url>/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="mysql相关操作"><a href="#mysql相关操作" class="headerlink" title="mysql相关操作"></a>mysql相关操作</h1><h2 id="1-用户管理"><a href="#1-用户管理" class="headerlink" title="1 用户管理"></a>1 用户管理</h2><h3 id="1-1-创建用户，分配权限"><a href="#1-1-创建用户，分配权限" class="headerlink" title="1.1  创建用户，分配权限"></a>1.1  创建用户，分配权限</h3><span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">#使用数据库mysql</span><br><span class="line">create user &#x27;zhangsan&#x27;@&#x27;localhost&#x27; identified by &#x27;zhangsan123&#x27;;</span><br><span class="line">#create user &#x27;用户名&#x27;@&#x27;loaclhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">#localhost是指本地才可以连接;可以改成&#x27;%&#x27;，表示任意ip都可以连接;也可以改成指定ip;</span><br><span class="line">#在mysql8中，不能使用添加操作实现创建用户</span><br><span class="line">grant select,insert,delete,update on test.* to &#x27;zhangsan&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">#grant 权限 on 数据库.指定表名 to &#x27;用户名&#x27;:</span><br><span class="line">flush privileges;</span><br><span class="line">#刷新权限</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#错误操作</span><br><span class="line">mysql&gt; insert into user</span><br><span class="line">    -&gt; (user,host)</span><br><span class="line">    -&gt; values(&#x27;zhangsan&#x27;,&#x27;localhost&#x27;);</span><br><span class="line">ERROR 1364 (HY000): Field &#x27;ssl_cipher&#x27; doesn&#x27;t have a default value</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-修改用户密码"><a href="#1-2-修改用户密码" class="headerlink" title="1.2  修改用户密码"></a>1.2  修改用户密码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">alter user &#x27;zhangsan&#x27;@&#x27;localhost&#x27; identified by &#x27;12345678&#x27;;</span><br><span class="line">#alter user &#x27;用户名&#x27;@&#x27;localhost&#x27; identified by &#x27;新密码&#x27;;</span><br><span class="line">flush privileges;</span><br><span class="line">#刷新权限</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-3-查看权限"><a href="#1-3-查看权限" class="headerlink" title="1.3   查看权限"></a>1.3   查看权限</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show grants for &#x27;zhangsan&#x27;@&#x27;localhost&#x27;; </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; show grants for &#x27;lixianlei&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| Grants for lixianlei@localhost                                              |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br><span class="line">| GRANT USAGE ON *.* TO `lixianlei`@`localhost`                               |</span><br><span class="line">| GRANT SELECT, INSERT, UPDATE, DELETE ON `test`.* TO `lixianlei`@`localhost` |</span><br><span class="line">+-----------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-撤消权限"><a href="#1-4-撤消权限" class="headerlink" title="1.4   撤消权限"></a>1.4   撤消权限</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">revoke all privileges on *.* from &#x27;zhangsan&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">#revoke all privileges on &#x27;数据库&#x27;.&#x27;表名&#x27; from &#x27;用户名&#x27;@&#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-5-删除操作"><a href="#1-5-删除操作" class="headerlink" title="1.5  删除操作"></a>1.5  删除操作</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">drop user &#x27;zhangsan&#x27;;</span><br><span class="line">#drop user &#x27;zhangsan&#x27;@&#x27;localhost&#x27;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-数据库基础操作"><a href="#2-数据库基础操作" class="headerlink" title="2 数据库基础操作"></a>2 数据库基础操作</h2><h3 id="2-1-创建数据库"><a href="#2-1-创建数据库" class="headerlink" title="2.1 创建数据库"></a>2.1 创建数据库</h3><p>keyword:<code>create</code></p>
+<p>format:<code>create database database_name;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#创建名为jwdl的数据库</span><br><span class="line">mysql&gt; create database jwdl;</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br><span class="line"></span><br><span class="line">#查看创建好的数据库jwdl的定义</span><br><span class="line">mysql&gt; show create database jwdl;</span><br><span class="line">+----------+--------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| Database | Create Database                                                                                                                |</span><br><span class="line">+----------+--------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">| jwdl     | CREATE DATABASE `jwdl` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION=&#x27;N&#x27; */ |</span><br><span class="line">+----------+--------------------------------------------------------------------------------------------------------------------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-2-选择操作"><a href="#2-2-选择操作" class="headerlink" title="2.2 选择操作"></a>2.2 选择操作</h3><p>关键词：<code>select</code></p>
+<p>格式：<code>select 列名 from 表名;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">select user,host,authentication_string from user;</span><br><span class="line">#在新版本中，加密后的密码在表中的列名为&#x27;authentication_string&#x27;</span><br><span class="line">#若欲选择全部列名，则以&#x27;*&#x27;代替</span><br><span class="line">#select * from user;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; select user,host,authentication_string from user;</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| user             | host      | authentication_string                                                  |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br><span class="line">| lixianlei        | localhost | *5DB2BC2E5C0108EC0598136E161B31856FE7FC68                              |</span><br><span class="line">| mysql.infoschema | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |</span><br><span class="line">| mysql.session    | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |</span><br><span class="line">| mysql.sys        | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |</span><br><span class="line">| root             | localhost | *49DA781724763770869D8619EC543F0CD961518B                              |</span><br><span class="line">+------------------+-----------+------------------------------------------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#使用数据库test</span><br><span class="line">mysql&gt; use test;</span><br><span class="line">Database changed</span><br><span class="line">#在test数据库的users表单中选择全部项</span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">| userid | username | password    | email            |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">|      1 | zhangsan | zhangsan123 | zhangsan@163.com |</span><br><span class="line">|      2 | lisi     | lisi123     | lisi@163.com     |</span><br><span class="line">|      3 | wangwu   | wangwu123   | wangwu@163.com   |</span><br><span class="line">|      4 | zhaoliu  | zhaoliu123  | zhaoliu@163.com  |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-插入操作"><a href="#2-3-插入操作" class="headerlink" title="2.3 插入操作"></a>2.3 插入操作</h3><p>keyword:<code>insert</code></p>
+<p>format:<code>insert into table (column1,column2,column3,...) values(...,...,...,...);</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; insert into users</span><br><span class="line">    -&gt; (userid,username,password,email)</span><br><span class="line">    -&gt; values(4,&#x27;zhaoliu&#x27;,&#x27;zhaoliu123&#x27;,&#x27;zhaoliu@163.com&#x27;);</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">| userid | username | password    | email            |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">|      1 | zhangsan | zhangsan123 | zhangsan@163.com |</span><br><span class="line">|      2 | lisi     | lisi123     | lisi@163.com     |</span><br><span class="line">|      3 | wangwu   | wangwu123   | wangwu@163.com   |</span><br><span class="line">|      4 | zhaoliu  | zhaoliu123  | zhaoliu@163.com  |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-4-修改-更新操作"><a href="#2-4-修改-更新操作" class="headerlink" title="2.4 修改/更新操作"></a>2.4 修改/更新操作</h3><p>keyword:<code>update</code></p>
+<p>format:<code>update table_name set column_name=&#39;changed_values&#39; where column_name=&#39;limit_condition&#39;;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#插入错误信息</span><br><span class="line">mysql&gt; insert into users</span><br><span class="line">    -&gt; (userid,username,password,email)</span><br><span class="line">    -&gt; values(5,&#x27;zhouqi&#x27;,&#x27;zhouqi123&#x27;,&#x27;zhouqi123&#x27;);</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br><span class="line">#查看错误信息</span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">| userid | username | password    | email            |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">|      1 | zhangsan | zhangsan123 | zhangsan@163.com |</span><br><span class="line">|      2 | lisi     | lisi123     | lisi@163.com     |</span><br><span class="line">|      3 | wangwu   | wangwu123   | wangwu@163.com   |</span><br><span class="line">|      4 | zhaoliu  | zhaoliu123  | zhaoliu@163.com  |</span><br><span class="line">|      5 | zhouqi   | zhouqi123   | zhouqi123        |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br><span class="line">#修改错误信息</span><br><span class="line">mysql&gt; update users</span><br><span class="line">    -&gt; set email=&#x27;zhouqi@163.com&#x27;</span><br><span class="line">    -&gt; where username=&#x27;zhouqi&#x27;;</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">| userid | username | password    | email            |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">|      1 | zhangsan | zhangsan123 | zhangsan@163.com |</span><br><span class="line">|      2 | lisi     | lisi123     | lisi@163.com     |</span><br><span class="line">|      3 | wangwu   | wangwu123   | wangwu@163.com   |</span><br><span class="line">|      4 | zhaoliu  | zhaoliu123  | zhaoliu@163.com  |</span><br><span class="line">|      5 | zhouqi   | zhouqi123   | zhouqi@163.com   |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">5 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-1-整列相同数值更新"><a href="#2-4-1-整列相同数值更新" class="headerlink" title="2.4.1 整列相同数值更新"></a>2.4.1 整列相同数值更新</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#在users表单中新建nation列，类型为varchar(10)</span><br><span class="line">mysql&gt; alter table users</span><br><span class="line">    -&gt; add column nation varchar(10)</span><br><span class="line">    -&gt; after userid;</span><br><span class="line">Query OK, 0 rows affected (0.05 sec)</span><br><span class="line">Records: 0  Duplicates: 0  Warnings: 0</span><br><span class="line">#查看当前表单状态</span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+--------+----------+-------------+-----------+------------------+</span><br><span class="line">| userid | nation | username | password    | telephone | email            |</span><br><span class="line">+--------+--------+----------+-------------+-----------+------------------+</span><br><span class="line">|      1 | NULL   | zhangsan | zhangsan123 | NULL      | zhangsan@163.com |</span><br><span class="line">|      2 | NULL   | lisi     | lisi123     | NULL      | lisi@163.com     |</span><br><span class="line">|      3 | NULL   | wangwu   | wangwu456   | NULL      | wangwu@163.com   |</span><br><span class="line">|      4 | NULL   | zhaoliu  | zhaoliu123  | NULL      | zhaoliu@163.com  |</span><br><span class="line">|      5 | NULL   | zhouqi   | zhouqi123   | NULL      | zhoouqi@163.com  |</span><br><span class="line">|      6 | NULL   | lvba     | lvba123     | NULL      | lvba@163.com     |</span><br><span class="line">|      8 | NULL   | fushi    | fushi123    | NULL      | fushi@qq.com     |</span><br><span class="line">+--------+--------+----------+-------------+-----------+------------------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br><span class="line">#对nation整列数据进行操作</span><br><span class="line">#此方法仅用于数据库列内值相同的情况</span><br><span class="line">#一般都是在未指定行或者没有任何限制的情况下，总是默认全部</span><br><span class="line">mysql&gt; update users</span><br><span class="line">    -&gt; set nation=&#x27;china&#x27;;</span><br><span class="line">Query OK, 7 rows affected (0.01 sec)</span><br><span class="line">Rows matched: 7  Changed: 7  Warnings: 0</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+--------+----------+-------------+-----------+------------------+</span><br><span class="line">| userid | nation | username | password    | telephone | email            |</span><br><span class="line">+--------+--------+----------+-------------+-----------+------------------+</span><br><span class="line">|      1 | china  | zhangsan | zhangsan123 | NULL      | zhangsan@163.com |</span><br><span class="line">|      2 | china  | lisi     | lisi123     | NULL      | lisi@163.com     |</span><br><span class="line">|      3 | china  | wangwu   | wangwu456   | NULL      | wangwu@163.com   |</span><br><span class="line">|      4 | china  | zhaoliu  | zhaoliu123  | NULL      | zhaoliu@163.com  |</span><br><span class="line">|      5 | china  | zhouqi   | zhouqi123   | NULL      | zhoouqi@163.com  |</span><br><span class="line">|      6 | china  | lvba     | lvba123     | NULL      | lvba@163.com     |</span><br><span class="line">|      8 | china  | fushi    | fushi123    | NULL      | fushi@qq.com     |</span><br><span class="line">+--------+--------+----------+-------------+-----------+------------------+</span><br><span class="line">7 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-5-删除操作"><a href="#2-5-删除操作" class="headerlink" title="2.5 删除操作"></a>2.5 删除操作</h3><p>keyword:<code>delete</code></p>
+<p>format:<code>delete from table_name where column_name=&#39;limit_condition&#39;;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#删除操作，在users表中删除username为zhouqi的用户</span><br><span class="line">mysql&gt; delete from users</span><br><span class="line">    -&gt; where username=&#x27;zhouqi&#x27;;</span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br><span class="line">#查表操作，查看是否删除成功</span><br><span class="line">mysql&gt; select * from users;</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">| userid | username | password    | email            |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">|      1 | zhangsan | zhangsan123 | zhangsan@163.com |</span><br><span class="line">|      2 | lisi     | lisi123     | lisi@163.com     |</span><br><span class="line">|      3 | wangwu   | wangwu123   | wangwu@163.com   |</span><br><span class="line">|      4 | zhaoliu  | zhaoliu123  | zhaoliu@163.com  |</span><br><span class="line">+--------+----------+-------------+------------------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-MySQL数据库的基本命令"><a href="#3-MySQL数据库的基本命令" class="headerlink" title="3 MySQL数据库的基本命令"></a>3 MySQL数据库的基本命令</h2><h3 id="3-1-启动和关闭数据库"><a href="#3-1-启动和关闭数据库" class="headerlink" title="3.1  启动和关闭数据库"></a>3.1  启动和关闭数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#pay attention：以下操作需要在管理员权限下才可以</span><br><span class="line">#启动数据库</span><br><span class="line">net start mysql80;</span><br><span class="line">#关闭数据库</span><br><span class="line">net stop mysql80;</span><br><span class="line">## 当然，也可以通过系统的服务来实现数据库的开和关</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-登录数据库"><a href="#3-2-登录数据库" class="headerlink" title="3.2  登录数据库"></a>3.2  登录数据库</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#此命令需要的也是管理员权限</span><br><span class="line">#至于具体原因，应该是数据库的环境变量都添加到了系统变量取，在以本地用户身份尝试登录数据库时会显示没有mysql命令或者批处理程序</span><br><span class="line">#命令格式：mysql -u user_name -p回车下一行就会提醒你输入密码，或者直接指定密码</span><br><span class="line">#当然，还可以添加参数-h，用来指定主机名，默认为localhost</span><br><span class="line">#mysql -h host_name -u user_name -p password</span><br><span class="line">mysql -u root -p</span><br><span class="line">password:**********</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-杂项"><a href="#3-3-杂项" class="headerlink" title="3.3  杂项"></a>3.3  杂项</h3><h4 id="3-3-1-字符集命令"><a href="#3-3-1-字符集命令" class="headerlink" title="3.3.1  字符集命令"></a>3.3.1  字符集命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看mysql支持的字符集以及对应的检验规则</span><br><span class="line">show character set;</span><br><span class="line">#显示当前连接系统的参数</span><br><span class="line">mysql&gt; show variables like &#x27;char%&#x27;;</span><br><span class="line">+--------------------------+---------------------------------------------------------+</span><br><span class="line">| Variable_name            | Value                                                   |</span><br><span class="line">+--------------------------+---------------------------------------------------------+</span><br><span class="line">| character_set_client     | gbk                                                     |</span><br><span class="line">| character_set_connection | gbk                                                     |</span><br><span class="line">| character_set_database   | utf8mb4                                                 |</span><br><span class="line">| character_set_filesystem | binary                                                  |</span><br><span class="line">| character_set_results    | gbk                                                     |</span><br><span class="line">| character_set_server     | utf8mb4                                                 |</span><br><span class="line">| character_set_system     | utf8                                                    |</span><br><span class="line">| character_sets_dir       | C:\Program Files\MySQL\MySQL Server 8.0\share\charsets\ |</span><br><span class="line">+--------------------------+---------------------------------------------------------+</span><br><span class="line">#修改上述变量的值</span><br><span class="line">mysql&gt; set character_set_client=utf8;</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Variable_name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>character_set_server</td>
+<td>服务器安装时指定的默认编码格式</td>
+</tr>
+<tr>
+<td>character_set_client</td>
+<td>主要来设置连接数据库时的字符集。主要来决定MySQL如何解释客户端发送到服务器的SQL指令</td>
+</tr>
+<tr>
+<td>character_set_connection</td>
+<td>主要来设置连接数据库时的字符集。主要用来决定MySQL如何处理客户端法发来的SQL命令</td>
+</tr>
+<tr>
+<td>character_set_result</td>
+<td>数据库返回客户端时的使用的编码格式</td>
+</tr>
+<tr>
+<td>character_set_system</td>
+<td>数据库系统使用的编码格式。pay attention:不要轻易改变它</td>
+</tr>
+</tbody></table>
+<h4 id="3-3-2-查看命令"><a href="#3-3-2-查看命令" class="headerlink" title="3.3.2  查看命令"></a>3.3.2  查看命令</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查看mysql的状态信息</span><br><span class="line">mysql&gt; status</span><br><span class="line">--------------</span><br><span class="line">mysql  Ver 8.0.22 for Win64 on x86_64 (MySQL Community Server - GPL)</span><br><span class="line"></span><br><span class="line">Connection id:          53</span><br><span class="line">Current database:       test</span><br><span class="line">Current user:           root@localhost</span><br><span class="line">SSL:                    Cipher in use is TLS_AES_256_GCM_SHA384</span><br><span class="line">Using delimiter:        ;</span><br><span class="line">Server version:         8.0.22 MySQL Community Server - GPL</span><br><span class="line">Protocol version:       10</span><br><span class="line">Connection:             localhost via TCP/IP</span><br><span class="line">Server characterset:    utf8mb4</span><br><span class="line">Db     characterset:    utf8mb4</span><br><span class="line">Client characterset:    utf8</span><br><span class="line">Conn.  characterset:    gbk</span><br><span class="line">TCP port:               3306</span><br><span class="line">Binary data as:         Hexadecimal</span><br><span class="line">Uptime:                 2 days 4 hours 24 min 4 sec</span><br><span class="line"></span><br><span class="line">Threads: 2  Questions: 681  Slow queries: 0  Opens: 332  Flush tables: 3  Open tables: 246  Queries per second avg: 0.003</span><br><span class="line">--------------</span><br><span class="line"></span><br><span class="line">#查看数据库</span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">| test               |</span><br><span class="line">+--------------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">#切换数据库到当前数据库</span><br><span class="line">mysql&gt; use test;</span><br><span class="line">Database changed</span><br><span class="line"></span><br><span class="line">#查看数据库中的表信息</span><br><span class="line">mysql&gt; show tables;</span><br><span class="line">+----------------+</span><br><span class="line">| Tables_in_test |</span><br><span class="line">+----------------+</span><br><span class="line">| users          |</span><br><span class="line">+----------------+</span><br><span class="line">1 row in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">#查看表结构</span><br><span class="line">mysql&gt; describe users;</span><br><span class="line">+----------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field    | Type        | Null | Key | Default | Extra |</span><br><span class="line">+----------+-------------+------+-----+---------+-------+</span><br><span class="line">| userid   | int         | NO   | PRI | NULL    |       |</span><br><span class="line">| username | char(45)    | YES  |     | NULL    |       |</span><br><span class="line">| password | char(45)    | YES  |     | NULL    |       |</span><br><span class="line">| email    | varchar(45) | YES  |     | NULL    |       |</span><br><span class="line">+----------+-------------+------+-----+---------+-------+</span><br><span class="line">4 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">#查看mysql 8.0版本支持的数据库存储系统</span><br><span class="line">mysql&gt; show engines \G;</span><br><span class="line">*************************** 1. row ***************************</span><br><span class="line">      Engine: MEMORY</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Hash based, stored in memory, useful for temporary tables</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">*************************** 2. row ***************************</span><br><span class="line">      Engine: MRG_MYISAM</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Collection of identical MyISAM tables</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">*************************** 3. row ***************************</span><br><span class="line">      Engine: CSV</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: CSV storage engine</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">*************************** 4. row ***************************</span><br><span class="line">      Engine: FEDERATED</span><br><span class="line">     Support: NO</span><br><span class="line">     Comment: Federated MySQL storage engine</span><br><span class="line">Transactions: NULL</span><br><span class="line">          XA: NULL</span><br><span class="line">  Savepoints: NULL</span><br><span class="line">*************************** 5. row ***************************</span><br><span class="line">      Engine: PERFORMANCE_SCHEMA</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Performance Schema</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">*************************** 6. row ***************************</span><br><span class="line">      Engine: MyISAM</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: MyISAM storage engine</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">*************************** 7. row ***************************</span><br><span class="line">      Engine: InnoDB</span><br><span class="line">     Support: DEFAULT</span><br><span class="line">     Comment: Supports transactions, row-level locking, and foreign keys</span><br><span class="line">Transactions: YES</span><br><span class="line">          XA: YES</span><br><span class="line">  Savepoints: YES</span><br><span class="line">*************************** 8. row ***************************</span><br><span class="line">      Engine: BLACKHOLE</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: /dev/null storage engine (anything you write to it disappears)</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">*************************** 9. row ***************************</span><br><span class="line">      Engine: ARCHIVE</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Archive storage engine</span><br><span class="line">Transactions: NO</span><br><span class="line">          XA: NO</span><br><span class="line">  Savepoints: NO</span><br><span class="line">9 rows in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line">No query specified</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-表操作"><a href="#3-4-表操作" class="headerlink" title="3.4 表操作"></a>3.4 表操作</h3><h4 id="3-4-1-新建表"><a href="#3-4-1-新建表" class="headerlink" title="3.4.1 新建表"></a>3.4.1 新建表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentName <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">primary</span> key(studentNo)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br><span class="line">    </span><br><span class="line">mysql<span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">describe</span> tb_student;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> Field       <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> studentNo   <span class="operator">|</span> <span class="type">char</span>(<span class="number">10</span>)    <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> studentName <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> sex         <span class="operator">|</span> <span class="type">char</span>(<span class="number">2</span>)     <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> birthday    <span class="operator">|</span> <span class="type">date</span>        <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> native      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">20</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> nation      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> 汉      <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-4-1-1-约束"><a href="#3-4-1-1-约束" class="headerlink" title="3.4.1.1 约束"></a>3.4.1.1 约束</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNmae <span class="type">varchar</span>(<span class="number">10</span>)<span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> classNo <span class="type">char</span>(<span class="number">6</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">constraint</span> pk_student <span class="keyword">primary</span> key(studentNo),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">foreign</span> key fk_student (classNo) <span class="keyword">references</span> tb_class(classNo) <span class="keyword">on</span> update cascade <span class="keyword">on</span> <span class="keyword">delete</span> restrict </span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Database</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
       </tags>
   </entry>
 </search>
