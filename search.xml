@@ -19,6 +19,10 @@
 
 <p>就会出现无法获取request属性的错误</p>
 <p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>Program</category>
@@ -32,12 +36,56 @@
     <title>binary not found</title>
     <url>/2021/05/25/binary-not-found/</url>
     <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>Error</category>
       </categories>
       <tags>
         <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Utterance使用</title>
+    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
+<span id="more"></span>
+
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
+<p>这多香啊！！！</p>
+<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
+<h1 id="bug1-example-com公共域名"><a href="#bug1-example-com公共域名" class="headerlink" title="bug1 example.com公共域名"></a>bug1 example.com公共域名</h1><p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
+<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
+<p>嗯？？？？</p>
+<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
+<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
+<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+
+<div class="note primary"><blockquote>
+<p>这一段代码里面的url起始状态下是<a href="https://example.com/">https://example.com/</a> 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
+</blockquote>
+</div>
+
+<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
+
+<!-- 其中 class="blockquote-center" 是必须的 --> 
+
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
+        <tag>Utterance</tag>
       </tags>
   </entry>
   <entry>
@@ -52,6 +100,10 @@
 
 <p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
 <h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>Program</category>
@@ -71,16 +123,20 @@
 <p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
 <p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
 <p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
-<blockquote>
+<div class="note primary"><blockquote>
 <p>本文为个人查漏补缺所用，暂时不写那么详细</p>
 <p>最开始的git安装和github账户注册在这里不再进行赘述</p>
 <p>不明白这些的同学，请自行查阅相关资料</p>
 </blockquote>
-<h1 id="安装node-js和git"><a href="#安装node-js和git" class="headerlink" title="安装node.js和git"></a>安装node.js和git</h1><h2 id="下载路径"><a href="#下载路径" class="headerlink" title="下载路径"></a>下载路径</h2><blockquote>
+</div>
+
+<h1 id="安装node-js和git"><a href="#安装node-js和git" class="headerlink" title="安装node.js和git"></a>安装node.js和git</h1><h2 id="下载路径"><a href="#下载路径" class="headerlink" title="下载路径"></a>下载路径</h2><div class="note success"><blockquote>
 <p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
 <p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
 <p>里面都有选项，请选择适合自己的版本下载</p>
 </blockquote>
+</div>
+
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
 <p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
@@ -90,13 +146,15 @@
 <h1 id="连接Github"><a href="#连接Github" class="headerlink" title="连接Github"></a>连接Github</h1><h2 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h2><p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
 
-<blockquote>
+<div class="note primary"><blockquote>
 <p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p>
 <p>如果想要知道有没有设置成功，按照以下命名进行</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list --global</span><br></pre></td></tr></table></figure>
 
 <p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
 </blockquote>
+</div>
+
 <h2 id="创建并配置SSH秘钥"><a href="#创建并配置SSH秘钥" class="headerlink" title="创建并配置SSH秘钥"></a>创建并配置SSH秘钥</h2><p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
 
@@ -109,11 +167,13 @@
 
 <p>连接成功的，会弹出以下字样</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
-<blockquote>
+<div class="note success"><blockquote>
 <p>说明：不要管后面那个”but Github does not provide shell access”。</p>
 <p>实在好奇为什么的话，以下是翻译</p>
 <p>你已经成功验证，但是Github不提供shell访问</p>
 </blockquote>
+</div>
+
 <h1 id="创建Github-Pages仓库"><a href="#创建Github-Pages仓库" class="headerlink" title="创建Github Pages仓库"></a>创建Github Pages仓库</h1><p>GitHub 主页右上角加号 -&gt; New repository</p>
 <ul>
 <li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
@@ -121,18 +181,22 @@
 <li>勾选<code>Add a README file</code></li>
 <li>点击<code>Create Repository</code></li>
 </ul>
-<blockquote>
+<div class="note info"><blockquote>
 <p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p>
 </blockquote>
+</div>
+
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
 <p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
 <h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
 <h2 id="下载安装hexo程序"><a href="#下载安装hexo程序" class="headerlink" title="下载安装hexo程序"></a>下载安装hexo程序</h2><p>使用<code>npm</code>安装</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 
-<blockquote>
+<div class="note info"><blockquote>
 <p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
 </blockquote>
+</div>
+
 <h2 id="Hexo初始化和本地预览"><a href="#Hexo初始化和本地预览" class="headerlink" title="Hexo初始化和本地预览"></a>Hexo初始化和本地预览</h2><p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 
@@ -141,25 +205,33 @@
 
 <p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
-<blockquote>
+<div class="note info"><blockquote>
 <p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p>
 </blockquote>
+</div>
+
 <h1 id="部署hexo到Github-pages"><a href="#部署hexo到Github-pages" class="headerlink" title="部署hexo到Github pages"></a>部署hexo到Github pages</h1><p>首先是安装<code>hexo-deployer-git</code></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
 
 <p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
-<blockquote>
+<div class="note primary"><blockquote>
 <p>说明：</p>
 <ul>
 <li>:    后面有一个空格，一定要注意这一点</li>
 <li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
 </ul>
 </blockquote>
+</div>
+
 <p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
 
 <p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>环境搭建</category>
@@ -185,10 +257,12 @@
 <h2 id="个人信息修改"><a href="#个人信息修改" class="headerlink" title="个人信息修改"></a>个人信息修改</h2><p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>说明：站点无需解释，就是你通过<a href="http://localhost:4000/%E6%88%96%E8%80%85https://username.github.io/%E6%89%93%E5%BC%80%E7%9A%84%E7%BD%91%E9%A1%B5%EF%BC%8C%E9%82%A3%E4%B8%AA%E5%B0%B1%E6%98%AF%E4%BD%A0%E7%9A%84%E7%AB%99%E7%82%B9%E3%80%82%E7%AB%99%E7%82%B9%E7%9A%84%E6%A0%87%E9%A2%98%E5%B0%B1%E6%98%AF">http://localhost:4000/或者https://username.github.io/打开的网页，那个就是你的站点。站点的标题就是</a></p>
+<div class="note success"><blockquote>
+<p>说明：站点无需解释，就是你通过<a href="http://localhost:4000/">http://localhost:4000/</a> 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
 </blockquote>
-<h1 id="next主题配置"><a href="#next主题配置" class="headerlink" title="next主题配置"></a>next主题配置</h1><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><h3 id="使用highlight-js"><a href="#使用highlight-js" class="headerlink" title="使用highlight.js"></a>使用<code>highlight.js</code></h3><p>修改一下根目录下的<code>_config.yml</code></p>
+</div>
+
+<h1 id="next主题配置"><a href="#next主题配置" class="headerlink" title="next主题配置"></a>next主题配置</h1><h2 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h2><h3 id="使用highlight-js"><a href="#使用highlight-js" class="headerlink" title="使用highlight.js"></a>使用highlight.js</h3><p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
 <p>修改一下<code>themes/next/_config.yml</code></p>
@@ -200,19 +274,58 @@
 <p>修改一下<code>themes/next/_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
+<div class="note info"><blockquote>
 <p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
 <p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
 <p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
 </blockquote>
+</div>
+
+<h2 id="主页和归档页分页"><a href="#主页和归档页分页" class="headerlink" title="主页和归档页分页"></a>主页和归档页分页</h2><h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改文件"><a href="#修改文件" class="headerlink" title="修改文件"></a>修改文件</h3><p>其次就是对配置文件的设置</p>
+<div class="note primary"><blockquote>
+<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
+<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
+</blockquote>
+</div>
+
+<p>根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
+
+<p><code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="本地搜索"><a href="#本地搜索" class="headerlink" title="本地搜索"></a>本地搜索</h2><h3 id="安装插件-1"><a href="#安装插件-1" class="headerlink" title="安装插件"></a>安装插件</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="随机引用颜色"><a href="#随机引用颜色" class="headerlink" title="随机引用颜色"></a>随机引用颜色</h2><p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
+<p>官方：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下为使用方法，直接在markdown文档中写标签就好</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
+<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>环境搭建</category>
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Next</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -222,37 +335,28 @@
 <span id="more"></span>
 
 <p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
-<blockquote>
+<div class="note success"><blockquote>
 <p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
 </blockquote>
+</div>
+
 <h1 id="同级分类"><a href="#同级分类" class="headerlink" title="同级分类"></a>同级分类</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
 
 <h1 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a>多级分类</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
 
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>环境搭建</category>
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tensorflow-numpy-matplotlib线性回归</title>
-    <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>python</category>
-        <category>神经网络与机器学习</category>
-      </categories>
-      <tags>
-        <tag>Numpy</tag>
-        <tag>Matplotlib</tag>
-        <tag>Tensorflow</tag>
-        <tag>python</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -295,12 +399,35 @@
 <p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="image-20210227000653809"></p>
 <p>至此结束。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>环境搭建</category>
       </categories>
       <tags>
         <tag>Sundry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tensorflow-numpy-matplotlib线性回归</title>
+    <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
+]]></content>
+      <categories>
+        <category>python</category>
+        <category>神经网络与机器学习</category>
+      </categories>
+      <tags>
+        <tag>Numpy</tag>
+        <tag>Matplotlib</tag>
+        <tag>Tensorflow</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -316,6 +443,10 @@
 <h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
 <p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>Program</category>
@@ -340,6 +471,10 @@
 <li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
 <li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
 </ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
+
 ]]></content>
       <categories>
         <category>algorithm</category>
@@ -438,6 +573,10 @@
 <h3 id="3-4-表操作"><a href="#3-4-表操作" class="headerlink" title="3.4 表操作"></a>3.4 表操作</h3><h4 id="3-4-1-新建表"><a href="#3-4-1-新建表" class="headerlink" title="3.4.1 新建表"></a>3.4.1 新建表</h4><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentName <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">primary</span> key(studentNo)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br><span class="line">    </span><br><span class="line">mysql<span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">describe</span> tb_student;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> Field       <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> studentNo   <span class="operator">|</span> <span class="type">char</span>(<span class="number">10</span>)    <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> studentName <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> sex         <span class="operator">|</span> <span class="type">char</span>(<span class="number">2</span>)     <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> birthday    <span class="operator">|</span> <span class="type">date</span>        <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> native      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">20</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> nation      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> 汉      <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
 
 <h5 id="3-4-1-1-约束"><a href="#3-4-1-1-约束" class="headerlink" title="3.4.1.1 约束"></a>3.4.1.1 约束</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNmae <span class="type">varchar</span>(<span class="number">10</span>)<span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> classNo <span class="type">char</span>(<span class="number">6</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">constraint</span> pk_student <span class="keyword">primary</span> key(studentNo),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">foreign</span> key fk_student (classNo) <span class="keyword">references</span> tb_class(classNo) <span class="keyword">on</span> update cascade <span class="keyword">on</span> <span class="keyword">delete</span> restrict </span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br></pre></td></tr></table></figure>
+
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
+
+<blockquote class="blockquote-center">王小波</blockquote>
 
 ]]></content>
       <categories>
