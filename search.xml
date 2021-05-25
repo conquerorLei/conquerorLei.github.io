@@ -19,33 +19,13 @@
 
 <p>就会出现无法获取request属性的错误</p>
 <p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
-]]></content>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>Program</category>
         <category>Error</category>
       </categories>
       <tags>
         <tag>Http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>binary not found</title>
-    <url>/2021/05/25/binary-not-found/</url>
-    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -74,9 +54,7 @@
 
 <!-- 其中 class="blockquote-center" 是必须的 --> 
 
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
 ]]></content>
       <categories>
@@ -86,6 +64,20 @@
         <tag>Next</tag>
         <tag>Hexo</tag>
         <tag>Utterance</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
+]]></content>
+      <categories>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -100,9 +92,7 @@
 
 <p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
 <h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
 ]]></content>
       <categories>
@@ -228,11 +218,7 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
 
 <p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
-]]></content>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>环境搭建</category>
         <category>Hexo</category>
@@ -240,6 +226,33 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo同级多级分类配置</title>
+    <url>/2021/05/25/hexo%E5%90%8C%E7%BA%A7%E5%A4%9A%E7%BA%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
+<span id="more"></span>
+
+<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<div class="note success"><blockquote>
+<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
+</blockquote>
+</div>
+
+<h1 id="同级分类"><a href="#同级分类" class="headerlink" title="同级分类"></a>同级分类</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a>多级分类</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -314,42 +327,7 @@
 <p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Next</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo同级多级分类配置</title>
-    <url>/2021/05/25/hexo%E5%90%8C%E7%BA%A7%E5%A4%9A%E7%BA%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
-<span id="more"></span>
-
-<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
-<div class="note success"><blockquote>
-<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
-</blockquote>
-</div>
-
-<h1 id="同级分类"><a href="#同级分类" class="headerlink" title="同级分类"></a>同级分类</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
-
-<h1 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a>多级分类</h1><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
-
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
-]]></content>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>环境搭建</category>
         <category>Hexo</category>
@@ -399,11 +377,7 @@
 <p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="image-20210227000653809"></p>
 <p>至此结束。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
-]]></content>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>环境搭建</category>
       </categories>
@@ -414,10 +388,7 @@
   <entry>
     <title>tensorflow-numpy-matplotlib线性回归</title>
     <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
-
+    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
         <category>python</category>
@@ -443,9 +414,7 @@
 <h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
 <p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
 ]]></content>
       <categories>
@@ -471,9 +440,7 @@
 <li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
 <li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
 </ol>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
 ]]></content>
       <categories>
@@ -574,9 +541,7 @@
 
 <h5 id="3-4-1-1-约束"><a href="#3-4-1-1-约束" class="headerlink" title="3.4.1.1 约束"></a>3.4.1.1 约束</h5><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNmae <span class="type">varchar</span>(<span class="number">10</span>)<span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> classNo <span class="type">char</span>(<span class="number">6</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">constraint</span> pk_student <span class="keyword">primary</span> key(studentNo),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">foreign</span> key fk_student (classNo) <span class="keyword">references</span> tb_class(classNo) <span class="keyword">on</span> update cascade <span class="keyword">on</span> <span class="keyword">delete</span> restrict </span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br></pre></td></tr></table></figure>
 
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒</blockquote>
-
-<blockquote class="blockquote-center">王小波</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
 ]]></content>
       <categories>
