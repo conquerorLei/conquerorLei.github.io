@@ -32,6 +32,8 @@
     <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
     <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
     <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named &#39;pip&#39;</code>这个问题。以下是我的解决办法</p>
+<span id="more"></span>
+
 <h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
 
 <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
@@ -50,6 +52,20 @@
       <tags>
         <tag>pip</tag>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
+]]></content>
+      <categories>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -208,20 +224,6 @@
       </tags>
   </entry>
   <entry>
-    <title>binary not found</title>
-    <url>/2021/05/25/binary-not-found/</url>
-    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>项目中数据库问题</title>
     <url>/2021/05/22/database/</url>
     <content><![CDATA[<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
@@ -243,130 +245,6 @@
       <tags>
         <tag>Mysql</tag>
         <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo+github搭建个人博客</title>
-    <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
-<span id="more"></span>
-
-<p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
-<p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
-<p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
-<div class="note primary"><blockquote>
-<p>本文为个人查漏补缺所用，暂时不写那么详细</p>
-<p>最开始的git安装和github账户注册在这里不再进行赘述</p>
-<p>不明白这些的同学，请自行查阅相关资料</p>
-</blockquote>
-</div>
-
-<h1 id="安装node-js和git"><a href="#安装node-js和git" class="headerlink" title="安装node.js和git"></a>安装node.js和git</h1><h2 id="下载路径"><a href="#下载路径" class="headerlink" title="下载路径"></a>下载路径</h2><div class="note success"><blockquote>
-<p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
-<p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
-<p>里面都有选项，请选择适合自己的版本下载</p>
-</blockquote>
-</div>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
-<p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
-<p>node.js安装完成后，使用win+r打开运行，在运行的输入框中输入cmd，打开cmd，在cmd中输入node -v 以及npm -v看是否有版本显示，如下图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
-<p>有版本显示就说明已经安装好了</p>
-<h1 id="连接Github"><a href="#连接Github" class="headerlink" title="连接Github"></a>连接Github</h1><h2 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h2><p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
-
-<div class="note primary"><blockquote>
-<p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p>
-<p>如果想要知道有没有设置成功，按照以下命名进行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list --global</span><br></pre></td></tr></table></figure>
-
-<p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
-</blockquote>
-</div>
-
-<h2 id="创建并配置SSH秘钥"><a href="#创建并配置SSH秘钥" class="headerlink" title="创建并配置SSH秘钥"></a>创建并配置SSH秘钥</h2><p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
-
-<p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
-<p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
-<p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
-<h2 id="验证链接"><a href="#验证链接" class="headerlink" title="验证链接"></a>验证链接</h2><p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-
-<p>连接成功的，会弹出以下字样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
-<div class="note success"><blockquote>
-<p>说明：不要管后面那个”but Github does not provide shell access”。</p>
-<p>实在好奇为什么的话，以下是翻译</p>
-<p>你已经成功验证，但是Github不提供shell访问</p>
-</blockquote>
-</div>
-
-<h1 id="创建Github-Pages仓库"><a href="#创建Github-Pages仓库" class="headerlink" title="创建Github Pages仓库"></a>创建Github Pages仓库</h1><p>GitHub 主页右上角加号 -&gt; New repository</p>
-<ul>
-<li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
-<li>选择<code>public</code></li>
-<li>勾选<code>Add a README file</code></li>
-<li>点击<code>Create Repository</code></li>
-</ul>
-<div class="note info"><blockquote>
-<p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p>
-</blockquote>
-</div>
-
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
-<p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
-<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
-<h2 id="下载安装hexo程序"><a href="#下载安装hexo程序" class="headerlink" title="下载安装hexo程序"></a>下载安装hexo程序</h2><p>使用<code>npm</code>安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-
-<div class="note info"><blockquote>
-<p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
-</blockquote>
-</div>
-
-<h2 id="Hexo初始化和本地预览"><a href="#Hexo初始化和本地预览" class="headerlink" title="Hexo初始化和本地预览"></a>Hexo初始化和本地预览</h2><p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-
-<p>本地预览，输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-
-<p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
-<div class="note info"><blockquote>
-<p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p>
-</blockquote>
-</div>
-
-<h1 id="部署hexo到Github-pages"><a href="#部署hexo到Github-pages" class="headerlink" title="部署hexo到Github pages"></a>部署hexo到Github pages</h1><p>首先是安装<code>hexo-deployer-git</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-
-<p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
-<div class="note primary"><blockquote>
-<p>说明：</p>
-<ul>
-<li>:    后面有一个空格，一定要注意这一点</li>
-<li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
-</ul>
-</blockquote>
-</div>
-
-<p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
       </tags>
   </entry>
   <entry>
@@ -508,6 +386,145 @@
       </tags>
   </entry>
   <entry>
+    <title>tensorflow-numpy-matplotlib线性回归</title>
+    <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>神经网络与机器学习</category>
+      </categories>
+      <tags>
+        <tag>Numpy</tag>
+        <tag>Matplotlib</tag>
+        <tag>Tensorflow</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo+github搭建个人博客</title>
+    <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
+<span id="more"></span>
+
+<p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
+<p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
+<p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
+<div class="note primary"><blockquote>
+<p>本文为个人查漏补缺所用，暂时不写那么详细</p>
+<p>最开始的git安装和github账户注册在这里不再进行赘述</p>
+<p>不明白这些的同学，请自行查阅相关资料</p>
+</blockquote>
+</div>
+
+<h1 id="安装node-js和git"><a href="#安装node-js和git" class="headerlink" title="安装node.js和git"></a>安装node.js和git</h1><h2 id="下载路径"><a href="#下载路径" class="headerlink" title="下载路径"></a>下载路径</h2><div class="note success"><blockquote>
+<p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
+<p>里面都有选项，请选择适合自己的版本下载</p>
+</blockquote>
+</div>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
+<p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
+<p>node.js安装完成后，使用win+r打开运行，在运行的输入框中输入cmd，打开cmd，在cmd中输入node -v 以及npm -v看是否有版本显示，如下图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
+<p>有版本显示就说明已经安装好了</p>
+<h1 id="连接Github"><a href="#连接Github" class="headerlink" title="连接Github"></a>连接Github</h1><h2 id="设置用户名和邮箱"><a href="#设置用户名和邮箱" class="headerlink" title="设置用户名和邮箱"></a>设置用户名和邮箱</h2><p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<div class="note primary"><blockquote>
+<p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p>
+<p>如果想要知道有没有设置成功，按照以下命名进行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list --global</span><br></pre></td></tr></table></figure>
+
+<p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
+</blockquote>
+</div>
+
+<h2 id="创建并配置SSH秘钥"><a href="#创建并配置SSH秘钥" class="headerlink" title="创建并配置SSH秘钥"></a>创建并配置SSH秘钥</h2><p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
+
+<p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
+<p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
+<p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
+<h2 id="验证链接"><a href="#验证链接" class="headerlink" title="验证链接"></a>验证链接</h2><p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+
+<p>连接成功的，会弹出以下字样</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
+<div class="note success"><blockquote>
+<p>说明：不要管后面那个”but Github does not provide shell access”。</p>
+<p>实在好奇为什么的话，以下是翻译</p>
+<p>你已经成功验证，但是Github不提供shell访问</p>
+</blockquote>
+</div>
+
+<h1 id="创建Github-Pages仓库"><a href="#创建Github-Pages仓库" class="headerlink" title="创建Github Pages仓库"></a>创建Github Pages仓库</h1><p>GitHub 主页右上角加号 -&gt; New repository</p>
+<ul>
+<li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
+<li>选择<code>public</code></li>
+<li>勾选<code>Add a README file</code></li>
+<li>点击<code>Create Repository</code></li>
+</ul>
+<div class="note info"><blockquote>
+<p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p>
+</blockquote>
+</div>
+
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
+<p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
+<h2 id="下载安装hexo程序"><a href="#下载安装hexo程序" class="headerlink" title="下载安装hexo程序"></a>下载安装hexo程序</h2><p>使用<code>npm</code>安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<div class="note info"><blockquote>
+<p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
+</blockquote>
+</div>
+
+<h2 id="Hexo初始化和本地预览"><a href="#Hexo初始化和本地预览" class="headerlink" title="Hexo初始化和本地预览"></a>Hexo初始化和本地预览</h2><p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>本地预览，输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+
+<p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
+<div class="note info"><blockquote>
+<p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p>
+</blockquote>
+</div>
+
+<h1 id="部署hexo到Github-pages"><a href="#部署hexo到Github-pages" class="headerlink" title="部署hexo到Github pages"></a>部署hexo到Github pages</h1><p>首先是安装<code>hexo-deployer-git</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
+<div class="note primary"><blockquote>
+<p>说明：</p>
+<ul>
+<li>:    后面有一个空格，一定要注意这一点</li>
+<li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
+</ul>
+</blockquote>
+</div>
+
+<p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>picgo+gitee</title>
     <url>/2021/05/22/picgo+gitee/</url>
     <content><![CDATA[<h1 id="picgo-gitee实现markdown图片上传自动化"><a href="#picgo-gitee实现markdown图片上传自动化" class="headerlink" title="picgo+gitee实现markdown图片上传自动化"></a>picgo+gitee实现markdown图片上传自动化</h1><span id="more"></span>
@@ -556,46 +573,6 @@
       </tags>
   </entry>
   <entry>
-    <title>tensorflow-numpy-matplotlib线性回归</title>
-    <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>python</category>
-        <category>神经网络与机器学习</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>Numpy</tag>
-        <tag>Matplotlib</tag>
-        <tag>Tensorflow</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat error</title>
-    <url>/2021/05/22/tomcatError/</url>
-    <content><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<span id="more"></span>
-
-<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法·方阵</title>
     <url>/2021/05/22/%E6%96%B9%E9%98%B5/</url>
     <content><![CDATA[<h1 id="方阵"><a href="#方阵" class="headerlink" title="方阵"></a>方阵</h1><h2 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h2><p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
@@ -629,6 +606,30 @@
       </categories>
       <tags>
         <tag>词法分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat error</title>
+    <url>/2021/05/22/tomcatError/</url>
+    <content><![CDATA[<h1 id="1099端口已经被占用"><a href="#1099端口已经被占用" class="headerlink" title="1099端口已经被占用"></a>1099端口已经被占用</h1><p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<span id="more"></span>
+
+<h2 id="win-R打开控制面板"><a href="#win-R打开控制面板" class="headerlink" title="win+R打开控制面板"></a>win+R打开控制面板</h2><h2 id="查询1099"><a href="#查询1099" class="headerlink" title="查询1099"></a>查询1099</h2><p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a href="#查询20560" class="headerlink" title="查询20560"></a>查询20560</h2><p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png"></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
