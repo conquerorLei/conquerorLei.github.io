@@ -6,7 +6,7 @@
   <link href="https://conquerorlei.github.io/atom.xml" rel="self"/>
   
   <link href="https://conquerorlei.github.io/"/>
-  <updated>2021-06-13T04:51:13.293Z</updated>
+  <updated>2021-06-14T08:56:12.330Z</updated>
   <id>https://conquerorlei.github.io/</id>
   
   <author>
@@ -15,6 +15,45 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown语法以及Typora使用(高级)</title>
+    <link href="https://conquerorlei.github.io/2021/06/14/markdown%E8%AF%AD%E6%B3%95%E4%BB%A5%E5%8F%8ATypora%E4%BD%BF%E7%94%A8-%E9%AB%98%E7%BA%A7/"/>
+    <id>https://conquerorlei.github.io/2021/06/14/markdown%E8%AF%AD%E6%B3%95%E4%BB%A5%E5%8F%8ATypora%E4%BD%BF%E7%94%A8-%E9%AB%98%E7%BA%A7/</id>
+    <published>2021-06-14T07:25:30.000Z</published>
+    <updated>2021-06-14T08:56:12.330Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p><h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p><div class="note success"><blockquote><p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p><p>要制约的只有一些 HTML 区块元素――比如 <div>、<table>、<pre>、<p> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <p> 标签。</p><p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">这是一个普通段落。</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">这是另一个普通段落。</span><br></pre></td></tr></table></figure><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p><p>HTML 的区段（行内）标签如 <span>、<cite>、<del> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的 <a> 或 <img> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p><p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p></blockquote></div><p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p><p>答案是肯定的，以下为在添加自定义CSS</p><h2 id="添加自定义CSS"><a href="#添加自定义CSS" class="headerlink" title="添加自定义CSS"></a>添加自定义CSS</h2><p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p><p>大致流程就是</p><ul><li>打开Typora编辑器</li><li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li><li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li><li>这样会打开本地的Typora主题文件夹<ul><li>一种修改方式为修改<code>base.user.css</code></li><li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li><li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li></ul></li><li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li></ul><h3 id="任务列表CSS控制样式"><a href="#任务列表CSS控制样式" class="headerlink" title="任务列表CSS控制样式"></a>任务列表CSS控制样式</h3><p>在基础篇中的任务列表，就可以通过CSS控制样式</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.task-list-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for completed tasks */</span></span><br><span class="line">    <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.task-list-not-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for incomplete tasks */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><strong>测试用例：</strong></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p><h2 id="使用HTML标签"><a href="#使用HTML标签" class="headerlink" title="使用HTML标签"></a>使用HTML标签</h2><p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [x] <span class="xml"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span>写博客<span class="xml"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span></span><br></pre></td></tr></table></figure><p><strong>效果：</strong></p><ul><li><input disabled="" type="checkbox"> 写博客</li><li><input checked="" disabled="" type="checkbox"> <del>写博客</del></li></ul><p>相比提到的[任务列表CSS控制样式 ](# 任务列表CSS控制样式 )，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="">HotKey</a>使用，貌似还是可以的</p><h3 id="字体颜色"><a href="#字体颜色" class="headerlink" title="字体颜色"></a>字体颜色</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/<span class="emphasis">* the usual value of color ： red | blue | green | yellow *</span>/</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure><p><strong>效果：</strong></p><p><font color='red'>红色</font></p><p>其他的<font>属性也可以进行更改</p><blockquote><p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p></blockquote><h1 id="PicGo"><a href="#PicGo" class="headerlink" title="PicGo"></a>PicGo</h1><p>这边有了一片博客关于图床的设置，直接提供链接</p><p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库&lt;/p&gt;
+&lt;h1 id=&quot;HT</summary>
+      
+    
+    
+    
+    <category term="software" scheme="https://conquerorlei.github.io/categories/software/"/>
+    
+    <category term="Typora" scheme="https://conquerorlei.github.io/categories/software/Typora/"/>
+    
+    <category term="Software" scheme="https://conquerorlei.github.io/categories/Software/"/>
+    
+    <category term="Picgo" scheme="https://conquerorlei.github.io/categories/Software/Picgo/"/>
+    
+    <category term="HotKey" scheme="https://conquerorlei.github.io/categories/Software/HotKey/"/>
+    
+    
+    <category term="Ahk" scheme="https://conquerorlei.github.io/tags/Ahk/"/>
+    
+    <category term="HTML" scheme="https://conquerorlei.github.io/tags/HTML/"/>
+    
+    <category term="CSS" scheme="https://conquerorlei.github.io/tags/CSS/"/>
+    
+    <category term="Markdown" scheme="https://conquerorlei.github.io/tags/Markdown/"/>
+    
+  </entry>
   
   <entry>
     <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
