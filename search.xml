@@ -28,6 +28,30 @@
       </tags>
   </entry>
   <entry>
+    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
+    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
+    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
+<span id="more"></span>
+<h1>解决办法</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1>原因</h1>
+<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
+<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
+<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Error</category>
+        <category>pip</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Utterance使用</title>
     <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
@@ -190,30 +214,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Ajax</tag>
         <tag>Servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
-    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
-    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<span id="more"></span>
-<h1>解决办法</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1>原因</h1>
-<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
-<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
-<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>Error</category>
-        <category>pip</category>
-      </categories>
-      <tags>
-        <tag>pip</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -661,7 +661,8 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </div>
 <h2 id="引用">引用</h2>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; this is a quote</span></span><br><span class="line"><span class="quote">&gt; &gt; this is a quote in quote(maybe you will use this:wink:)</span></span><br><span class="line"><span class="quote">&gt; # this is a H1 in quote</span></span><br><span class="line"><span class="quote">&gt; `this is a &quot;code in line&quot; in quote`</span></span><br><span class="line"><span class="quote">&gt; ```java</span></span><br><span class="line"><span class="quote">&gt; public class Test&#123;</span></span><br><span class="line"><span class="quote">&gt;     Public static void main(String[] args)&#123;</span></span><br><span class="line"><span class="quote">&gt;         System.out.println(&quot;This is a multiple line code&quot;);</span></span><br><span class="line"><span class="quote">&gt;     &#125;</span></span><br><span class="line"><span class="quote">&gt; &#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight node-repl"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="built_in">this</span> is a quote</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript">&gt; <span class="built_in">this</span> is a quote <span class="keyword">in</span> quote(maybe you will use <span class="built_in">this</span>:wink:)</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"># <span class="built_in">this</span> is a H1 <span class="keyword">in</span> quote</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">`this is a &quot;code in line&quot; in quote`</span></span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">``</span><span class="string">`java</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">public class Test&#123;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">    Public static void main(String[] args)&#123;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">        System.out.println(&quot;This is a multiple line code&quot;);</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">    &#125;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">&#125;</span></span></span><br></pre></td></tr></table></figure>
+<blockquote></blockquote>
+<figure class="highlight node-repl"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="built_in">this</span> is a quote</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript">&gt; <span class="built_in">this</span> is a quote <span class="keyword">in</span> quote(maybe you will use <span class="built_in">this</span>:wink:)</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"># <span class="built_in">this</span> is a H1 <span class="keyword">in</span> quote</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">`this is a &quot;code in line&quot; in quote`</span></span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">``</span><span class="string">`java</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">public class Test&#123;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">    Public static void main(String[] args)&#123;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">        System.out.println(&quot;This is a multiple line code&quot;);</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">    &#125;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">&#125;</span></span></span><br></pre></td></tr></table></figure>
 <h3 id="Typora快捷键-3">Typora快捷键</h3>
 <table>
 <thead>
@@ -991,21 +992,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>tensorflow-numpy-matplotlib线性回归</title>
-    <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>Python</category>
-        <category>神经网络与机器学习</category>
-      </categories>
-      <tags>
-        <tag>Numpy</tag>
-        <tag>Matplotlib</tag>
-        <tag>Tensorflow</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>picgo+gitee</title>
     <url>/2021/05/22/picgo+gitee/</url>
     <content><![CDATA[<h1>picgo+gitee实现markdown图片上传自动化</h1>
@@ -1064,6 +1050,48 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>tensorflow-numpy-matplotlib线性回归</title>
+    <url>/2021/05/24/tensorflow-numpy-matplotlib%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>神经网络与机器学习</category>
+      </categories>
+      <tags>
+        <tag>Numpy</tag>
+        <tag>Matplotlib</tag>
+        <tag>Tensorflow</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat error</title>
+    <url>/2021/05/22/tomcatError/</url>
+    <content><![CDATA[<h1>1099端口已经被占用</h1>
+<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<span id="more"></span>
+<h2 id="win-R打开控制面板">win+R打开控制面板</h2>
+<h2 id="查询1099">查询1099</h2>
+<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560">查询20560</h2>
+<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程">杀进程</h2>
+<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法·方阵</title>
     <url>/2021/05/22/%E6%96%B9%E9%98%B5/</url>
     <content><![CDATA[<h1>方阵</h1>
@@ -1099,33 +1127,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>词法分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat error</title>
-    <url>/2021/05/22/tomcatError/</url>
-    <content><![CDATA[<h1>1099端口已经被占用</h1>
-<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<span id="more"></span>
-<h2 id="win-R打开控制面板">win+R打开控制面板</h2>
-<h2 id="查询1099">查询1099</h2>
-<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560">查询20560</h2>
-<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程">杀进程</h2>
-<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
