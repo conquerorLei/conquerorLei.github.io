@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
-    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
-    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<span id="more"></span>
-<h1>解决办法</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1>原因</h1>
-<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
-<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
-<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>pip</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>pip</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>http error</title>
     <url>/2021/05/22/HTTP/</url>
     <content><![CDATA[<h1>404 not found</h1>
@@ -49,6 +25,75 @@
       </categories>
       <tags>
         <tag>Http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
+    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
+    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
+<span id="more"></span>
+<h1>解决办法</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1>原因</h1>
+<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
+<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
+<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Error</category>
+        <category>pip</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Utterance使用</title>
+    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
+<span id="more"></span>
+<h1>简介</h1>
+<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
+<p>这多香啊！！！</p>
+<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
+<h1>bug1 example.com公共域名</h1>
+<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
+<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
+<p>嗯？？？？</p>
+<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
+<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
+<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
+</blockquote>
+</div>
+<h1>回复评论</h1>
+<p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626005600.png" alt="Issue"></p>
+<p>进行回复时，其实也不算回复啦，就是有一个引用的功能，将你想要回复的内容通过引用输入就好啦</p>
+<p>进入对应的issue下</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010046.png" alt="对应issue"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010343.png" alt="引用回复"></p>
+<p>结果如下：</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010434.png" alt="测试用例"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010546.png" alt="测试结果1"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010620.png" alt="测试结果2"></p>
+<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
+<!-- 其中 class="blockquote-center" 是必须的 --> 
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
+        <tag>Utterance</tag>
       </tags>
   </entry>
   <entry>
@@ -208,40 +253,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>Utterance使用</title>
-    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
-<span id="more"></span>
-<h1>简介</h1>
-<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
-<p>这多香啊！！！</p>
-<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
-<h1>bug1 example.com公共域名</h1>
-<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
-<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
-<p>嗯？？？？</p>
-<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
-<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
-<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
-</blockquote>
-</div>
-<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
-<!-- 其中 class="blockquote-center" 是必须的 --> 
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Next</tag>
-        <tag>Hexo</tag>
-        <tag>Utterance</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>binary not found</title>
     <url>/2021/05/25/binary-not-found/</url>
     <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
@@ -252,6 +263,32 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 使用报错以及解决办法</title>
+    <url>/2021/06/11/git-%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1>错误码：443</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
+<p>解决办法：接触SSL验证，再次git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<h1>push时出错</h1>
+<p>报错代码：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
+<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
+<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
+<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
+<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -374,32 +411,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>git 使用报错以及解决办法</title>
-    <url>/2021/06/11/git-%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<h1>错误码：443</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
-<p>解决办法：接触SSL验证，再次git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<h1>push时出错</h1>
-<p>报错代码：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
-<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
-<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
-<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
-<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo+next配置</title>
     <url>/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
@@ -467,33 +478,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
 <p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Next</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo同级多级分类配置</title>
-    <url>/2021/05/25/hexo%E5%90%8C%E7%BA%A7%E5%A4%9A%E7%BA%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1>前言</h1>
-<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
-<span id="more"></span>
-<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
-<div class="note success"><blockquote>
-<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
-</blockquote>
-</div>
-<h1>同级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
-<h1>多级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>环境搭建</category>
@@ -891,6 +875,33 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>hexo同级多级分类配置</title>
+    <url>/2021/05/25/hexo%E5%90%8C%E7%BA%A7%E5%A4%9A%E7%BA%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
+<span id="more"></span>
+<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<div class="note success"><blockquote>
+<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
+</blockquote>
+</div>
+<h1>同级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
+<h1>多级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>markdown语法以及Typora使用(高级)</title>
     <url>/2021/06/14/markdown%E8%AF%AD%E6%B3%95%E4%BB%A5%E5%8F%8ATypora%E4%BD%BF%E7%94%A8-%E9%AB%98%E7%BA%A7/</url>
     <content><![CDATA[<h1>前言</h1>
@@ -1065,6 +1076,33 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>算法·方阵</title>
+    <url>/2021/05/22/%E6%96%B9%E9%98%B5/</url>
+    <content><![CDATA[<h1>方阵</h1>
+<h2 id="描述：">描述：</h2>
+<p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
+<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
+<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
+<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
+<span id="more"></span>
+<h2 id="理解：">理解：</h2>
+<p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
+<h2 id="分析：">分析：</h2>
+<p>由上面的理解可知，分两种情况讨论：</p>
+<ol>
+<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
+<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
+</ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Tomcat error</title>
     <url>/2021/05/22/tomcatError/</url>
     <content><![CDATA[<h1>1099端口已经被占用</h1>
@@ -1100,33 +1138,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>词法分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法·方阵</title>
-    <url>/2021/05/22/%E6%96%B9%E9%98%B5/</url>
-    <content><![CDATA[<h1>方阵</h1>
-<h2 id="描述：">描述：</h2>
-<p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
-<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
-<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
-<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
-<span id="more"></span>
-<h2 id="理解：">理解：</h2>
-<p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
-<h2 id="分析：">分析：</h2>
-<p>由上面的理解可知，分两种情况讨论：</p>
-<ol>
-<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
-<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
-</ol>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
