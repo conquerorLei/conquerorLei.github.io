@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
+    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
+    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
+<span id="more"></span>
+<h1>解决办法</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1>原因</h1>
+<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
+<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
+<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>pip</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http error</title>
     <url>/2021/05/22/HTTP/</url>
     <content><![CDATA[<h1>404 not found</h1>
@@ -25,64 +49,6 @@
       </categories>
       <tags>
         <tag>Http</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
-    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
-    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<span id="more"></span>
-<h1>解决办法</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1>原因</h1>
-<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
-<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
-<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>Error</category>
-        <category>pip</category>
-      </categories>
-      <tags>
-        <tag>pip</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Utterance使用</title>
-    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
-<span id="more"></span>
-<h1>简介</h1>
-<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
-<p>这多香啊！！！</p>
-<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
-<h1>bug1 example.com公共域名</h1>
-<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
-<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
-<p>嗯？？？？</p>
-<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
-<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
-<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
-</blockquote>
-</div>
-<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
-<!-- 其中 class="blockquote-center" 是必须的 --> 
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Next</tag>
-        <tag>Hexo</tag>
-        <tag>Utterance</tag>
       </tags>
   </entry>
   <entry>
@@ -217,19 +183,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>binary not found</title>
-    <url>/2021/05/25/binary-not-found/</url>
-    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>项目中数据库问题</title>
     <url>/2021/05/22/database/</url>
     <content><![CDATA[<h1>防止SQL注入</h1>
@@ -255,29 +208,50 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>git 使用报错以及解决办法</title>
-    <url>/2021/06/11/git-%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<h1>错误码：443</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
+    <title>Utterance使用</title>
+    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
 <span id="more"></span>
-<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
-<p>解决办法：接触SSL验证，再次git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<h1>push时出错</h1>
-<p>报错代码：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
-<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
-<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
-<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
-<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
+<h1>简介</h1>
+<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
+<p>这多香啊！！！</p>
+<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
+<h1>bug1 example.com公共域名</h1>
+<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
+<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
+<p>嗯？？？？</p>
+<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
+<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
+<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
+</blockquote>
+</div>
+<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
+<!-- 其中 class="blockquote-center" 是必须的 --> 
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
+        <tag>Utterance</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
         <category>Error</category>
-        <category>Git</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -397,6 +371,32 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Hexo</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 使用报错以及解决办法</title>
+    <url>/2021/06/11/git-%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1>错误码：443</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
+<p>解决办法：接触SSL验证，再次git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<h1>push时出错</h1>
+<p>报错代码：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
+<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
+<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
+<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
+<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -704,7 +704,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </li>
 </ul>
 <h3 id="有序列表">有序列表</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 有序列表	</span><br><span class="line"><span class="bullet">	1.</span> 有序列表	</span><br><span class="line"><span class="code">	</span></span><br><span class="line"><span class="code">2. 有序列表</span></span><br><span class="line"><span class="code">	1. 有序列表</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 有序列表	</span><br><span class="line"><span class="bullet">	1.</span> 有序列表	</span><br><span class="line"><span class="bullet">	2.</span> 有序列表</span><br><span class="line"><span class="bullet">2.</span> 有序列表</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ol>
 <li>有序列表
@@ -1092,6 +1092,17 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>编译原理词法分析器的设计与实现</title>
+    <url>/2021/05/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>编译原理</category>
+      </categories>
+      <tags>
+        <tag>词法分析</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法·方阵</title>
     <url>/2021/05/22/%E6%96%B9%E9%98%B5/</url>
     <content><![CDATA[<h1>方阵</h1>
@@ -1116,17 +1127,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>编译原理词法分析器的设计与实现</title>
-    <url>/2021/05/26/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>编译原理</category>
-      </categories>
-      <tags>
-        <tag>词法分析</tag>
       </tags>
   </entry>
   <entry>
