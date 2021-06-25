@@ -330,14 +330,14 @@
 </blockquote>
 </div>
 <h1>安装node.js和git</h1>
-<h2 id="下载路径">下载路径</h2>
+<h2 id="下载路径"><a class="header-anchor" href="#下载路径">¶</a>下载路径</h2>
 <div class="note success"><blockquote>
 <p>git:   <a target="_blank" rel="noopener external nofollow noreferrer" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
 <p>node.js:   <a target="_blank" rel="noopener external nofollow noreferrer" href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
 <p>里面都有选项，请选择适合自己的版本下载</p>
 </blockquote>
 </div>
-<h2 id="安装">安装</h2>
+<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
 <p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
 <p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
@@ -345,7 +345,7 @@
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
 <p>有版本显示就说明已经安装好了</p>
 <h1>连接Github</h1>
-<h2 id="设置用户名和邮箱">设置用户名和邮箱</h2>
+<h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
 <p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
 <div class="note primary"><blockquote>
@@ -355,14 +355,14 @@
 <p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
 </blockquote>
 </div>
-<h2 id="创建并配置SSH秘钥">创建并配置SSH秘钥</h2>
+<h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
 <p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
 <p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
 <p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
 <p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
-<h2 id="验证链接">验证链接</h2>
+<h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
 <p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <p>连接成功的，会弹出以下字样</p>
@@ -389,14 +389,14 @@
 <p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
 <h1>安装hexo</h1>
 <p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
-<h2 id="下载安装hexo程序">下载安装hexo程序</h2>
+<h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
 <p>使用<code>npm</code>安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <div class="note info"><blockquote>
 <p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
 </blockquote>
 </div>
-<h2 id="Hexo初始化和本地预览">Hexo初始化和本地预览</h2>
+<h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
 <p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <p>本地预览，输入以下命令</p>
@@ -503,7 +503,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">48 分钟</span>
+    <span title="站点阅读时长">49 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

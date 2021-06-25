@@ -105,12 +105,12 @@
 <p><a href="https://gitee.com/QingShanxl/public_platform.git">这是项目地址，很烂，想看的可以看看</a></p>
 <p>最近又要写一个项目，和几个同学合作，当时就确定了使用前后端分离+MVC开发模式，Ajax异步传输当然是好的，但是前端那个小伙伴刚刚把<code>javascript</code>学习的差不多，所以我这边在写后端接口的时候尝试使用了<code>ajax</code>，这边是对<code>ajax</code>的一个实用的小案例</p>
 <h1>简介</h1>
-<h2 id="ajax简介">ajax简介</h2>
+<h2 id="ajax简介"><a class="header-anchor" href="#ajax简介">¶</a>ajax简介</h2>
 <p>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。</p>
 <p>AJAX 不是新的编程语言，而是一种使用现有标准的新方法。</p>
 <p>AJAX 是与服务器交换数据并更新部分网页的艺术，在不重新加载整个页面的情况下。</p>
 <p>这样在用户使用的过程中能够获得更好的体验，不需要不断地刷新界面已获得局部的更新，在一定程度上能够提高程序运行的效率。</p>
-<h2 id="java-Servlet">java Servlet</h2>
+<h2 id="java-Servlet"><a class="header-anchor" href="#java-Servlet">¶</a>java Servlet</h2>
 <p>这个已经是老生常谈，相信每个java后端工程师都接触比较多。</p>
 <p>servlet是java编写的服务端程序，其主要功能在于交互式地浏览和修改数据，生成动态<a href="https://zh.wikipedia.org/wiki/Web">Web</a>内容。</p>
 <p>从实现上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来扩展基于<a href="https://zh.wikipedia.org/wiki/HTTP">HTTP</a><a href="https://zh.wikipedia.org/wiki/%E5%8D%8F%E8%AE%AE">协议</a>的<a href="https://zh.wikipedia.org/wiki/Web%E6%9C%8D%E5%8A%A1%E5%99%A8">Web服务器</a>。</p>
@@ -122,14 +122,14 @@
 <p>以下为项目结构</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210611214742.png" alt="image-20210611214740309"></p>
 <h1>后端-&gt;前端</h1>
-<h2 id="后端部分">后端部分</h2>
+<h2 id="后端部分"><a class="header-anchor" href="#后端部分">¶</a>后端部分</h2>
 <p>具体的后端数据库连接部分，从数据库获取数据的部分这边就不展示了，这边展示<code>servlet</code>部分<code>GetTest</code></p>
-<div class="note success"><p>内部类：<br>
+<div class="note success"><p>内部类：
 Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerblue'>我想不用多说，包括基本的getter、setter、toString、equals、hashCode方法</font></p>
 <p>​	StudentMapper：<font color='red'>mapper</font>      描述：<font color='cornflowerblue'>获取数据库映射，一般而言一张表对应一个映射，从映射中获取信息</font></p>
 </div>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.gson.Gson;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.GsonBuilder;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> mapper.StudentMapper;</span><br><span class="line"><span class="keyword">import</span> model.Student;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> LiXianLei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span> 2021/06/09 19:00</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;/GetTest&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GetTest</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> StudentMapper mapper;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.init();</span><br><span class="line">        <span class="keyword">this</span>.mapper = SqlController.getInstance().getMapper(StudentMapper.class);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            PrintWriter writer = response.getWriter();</span><br><span class="line">            Student studentByName = mapper.getStudentByName(<span class="string">&quot;123&quot;</span>);</span><br><span class="line">            Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">            map.put(<span class="string">&quot;student&quot;</span>,studentByName);</span><br><span class="line">            map.put(<span class="string">&quot;code&quot;</span>,<span class="number">1</span>);</span><br><span class="line">            Gson gson = <span class="keyword">new</span> GsonBuilder().create();</span><br><span class="line">            writer.write(gson.toJson(map));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="接口文档">接口文档</h3>
+<h3 id="接口文档"><a class="header-anchor" href="#接口文档">¶</a>接口文档</h3>
 <table>
 <thead>
 <tr>
@@ -146,19 +146,19 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="web-xml文件">web.xml文件</h3>
+<h3 id="web-xml文件"><a class="header-anchor" href="#web-xml文件">¶</a>web.xml文件</h3>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">display-name</span>&gt;</span>Archetype Created Web Application<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>index.html<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>GetTest<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>controller.GetTest<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>GetTest<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/servlet/getTest<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="前端部分">前端部分</h2>
+<h2 id="前端部分"><a class="header-anchor" href="#前端部分">¶</a>前端部分</h2>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>first page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.5.1.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">        $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">dataType</span>:<span class="string">&quot;json&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">type</span>:<span class="string">&quot;post&quot;</span>,<span class="comment">// 传输方式为post，还有get，差异在于网址访问以及后端方法doPost</span></span></span><br><span class="line"><span class="javascript">            <span class="attr">url</span>:<span class="string">&quot;servlet/getTest&quot;</span>,<span class="comment">// 需要注意的是，url需要和web.xml中的保持一致</span></span></span><br><span class="line"><span class="javascript">            <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// 对json数据进行解析</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> da = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(data));</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(da);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(da[<span class="string">&quot;student&quot;</span>]);</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(da[<span class="string">&quot;code&quot;</span>]);</span></span><br><span class="line"><span class="javascript">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="attr">error</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">&quot;there have no response from servlet&quot;</span>);</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;);</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <div class="note success"><p>需要注意的是，这里使用的ajax指的是在页面初始访问的时候就开始获取后端响应，当然，按钮应该也可以</p>
 </div>
-<h2 id="交互结果">交互结果</h2>
+<h2 id="交互结果"><a class="header-anchor" href="#交互结果">¶</a>交互结果</h2>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210611190833.png" alt="image-20210611190831436"></p>
 <h1>前端-&gt;后端</h1>
-<h2 id="后端部分-2">后端部分</h2>
+<h2 id="后端部分-v2"><a class="header-anchor" href="#后端部分-v2">¶</a>后端部分</h2>
 <p>**实现思路：**前端发送<code>json</code>格式的信息，后端<code>request</code>中获取相关的信息，获取之后在数据库查询是否存在，不存在则插入，存在则返回信息。插入也有可能出现插入不成功的情况，函数返回值<code>i</code>就是确定是否插入成功，返回的<code>i</code>就是此<code>sql</code>语句影响的行数。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.google.gson.Gson;</span><br><span class="line"><span class="keyword">import</span> com.google.gson.GsonBuilder;</span><br><span class="line"><span class="keyword">import</span> mapper.StudentMapper;</span><br><span class="line"><span class="keyword">import</span> model.Student;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.annotation.WebServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> LiXianLei</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span> 2021/06/11 20:37</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;/PutIntoStudent&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PutIntoStudent</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> StudentMapper mapper;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.init();</span><br><span class="line">        mapper = SqlController.getInstance().getMapper(StudentMapper.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span>&#123;</span><br><span class="line">        String code = request.getParameter(<span class="string">&quot;code&quot;</span>);</span><br><span class="line">        Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">        <span class="keyword">if</span>(code.equals(<span class="string">&quot;0&quot;</span>))&#123;</span><br><span class="line">            Student student = <span class="keyword">new</span> Student(request.getParameter(<span class="string">&quot;name&quot;</span>), request.getParameter(<span class="string">&quot;num&quot;</span>));</span><br><span class="line">            Student student1 = mapper.getStudentByName(student.getStudentName());</span><br><span class="line">            <span class="keyword">if</span>(student1 != <span class="keyword">null</span>)&#123;</span><br><span class="line">                map.put(<span class="string">&quot;code&quot;</span>,<span class="number">101</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> i = mapper.addStudent(student);</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">1</span>) &#123;</span><br><span class="line">                    map.put(<span class="string">&quot;code&quot;</span>,<span class="number">102</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    map.put(<span class="string">&quot;code&quot;</span>,<span class="number">103</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            PrintWriter writer = response.getWriter();</span><br><span class="line">            Gson gson = <span class="keyword">new</span> GsonBuilder().create();</span><br><span class="line">            writer.write(gson.toJson(map));</span><br><span class="line">            writer.close();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request,HttpServletResponse response)</span></span>&#123;</span><br><span class="line">        doPost(request,response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="接口文档-2">接口文档</h3>
+<h3 id="接口文档-v2"><a class="header-anchor" href="#接口文档-v2">¶</a>接口文档</h3>
 <table>
 <thead>
 <tr>
@@ -175,7 +175,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="状态码">状态码</h3>
+<h3 id="状态码"><a class="header-anchor" href="#状态码">¶</a>状态码</h3>
 <table>
 <thead>
 <tr>
@@ -198,11 +198,11 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="web-xml文件-2">web.xml文件</h3>
+<h3 id="web-xml文件-v2"><a class="header-anchor" href="#web-xml文件-v2">¶</a>web.xml文件</h3>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>PutIntoStudent<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>controller.PutIntoStudent<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>PutIntoStudent<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/servlet/putIntoStudent<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="前端部分-2">前端部分</h2>
+<h2 id="前端部分-v2"><a class="header-anchor" href="#前端部分-v2">¶</a>前端部分</h2>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>first page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://code.jquery.com/jquery-3.5.1.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>测试<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">                <span class="attr">dataType</span>:<span class="string">&quot;json&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">type</span>:<span class="string">&quot;post&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">url</span>:<span class="string">&quot;servlet/getTest&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">let</span> da = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(data));</span></span><br><span class="line"><span class="javascript">                    <span class="comment">// console.log(da);</span></span></span><br><span class="line"><span class="javascript">                    <span class="comment">// console.log(da[&quot;student&quot;]);</span></span></span><br><span class="line"><span class="javascript">                    <span class="comment">// console.log(da[&quot;code&quot;]);</span></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">if</span>(da[<span class="string">&quot;code&quot;</span>] === <span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="javascript">                        alert(da[<span class="string">&quot;student&quot;</span>].studentAge);</span></span><br><span class="line"><span class="javascript">                    &#125;<span class="keyword">else</span>&#123;</span></span><br><span class="line"><span class="javascript">                        alert(<span class="string">&quot;获取的信息在数据库中不存在&quot;</span>);</span></span><br><span class="line"><span class="javascript">                    &#125;</span></span><br><span class="line"><span class="javascript">                &#125;,</span></span><br><span class="line"><span class="javascript">                <span class="attr">error</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="string">&quot;there have no response from servlet&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;);</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> jsonData = &#123;</span></span><br><span class="line"><span class="javascript">                <span class="string">&quot;code&quot;</span>:<span class="number">0</span>,</span></span><br><span class="line"><span class="javascript">                <span class="string">&quot;name&quot;</span>:<span class="built_in">document</span>.getElementById(<span class="string">&quot;name&quot;</span>).value,</span></span><br><span class="line"><span class="javascript">                <span class="string">&quot;num&quot;</span>:<span class="built_in">document</span>.getElementById(<span class="string">&quot;num&quot;</span>).value,</span></span><br><span class="line"><span class="javascript">            &#125;;</span></span><br><span class="line"><span class="javascript">            $.ajax(&#123;</span></span><br><span class="line"><span class="javascript">                <span class="attr">url</span>:<span class="string">&quot;servlet/putIntoStudent&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">dataType</span>: <span class="string">&quot;json&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">data</span>: jsonData,</span></span><br><span class="line"><span class="javascript">                <span class="attr">type</span>: <span class="string">&quot;post&quot;</span>,</span></span><br><span class="line"><span class="javascript">                <span class="attr">success</span>:<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">let</span> da = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringify(data));</span></span><br><span class="line"><span class="javascript">                    <span class="keyword">switch</span> (da[<span class="string">&quot;code&quot;</span>]) &#123;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">case</span> <span class="number">101</span>:alert(jsonData[<span class="string">&quot;name&quot;</span>]+<span class="string">&quot;已经存在&quot;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">case</span> <span class="number">102</span>:alert(jsonData[<span class="string">&quot;name&quot;</span>]+<span class="string">&quot;存入成功&quot;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                        <span class="keyword">case</span> <span class="number">103</span>:alert(jsonData[<span class="string">&quot;name&quot;</span>]+<span class="string">&quot;存入失败&quot;</span>);<span class="keyword">break</span>;</span></span><br><span class="line"><span class="javascript">                    &#125;;</span></span><br><span class="line"><span class="javascript">                &#125;,</span></span><br><span class="line"><span class="javascript">                <span class="attr">error</span>:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                    alert(<span class="string">&quot;访问后端失败&quot;</span>);</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;);</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;get()&quot;</span>&gt;</span>get student123<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;name&quot;</span>&gt;</span>名字<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;name&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;num&quot;</span>&gt;</span>学号<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;num&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;post()&quot;</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="交互结果-2">交互结果</h2>
+<h2 id="交互结果-v2"><a class="header-anchor" href="#交互结果-v2">¶</a>交互结果</h2>
 <p><strong>原本的student表：</strong></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210611223231.png" alt="image-20210611223230000"></p>
 <p>存入姓名为123的学生的结果：</p>
@@ -228,6 +228,19 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>项目中数据库问题</title>
     <url>/2021/05/22/database/</url>
     <content><![CDATA[<h1>防止SQL注入</h1>
@@ -250,19 +263,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Mysql</tag>
         <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>binary not found</title>
-    <url>/2021/05/25/binary-not-found/</url>
-    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -307,14 +307,14 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </div>
 <h1>安装node.js和git</h1>
-<h2 id="下载路径">下载路径</h2>
+<h2 id="下载路径"><a class="header-anchor" href="#下载路径">¶</a>下载路径</h2>
 <div class="note success"><blockquote>
 <p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
 <p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
 <p>里面都有选项，请选择适合自己的版本下载</p>
 </blockquote>
 </div>
-<h2 id="安装">安装</h2>
+<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
 <p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
 <p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
@@ -322,7 +322,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
 <p>有版本显示就说明已经安装好了</p>
 <h1>连接Github</h1>
-<h2 id="设置用户名和邮箱">设置用户名和邮箱</h2>
+<h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
 <p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
 <div class="note primary"><blockquote>
@@ -332,14 +332,14 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
 </blockquote>
 </div>
-<h2 id="创建并配置SSH秘钥">创建并配置SSH秘钥</h2>
+<h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
 <p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
 <p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
 <p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
 <p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
-<h2 id="验证链接">验证链接</h2>
+<h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
 <p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
 <p>连接成功的，会弹出以下字样</p>
@@ -366,14 +366,14 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
 <h1>安装hexo</h1>
 <p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
-<h2 id="下载安装hexo程序">下载安装hexo程序</h2>
+<h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
 <p>使用<code>npm</code>安装</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <div class="note info"><blockquote>
 <p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
 </blockquote>
 </div>
-<h2 id="Hexo初始化和本地预览">Hexo初始化和本地预览</h2>
+<h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
 <p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
 <p>本地预览，输入以下命令</p>
@@ -417,12 +417,12 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
 <span id="more"></span>
 <h1>Hexo配置</h1>
-<h2 id="安装并更换Next主题">安装并更换Next主题</h2>
+<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
 <p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
 <p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
-<h2 id="个人信息修改">个人信息修改</h2>
+<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
 <p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
 <div class="note success"><blockquote>
@@ -430,13 +430,13 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </div>
 <h1>next主题配置</h1>
-<h2 id="代码高亮">代码高亮</h2>
-<h3 id="使用highlight-js">使用highlight.js</h3>
+<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
+<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
 <p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>修改一下<code>themes/next/_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用Prism">使用Prism</h3>
+<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
 <p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 <p>修改一下<code>themes/next/_config.yml</code></p>
@@ -447,11 +447,11 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
 </blockquote>
 </div>
-<h2 id="主页和归档页分页">主页和归档页分页</h2>
-<h3 id="安装插件">安装插件</h3>
+<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
 <p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改文件">修改文件</h3>
+<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
 <p>其次就是对配置文件的设置</p>
 <div class="note primary"><blockquote>
 <p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
@@ -462,15 +462,15 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
 <p><code>themes/next/_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h2 id="本地搜索">本地搜索</h2>
-<h3 id="安装插件-2">安装插件</h3>
+<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
+<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改配置文件">修改配置文件</h3>
+<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
 <p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
 <p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h2 id="随机引用颜色">随机引用颜色</h2>
+<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
 <p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
 <p>官方：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
@@ -478,6 +478,33 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
 <p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo同级多级分类配置</title>
+    <url>/2021/05/25/hexo%E5%90%8C%E7%BA%A7%E5%A4%9A%E7%BA%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1>前言</h1>
+<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
+<span id="more"></span>
+<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<div class="note success"><blockquote>
+<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
+</blockquote>
+</div>
+<h1>同级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
+<h1>多级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>环境搭建</category>
@@ -499,9 +526,9 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p>编辑<code>Markdown</code>的免费软件有很多，我偏好使用的是<code>Typora</code>，<a href="https://typora.io/#download">下载地址</a>，客户端支持实时预览，其他的编辑器我没有怎么用过。</p>
 <p>下面我会结合Typora快捷键说明<code>Markdown</code>语法</p>
 <h1>基础语法</h1>
-<h2 id="标题">标题</h2>
+<h2 id="标题"><a class="header-anchor" href="#标题">¶</a>标题</h2>
 <p>官网在标题的设定上，提供了两种形式，<code>Setext</code>和<code>atx</code>，以下在代码块中展示</p>
-<h3 id="Setext">Setext</h3>
+<h3 id="Setext"><a class="header-anchor" href="#Setext">¶</a>Setext</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* 一级标题 *</span>/</span><br><span class="line"><span class="section">This is a H1</span></span><br><span class="line"><span class="section">============</span></span><br><span class="line">/<span class="emphasis">* 二级标题 *</span>/</span><br><span class="line"><span class="section">This is a H2</span></span><br><span class="line"><span class="section">------------</span></span><br></pre></td></tr></table></figure>
 <div class="note info"><p>一级标题是以&quot;<font color='red'>====</font>“作为底线，二级标题是以”<font color='cornflowerblue'>—</font>&quot;作为底线</p>
 <blockquote>
@@ -514,7 +541,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h3 id="atx">atx</h3>
+<h3 id="atx"><a class="header-anchor" href="#atx">¶</a>atx</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># This is a H1</span></span><br><span class="line"><span class="section">## This is a H2</span></span><br><span class="line"><span class="section">### This is a H3</span></span><br><span class="line"><span class="section">#### This is a H4</span></span><br><span class="line"><span class="section">##### This is a H5</span></span><br><span class="line"><span class="section">###### This is a H6</span></span><br></pre></td></tr></table></figure>
 <div class="note success"><p>设置标题，只需要在标题前加上&quot;<font color='red'>#</font>&quot;就好了</p>
 <blockquote>
@@ -529,7 +556,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </div>
 <p>相比<code>Setext</code>，<code>atx</code>使用简直太方便了</p>
-<h3 id="Typora快捷键">Typora快捷键</h3>
+<h3 id="Typora快捷键"><a class="header-anchor" href="#Typora快捷键">¶</a>Typora快捷键</h3>
 <p>Typora支持<code>atx</code>以及<code>Setext</code>，默认情况下使用的是<code>atx</code>，使用快捷键能够更快地设置标题</p>
 <table>
 <thead>
@@ -568,18 +595,18 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p>若要更改<code>Typora</code>配置使用<code>Setext</code>需要更改偏好设置。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210625154530.png" alt="更改标题样式"></p>
 <div class="note info"><blockquote>
-<p>:disappointed_relieved:对不起，我可能有浪费空间的嫌疑​</p>
+<p>😥对不起，我可能有浪费空间的嫌疑​</p>
 <blockquote>
 <p>Ctrl+n   == 设置n级标题    <font color='red'>n为0-6之间的整数，包括0和6</font></p>
 </blockquote>
 </blockquote>
 </div>
-<h2 id="代码块-Code-Block">代码块 Code Block</h2>
-<h3 id="行内代码">行内代码</h3>
+<h2 id="代码块-Code-Block"><a class="header-anchor" href="#代码块-Code-Block">¶</a>代码块 Code Block</h2>
+<h3 id="行内代码"><a class="header-anchor" href="#行内代码">¶</a>行内代码</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">`This is &quot;code in line&quot;`</span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><code>This is &quot;code in line&quot;</code></p>
-<h3 id="多行代码">多行代码</h3>
+<h3 id="多行代码"><a class="header-anchor" href="#多行代码">¶</a>多行代码</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="code">```java</span></span><br><span class="line"><span class="code">public class Test&#123;</span></span><br><span class="line"><span class="code">	.....</span></span><br><span class="line"><span class="code">&#125;</span></span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -594,7 +621,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h3 id="任务列表">任务列表</h3>
+<h3 id="任务列表"><a class="header-anchor" href="#任务列表">¶</a>任务列表</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ul>
@@ -619,7 +646,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h3 id="Typora快捷键-2">Typora快捷键</h3>
+<h3 id="Typora快捷键-v2"><a class="header-anchor" href="#Typora快捷键-v2">¶</a>Typora快捷键</h3>
 <table>
 <thead>
 <tr>
@@ -640,14 +667,14 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </table>
 <div class="note success"><blockquote>
 <p>这边就不用符号展示了，渲染出来不好看，所以我直接写汉字了</p>
-<p>反引号在键盘左上角<font color='cornflowerblue'>TAB</font>键的上面:wink:</p>
+<p>反引号在键盘左上角<font color='cornflowerblue'>TAB</font>键的上面😉</p>
 </blockquote>
 </div>
-<h2 id="引用">引用</h2>
+<h2 id="引用"><a class="header-anchor" href="#引用">¶</a>引用</h2>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="quote">&gt; this is a quote</span></span><br><span class="line"><span class="quote">&gt; &gt; this is a quote in quote(maybe you will use this:wink:)</span></span><br><span class="line"><span class="quote">&gt; # this is a H1 in quote</span></span><br><span class="line"><span class="quote">&gt; `this is a &quot;code in line&quot; in quote`</span></span><br><span class="line"><span class="quote">&gt; ```java</span></span><br><span class="line"><span class="quote">&gt; public class Test&#123;</span></span><br><span class="line"><span class="quote">&gt;     Public static void main(String[] args)&#123;</span></span><br><span class="line"><span class="quote">&gt;         System.out.println(&quot;This is a multiple line code&quot;);</span></span><br><span class="line"><span class="quote">&gt;     &#125;</span></span><br><span class="line"><span class="quote">&gt; &#125;</span></span><br></pre></td></tr></table></figure>
 <blockquote></blockquote>
 <figure class="highlight node-repl"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">**效果：**</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="built_in">this</span> is a quote</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript">&gt; <span class="built_in">this</span> is a quote <span class="keyword">in</span> quote(maybe you will use <span class="built_in">this</span>:wink:)</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"># <span class="built_in">this</span> is a H1 <span class="keyword">in</span> quote</span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">`this is a &quot;code in line&quot; in quote`</span></span></span><br><span class="line"><span class="meta">&gt;</span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">``</span><span class="string">`java</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">public class Test&#123;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">    Public static void main(String[] args)&#123;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">        System.out.println(&quot;This is a multiple line code&quot;);</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">    &#125;</span></span></span><br><span class="line"><span class="meta">&gt;</span> <span class="javascript"><span class="string">&#125;</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="Typora快捷键-3">Typora快捷键</h3>
+<h3 id="Typora快捷键-v3"><a class="header-anchor" href="#Typora快捷键-v3">¶</a>Typora快捷键</h3>
 <table>
 <thead>
 <tr>
@@ -662,8 +689,8 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h2 id="列表">列表</h2>
-<h3 id="无序列表">无序列表</h3>
+<h2 id="列表"><a class="header-anchor" href="#列表">¶</a>列表</h2>
+<h3 id="无序列表"><a class="header-anchor" href="#无序列表">¶</a>无序列表</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">*</span> 无序列表</span><br><span class="line"><span class="bullet">	*</span> 无序列表</span><br><span class="line"><span class="code">	</span></span><br><span class="line"><span class="code">- 无序列表	</span></span><br><span class="line"><span class="code">	- 无序列表</span></span><br><span class="line"><span class="code">	</span></span><br><span class="line"><span class="code">+ 无序列表	</span></span><br><span class="line"><span class="code">	+ 无序列表</span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ul>
@@ -687,7 +714,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </ul>
 </li>
 </ul>
-<h3 id="有序列表">有序列表</h3>
+<h3 id="有序列表"><a class="header-anchor" href="#有序列表">¶</a>有序列表</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">1.</span> 有序列表	</span><br><span class="line"><span class="bullet">	1.</span> 有序列表	</span><br><span class="line"><span class="bullet">	2.</span> 有序列表</span><br><span class="line"><span class="bullet">2.</span> 有序列表</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ol>
@@ -700,7 +727,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <li>有序列表</li>
 </ol>
 <div class="note success"><blockquote>
-<p>以下两点需要注意:wink:</p>
+<p>以下两点需要注意😉</p>
 <blockquote>
 <ol>
 <li>无序列表有三种表达方式，‘<font color='red'>+</font>’ == ‘<font color='red'>-</font>’ == ‘<font color='red'>*</font>’</li>
@@ -710,7 +737,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h3 id="Typora快捷键-4">Typora快捷键</h3>
+<h3 id="Typora快捷键-v4"><a class="header-anchor" href="#Typora快捷键-v4">¶</a>Typora快捷键</h3>
 <table>
 <thead>
 <tr>
@@ -742,7 +769,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h2 id="链接">链接</h2>
+<h2 id="链接"><a class="header-anchor" href="#链接">¶</a>链接</h2>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">[<span class="string">example</span>](<span class="link">https://www.example.com/</span>)[<span class="string">本地链接</span>]:markdown语法以及Typora使用.md &quot;本地链接&quot;[本地链接]:b[b]:markdown语法以及Typora使用.md &quot;本地链接&quot;</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><a href="https://www.example.com/">example</a></p>
@@ -757,18 +784,18 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h2 id="强调">强调</h2>
-<h3 id="斜体">斜体</h3>
+<h2 id="强调"><a class="header-anchor" href="#强调">¶</a>强调</h2>
+<h3 id="斜体"><a class="header-anchor" href="#斜体">¶</a>斜体</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* 斜体 *</span>/</span><br><span class="line"></span><br><span class="line"><span class="emphasis">*强调*</span></span><br><span class="line"></span><br><span class="line"><span class="emphasis">_强调_</span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
-<p><em>强调</em><br>
-<em>强调</em><br>
-<strong>强调</strong><br>
+<p><em>强调</em>
+<em>强调</em>
+<strong>强调</strong>
 <strong>强调</strong></p>
-<h3 id="加粗">加粗</h3>
+<h3 id="加粗"><a class="header-anchor" href="#加粗">¶</a>加粗</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* 加粗 *</span>/</span><br><span class="line"></span><br><span class="line"><span class="strong">**强调**</span></span><br><span class="line"></span><br><span class="line"><span class="strong">__强调__</span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
-<p><strong>强调</strong><br>
+<p><strong>强调</strong>
 <strong>强调</strong></p>
 <div class="note info"><blockquote>
 <p>需要注意的是：</p>
@@ -779,7 +806,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h3 id="Typora快捷键-5">Typora快捷键</h3>
+<h3 id="Typora快捷键-v5"><a class="header-anchor" href="#Typora快捷键-v5">¶</a>Typora快捷键</h3>
 <table>
 <thead>
 <tr>
@@ -798,7 +825,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h2 id="图片">图片</h2>
+<h2 id="图片"><a class="header-anchor" href="#图片">¶</a>图片</h2>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">![<span class="string">图片替代文字</span>](<span class="link">图片路径</span>)</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><img src="%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84" alt="图片路径"></p>
@@ -814,7 +841,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </blockquote>
 </blockquote>
 </div>
-<h3 id="Typora快捷键-6">Typora快捷键</h3>
+<h3 id="Typora快捷键-v6"><a class="header-anchor" href="#Typora快捷键-v6">¶</a>Typora快捷键</h3>
 <table>
 <thead>
 <tr>
@@ -829,7 +856,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h2 id="表格">表格</h2>
+<h2 id="表格"><a class="header-anchor" href="#表格">¶</a>表格</h2>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">|Column1|column2|column3|</span><br><span class="line"></span><br><span class="line">|-------|-------|-------|</span><br><span class="line"></span><br><span class="line">|123	|132	|321	|</span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <table>
@@ -848,7 +875,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="Typora快捷键-7">Typora快捷键</h3>
+<h3 id="Typora快捷键-v7"><a class="header-anchor" href="#Typora快捷键-v7">¶</a>Typora快捷键</h3>
 <table>
 <thead>
 <tr>
@@ -875,33 +902,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>hexo同级多级分类配置</title>
-    <url>/2021/05/25/hexo%E5%90%8C%E7%BA%A7%E5%A4%9A%E7%BA%A7%E5%88%86%E7%B1%BB%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1>前言</h1>
-<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
-<span id="more"></span>
-<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
-<div class="note success"><blockquote>
-<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
-</blockquote>
-</div>
-<h1>同级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
-<h1>多级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Next</tag>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>markdown语法以及Typora使用(高级)</title>
     <url>/2021/06/14/markdown%E8%AF%AD%E6%B3%95%E4%BB%A5%E5%8F%8ATypora%E4%BD%BF%E7%94%A8-%E9%AB%98%E7%BA%A7/</url>
     <content><![CDATA[<h1>前言</h1>
@@ -922,7 +922,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </div>
 <p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
 <p>答案是肯定的，以下为在添加自定义CSS</p>
-<h2 id="a-id-a1-添加自定义CSS-a"><a id="#a1">添加自定义CSS</a></h2>
+<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
 <p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
 <p>大致流程就是</p>
 <ul>
@@ -938,14 +938,14 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </li>
 <li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
 </ul>
-<h3 id="任务列表CSS控制样式">任务列表CSS控制样式</h3>
+<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
 <p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.task-list-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for completed tasks */</span></span><br><span class="line">    <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.task-list-not-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for incomplete tasks */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>测试用例：</strong></p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
-<h2 id="使用HTML标签">使用HTML标签</h2>
+<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
 <p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [x] <span class="xml"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span>写博客<span class="xml"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
@@ -954,7 +954,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <li>[x] <del>写博客</del></li>
 </ul>
 <p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
-<h3 id="字体颜色">字体颜色</h3>
+<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
 <figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* the usual value of color ： red | blue | green | yellow *</span>/</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><font color='red'>红色</font></p>
@@ -968,22 +968,22 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <h1><a id="#a2">Ahk脚本</a></h1>
 <p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
 <p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
-<h2 id="简介">简介</h2>
+<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
 <p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
 <p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
-<h2 id="下载和安装">下载和安装</h2>
+<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
 <p><a href="https://www.autohotkey.com/">下载地址</a></p>
 <p>安装过程没有什么好说的，一路Next</p>
 <p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
-<h2 id="创建一个ahk脚本">创建一个ahk脚本</h2>
+<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
 <p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
 <p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
-<h2 id="实例">实例</h2>
-<h3 id="Typora字体颜色">Typora字体颜色</h3>
+<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
+<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
 <p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(<span class="string">&quot;orange&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(<span class="string">&quot;red&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(<span class="string">&quot;cornflowerblue&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+G 荧光绿色</span><br><span class="line">	^!g::addFontColor(<span class="string">&quot;lawngreen&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+T 黄色</span><br><span class="line">	^!t::addFontColor(<span class="string">&quot;tomato&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Typora页内跳转">Typora页内跳转</h3>
+<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
 <p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
 <p><strong>未完待续</strong></p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
@@ -1007,16 +1007,16 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
     <url>/2021/05/22/picgo+gitee/</url>
     <content><![CDATA[<h1>picgo+gitee实现markdown图片上传自动化</h1>
 <span id="more"></span>
-<h2 id="1-工具">1 工具</h2>
+<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
 <p>markdown编辑工具：typora</p>
 <p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
 <p>图床仓库：gitee</p>
-<h2 id="2-picgo配置">2 picgo配置</h2>
+<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
 <p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="2-1-picgo插件下载"><strong>2.1</strong> picgo插件下载</h3>
+<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
 <p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="image-20210226232647413"></p>
-<h3 id="2-2-图床设置–-gitee图床"><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
+<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="image-20210226233412611"></p>
 <p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
 <ul>
@@ -1026,8 +1026,8 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
 <li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
 </ul>
-<h2 id="3-gitee图床仓库设置">3 gitee图床仓库设置</h2>
-<h3 id="3-1-新建仓库">3.1 新建仓库</h3>
+<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
+<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
 <p>和平常新建仓库没有什么区别，有几点注意事项</p>
 <ul>
 <li>需要设置为开源</li>
@@ -1035,18 +1035,18 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </ul>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="image-20210226234635222"></p>
 <p>图中标注的地方需要注意一下</p>
-<h3 id="3-2-创建个人令牌（token）">3.2 创建个人令牌（token）</h3>
+<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="image-20210226235243952"></p>
 <p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
 <p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
 <p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
 <p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="4-typora与picgo结合使用">4 typora与picgo结合使用</h2>
-<h3 id="4-1-picgo设置">4.1 picgo设置</h3>
+<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
+<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
 <p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
 <p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="image-20210227000426714"></p>
-<h3 id="4-2-typora设置">4.2 typora设置</h3>
+<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
 <p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="image-20210227000143486"></p>
 <p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
@@ -1076,18 +1076,45 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>Tomcat error</title>
+    <url>/2021/05/22/tomcatError/</url>
+    <content><![CDATA[<h1>1099端口已经被占用</h1>
+<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<span id="more"></span>
+<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
+<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
+<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
+<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
+<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法·方阵</title>
     <url>/2021/05/22/%E6%96%B9%E9%98%B5/</url>
     <content><![CDATA[<h1>方阵</h1>
-<h2 id="描述：">描述：</h2>
+<h2 id="描述："><a class="header-anchor" href="#描述：">¶</a>描述：</h2>
 <p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
 <p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
 <p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
 <p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
 <span id="more"></span>
-<h2 id="理解：">理解：</h2>
+<h2 id="理解："><a class="header-anchor" href="#理解：">¶</a>理解：</h2>
 <p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
-<h2 id="分析：">分析：</h2>
+<h2 id="分析："><a class="header-anchor" href="#分析：">¶</a>分析：</h2>
 <p>由上面的理解可知，分两种情况讨论：</p>
 <ol>
 <li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
@@ -1100,33 +1127,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat error</title>
-    <url>/2021/05/22/tomcatError/</url>
-    <content><![CDATA[<h1>1099端口已经被占用</h1>
-<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<span id="more"></span>
-<h2 id="win-R打开控制面板">win+R打开控制面板</h2>
-<h2 id="查询1099">查询1099</h2>
-<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560">查询20560</h2>
-<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程">杀进程</h2>
-<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
       </tags>
   </entry>
   <entry>
@@ -1144,52 +1144,52 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
     <title>mysql常用命令</title>
     <url>/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<h1>mysql相关操作</h1>
-<h2 id="1-用户管理">1 用户管理</h2>
-<h3 id="1-1-创建用户，分配权限">1.1  创建用户，分配权限</h3>
+<h2 id="1-用户管理"><a class="header-anchor" href="#1-用户管理">¶</a>1 用户管理</h2>
+<h3 id="1-1-创建用户，分配权限"><a class="header-anchor" href="#1-1-创建用户，分配权限">¶</a>1.1  创建用户，分配权限</h3>
 <span id="more"></span>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">#使用数据库mysql</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;zhangsan123&#x27;</span>;</span><br><span class="line">#<span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;loaclhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;密码&#x27;</span>;</span><br><span class="line">#localhost是指本地才可以连接;可以改成<span class="string">&#x27;%&#x27;</span>，表示任意ip都可以连接;也可以改成指定ip;</span><br><span class="line">#在mysql8中，不能使用添加操作实现创建用户</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">insert</span>,<span class="keyword">delete</span>,update <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line">#<span class="keyword">grant</span> 权限 <span class="keyword">on</span> 数据库.指定表名 <span class="keyword">to</span> <span class="string">&#x27;用户名&#x27;</span>:</span><br><span class="line">flush privileges;</span><br><span class="line">#刷新权限</span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#错误操作</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="keyword">user</span>,host)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">values</span>(<span class="string">&#x27;zhangsan&#x27;</span>,<span class="string">&#x27;localhost&#x27;</span>);</span><br><span class="line">ERROR <span class="number">1364</span> (HY000): Field <span class="string">&#x27;ssl_cipher&#x27;</span> doesn<span class="string">&#x27;t have a default value</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-2-修改用户密码">1.2  修改用户密码</h3>
+<h3 id="1-2-修改用户密码"><a class="header-anchor" href="#1-2-修改用户密码">¶</a>1.2  修改用户密码</h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;12345678&#x27;</span>;</span><br><span class="line">#<span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;新密码&#x27;</span>;</span><br><span class="line">flush privileges;</span><br><span class="line">#刷新权限</span><br></pre></td></tr></table></figure>
-<h3 id="1-3-查看权限">1.3   查看权限</h3>
+<h3 id="1-3-查看权限"><a class="header-anchor" href="#1-3-查看权限">¶</a>1.3   查看权限</h3>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">show grants for &#x27;zhangsan&#x27;@&#x27;localhost&#x27;; </span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> grants <span class="keyword">for</span> <span class="string">&#x27;lixianlei&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Grants <span class="keyword">for</span> lixianlei<span class="variable">@localhost</span>                                              <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">GRANT</span> USAGE <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> `lixianlei`@`localhost`                               <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, <span class="keyword">INSERT</span>, UPDATE, <span class="keyword">DELETE</span> <span class="keyword">ON</span> `test`.<span class="operator">*</span> <span class="keyword">TO</span> `lixianlei`@`localhost` <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----------------------------------------------------------------------------+</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-4-撤消权限">1.4   撤消权限</h3>
+<h3 id="1-4-撤消权限"><a class="header-anchor" href="#1-4-撤消权限">¶</a>1.4   撤消权限</h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">revoke</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">from</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line">#<span class="keyword">revoke</span> <span class="keyword">all</span> privileges <span class="keyword">on</span> <span class="string">&#x27;数据库&#x27;</span>.<span class="string">&#x27;表名&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="1-5-删除操作">1.5  删除操作</h3>
+<h3 id="1-5-删除操作"><a class="header-anchor" href="#1-5-删除操作">¶</a>1.5  删除操作</h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">user</span> <span class="string">&#x27;zhangsan&#x27;</span>;</span><br><span class="line">#<span class="keyword">drop</span> <span class="keyword">user</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="2-数据库基础操作">2 数据库基础操作</h2>
-<h3 id="2-1-创建数据库">2.1 创建数据库</h3>
+<h2 id="2-数据库基础操作"><a class="header-anchor" href="#2-数据库基础操作">¶</a>2 数据库基础操作</h2>
+<h3 id="2-1-创建数据库"><a class="header-anchor" href="#2-1-创建数据库">¶</a>2.1 创建数据库</h3>
 <p>keyword:<code>create</code></p>
 <p>format:<code>create database database_name;</code></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#创建名为jwdl的数据库</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> database jwdl;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.02</span> sec)</span><br><span class="line"></span><br><span class="line">#查看创建好的数据库jwdl的定义</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> <span class="keyword">create</span> database jwdl;</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+--------------------------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Database <span class="operator">|</span> <span class="keyword">Create</span> Database                                                                                                                <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+--------------------------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> jwdl     <span class="operator">|</span> <span class="keyword">CREATE</span> DATABASE `jwdl` <span class="comment">/*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */</span> <span class="comment">/*!80016 DEFAULT ENCRYPTION=&#x27;N&#x27; */</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+--------------------------------------------------------------------------------------------------------------------------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<h3 id="2-2-选择操作">2.2 选择操作</h3>
+<h3 id="2-2-选择操作"><a class="header-anchor" href="#2-2-选择操作">¶</a>2.2 选择操作</h3>
 <p>关键词：<code>select</code></p>
 <p>格式：<code>select 列名 from 表名;</code></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">user</span>,host,authentication_string <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line">#在新版本中，加密后的密码在表中的列名为<span class="string">&#x27;authentication_string&#x27;</span></span><br><span class="line">#若欲选择全部列名，则以<span class="string">&#x27;*&#x27;</span>代替</span><br><span class="line">#<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">user</span>,host,authentication_string <span class="keyword">from</span> <span class="keyword">user</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+-----------+------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> <span class="keyword">user</span>             <span class="operator">|</span> host      <span class="operator">|</span> authentication_string                                                  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+-----------+------------------------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> lixianlei        <span class="operator">|</span> localhost <span class="operator">|</span> <span class="operator">*</span><span class="number">5</span>DB2BC2E5C0108EC0598136E161B31856FE7FC68                              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> mysql.infoschema <span class="operator">|</span> localhost <span class="operator">|</span> $A$<span class="number">005</span>$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> mysql.session    <span class="operator">|</span> localhost <span class="operator">|</span> $A$<span class="number">005</span>$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> mysql.sys        <span class="operator">|</span> localhost <span class="operator">|</span> $A$<span class="number">005</span>$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> root             <span class="operator">|</span> localhost <span class="operator">|</span> <span class="operator">*</span><span class="number">49</span>DA781724763770869D8619EC543F0CD961518B                              <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------------------+-----------+------------------------------------------------------------------------+</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#使用数据库test</span><br><span class="line">mysql<span class="operator">&gt;</span> use test;</span><br><span class="line">Database changed</span><br><span class="line">#在test数据库的users表单中选择全部项</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu123   <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-3-插入操作">2.3 插入操作</h3>
+<h3 id="2-3-插入操作"><a class="header-anchor" href="#2-3-插入操作">¶</a>2.3 插入操作</h3>
 <p>keyword:<code>insert</code></p>
 <p>format:<code>insert into table (column1,column2,column3,...) values(...,...,...,...);</code></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> users</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (userid,username,password,email)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">values</span>(<span class="number">4</span>,<span class="string">&#x27;zhaoliu&#x27;</span>,<span class="string">&#x27;zhaoliu123&#x27;</span>,<span class="string">&#x27;zhaoliu@163.com&#x27;</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu123   <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-4-修改-更新操作">2.4 修改/更新操作</h3>
+<h3 id="2-4-修改-更新操作"><a class="header-anchor" href="#2-4-修改-更新操作">¶</a>2.4 修改/更新操作</h3>
 <p>keyword:<code>update</code></p>
 <p>format:<code>update table_name set column_name='changed_values' where column_name='limit_condition';</code></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#插入错误信息</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> users</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (userid,username,password,email)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">values</span>(<span class="number">5</span>,<span class="string">&#x27;zhouqi&#x27;</span>,<span class="string">&#x27;zhouqi123&#x27;</span>,<span class="string">&#x27;zhouqi123&#x27;</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line">#查看错误信息</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu123   <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">5</span> <span class="operator">|</span> zhouqi   <span class="operator">|</span> zhouqi123   <span class="operator">|</span> zhouqi123        <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line">#修改错误信息</span><br><span class="line">mysql<span class="operator">&gt;</span> update users</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">set</span> email<span class="operator">=</span><span class="string">&#x27;zhouqi@163.com&#x27;</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;zhouqi&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">1</span>  Changed: <span class="number">1</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu123   <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">5</span> <span class="operator">|</span> zhouqi   <span class="operator">|</span> zhouqi123   <span class="operator">|</span> zhouqi<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<h4 id="2-4-1-整列相同数值更新">2.4.1 整列相同数值更新</h4>
+<h4 id="2-4-1-整列相同数值更新"><a class="header-anchor" href="#2-4-1-整列相同数值更新">¶</a>2.4.1 整列相同数值更新</h4>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#在users表单中新建nation列，类型为<span class="type">varchar</span>(<span class="number">10</span>)</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">alter</span> <span class="keyword">table</span> users</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">add</span> <span class="keyword">column</span> nation <span class="type">varchar</span>(<span class="number">10</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> after userid;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.05</span> sec)</span><br><span class="line">Records: <span class="number">0</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line">#查看当前表单状态</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+--------+----------+-------------+-----------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> nation <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> telephone <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+--------+----------+-------------+-----------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu456   <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">5</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> zhouqi   <span class="operator">|</span> zhouqi123   <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> zhoouqi<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">6</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> lvba     <span class="operator">|</span> lvba123     <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> lvba<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">8</span> <span class="operator">|</span> <span class="keyword">NULL</span>   <span class="operator">|</span> fushi    <span class="operator">|</span> fushi123    <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> fushi<span class="variable">@qq</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+--------+----------+-------------+-----------+------------------+</span></span><br><span class="line"><span class="number">7</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line">#对nation整列数据进行操作</span><br><span class="line">#此方法仅用于数据库列内值相同的情况</span><br><span class="line">#一般都是在未指定行或者没有任何限制的情况下，总是默认全部</span><br><span class="line">mysql<span class="operator">&gt;</span> update users</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">set</span> nation<span class="operator">=</span><span class="string">&#x27;china&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">7</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">7</span>  Changed: <span class="number">7</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+--------+----------+-------------+-----------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> nation <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> telephone <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+--------+----------+-------------+-----------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> china  <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> china  <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> china  <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu456   <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> china  <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">5</span> <span class="operator">|</span> china  <span class="operator">|</span> zhouqi   <span class="operator">|</span> zhouqi123   <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> zhoouqi<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">6</span> <span class="operator">|</span> china  <span class="operator">|</span> lvba     <span class="operator">|</span> lvba123     <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> lvba<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">8</span> <span class="operator">|</span> china  <span class="operator">|</span> fushi    <span class="operator">|</span> fushi123    <span class="operator">|</span> <span class="keyword">NULL</span>      <span class="operator">|</span> fushi<span class="variable">@qq</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+--------+----------+-------------+-----------+------------------+</span></span><br><span class="line"><span class="number">7</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<h3 id="2-5-删除操作">2.5 删除操作</h3>
+<h3 id="2-5-删除操作"><a class="header-anchor" href="#2-5-删除操作">¶</a>2.5 删除操作</h3>
 <p>keyword:<code>delete</code></p>
 <p>format:<code>delete from table_name where column_name='limit_condition';</code></p>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#删除操作，在users表中删除username为zhouqi的用户</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">delete</span> <span class="keyword">from</span> users</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">where</span> username<span class="operator">=</span><span class="string">&#x27;zhouqi&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line">#查表操作，查看是否删除成功</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span> userid <span class="operator">|</span> username <span class="operator">|</span> password    <span class="operator">|</span> email            <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">1</span> <span class="operator">|</span> zhangsan <span class="operator">|</span> zhangsan123 <span class="operator">|</span> zhangsan<span class="variable">@163</span>.com <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">2</span> <span class="operator">|</span> lisi     <span class="operator">|</span> lisi123     <span class="operator">|</span> lisi<span class="variable">@163</span>.com     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">3</span> <span class="operator">|</span> wangwu   <span class="operator">|</span> wangwu123   <span class="operator">|</span> wangwu<span class="variable">@163</span>.com   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>      <span class="number">4</span> <span class="operator">|</span> zhaoliu  <span class="operator">|</span> zhaoliu123  <span class="operator">|</span> zhaoliu<span class="variable">@163</span>.com  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+----------+-------------+------------------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
-<h2 id="3-MySQL数据库的基本命令">3 MySQL数据库的基本命令</h2>
-<h3 id="3-1-启动和关闭数据库">3.1  启动和关闭数据库</h3>
+<h2 id="3-MySQL数据库的基本命令"><a class="header-anchor" href="#3-MySQL数据库的基本命令">¶</a>3 MySQL数据库的基本命令</h2>
+<h3 id="3-1-启动和关闭数据库"><a class="header-anchor" href="#3-1-启动和关闭数据库">¶</a>3.1  启动和关闭数据库</h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#pay attention：以下操作需要在管理员权限下才可以</span><br><span class="line">#启动数据库</span><br><span class="line">net <span class="keyword">start</span> mysql80;</span><br><span class="line">#关闭数据库</span><br><span class="line">net stop mysql80;</span><br><span class="line">## 当然，也可以通过系统的服务来实现数据库的开和关</span><br></pre></td></tr></table></figure>
-<h3 id="3-2-登录数据库">3.2  登录数据库</h3>
+<h3 id="3-2-登录数据库"><a class="header-anchor" href="#3-2-登录数据库">¶</a>3.2  登录数据库</h3>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#此命令需要的也是管理员权限</span><br><span class="line">#至于具体原因，应该是数据库的环境变量都添加到了系统变量取，在以本地用户身份尝试登录数据库时会显示没有mysql命令或者批处理程序</span><br><span class="line">#命令格式：mysql <span class="operator">-</span>u user_name <span class="operator">-</span>p回车下一行就会提醒你输入密码，或者直接指定密码</span><br><span class="line">#当然，还可以添加参数<span class="operator">-</span>h，用来指定主机名，默认为localhost</span><br><span class="line">#mysql <span class="operator">-</span>h host_name <span class="operator">-</span>u user_name <span class="operator">-</span>p password</span><br><span class="line">mysql <span class="operator">-</span>u root <span class="operator">-</span>p</span><br><span class="line">password:<span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="3-3-杂项">3.3  杂项</h3>
-<h4 id="3-3-1-字符集命令">3.3.1  字符集命令</h4>
+<h3 id="3-3-杂项"><a class="header-anchor" href="#3-3-杂项">¶</a>3.3  杂项</h3>
+<h4 id="3-3-1-字符集命令"><a class="header-anchor" href="#3-3-1-字符集命令">¶</a>3.3.1  字符集命令</h4>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查看mysql支持的字符集以及对应的检验规则</span><br><span class="line"><span class="keyword">show</span> <span class="type">character</span> <span class="keyword">set</span>;</span><br><span class="line">#显示当前连接系统的参数</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> variables <span class="keyword">like</span> <span class="string">&#x27;char%&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------------+---------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> Variable_name            <span class="operator">|</span> <span class="keyword">Value</span>                                                   <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------------+---------------------------------------------------------+</span></span><br><span class="line"><span class="operator">|</span> character_set_client     <span class="operator">|</span> gbk                                                     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_set_connection <span class="operator">|</span> gbk                                                     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_set_database   <span class="operator">|</span> utf8mb4                                                 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_set_filesystem <span class="operator">|</span> <span class="type">binary</span>                                                  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_set_results    <span class="operator">|</span> gbk                                                     <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_set_server     <span class="operator">|</span> utf8mb4                                                 <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_set_system     <span class="operator">|</span> utf8                                                    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> character_sets_dir       <span class="operator">|</span> C:\Program Files\MySQL\MySQL Server <span class="number">8.0</span>\share\charsets\ <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------------+---------------------------------------------------------+</span></span><br><span class="line">#修改上述变量的值</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">set</span> character_set_client<span class="operator">=</span>utf8;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected, <span class="number">1</span> warning (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
 <table>
 <thead>
@@ -1221,12 +1221,12 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h4 id="3-3-2-查看命令">3.3.2  查看命令</h4>
+<h4 id="3-3-2-查看命令"><a class="header-anchor" href="#3-3-2-查看命令">¶</a>3.3.2  查看命令</h4>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">#查看mysql的状态信息</span><br><span class="line">mysql<span class="operator">&gt;</span> status</span><br><span class="line"><span class="comment">--------------</span></span><br><span class="line">mysql  Ver <span class="number">8.0</span><span class="number">.22</span> <span class="keyword">for</span> Win64 <span class="keyword">on</span> x86_64 (MySQL Community Server <span class="operator">-</span> GPL)</span><br><span class="line"></span><br><span class="line">Connection id:          <span class="number">53</span></span><br><span class="line"><span class="keyword">Current</span> database:       test</span><br><span class="line"><span class="keyword">Current</span> <span class="keyword">user</span>:           root<span class="variable">@localhost</span></span><br><span class="line">SSL:                    Cipher <span class="keyword">in</span> use <span class="keyword">is</span> TLS_AES_256_GCM_SHA384</span><br><span class="line"><span class="keyword">Using</span> delimiter:        ;</span><br><span class="line">Server version:         <span class="number">8.0</span><span class="number">.22</span> MySQL Community Server <span class="operator">-</span> GPL</span><br><span class="line">Protocol version:       <span class="number">10</span></span><br><span class="line">Connection:             localhost via TCP<span class="operator">/</span>IP</span><br><span class="line">Server characterset:    utf8mb4</span><br><span class="line">Db     characterset:    utf8mb4</span><br><span class="line">Client characterset:    utf8</span><br><span class="line">Conn.  characterset:    gbk</span><br><span class="line">TCP port:               <span class="number">3306</span></span><br><span class="line"><span class="type">Binary</span> data <span class="keyword">as</span>:         Hexadecimal</span><br><span class="line">Uptime:                 <span class="number">2</span> days <span class="number">4</span> hours <span class="number">24</span> min <span class="number">4</span> sec</span><br><span class="line"></span><br><span class="line">Threads: <span class="number">2</span>  Questions: <span class="number">681</span>  Slow queries: <span class="number">0</span>  Opens: <span class="number">332</span>  Flush tables: <span class="number">3</span>  <span class="keyword">Open</span> tables: <span class="number">246</span>  Queries <span class="keyword">per</span> <span class="keyword">second</span> avg: <span class="number">0.003</span></span><br><span class="line"><span class="comment">--------------</span></span><br><span class="line"></span><br><span class="line">#查看数据库</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> databases;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="operator">|</span> Database           <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="operator">|</span> information_schema <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> mysql              <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> performance_schema <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> sys                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> test               <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------------------+</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">#切换数据库到当前数据库</span><br><span class="line">mysql<span class="operator">&gt;</span> use test;</span><br><span class="line">Database changed</span><br><span class="line"></span><br><span class="line">#查看数据库中的表信息</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> tables;</span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="operator">|</span> Tables_in_test <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="operator">|</span> users          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">#查看表结构</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">describe</span> users;</span><br><span class="line"><span class="operator">+</span><span class="comment">----------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> Field    <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> userid   <span class="operator">|</span> <span class="type">int</span>         <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> username <span class="operator">|</span> <span class="type">char</span>(<span class="number">45</span>)    <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> password <span class="operator">|</span> <span class="type">char</span>(<span class="number">45</span>)    <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> email    <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">45</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">#查看mysql <span class="number">8.0</span>版本支持的数据库存储系统</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> engines \G;</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">1.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: MEMORY</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">2.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: MRG_MYISAM</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Collection <span class="keyword">of</span> identical MyISAM tables</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">3.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: CSV</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: CSV storage engine</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">4.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: FEDERATED</span><br><span class="line">     Support: <span class="keyword">NO</span></span><br><span class="line">     Comment: Federated MySQL storage engine</span><br><span class="line">Transactions: <span class="keyword">NULL</span></span><br><span class="line">          XA: <span class="keyword">NULL</span></span><br><span class="line">  Savepoints: <span class="keyword">NULL</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">5.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: PERFORMANCE_SCHEMA</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Performance Schema</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">6.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: MyISAM</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: MyISAM storage engine</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">7.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: InnoDB</span><br><span class="line">     Support: <span class="keyword">DEFAULT</span></span><br><span class="line">     Comment: Supports transactions, <span class="type">row</span><span class="operator">-</span>level locking, <span class="keyword">and</span> <span class="keyword">foreign</span> keys</span><br><span class="line">Transactions: YES</span><br><span class="line">          XA: YES</span><br><span class="line">  Savepoints: YES</span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">8.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: BLACKHOLE</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: <span class="operator">/</span>dev<span class="operator">/</span><span class="keyword">null</span> storage engine (anything you write <span class="keyword">to</span> it disappears)</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span> <span class="number">9.</span> <span class="type">row</span> <span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span><span class="operator">*</span></span><br><span class="line">      Engine: ARCHIVE</span><br><span class="line">     Support: YES</span><br><span class="line">     Comment: Archive storage engine</span><br><span class="line">Transactions: <span class="keyword">NO</span></span><br><span class="line">          XA: <span class="keyword">NO</span></span><br><span class="line">  Savepoints: <span class="keyword">NO</span></span><br><span class="line"><span class="number">9</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">ERROR:</span><br><span class="line"><span class="keyword">No</span> query specified</span><br></pre></td></tr></table></figure>
-<h3 id="3-4-表操作">3.4 表操作</h3>
-<h4 id="3-4-1-新建表">3.4.1 新建表</h4>
+<h3 id="3-4-表操作"><a class="header-anchor" href="#3-4-表操作">¶</a>3.4 表操作</h3>
+<h4 id="3-4-1-新建表"><a class="header-anchor" href="#3-4-1-新建表">¶</a>3.4.1 新建表</h4>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentName <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">primary</span> key(studentNo)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br><span class="line">    </span><br><span class="line">mysql<span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">describe</span> tb_student;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> Field       <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="operator">|</span> studentNo   <span class="operator">|</span> <span class="type">char</span>(<span class="number">10</span>)    <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> studentName <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> sex         <span class="operator">|</span> <span class="type">char</span>(<span class="number">2</span>)     <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> birthday    <span class="operator">|</span> <span class="type">date</span>        <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> native      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">20</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> nation      <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> 汉      <span class="operator">|</span>       <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------------+-------------+------+-----+---------+-------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
-<h5 id="3-4-1-1-约束">3.4.1.1 约束</h5>
+<h5 id="3-4-1-1-约束"><a class="header-anchor" href="#3-4-1-1-约束">¶</a>3.4.1.1 约束</h5>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> tb_student(</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNo <span class="type">char</span>(<span class="number">10</span>) <span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> studentNmae <span class="type">varchar</span>(<span class="number">10</span>)<span class="keyword">not</span> <span class="keyword">null</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> sex <span class="type">char</span>(<span class="number">2</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> birthday <span class="type">date</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> native <span class="type">varchar</span>(<span class="number">20</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> nation <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">default</span> <span class="string">&#x27;汉&#x27;</span>,</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> classNo <span class="type">char</span>(<span class="number">6</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">constraint</span> pk_student <span class="keyword">primary</span> key(studentNo),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">foreign</span> key fk_student (classNo) <span class="keyword">references</span> tb_class(classNo) <span class="keyword">on</span> update cascade <span class="keyword">on</span> <span class="keyword">delete</span> restrict </span><br><span class="line"><span class="operator">-</span><span class="operator">&gt;</span> )engine<span class="operator">=</span>InnoDB <span class="keyword">default</span> charset<span class="operator">=</span>gb2312;</span><br></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
@@ -1241,24 +1241,27 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
     <title>markdown表情总结</title>
     <url>/2021/06/14/markdown%E8%A1%A8%E6%83%85%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1>Markdown表情总结</h1>
-<h2 id="如何在Markdown中使用表情">如何在Markdown中使用表情</h2>
+<h2 id="如何在Markdown中使用表情"><a class="header-anchor" href="#如何在Markdown中使用表情">¶</a>如何在Markdown中使用表情</h2>
 <span id="more"></span>
 <ol>
 <li>以下网站包含了大量的Emoji表情，可以在写Markdown时插入一些表情，使得文章更加有趣。</li>
 <li><a href="https://www.webfx.com/tools/emoji-cheat-sheet/">表情网站</a></li>
-<li>语法  （Markdown中插入的表情符号格式是由冒号开始，冒号结尾。<code>:white_check_mark:</code>:white_check_mark:</li>
+<li>语法  （Markdown中插入的表情符号格式是由冒号开始，冒号结尾。<code>:white_check_mark:</code>✅</li>
 </ol>
-<h2 id="如何在Hexo主题中使用Emoji表情">如何在Hexo主题中使用Emoji表情</h2>
+<h2 id="如何在Hexo主题中使用Emoji表情"><a class="header-anchor" href="#如何在Hexo主题中使用Emoji表情">¶</a>如何在Hexo主题中使用Emoji表情</h2>
 <p>写博客的时候发现有些内容不能很好的通过文字表达出来，这时候就需要表情的支持了。所以就研究了一下怎么在博客中加入emoji表情。网上有很多支持emoji的插件，但是都需要在浏览器端进行处理，考虑到使用的JS库已经够多了，所以尽量还是让Hexo提前渲染为好。</p>
-<h3 id="修改Hexo渲染器">修改Hexo渲染器</h3>
+<h3 id="修改Hexo渲染器"><a class="header-anchor" href="#修改Hexo渲染器">¶</a>修改Hexo渲染器</h3>
 <p>Hexo默认的markdown渲染插件是<a href="https://github.com/hexojs/hexo-renderer-marked">hexo-renderer-marked</a>，也就是marked渲染器的Hexo版本，这个渲染器不支持插件扩展。在PR中也提到了要支持emoji，但是却迟迟没有marge进来。然后就是另外一个markdown渲染器<a href="https://github.com/celsomiranda/hexo-renderer-markdown-it">hexo-renderer-markdown-it</a>，这个渲染器支持插件配置可以使用<a href="https://github.com/markdown-it/markdown-it-emoji">markdown-it-emoji</a>插件来支持emoji。我们要将原来的markdown渲染器换成这个。</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm un hexo-renderer-marked --save</span><br><span class="line">npm i hexo-renderer-markdown-it --save</span><br></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626002550.png" alt="执行npm命令"></p>
-<h3 id="安装Emoji插件">安装Emoji插件</h3>
+<h3 id="安装Emoji插件"><a class="header-anchor" href="#安装Emoji插件">¶</a>安装Emoji插件</h3>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install markdown-it-emoji --save</span><br></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626002829.png" alt="安装Emoji插件"></p>
-<h2 id="表情列表">表情列表</h2>
-<h3 id="人物">人物</h3>
+<h3 id="修改配置文件使Hexo兼容"><a class="header-anchor" href="#修改配置文件使Hexo兼容">¶</a>修改配置文件使Hexo兼容</h3>
+<p>修改的是Hexo的配置文件哦，也就是根目录下的配置文件</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Markdown-it config</span></span><br><span class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></span><br><span class="line"><span class="attr">markdown:</span></span><br><span class="line">  <span class="attr">render:</span></span><br><span class="line">    <span class="attr">html:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">breaks:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">linkify:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">typographer:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">quotes:</span> <span class="string">&#x27;“”‘’&#x27;</span></span><br><span class="line">  <span class="attr">plugins:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-footnote</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sup</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-sub</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-abbr</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">markdown-it-emoji</span></span><br><span class="line">  <span class="attr">anchors:</span></span><br><span class="line">    <span class="attr">level:</span> <span class="number">2</span></span><br><span class="line">    <span class="attr">collisionSuffix:</span> <span class="string">&#x27;v&#x27;</span></span><br><span class="line">    <span class="attr">permalink:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">permalinkClass:</span> <span class="string">header-anchor</span></span><br><span class="line">    <span class="attr">permalinkSymbol:</span> <span class="string">¶</span></span><br></pre></td></tr></table></figure>
+<h2 id="表情列表"><a class="header-anchor" href="#表情列表">¶</a>表情列表</h2>
+<h3 id="人物"><a class="header-anchor" href="#人物">¶</a>人物</h3>
 <table>
 <thead>
 <tr>
@@ -1625,9 +1628,9 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 <tr>
 <td style="text-align:center"><code>:person_with_pouting_face:</code></td>
-<td style="text-align:center">:person_with_pouting_face:</td>
+<td style="text-align:center">🙎</td>
 <td style="text-align:center"><code>:person_frowning:</code></td>
-<td style="text-align:center">:person_frowning:</td>
+<td style="text-align:center">🙍</td>
 <td style="text-align:center"><code>:bow:</code></td>
 <td style="text-align:center">🙇</td>
 </tr>
@@ -1665,7 +1668,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 <tr>
 <td style="text-align:center"><code>:person_with_blond_hair:</code></td>
-<td style="text-align:center">:person_with_blond_hair:</td>
+<td style="text-align:center">👱</td>
 <td style="text-align:center"><code>:man_with_gua_pi_mao:</code></td>
 <td style="text-align:center">👲</td>
 <td style="text-align:center"><code>:man_with_turban:</code></td>
@@ -1769,7 +1772,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="自然">自然</h3>
+<h3 id="自然"><a class="header-anchor" href="#自然">¶</a>自然</h3>
 <table>
 <thead>
 <tr>
@@ -2104,7 +2107,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="物体">物体</h3>
+<h3 id="物体"><a class="header-anchor" href="#物体">¶</a>物体</h3>
 <table>
 <thead>
 <tr>
@@ -2823,7 +2826,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="地点">地点</h3>
+<h3 id="地点"><a class="header-anchor" href="#地点">¶</a>地点</h3>
 <table>
 <thead>
 <tr>
@@ -3126,7 +3129,7 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 </tr>
 </tbody>
 </table>
-<h3 id="符号">符号</h3>
+<h3 id="符号"><a class="header-anchor" href="#符号">¶</a>符号</h3>
 <table>
 <thead>
 <tr>
