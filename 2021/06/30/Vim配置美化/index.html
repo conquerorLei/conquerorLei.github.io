@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;conquerorlei.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:&quot;utterances&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null,&quot;activeClass&quot;:&quot;utterances&quot;},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim配置美化">
+<meta property="og:url" content="https://conquerorlei.github.io/2021/06/30/Vim%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708233232.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210709005447.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210630145458519.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/%E6%AD%A3%E7%A1%AE%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210701234633933.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708234718.png">
+<meta property="article:published_time" content="2021-06-30T06:30:48.000Z">
+<meta property="article:modified_time" content="2021-07-08T17:08:04.448Z">
+<meta property="article:author" content="李先雷">
+<meta property="article:tag" content="Gvim">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708233232.png">
+
+
+<link rel="canonical" href="https://conquerorlei.github.io/2021/06/30/Vim%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;2021&#x2F;06&#x2F;30&#x2F;Vim%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;30&#x2F;Vim配置美化&#x2F;&quot;,&quot;title&quot;:&quot;Vim配置美化&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Vim配置美化 | conquerorLei</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="conquerorLei" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">conquerorLei</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">further study make me better</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">简单描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">vim使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Vim%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6"><span class="nav-number">2.1.</span> <span class="nav-text">使用Vim打开文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">四种模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.1.</span> <span class="nav-text">普通模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%89%E6%A0%87%E7%A7%BB%E5%8A%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">光标移动命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2%E4%B8%8E%E6%9B%BF%E6%8D%A2%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">文档查询与替换命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A2%9E%E5%88%A0%E6%94%B9%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">增删改命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%95%E8%A1%8C%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.2.2.</span> <span class="nav-text">底行模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">常用命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.</span> <span class="nav-text">可视化模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E6%B3%A8%E9%87%8A"><span class="nav-number">2.4.1.</span> <span class="nav-text">批量注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E6%B3%A8%E9%87%8A"><span class="nav-number">2.4.2.</span> <span class="nav-text">取消注释</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">vim配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">基础配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%89%93%E5%BC%80-vimrc"><span class="nav-number">3.1.1.</span> <span class="nav-text">设置快捷键打开_vimrc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BAVim%E9%85%8D%E7%BD%AE%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81"><span class="nav-number">3.1.2.</span> <span class="nav-text">为Vim配置默认编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BAVim%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="nav-number">3.1.3.</span> <span class="nav-text">为Vim配置代码高亮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86gVim%E7%9A%84%E8%AF%AD%E8%A8%80%E4%BF%AE%E6%94%B9%E4%B8%BA%E8%8B%B1%E6%96%87%E6%96%B9%E4%BE%BF%E4%BD%BF%E7%94%A8"><span class="nav-number">3.1.4.</span> <span class="nav-text">将gVim的语言修改为英文方便使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E4%B8%8B%E5%85%BC%E5%AE%B9vi"><span class="nav-number">3.1.5.</span> <span class="nav-text">向下兼容vi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%8B%E5%85%BC%E5%AE%B9%E9%BC%A0%E6%A0%87"><span class="nav-number">3.1.6.</span> <span class="nav-text">在可视化下兼容鼠标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E7%BC%A9%E8%BF%9B%E8%AE%BE%E7%BD%AE%E4%B8%BA%E7%A9%BA%E6%A0%BC"><span class="nav-number">3.1.7.</span> <span class="nav-text">将缩进设置为空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%A9%E8%BF%9B%E9%85%8D%E7%BD%AE%E4%B8%BA4%E7%A9%BA%E6%A0%BC"><span class="nav-number">3.1.8.</span> <span class="nav-text">缩进配置为4空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93Tab%E5%92%8C%E7%A9%BA%E6%A0%BC"><span class="nav-number">3.1.9.</span> <span class="nav-text">渲染Tab和空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%89%E6%A0%87%E6%BB%9A%E5%8A%A8%E5%81%9C%E6%AD%A2%E8%A1%8C"><span class="nav-number">3.1.10.</span> <span class="nav-text">设置光标滚动停止行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E9%80%80%E6%A0%BC%E8%B7%A8%E8%A1%8C%E9%80%80%E6%A0%BC"><span class="nav-number">3.1.11.</span> <span class="nav-text">开启退格跨行退格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0"><span class="nav-number">3.1.12.</span> <span class="nav-text">开启代码折叠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E4%B8%8B%E9%87%87%E7%94%A8%E4%B8%89%E7%A7%8D%E5%85%89%E6%A0%87-%E4%BB%85gVim"><span class="nav-number">3.1.13.</span> <span class="nav-text">在三种模式下采用三种光标[仅gVim]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B8%E8%BF%9C%E4%BF%9D%E7%95%99%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">3.1.14.</span> <span class="nav-text">永远保留命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%BC%A9%E8%BF%9B"><span class="nav-number">3.1.15.</span> <span class="nav-text">自动缩进</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%AD%97%E4%BD%93-%E4%BB%85gVim"><span class="nav-number">3.1.16.</span> <span class="nav-text">设置字体[仅gVim]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E8%97%8FgVim%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%BB%9A%E5%8A%A8%E6%9D%A1"><span class="nav-number">3.1.17.</span> <span class="nav-text">隐藏gVim的四个滚动条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%9B%B8%E5%AF%B9%E8%A1%8C%E5%8F%B7"><span class="nav-number">3.1.18.</span> <span class="nav-text">设置相对行号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AA%81%E5%87%BA%E6%98%BE%E7%A4%BA%E9%80%89%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%E6%89%80%E5%9C%A8%E8%A1%8C%E5%88%97"><span class="nav-number">3.1.19.</span> <span class="nav-text">突出显示选中的字符所在行列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8C"><span class="nav-number">3.1.20.</span> <span class="nav-text">自动换行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E8%BE%93%E5%85%A5%E7%9A%84%E5%91%BD%E4%BB%A4-%E5%8F%B3%E4%B8%8B%E8%A7%92"><span class="nav-number">3.1.21.</span> <span class="nav-text">显示输入的命令(右下角)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E5%91%BD%E4%BB%A4%E7%9A%84%E6%97%B6%E5%80%99Tab%E6%98%BE%E7%A4%BA%E6%8F%90%E7%A4%BA"><span class="nav-number">3.1.22.</span> <span class="nav-text">输入命令的时候Tab显示提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E6%9F%A5%E6%89%BE-%E9%AB%98%E4%BA%AE%E6%98%BE%E7%A4%BA%E7%BB%93%E6%9E%9C"><span class="nav-number">3.1.23.</span> <span class="nav-text">智能查找 高亮显示结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%89%8D%E7%BC%80%E5%BB%BA"><span class="nav-number">3.1.24.</span> <span class="nav-text">设置前缀建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF"><span class="nav-number">3.1.25.</span> <span class="nav-text">复制粘贴到系统剪贴板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E4%BF%9D%E5%AD%98-%E5%88%B7%E6%96%B0"><span class="nav-number">3.1.26.</span> <span class="nav-text">快捷保存 刷新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E5%88%86%E5%B1%8F"><span class="nav-number">3.1.27.</span> <span class="nav-text">设置分屏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E5%88%A0%E9%99%A4tabe%E6%A0%87%E7%AD%BE"><span class="nav-number">3.1.28.</span> <span class="nav-text">增加删除tabe标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%A8%A1%E5%BC%8F%E7%A7%BB%E5%8A%A8%E5%85%89%E6%A0%87"><span class="nav-number">3.1.29.</span> <span class="nav-text">插入模式移动光标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="nav-number">3.2.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8"><span class="nav-number">3.2.1.</span> <span class="nav-text">插件管理器</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">李先雷</p>
+  <div class="site-description" itemprop="description">学习总结 学习经历 个人小站</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/conquerorLei" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;conquerorLei" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:xl90236@163.com" title="E-Mail → mailto:xl90236@163.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/conquerorLei" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://conquerorlei.github.io/2021/06/30/Vim%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="李先雷">
+      <meta itemprop="description" content="学习总结 学习经历 个人小站">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="conquerorLei">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vim配置美化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-30 14:30:48" itemprop="dateCreated datePublished" datetime="2021-06-30T14:30:48+08:00">2021-06-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-09 01:08:04" itemprop="dateModified" datetime="2021-07-09T01:08:04+08:00">2021-07-09</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/" itemprop="url" rel="index"><span itemprop="name">Software</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Software/Vim/" itemprop="url" rel="index"><span itemprop="name">Vim</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708233232.png" alt="Gvim"></p>
+<span id="more"></span>
+<h1>简单描述</h1>
+<p>描述就算了，直接看我目前的gvim界面</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210709005447.png" alt="当前gvim界面"></p>
+<h1>vim使用说明</h1>
+<h2 id="使用Vim打开文件"><a class="header-anchor" href="#使用Vim打开文件">¶</a>使用Vim打开文件</h2>
+<p>win+R打开运行，在运行中输入cmd打开命令提示符，在命令提示符中输入一下代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim $&#123;FilePath&#125;</span><br></pre></td></tr></table></figure>
+<div class="note success"><blockquote>
+<p>这边需要主要的时候，以下代码是有<font color='red'>错误</font>的😮（直呼好家伙）</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210630145458519.png" alt="cmd-Vim打开文件"></p>
+<p>原因是路径内部有<font color='cornflowerblue'>空格</font>，无法正确地寻址<code>IDEA workstation</code></p>
+</blockquote>
+</div>
+<p><strong>正确实例</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/%E6%AD%A3%E7%A1%AE%E7%A4%BA%E4%BE%8B.png" alt="正确示例"></p>
+<h2 id="四种模式"><a class="header-anchor" href="#四种模式">¶</a>四种模式</h2>
+<p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）</p>
+<h3 id="普通模式"><a class="header-anchor" href="#普通模式">¶</a>普通模式</h3>
+<p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
+<h4 id="光标移动命令"><a class="header-anchor" href="#光标移动命令">¶</a>光标移动命令</h4>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>h 或 向左箭头键(←)</td>
+<td>光标向左移动一个字符</td>
+</tr>
+<tr>
+<td>j 或 向下箭头键(↓)</td>
+<td>光标向下移动一个字符</td>
+</tr>
+<tr>
+<td>k 或 向上箭头键(↑)</td>
+<td>光标向下移动一个字符</td>
+</tr>
+<tr>
+<td>l 或 向右箭头键(→)</td>
+<td>光标向右移动一个字符</td>
+</tr>
+</tbody>
+</table>
+<div class="note primary"><blockquote>
+<p>很平常使用的编辑器光标移动规则差不多</p>
+</blockquote>
+</div>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[Ctrl] + [f]</td>
+<td>屏幕向下移动一页，相当于 [Page Down]按键 (常用)</td>
+</tr>
+<tr>
+<td>[Ctrl] + [b]</td>
+<td>屏幕向上移动一页，相当于 [Page Up] 按键 (常用)</td>
+</tr>
+<tr>
+<td>[Ctrl] + [d]</td>
+<td>屏幕向下移动半页</td>
+</tr>
+<tr>
+<td>[Ctrl] + [u]</td>
+<td>屏幕向上移动半页</td>
+</tr>
+<tr>
+<td>+</td>
+<td>光标移动到非空格符的下一行</td>
+</tr>
+<tr>
+<td>-</td>
+<td>光标移动到非空格符的上一行</td>
+</tr>
+<tr>
+<td>n &lt; space &gt;</td>
+<td>那个 n 表示数字，例如 20 。按下数字后再按空格键，光标会向右移动这一行的 n 个字符。<br>例如 20&lt; space &gt; 则光标会向后面移动 20 个字符距离。</td>
+</tr>
+<tr>
+<td>M</td>
+<td>光标移动到这个屏幕的中央那一行的第一个字符</td>
+</tr>
+<tr>
+<td>L</td>
+<td>光标移动到这个屏幕的最下方那一行的第一个字符</td>
+</tr>
+<tr>
+<td>G</td>
+<td>移动到这个档案的最后一行(常用)</td>
+</tr>
+<tr>
+<td>nG</td>
+<td>n 为数字。移动到这个档案的第 n 行。<br>例如 20G 则会移动到这个档案的第 20 行(可配合 :set nu)</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>移动到这个档案的第一行，相当于 1G 啊！ (常用)</td>
+</tr>
+<tr>
+<td>n&lt; Enter &gt;</td>
+<td>n 为数字。光标向下移动 n 行(常用)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="文档查询与替换命令"><a class="header-anchor" href="#文档查询与替换命令">¶</a>文档查询与替换命令</h4>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/word</td>
+<td>向光标之下寻找一个名称为 word 的字符串。<br>例如要在档案内搜寻 vbird 这个字符串，就输入 / vbird 即可！ (常用)</td>
+</tr>
+<tr>
+<td>?word</td>
+<td>向光标之上寻找一个字符串名称为 word 的字符串。</td>
+</tr>
+<tr>
+<td>n</td>
+<td>这个 n 是英文按键。代表重复前一个搜寻的动作。<br>举例来说， 如果刚刚我们执行 /vbird 去向下搜寻 vbird 这个字符串，则按下 n 后，会向下继续搜寻下一个名称为 vbird 的字符串。<br>如果是执行 ?vbird 的话，那么按下 n 则会向上继续搜寻名称为 vbird 的字符串！</td>
+</tr>
+<tr>
+<td>N</td>
+<td>这个 N 是英文按键。与 n 刚好相反，为反向进行前一个搜寻动作。 例如 /vbird 后，按下 N 则表示向上搜寻 vbird 。</td>
+</tr>
+<tr>
+<td>:n1,n2s/word1/word2/g</td>
+<td>n1 与 n2 为数字。在第 n1 与 n2 行之间寻找 word1 这个字符串，并将该字符串取代为 word2 ！<br>举例来说，在 100 到 200 行之间搜寻 vbird 并取代为 VBIRD 则： <code>:100,200s/vbird/VBIRD/g</code>。(常用)</td>
+</tr>
+<tr>
+<td>:1,$s/word1/word2/g 或 :%s/word1/word2/g</td>
+<td>从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！(常用)</td>
+</tr>
+<tr>
+<td>:1,$s/word1/word2/gc 或 :%s/word1/word2/gc</td>
+<td>从第一行到最后一行寻找 word1 字符串，并将该字符串取代为 word2 ！<br>且在取代前显示提示字符给用户确认 (confirm) 是否需要取代！(常用)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="增删改命令"><a class="header-anchor" href="#增删改命令">¶</a>增删改命令</h4>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x, X</td>
+<td>在一行字当中，x 为向后删除一个字符 (相当于 [del] 按键)， X 为向前删除一个字符( 相当于 [backspace] 亦即是退格键) (常用)</td>
+</tr>
+<tr>
+<td>nx</td>
+<td>n 为数字，连续向后删除 n 个字符。举例来说，我要连续删除 10 个字符， 10x。</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>删除游标所在的那一整行(常用)</td>
+</tr>
+<tr>
+<td>ndd</td>
+<td>n 为数字。删除光标所在的向下 n 行，例如 20dd 则是删除 20 行 (常用)</td>
+</tr>
+<tr>
+<td>d1G</td>
+<td>删除光标所在到第一行的所有数据</td>
+</tr>
+<tr>
+<td>dG</td>
+<td>删除光标所在到最后一行的所有数据</td>
+</tr>
+<tr>
+<td>d$</td>
+<td>删除游标所在处，到该行的最后一个字符</td>
+</tr>
+<tr>
+<td>d0</td>
+<td>那个是数字的 0 ，删除游标所在处，到该行的最前面一个字符</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制游标所在的那一行(常用)</td>
+</tr>
+<tr>
+<td>nyy</td>
+<td>n 为数字。复制光标所在的向下 n 行，例如 20yy 则是复制 20 行(常用)</td>
+</tr>
+<tr>
+<td>y1G</td>
+<td>复制游标所在行到第一行的所有数据</td>
+</tr>
+<tr>
+<td>yG</td>
+<td>复制游标所在行到最后一行的所有数据</td>
+</tr>
+<tr>
+<td>y0</td>
+<td>复制光标所在的那个字符到该行行首的所有数据</td>
+</tr>
+<tr>
+<td>y$</td>
+<td>复制光标所在的那个字符到该行行尾的所有数据</td>
+</tr>
+<tr>
+<td>p, P</td>
+<td>p 为将已复制的数据在光标下一行贴上，P 则为贴在游标上一行！<br> 举例来说，我目前光标在第 20 行，且已经复制了 10 行数据。则按下 p 后， 那 10 行数据会贴在原本的 20 行之后，亦即由 21 行开始贴。但如果是按下 P 呢？ 那么原本的第 20 行会被推到变成 30 行。 (常用)</td>
+</tr>
+<tr>
+<td>J</td>
+<td>将光标所在行与下一行的数据结合成同一行</td>
+</tr>
+<tr>
+<td>c</td>
+<td>重复删除多个数据，例如向下删除 10 行，[ 10cj ]</td>
+</tr>
+<tr>
+<td>u</td>
+<td>复原前一个动作。(常用)</td>
+</tr>
+<tr>
+<td>[Ctrl]+r</td>
+<td>重做上一个动作。(常用)</td>
+</tr>
+<tr>
+<td>.</td>
+<td><font color='red'>不要怀疑！这就是小数点！</font>意思是重复前一个动作的意思。 如果你想要重复删除、重复贴上等等动作，按下小数点就好了！ (常用)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="底行模式"><a class="header-anchor" href="#底行模式">¶</a>底行模式</h3>
+<p>在Vim下面有一行，这一行是让你输入命令的，想要输入命令必须使用<code>\</code>或者<code>:</code>触发，<code>\</code>是用来查找内容的，严格说属于Normal模式，所以其实只有<code>:</code>开头的命令</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210701234633933.png" alt="Vim Gui结构1"></p>
+<h4 id="常用命令"><a class="header-anchor" href="#常用命令">¶</a>常用命令</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>:w</td>
+<td>将编辑的数据写入硬盘档案中(常用)</td>
+</tr>
+<tr>
+<td>:w!</td>
+<td>若文件属性为只读时，强制写入该档案。</td>
+</tr>
+<tr>
+<td>:q</td>
+<td>离开 vi (常用)</td>
+</tr>
+<tr>
+<td>:q!</td>
+<td>若曾修改过档案，又不想储存，使用 ! 为强制离开不储存档案。</td>
+</tr>
+<tr>
+<td>:wq</td>
+<td>储存后离开，若为 :wq! 则为强制储存后离开</td>
+</tr>
+<tr>
+<td>:w [filename]</td>
+<td>将编辑的数据储存成另一个档案，相当于另存为</td>
+</tr>
+<tr>
+<td>:r [filename]</td>
+<td>在编辑的数据中，读入另一个档案的数据。<br>亦即将 filename 这个档案内容加到游标所在行后面</td>
+</tr>
+<tr>
+<td>:n1,n2 w [filename]</td>
+<td>将 n1 到 n2 的内容储存成 filename 这个档案。(n1和n2表示行号)</td>
+</tr>
+<tr>
+<td>:! command</td>
+<td>暂时离开 vi 到指令行模式下执行 command 的显示结果！<br>例如 :! ls /home即可在 vi 当中察看 /home 底下以 ls 输出的档案信息！</td>
+</tr>
+</tbody>
+</table>
+<div class="note primary"><p>命令后加感叹号<font color='red'>！</font>一般情况下都表示强制执行</p>
+</div>
+<h2 id="输入模式"><a class="header-anchor" href="#输入模式">¶</a>输入模式</h2>
+<p>insert模式就是输入模式，通过i，a，r，o触发，在普通模式下点击上述按键就可以触发，不同的字母表示的含义不同</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>i, I</td>
+<td>i 为从目前光标所在处输入， <br>I 为在目前所在行的第一个非空格符处开始输入</td>
+</tr>
+<tr>
+<td>a, A</td>
+<td>a 为从目前光标所在的下一个字符处开始输入，<br> A 为从光标所在行的最后一个字符处开始输入</td>
+</tr>
+<tr>
+<td>o, O</td>
+<td>这是英文字母 o 的大小写。<br>o 为在目前光标所在的下一行处输入新的一行； <br>O 为在目前光标所在处的上一行输入新的一行</td>
+</tr>
+<tr>
+<td>r, R</td>
+<td>r 只会取代光标所在的那一个字符一次；<br>R会一直取代光标所在的文字，直到按下 ESC 为止</td>
+</tr>
+</tbody>
+</table>
+<h2 id="可视化模式"><a class="header-anchor" href="#可视化模式">¶</a>可视化模式</h2>
+<p>ctrl+v可进入可视化模式</p>
+<p>visual模式下的最有用的是批量注释和取消注释</p>
+<h3 id="批量注释"><a class="header-anchor" href="#批量注释">¶</a>批量注释</h3>
+<ol>
+<li>
+<p>在普通模式下使用Ctrl+V快捷键进入可视化模式</p>
+</li>
+<li>
+<p>使用上下方向键选择要进行注释的行</p>
+</li>
+<li>
+<p>使用快捷键Shift+I进入行首插入模式</p>
+</li>
+<li>
+<p>在光标所在行行首插入该语言的注释符号例如<code>//</code>或者<code>#</code>或者<code>;</code></p>
+</li>
+<li>
+<p>点击两次esc，结束了</p>
+</li>
+</ol>
+<h3 id="取消注释"><a class="header-anchor" href="#取消注释">¶</a>取消注释</h3>
+<ol>
+<li>在普通模式下使用Ctrl+V快捷键进入可视化模式</li>
+<li>选择注释符号，<font color='red'>注意<code>//</code>选择两个</font></li>
+<li>按<code>d</code>删除</li>
+<li><code>esc</code>保存退出</li>
+</ol>
+<h1>vim配置</h1>
+<p>vim配置一般都存储在用户根目录下的<code>_vimrc</code>，我们做的很多配置都是在这个文件里面编写</p>
+<h2 id="基础配置"><a class="header-anchor" href="#基础配置">¶</a>基础配置</h2>
+<h3 id="设置快捷键打开-vimrc"><a class="header-anchor" href="#设置快捷键打开-vimrc">¶</a>设置快捷键打开_vimrc</h3>
+<p>由于经常需要打开<code>_vimrc</code>，所以这里为<code>_vimrc</code>设置快捷键，在普通模式下直接输入rc即可打开文件<code>_vimrc</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map rc : e $HOME\_vimrc</span><br></pre></td></tr></table></figure>
+<h3 id="为Vim配置默认编码"><a class="header-anchor" href="#为Vim配置默认编码">¶</a>为Vim配置默认编码</h3>
+<p>将编码设置为UTF-8，方便以后我们中文注释的Coding</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set encoding=utf-8</span><br></pre></td></tr></table></figure>
+<h3 id="为Vim配置代码高亮"><a class="header-anchor" href="#为Vim配置代码高亮">¶</a>为Vim配置代码高亮</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syntax on </span><br></pre></td></tr></table></figure>
+<h3 id="将gVim的语言修改为英文方便使用"><a class="header-anchor" href="#将gVim的语言修改为英文方便使用">¶</a>将gVim的语言修改为英文方便使用</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language C </span><br></pre></td></tr></table></figure>
+<h3 id="向下兼容vi"><a class="header-anchor" href="#向下兼容vi">¶</a>向下兼容vi</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set nocompatible</span><br><span class="line">filetype on</span><br><span class="line">filetype indent on</span><br><span class="line">filetype plugin on</span><br></pre></td></tr></table></figure>
+<h3 id="在可视化下兼容鼠标"><a class="header-anchor" href="#在可视化下兼容鼠标">¶</a>在可视化下兼容鼠标</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set mouse=a</span><br></pre></td></tr></table></figure>
+<h3 id="将缩进设置为空格"><a class="header-anchor" href="#将缩进设置为空格">¶</a>将缩进设置为空格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let &amp;t_ut=&#x27;&#x27;</span><br><span class="line">set expandtab </span><br></pre></td></tr></table></figure>
+<h3 id="缩进配置为4空格"><a class="header-anchor" href="#缩进配置为4空格">¶</a>缩进配置为4空格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set tabstop=4				</span><br><span class="line">set shiftwidth=4</span><br><span class="line">set softtabstop=4</span><br></pre></td></tr></table></figure>
+<h3 id="渲染Tab和空格"><a class="header-anchor" href="#渲染Tab和空格">¶</a>渲染Tab和空格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set listchars=tab:▸\ ,trail:▫	</span><br></pre></td></tr></table></figure>
+<h3 id="设置光标滚动停止行"><a class="header-anchor" href="#设置光标滚动停止行">¶</a>设置光标滚动停止行</h3>
+<p>就是往下滚的时候除非到行尾，保证当前选中行至少是倒数第五行，向上同理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set scrolloff=5</span><br></pre></td></tr></table></figure>
+<h3 id="开启退格跨行退格"><a class="header-anchor" href="#开启退格跨行退格">¶</a>开启退格跨行退格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set backspace=indent,eol,start	</span><br></pre></td></tr></table></figure>
+<h3 id="开启代码折叠"><a class="header-anchor" href="#开启代码折叠">¶</a>开启代码折叠</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set foldmethod=indent</span><br><span class="line">set foldlevel=99</span><br></pre></td></tr></table></figure>
+<h3 id="在三种模式下采用三种光标-仅gVim"><a class="header-anchor" href="#在三种模式下采用三种光标-仅gVim">¶</a>在三种模式下采用三种光标[仅gVim]</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let &amp;t_SI = &quot;\&lt;Esc&gt;]50;CursorShape=1\x7&quot;</span><br><span class="line">let &amp;t_SR = &quot;\&lt;Esc&gt;]50;CursorShape=2\x7&quot;</span><br><span class="line">let &amp;t_EI = &quot;\&lt;Esc&gt;]50;CursorShape=0\x7&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="永远保留命令行"><a class="header-anchor" href="#永远保留命令行">¶</a>永远保留命令行</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set laststatus=2</span><br></pre></td></tr></table></figure>
+<h3 id="自动缩进"><a class="header-anchor" href="#自动缩进">¶</a>自动缩进</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set autoindent	</span><br></pre></td></tr></table></figure>
+<h3 id="设置字体-仅gVim"><a class="header-anchor" href="#设置字体-仅gVim">¶</a>设置字体[仅gVim]</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set guifont=Powerline_Consolas:h12:cANSI:qDRAFT</span><br></pre></td></tr></table></figure>
+<h3 id="隐藏gVim的四个滚动条"><a class="header-anchor" href="#隐藏gVim的四个滚动条">¶</a>隐藏gVim的四个滚动条</h3>
+<p>隐藏gVim的四个滚动条如果被激活了F2再次关闭</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">map &lt;silent&gt; &lt;F2&gt; :if &amp;guioptions =~# &#x27;T&#x27; &lt;Bar&gt;</span><br><span class="line">		\set guioptions-=T &lt;Bar&gt;</span><br><span class="line">		\set guioptions-=m &lt;bar&gt;</span><br><span class="line">	\else &lt;Bar&gt;</span><br><span class="line">		\set guioptions =T &lt;Bar&gt;</span><br><span class="line">		\set guioptions =m &lt;Bar&gt;</span><br><span class="line">	\endif&lt;CR&gt;</span><br><span class="line">set guioptions-=m   &quot;Hide Menu</span><br><span class="line">set guioptions-=T   &quot;Hide Tool-Bar</span><br><span class="line">set guioptions-=r   &quot;hide right scroll</span><br><span class="line">set guioptions-=b   &quot;hide buttom scoll</span><br><span class="line">set guioptions-=L   &quot;hide left scroll</span><br></pre></td></tr></table></figure>
+<h3 id="设置相对行号"><a class="header-anchor" href="#设置相对行号">¶</a>设置相对行号</h3>
+<p>尽管我觉得这个很不好用</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set number			</span><br><span class="line">set relativenumber</span><br></pre></td></tr></table></figure>
+<h3 id="突出显示选中的字符所在行列"><a class="header-anchor" href="#突出显示选中的字符所在行列">¶</a>突出显示选中的字符所在行列</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set cursorline</span><br><span class="line">set cursorcolumn</span><br></pre></td></tr></table></figure>
+<h3 id="自动换行"><a class="header-anchor" href="#自动换行">¶</a>自动换行</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set wrap</span><br></pre></td></tr></table></figure>
+<h3 id="显示输入的命令-右下角"><a class="header-anchor" href="#显示输入的命令-右下角">¶</a>显示输入的命令(右下角)</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set showcmd</span><br></pre></td></tr></table></figure>
+<h3 id="输入命令的时候Tab显示提示"><a class="header-anchor" href="#输入命令的时候Tab显示提示">¶</a>输入命令的时候Tab显示提示</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set wildmenu</span><br></pre></td></tr></table></figure>
+<h3 id="智能查找-高亮显示结果"><a class="header-anchor" href="#智能查找-高亮显示结果">¶</a>智能查找 高亮显示结果</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set hlsearch	</span><br><span class="line">exec &quot;nohlsearch&quot;	</span><br><span class="line">set incsearch	</span><br><span class="line">set ignorecase		</span><br><span class="line">set smartcase</span><br></pre></td></tr></table></figure>
+<h3 id="设置前缀建"><a class="header-anchor" href="#设置前缀建">¶</a>设置前缀建</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let mapleader = &quot;\&lt;space&gt;&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="复制粘贴到系统剪贴板"><a class="header-anchor" href="#复制粘贴到系统剪贴板">¶</a>复制粘贴到系统剪贴板</h3>
+<p>注意的是我们的y和p只能在vim内部复制粘贴，想要复制粘贴到系统剪贴板需要用另一个命令，我把他换为<leader>+y,然后与y使用无异</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vnoremap &lt;Leader&gt;y &quot;+y</span><br><span class="line">nmap &lt;Leader&gt;p &quot;+p</span><br></pre></td></tr></table></figure>
+<p>也就是说这边的应该为<code>空格+y</code>组合成复制粘贴到系统剪切板</p>
+<h3 id="快捷保存-刷新"><a class="header-anchor" href="#快捷保存-刷新">¶</a>快捷保存 刷新</h3>
+<p>这里用S保存但是要声明不适用于s</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">map S : w&lt;CR&gt;</span><br><span class="line">map s &lt;nop&gt;</span><br><span class="line">map Q :q&lt;CR&gt;</span><br><span class="line">map R :source $MYVIMRC&lt;CR&gt;</span><br><span class="line">noremap &lt;LEADER&gt;&lt;CR&gt;  :nohlsearch&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="设置分屏"><a class="header-anchor" href="#设置分屏">¶</a>设置分屏</h3>
+<p>Vim下可以将窗口分为很多部分方便多代码同时调试，可以向上左下右扩展，但是命令有点长，我们直接写快捷键,sp+h/j/k/l就是分别向四个方向扩展</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map spl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;</span><br><span class="line">map sph :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;</span><br><span class="line">map spj :set splitbelow&lt;CR&gt;:split&lt;CR&gt;</span><br><span class="line">map spk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<p>然后我们需要将光标在多个窗口间移动，设置快捷键，Alt+h/j/k/l是向四个方向移动光标</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map &lt;A-h&gt; &lt;C-w&gt;h</span><br><span class="line">map &lt;A-j&gt; &lt;C-w&gt;j</span><br><span class="line">map &lt;A-k&gt; &lt;C-w&gt;k</span><br><span class="line">map &lt;A-l&gt; &lt;C-w&gt;l</span><br></pre></td></tr></table></figure>
+<p>调整所在窗口的大小,Alt++/_是水平+/-,Alt±/=是垂直的,自己看下在键盘上的位置就知道了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map &lt;A-=&gt; :vertical resize+5 &lt;CR&gt; </span><br><span class="line">map &lt;A--&gt; :vertical resize-5 &lt;CR&gt; </span><br><span class="line">map &lt;A-+&gt; :resize+5 &lt;CR&gt; </span><br><span class="line">map &lt;A-_&gt; :resize-5 &lt;CR&gt; </span><br></pre></td></tr></table></figure>
+<p>转置窗口，左右边上下，上下变左右</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map sv &lt;C-w&gt;t&lt;c-W&gt;H</span><br><span class="line">map sv &lt;C-w&gt;t&lt;c-W&gt;K</span><br></pre></td></tr></table></figure>
+<h3 id="增加删除tabe标签"><a class="header-anchor" href="#增加删除tabe标签">¶</a>增加删除tabe标签</h3>
+<p>Tabe是Vim中相当于浏览器的tab一样的东西
+分别是增加2，切换2，移动*2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">map tu :tabe&lt;CR&gt;</span><br><span class="line">map tc :tabc&lt;CR&gt;</span><br><span class="line">map tp :-tabnext&lt;CR&gt;</span><br><span class="line">map tn :+tabnext&lt;CR&gt;</span><br><span class="line">map tmn :-tabmove&lt;CR&gt;</span><br><span class="line">map tmi :+tabmove&lt;CR&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="插入模式移动光标"><a class="header-anchor" href="#插入模式移动光标">¶</a>插入模式移动光标</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inoremap &lt;C-l&gt; &lt;Right&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="插件安装"><a class="header-anchor" href="#插件安装">¶</a>插件安装</h2>
+<h3 id="插件管理器"><a class="header-anchor" href="#插件管理器">¶</a>插件管理器</h3>
+<p>我选择的是vim-plugin，使用git克隆插件管理器github仓库，仓库主页：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug">junegunn/vim-plug: Minimalist Vim Plugin Manager (github.com)</a>，克隆地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug.git">https://github.com/junegunn/vim-plug.git</a></p>
+<p>下载好之后在里面找到以下文件(<code>plug.vim</code>)并放到vim安装目录下</p>
+<p>路径格式如下：[<font color='cornflowerblue'>vim安装根目录/vim82/autoload/</font>]</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708234718.png" alt="我的plug.vim所在目录"></p>
+<p>到目前为止，已经安装好插件管理器了，以下为你介绍vim插件如何安装</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>李先雷
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://conquerorlei.github.io/2021/06/30/Vim%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96/" title="Vim配置美化">https://conquerorlei.github.io/2021/06/30/Vim配置美化/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Gvim/" rel="tag"># Gvim</a>
+              <a href="/tags/Vim/" rel="tag"># Vim</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/06/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" rel="prev" title="Linux常用命令">
+                  <i class="fa fa-chevron-left"></i> Linux常用命令
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/03/git%E5%91%BD%E4%BB%A4/" rel="next" title="git命令">
+                  git命令 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lei</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">71k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:05</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;2021&#x2F;06&#x2F;30&#x2F;Vim%E9%85%8D%E7%BD%AE%E7%BE%8E%E5%8C%96&#x2F;&quot;}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="utterances" type="application/json">{&quot;enable&quot;:true,&quot;repo&quot;:&quot;conquerorLei&#x2F;conquerorLei.github.io&quot;,&quot;issue_term&quot;:&quot;pathname&quot;,&quot;theme&quot;:&quot;github-light&quot;}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
