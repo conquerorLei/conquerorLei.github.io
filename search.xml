@@ -28,6 +28,240 @@
       </tags>
   </entry>
   <entry>
+    <title>Linux云服务器部署springboot项目</title>
+    <url>/2021/07/08/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Gy9LurVhf8pLsRhWLsl7TwHaEh?pid=ImgDet&amp;rs=1" alt="SpringBoot"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>本次需要进行云服务器部署的是一个java Springboot项目，使用的是阿里云的<code>ecs</code>云服务器，具体配置如下一个标题所示。云服务器部署环节是项目发布的很重要一步，所以这里简单写一下Linux云服务器部署Springboot项目</p>
+<h1>云服务器配置</h1>
+<h2 id="购买云服务器"><a class="header-anchor" href="#购买云服务器">¶</a>购买云服务器</h2>
+<p>二话不说，购买什么的就不提了奥，这里我选择的云服务器配置如下</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU&amp;内存</td>
+<td>1核 2 GiB</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>Ubuntu  18.04 64位</td>
+</tr>
+<tr>
+<td>当前使用带宽</td>
+<td>1Mbps</td>
+</tr>
+<tr>
+<td>网络类型</td>
+<td>专用网络</td>
+</tr>
+<tr>
+<td>磁盘容量</td>
+<td>40GB</td>
+</tr>
+<tr>
+<td>服务器类型</td>
+<td>ecs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xshell的使用"><a class="header-anchor" href="#xshell的使用">¶</a>xshell的使用</h2>
+<h3 id="xshell简介"><a class="header-anchor" href="#xshell简介">¶</a>xshell简介</h3>
+<p><code>XShell</code>是一个强大的安全终端模拟软件，它支持<code>SSH1</code>，<code>SSH2</code>，以及Microsoft Windows平台的TELNET协议。</p>
+<p><code>XShell</code>可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
+<p>当然亦可以访问虚拟接中的<code>Linux</code>系统。由于在虚拟机中操作<code>Linux</code>系统需要频繁切换鼠标，缺乏个性化设置，不支持中文显示，所以我们将使用<code>XShell</code>来连接并使用安装好Linux系统的虚拟机。</p>
+<h3 id="xshell下载"><a class="header-anchor" href="#xshell下载">¶</a>xshell下载</h3>
+<p><a href="https://www.netsarang.com/zh/xshell-download/">下载地址</a>:<a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></p>
+<p>下载过程中可能会出现一些问题，由于它的企业版需要付款，但是我们只是个人使用，所以，我们需要注意以下我们的选项</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143748.png" alt="xshell下载主页选择免费授权界面"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143906.png" alt="填写选项"></p>
+<p>这样点击下载后<code>netsarang</code>官网就会将xshell下载地址发送到您的邮箱，点击下载地址并开始下载，下载后安装就好。</p>
+<h3 id="xshell安装"><a class="header-anchor" href="#xshell安装">¶</a>xshell安装</h3>
+<p>安装过程中没有什么好说的，按照他给你的提示安装就好，我个人建议在选择安装位置时，尽量不要选择系统盘。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708151105.png" alt="xshell安装位置选择"></p>
+<p>这个算是老生常谈，我也就提一句。以下内容就是xhsell的使用了。</p>
+<h3 id="xshell连接阿里云"><a class="header-anchor" href="#xshell连接阿里云">¶</a>xshell连接阿里云</h3>
+<p>打开xshell，新建会话</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153012.png" alt="xshell新建会话"></p>
+<p>属性值：</p>
+<ul>
+<li>名称：随便填写，表示的当前会话的名称</li>
+<li>主机：填写购买的云服务器上面的公网ip</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153121.png" alt="xshell用户身份验证"></p>
+<ul>
+<li>用户名：root</li>
+<li>密码：你在云服务器上面创建的实例的密码</li>
+</ul>
+<p>设置完成之后直接连接</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708181405.png" alt="连接成功之后的界面"></p>
+<h2 id="云服务器软件安装"><a class="header-anchor" href="#云服务器软件安装">¶</a>云服务器软件安装</h2>
+<p>以下的内容都是在<code>xshell</code>打开的会话中执行的。</p>
+<h3 id="安装mysql"><a class="header-anchor" href="#安装mysql">¶</a>安装mysql</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更新apt-get软件源</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-server</span></span><br><span class="line">apt-get install mysql-server</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-client</span></span><br><span class="line">apt-get install mysql-client</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql library</span></span><br><span class="line">apt-get install libmysqlclient-dev</span><br></pre></td></tr></table></figure>
+<div class="note success"><blockquote>
+<p>一般而言，云服务器中是直接以root登录的，并且直接给定的root权限，没有sudo命令，所以不用sudo安装</p>
+<p>安装过程中一般不会提醒设置密码，默认情况下是没有密码的</p>
+</blockquote>
+</div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看是否成功安装//一般安装成功后就会自行启动</span></span><br><span class="line">netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200204.png" alt="执行结果"></p>
+<p>剩余的就是mysql的常用指令了，这里不再赘述，不了解mysql常用指令的同学请移步到<a href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a></p>
+<h3 id="安装java11"><a class="header-anchor" href="#安装java11">¶</a>安装java11</h3>
+<p>在xshell中执行以下指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install openjdk-11-jdk</span><br></pre></td></tr></table></figure>
+<p>安装过程中会让你输入一个Y或n的，输入Y就可以</p>
+<p>下载完成之后，输入以下命令查看java版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200015.png" alt="查看java版本"></p>
+<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz">¶</a>安装lrzsz</h3>
+<h4 id="lrzsz简介"><a class="header-anchor" href="#lrzsz简介">¶</a>lrzsz简介</h4>
+<p>lrzsz是一个unix通信套件提供的X，Y，和ZModem文件传输协议。</p>
+<h4 id="lrzsz安装"><a class="header-anchor" href="#lrzsz安装">¶</a>lrzsz安装</h4>
+<p>在shell中写入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install lrzsz</span><br></pre></td></tr></table></figure>
+<p>安装过程中需要输入的看一下提示，输入Y或者n就可以，Y就代表yes，n就代表no</p>
+<h4 id="lrzsz使用"><a class="header-anchor" href="#lrzsz使用">¶</a>lrzsz使用</h4>
+<p>常用的有两个命令，rz和sz</p>
+<p>其中rz是上传，sz是下载</p>
+<p>没什么好说的，例如上传，直接输入rz然后回车就好</p>
+<h5 id="上传命令rz"><a class="header-anchor" href="#上传命令rz">¶</a>上传命令rz</h5>
+<p>一般而言，使用rz从本地上传到云服务器，可能会存在编码的问题，我们尽可能较少这么意外因素产生的影响，直接使用<code>-be</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rz -be</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<ul>
+<li>
+<p>-b：binary 用binary的方式上传下载，不解释字符为ASCII</p>
+</li>
+<li>
+<p>-e ：强制escape 所有控制字符</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708201921.png" alt="输入rz -be之后选择文件传输"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202436.png" alt="上传过程"></p>
+<p>等他上传好即可，进入root下输入ls即可查看上传的文件</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202713.png" alt="上传成功"></p>
+<h5 id="下载命令sz"><a class="header-anchor" href="#下载命令sz">¶</a>下载命令sz</h5>
+<p>下载命令不经常使用，但是依旧可以将云服务器上面的日志文件下载到本地</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213519.png" alt="下载文件"></p>
+<p>需要注意的是，需要输入文件的名称，然后选择文件的步骤和上传相同</p>
+<p>下载到本地的日志文件</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213654.png" alt="下载到本地的日志文件"></p>
+<h1>springboot部署</h1>
+<h2 id="生成jar包"><a class="header-anchor" href="#生成jar包">¶</a>生成jar包</h2>
+<p>现在大多数springboot项目都在使用maven进行包管理，使用maven能够很简单地打包jar，我使用的是IDEA，按照下图顺序执行</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203453.png" alt="maven打包"></p>
+<p><strong>生成的jar路径</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203704.png" alt="jar path"></p>
+<h2 id="上传"><a class="header-anchor" href="#上传">¶</a>上传</h2>
+<p>不需要多说，直接按照上面提到的rz指令上传</p>
+<h2 id="运行"><a class="header-anchor" href="#运行">¶</a>运行</h2>
+<p>进入root，运行一下jar包</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -jar &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205713.png" alt="熟悉的spring项目启动界面"></p>
+<h2 id="访问"><a class="header-anchor" href="#访问">¶</a>访问</h2>
+<p>使用的公网IP访问你的项目，第一次都会很慢，遇见这个的时候不要慌张哦</p>
+<h1>错误汇总</h1>
+<h2 id="port-8080-are-already-in-use"><a class="header-anchor" href="#port-8080-are-already-in-use">¶</a>port 8080 are already in use</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708204536.png" alt="port 8080 are already in use"></p>
+<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
+<p>输入一下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看端口8080占用情况</span></span><br><span class="line">netstat -tln | grep 8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看端口属于哪个程序,端口被哪个进程占用</span></span><br><span class="line">lsof -i :8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀掉这个进程</span></span><br><span class="line">kill -9 878</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看端口8080占用情况，没有任何输出则表示端口没有被占用</span></span><br><span class="line">netstat -tln | grep 8080</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205128.png" alt="解决截图"></p>
+<h2 id="公网IP无法访问"><a class="header-anchor" href="#公网IP无法访问">¶</a>公网IP无法访问</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210109.png" alt="公网IP无法访问"></p>
+<h3 id="解决办法-v2"><a class="header-anchor" href="#解决办法-v2">¶</a>解决办法</h3>
+<p>登录你的云服务器，我的是阿里云，进入控制台之后找到你出案件的实例，点击<code>安全组</code>，然后点击<code>配置规则</code></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210343.png" alt="设置安全组规则1"></p>
+<p><strong>添加安全组</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210822.png" alt="添加安全组1"></p>
+<p>然后！！！</p>
+<p>这里是很需要很重要很重要的，重要的事情说三遍</p>
+<p><font color='red'>重启云服务器</font></p>
+<p><font color='red'>重启云服务器</font></p>
+<p><font color='red'>重启云服务器</font></p>
+<p>不然上面做的是不生效的</p>
+<h2 id="关闭xshell后无法访问项目"><a class="header-anchor" href="#关闭xshell后无法访问项目">¶</a>关闭xshell后无法访问项目</h2>
+<p>其实这个不算错误，也算啦</p>
+<p>其实也没什么，要想在后台运行，需要借助<code>nohup</code></p>
+<h3 id="nohup简介"><a class="header-anchor" href="#nohup简介">¶</a>nohup简介</h3>
+<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
+<p>在缺省情况下该作业的所有输出都被重定向到同级文件夹下一个名为nohup.out的文件中。</p>
+<h3 id="命令格式"><a class="header-anchor" href="#命令格式">¶</a>命令格式</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup Command [ Arg … ] [　&amp; ]</span><br></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup command &gt; myout.file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="nohup运行java-jar"><a class="header-anchor" href="#nohup运行java-jar">¶</a>nohup运行java -jar</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup java -jar association-0.0.1-SNAPSHOT.jar &gt; /root/output/association.log &amp;</span><br></pre></td></tr></table></figure>
+<p>输出到<code>/root/output/association.log</code></p>
+<h3 id="命令使用错误"><a class="header-anchor" href="#命令使用错误">¶</a>命令使用错误</h3>
+<p>唉，这个说多了都是泪</p>
+<p><font color='red'>没有加&amp;</font>，记得把<font color='red'>&amp;</font>补上，当时查这个错误查了半天，命令没问题就可以理所当然地退出<code>xshell</code>了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213228.png" alt="正确截图"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <tags>
+        <tag>Springboot</tag>
+        <tag>ECS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot框架搭建</title>
+    <url>/2021/06/28/SpringBoot%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>FrameWork</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring是什么</title>
+    <url>/2021/06/28/Spring%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<h1>前言</h1>
+]]></content>
+      <categories>
+        <category>Framework</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>LOC</tag>
+        <tag>DI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
+    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
+    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
+<span id="more"></span>
+<h1>解决办法</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1>原因</h1>
+<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
+<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
+<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Error</category>
+        <category>pip</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux常用命令</title>
     <url>/2021/06/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
@@ -245,222 +479,48 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Linux云服务器部署springboot项目</title>
-    <url>/2021/07/08/Linux%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2springboot%E9%A1%B9%E7%9B%AE/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Gy9LurVhf8pLsRhWLsl7TwHaEh?pid=ImgDet&amp;rs=1" alt="SpringBoot"></p>
+    <title>Utterance使用</title>
+    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
 <span id="more"></span>
-<h1>前言</h1>
-<p>本次需要进行云服务器部署的是一个java Springboot项目，使用的是阿里云的<code>ecs</code>云服务器，具体配置如下一个标题所示。云服务器部署环节是项目发布的很重要一步，所以这里简单写一下Linux云服务器部署Springboot项目</p>
-<h1>云服务器配置</h1>
-<h2 id="购买云服务器"><a class="header-anchor" href="#购买云服务器">¶</a>购买云服务器</h2>
-<p>二话不说，购买什么的就不提了奥，这里我选择的云服务器配置如下</p>
-<table>
-<thead>
-<tr>
-<th>描述</th>
-<th>配置</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU&amp;内存</td>
-<td>1核 2 GiB</td>
-</tr>
-<tr>
-<td>操作系统</td>
-<td>Ubuntu  18.04 64位</td>
-</tr>
-<tr>
-<td>当前使用带宽</td>
-<td>1Mbps</td>
-</tr>
-<tr>
-<td>网络类型</td>
-<td>专用网络</td>
-</tr>
-<tr>
-<td>磁盘容量</td>
-<td>40GB</td>
-</tr>
-<tr>
-<td>服务器类型</td>
-<td>ecs</td>
-</tr>
-</tbody>
-</table>
-<h2 id="xshell的使用"><a class="header-anchor" href="#xshell的使用">¶</a>xshell的使用</h2>
-<h3 id="xshell简介"><a class="header-anchor" href="#xshell简介">¶</a>xshell简介</h3>
-<p><code>XShell</code>是一个强大的安全终端模拟软件，它支持<code>SSH1</code>，<code>SSH2</code>，以及Microsoft Windows平台的TELNET协议。</p>
-<p><code>XShell</code>可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
-<p>当然亦可以访问虚拟接中的<code>Linux</code>系统。由于在虚拟机中操作<code>Linux</code>系统需要频繁切换鼠标，缺乏个性化设置，不支持中文显示，所以我们将使用<code>XShell</code>来连接并使用安装好Linux系统的虚拟机。</p>
-<h3 id="xshell下载"><a class="header-anchor" href="#xshell下载">¶</a>xshell下载</h3>
-<p><a href="https://www.netsarang.com/zh/xshell-download/">下载地址</a>:<a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></p>
-<p>下载过程中可能会出现一些问题，由于它的企业版需要付款，但是我们只是个人使用，所以，我们需要注意以下我们的选项</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143748.png" alt="xshell下载主页选择免费授权界面"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143906.png" alt="填写选项"></p>
-<p>这样点击下载后<code>netsarang</code>官网就会将xshell下载地址发送到您的邮箱，点击下载地址并开始下载，下载后安装就好。</p>
-<h3 id="xshell安装"><a class="header-anchor" href="#xshell安装">¶</a>xshell安装</h3>
-<p>安装过程中没有什么好说的，按照他给你的提示安装就好，我个人建议在选择安装位置时，尽量不要选择系统盘。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708151105.png" alt="xshell安装位置选择"></p>
-<p>这个算是老生常谈，我也就提一句。以下内容就是xhsell的使用了。</p>
-<h3 id="xshell连接阿里云"><a class="header-anchor" href="#xshell连接阿里云">¶</a>xshell连接阿里云</h3>
-<p>打开xshell，新建会话</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153012.png" alt="xshell新建会话"></p>
-<p>属性值：</p>
-<ul>
-<li>名称：随便填写，表示的当前会话的名称</li>
-<li>主机：填写购买的云服务器上面的公网ip</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153121.png" alt="xshell用户身份验证"></p>
-<ul>
-<li>用户名：root</li>
-<li>密码：你在云服务器上面创建的实例的密码</li>
-</ul>
-<p>设置完成之后直接连接</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708181405.png" alt="连接成功之后的界面"></p>
-<h2 id="云服务器软件安装"><a class="header-anchor" href="#云服务器软件安装">¶</a>云服务器软件安装</h2>
-<p>以下的内容都是在<code>xshell</code>打开的会话中执行的。</p>
-<h3 id="安装mysql"><a class="header-anchor" href="#安装mysql">¶</a>安装mysql</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更新apt-get软件源</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-server</span></span><br><span class="line">apt-get install mysql-server</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-client</span></span><br><span class="line">apt-get install mysql-client</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql library</span></span><br><span class="line">apt-get install libmysqlclient-dev</span><br></pre></td></tr></table></figure>
-<div class="note success"><blockquote>
-<p>一般而言，云服务器中是直接以root登录的，并且直接给定的root权限，没有sudo命令，所以不用sudo安装</p>
-<p>安装过程中一般不会提醒设置密码，默认情况下是没有密码的</p>
+<h1>简介</h1>
+<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
+<p>这多香啊！！！</p>
+<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
+<h1>bug1 example.com公共域名</h1>
+<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
+<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
+<p>嗯？？？？</p>
+<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
+<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
+<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
 </blockquote>
 </div>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看是否成功安装//一般安装成功后就会自行启动</span></span><br><span class="line">netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200204.png" alt="执行结果"></p>
-<p>剩余的就是mysql的常用指令了，这里不再赘述，不了解mysql常用指令的同学请移步到<a href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a></p>
-<h3 id="安装java11"><a class="header-anchor" href="#安装java11">¶</a>安装java11</h3>
-<p>在xshell中执行以下指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install openjdk-11-jdk</span><br></pre></td></tr></table></figure>
-<p>安装过程中会让你输入一个Y或n的，输入Y就可以</p>
-<p>下载完成之后，输入以下命令查看java版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200015.png" alt="查看java版本"></p>
-<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz">¶</a>安装lrzsz</h3>
-<h4 id="lrzsz简介"><a class="header-anchor" href="#lrzsz简介">¶</a>lrzsz简介</h4>
-<p>lrzsz是一个unix通信套件提供的X，Y，和ZModem文件传输协议。</p>
-<h4 id="lrzsz安装"><a class="header-anchor" href="#lrzsz安装">¶</a>lrzsz安装</h4>
-<p>在shell中写入以下代码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install lrzsz</span><br></pre></td></tr></table></figure>
-<p>安装过程中需要输入的看一下提示，输入Y或者n就可以，Y就代表yes，n就代表no</p>
-<h4 id="lrzsz使用"><a class="header-anchor" href="#lrzsz使用">¶</a>lrzsz使用</h4>
-<p>常用的有两个命令，rz和sz</p>
-<p>其中rz是上传，sz是下载</p>
-<p>没什么好说的，例如上传，直接输入rz然后回车就好</p>
-<h5 id="上传命令rz"><a class="header-anchor" href="#上传命令rz">¶</a>上传命令rz</h5>
-<p>一般而言，使用rz从本地上传到云服务器，可能会存在编码的问题，我们尽可能较少这么意外因素产生的影响，直接使用<code>-be</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rz -be</span><br></pre></td></tr></table></figure>
-<p>解释：</p>
-<ul>
-<li>
-<p>-b：binary 用binary的方式上传下载，不解释字符为ASCII</p>
-</li>
-<li>
-<p>-e ：强制escape 所有控制字符</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708201921.png" alt="输入rz -be之后选择文件传输"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202436.png" alt="上传过程"></p>
-<p>等他上传好即可，进入root下输入ls即可查看上传的文件</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202713.png" alt="上传成功"></p>
-<h5 id="下载命令sz"><a class="header-anchor" href="#下载命令sz">¶</a>下载命令sz</h5>
-<p>下载命令不经常使用，但是依旧可以将云服务器上面的日志文件下载到本地</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213519.png" alt="下载文件"></p>
-<p>需要注意的是，需要输入文件的名称，然后选择文件的步骤和上传相同</p>
-<p>下载到本地的日志文件</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213654.png" alt="下载到本地的日志文件"></p>
-<h1>springboot部署</h1>
-<h2 id="生成jar包"><a class="header-anchor" href="#生成jar包">¶</a>生成jar包</h2>
-<p>现在大多数springboot项目都在使用maven进行包管理，使用maven能够很简单地打包jar，我使用的是IDEA，按照下图顺序执行</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203453.png" alt="maven打包"></p>
-<p><strong>生成的jar路径</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203704.png" alt="jar path"></p>
-<h2 id="上传"><a class="header-anchor" href="#上传">¶</a>上传</h2>
-<p>不需要多说，直接按照上面提到的rz指令上传</p>
-<h2 id="运行"><a class="header-anchor" href="#运行">¶</a>运行</h2>
-<p>进入root，运行一下jar包</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -jar &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205713.png" alt="熟悉的spring项目启动界面"></p>
-<h2 id="访问"><a class="header-anchor" href="#访问">¶</a>访问</h2>
-<p>使用的公网IP访问你的项目，第一次都会很慢，遇见这个的时候不要慌张哦</p>
-<h1>错误汇总</h1>
-<h2 id="port-8080-are-already-in-use"><a class="header-anchor" href="#port-8080-are-already-in-use">¶</a>port 8080 are already in use</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708204536.png" alt="port 8080 are already in use"></p>
-<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
-<p>输入一下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看端口8080占用情况</span></span><br><span class="line">netstat -tln | grep 8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看端口属于哪个程序,端口被哪个进程占用</span></span><br><span class="line">lsof -i :8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀掉这个进程</span></span><br><span class="line">kill -9 878</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看端口8080占用情况，没有任何输出则表示端口没有被占用</span></span><br><span class="line">netstat -tln | grep 8080</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205128.png" alt="解决截图"></p>
-<h2 id="公网IP无法访问"><a class="header-anchor" href="#公网IP无法访问">¶</a>公网IP无法访问</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210109.png" alt="公网IP无法访问"></p>
-<h3 id="解决办法-v2"><a class="header-anchor" href="#解决办法-v2">¶</a>解决办法</h3>
-<p>登录你的云服务器，我的是阿里云，进入控制台之后找到你出案件的实例，点击<code>安全组</code>，然后点击<code>配置规则</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210343.png" alt="设置安全组规则1"></p>
-<p><strong>添加安全组</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210822.png" alt="添加安全组1"></p>
-<p>然后！！！</p>
-<p>这里是很需要很重要很重要的，重要的事情说三遍</p>
-<p><font color='red'>重启云服务器</font></p>
-<p><font color='red'>重启云服务器</font></p>
-<p><font color='red'>重启云服务器</font></p>
-<p>不然上面做的是不生效的</p>
-<h2 id="关闭xshell后无法访问项目"><a class="header-anchor" href="#关闭xshell后无法访问项目">¶</a>关闭xshell后无法访问项目</h2>
-<p>其实这个不算错误，也算啦</p>
-<p>其实也没什么，要想在后台运行，需要借助<code>nohup</code></p>
-<h3 id="nohup简介"><a class="header-anchor" href="#nohup简介">¶</a>nohup简介</h3>
-<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
-<p>在缺省情况下该作业的所有输出都被重定向到同级文件夹下一个名为nohup.out的文件中。</p>
-<h3 id="命令格式"><a class="header-anchor" href="#命令格式">¶</a>命令格式</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup Command [ Arg … ] [　&amp; ]</span><br></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup command &gt; myout.file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-<h3 id="nohup运行java-jar"><a class="header-anchor" href="#nohup运行java-jar">¶</a>nohup运行java -jar</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup java -jar association-0.0.1-SNAPSHOT.jar &gt; /root/output/association.log &amp;</span><br></pre></td></tr></table></figure>
-<p>输出到<code>/root/output/association.log</code></p>
-<h3 id="命令使用错误"><a class="header-anchor" href="#命令使用错误">¶</a>命令使用错误</h3>
-<p>唉，这个说多了都是泪</p>
-<p><font color='red'>没有加&amp;</font>，记得把<font color='red'>&amp;</font>补上，当时查这个错误查了半天，命令没问题就可以理所当然地退出<code>xshell</code>了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213228.png" alt="正确截图"></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <tags>
-        <tag>Springboot</tag>
-        <tag>ECS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
-    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
-    <content><![CDATA[<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<span id="more"></span>
-<h1>解决办法</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1>原因</h1>
-<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
-<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
-<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
-</div>
+<h1>回复评论</h1>
+<p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626005600.png" alt="Issue"></p>
+<p>进行回复时，其实也不算回复啦，就是有一个引用的功能，将你想要回复的内容通过引用输入就好啦</p>
+<p>进入对应的issue下</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010046.png" alt="对应issue"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010343.png" alt="引用回复"></p>
+<p>结果如下：</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010434.png" alt="测试用例"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010546.png" alt="测试结果1"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010620.png" alt="测试结果2"></p>
+<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
+<!-- 其中 class="blockquote-center" 是必须的 --> 
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Python</category>
-        <category>Error</category>
-        <category>pip</category>
+        <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>pip</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot框架搭建</title>
-    <url>/2021/06/28/SpringBoot%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
+        <tag>Next</tag>
+        <tag>Hexo</tag>
+        <tag>Utterance</tag>
       </tags>
   </entry>
   <entry>
@@ -914,63 +974,16 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Utterance使用</title>
-    <url>/2021/05/25/Utterance%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
-<span id="more"></span>
-<h1>简介</h1>
-<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
-<p>这多香啊！！！</p>
-<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
-<h1>bug1 example.com公共域名</h1>
-<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
-<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
-<p>嗯？？？？</p>
-<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
-<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
-<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
-</blockquote>
-</div>
-<h1>回复评论</h1>
-<p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626005600.png" alt="Issue"></p>
-<p>进行回复时，其实也不算回复啦，就是有一个引用的功能，将你想要回复的内容通过引用输入就好啦</p>
-<p>进入对应的issue下</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010046.png" alt="对应issue"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010343.png" alt="引用回复"></p>
-<p>结果如下：</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010434.png" alt="测试用例"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010546.png" alt="测试结果1"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010620.png" alt="测试结果2"></p>
-<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
-<!-- 其中 class="blockquote-center" 是必须的 --> 
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>环境搭建</category>
+        <category>Error</category>
       </categories>
       <tags>
-        <tag>Next</tag>
-        <tag>Hexo</tag>
-        <tag>Utterance</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring是什么</title>
-    <url>/2021/06/28/Spring%E6%98%AF%E4%BB%80%E4%B9%88/</url>
-    <content><![CDATA[<h1>前言</h1>
-]]></content>
-      <categories>
-        <category>Framework</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>LOC</tag>
-        <tag>DI</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -1107,67 +1120,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>binary not found</title>
-    <url>/2021/05/25/binary-not-found/</url>
-    <content><![CDATA[<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git 使用报错以及解决办法</title>
-    <url>/2021/06/11/git-%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
-    <content><![CDATA[<h1>常见错误</h1>
-<p>git是我们日常工作中需要用到的工具，所以由于多人协作的缘故或者是其他一些原因经常会遇见一些错误，以下是我在使用git的过程中遇见的一些错误以下做一个总结</p>
-<h2 id="错误类型：错误码"><a class="header-anchor" href="#错误类型：错误码">¶</a>错误类型：错误码</h2>
-<h3 id="错误码：443"><a class="header-anchor" href="#错误码：443">¶</a>错误码：443</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
-<p>解决办法：接触SSL验证，再次git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<p>错误类型：Push</p>
-<h2 id="push时出错"><a class="header-anchor" href="#push时出错">¶</a>push时出错</h2>
-<h3 id="请求出错"><a class="header-anchor" href="#请求出错">¶</a>请求出错</h3>
-<p>报错代码：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
-<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
-<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
-<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
-<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
-<h3 id="失败提交"><a class="header-anchor" href="#失败提交">¶</a>失败提交</h3>
-<h4 id="错误展示"><a class="header-anchor" href="#错误展示">¶</a>错误展示</h4>
-<p><strong>错误提示：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">error: failed to push some refs to &#x27;https://gitee.com/xxx/xxx.git&#x27;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113408024.png" alt="failed to push"></p>
-<p><strong>解决方案：</strong></p>
-<p>这个错误一般情况下都是本地仓库和远程仓库版本不一致的问题，解决办法就是<code>git pull</code>下拉，但是下拉又会遇见以下问题，好家伙</p>
-<p><strong>错误提示：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113648936.png" alt="refusing to merge"></p>
-<p>拒绝合并没有关系的历史，</p>
-<h4 id="原因分析"><a class="header-anchor" href="#原因分析">¶</a>原因分析</h4>
-<p>我认为这种问题一般都是在第一次上传时会遇见的问题，比如说，远程仓库使用了<code>README.md</code>和<code>.gitignore</code>进行了初始化，本地仓库没有这两个文件，但是本地仓库不是空文件夹，那么最开始<code>git init</code>之后如果直接push的话就会出现以上问题。因为其实条件下，本地库和远程库是没有任何历史相干性的，所以这个时候无论是push还是pull都是不可以的，push不了是因为本地库和远程库版本不一致，pull不了是因为历史不相干，好家伙，没办法治他了？</p>
-<h4 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h4>
-<p>下拉时使用以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-hostories</span><br></pre></td></tr></table></figure>
-<p>添加一个参数，这样在之后就可以下拉了，下拉之后，再push就没有问题啦</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>项目中数据库问题</title>
     <url>/2021/05/22/database/</url>
     <content><![CDATA[<h1>防止SQL注入</h1>
@@ -1193,9 +1145,130 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>hexo+github搭建个人博客</title>
+    <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h1>简介</h1>
+<p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
+<span id="more"></span>
+<p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
+<p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
+<p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
+<div class="note primary"><blockquote>
+<p>本文为个人查漏补缺所用，暂时不写那么详细</p>
+<p>最开始的git安装和github账户注册在这里不再进行赘述</p>
+<p>不明白这些的同学，请自行查阅相关资料</p>
+</blockquote>
+</div>
+<h1>安装node.js和git</h1>
+<h2 id="下载路径"><a class="header-anchor" href="#下载路径">¶</a>下载路径</h2>
+<div class="note success"><blockquote>
+<p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
+<p>里面都有选项，请选择适合自己的版本下载</p>
+</blockquote>
+</div>
+<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
+<p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
+<p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
+<p>node.js安装完成后，使用win+r打开运行，在运行的输入框中输入cmd，打开cmd，在cmd中输入node -v 以及npm -v看是否有版本显示，如下图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
+<p>有版本显示就说明已经安装好了</p>
+<h1>连接Github</h1>
+<h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
+<p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p>
+<p>如果想要知道有没有设置成功，按照以下命名进行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list --global</span><br></pre></td></tr></table></figure>
+<p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
+</blockquote>
+</div>
+<h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
+<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
+<p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
+<p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
+<h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
+<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>连接成功的，会弹出以下字样</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
+<div class="note success"><blockquote>
+<p>说明：不要管后面那个&quot;but Github does not provide shell access&quot;。</p>
+<p>实在好奇为什么的话，以下是翻译</p>
+<p>你已经成功验证，但是Github不提供shell访问</p>
+</blockquote>
+</div>
+<h1>创建Github Pages仓库</h1>
+<p>GitHub 主页右上角加号 -&gt; New repository</p>
+<ul>
+<li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
+<li>选择<code>public</code></li>
+<li>勾选<code>Add a README file</code></li>
+<li>点击<code>Create Repository</code></li>
+</ul>
+<div class="note info"><blockquote>
+<p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p>
+</blockquote>
+</div>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
+<p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
+<h1>安装hexo</h1>
+<p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
+<h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
+<p>使用<code>npm</code>安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<div class="note info"><blockquote>
+<p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
+</blockquote>
+</div>
+<h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
+<p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+<p>本地预览，输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
+<p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
+<div class="note info"><blockquote>
+<p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p>
+</blockquote>
+</div>
+<h1>部署hexo到Github pages</h1>
+<p>首先是安装<code>hexo-deployer-git</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
+<div class="note primary"><blockquote>
+<p>说明：</p>
+<ul>
+<li>:    后面有一个空格，一定要注意这一点</li>
+<li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
+</ul>
+</blockquote>
+</div>
+<p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+<p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git命令</title>
     <url>/2021/07/03/git%E5%91%BD%E4%BB%A4/</url>
-    <content><![CDATA[<h1>git学习笔记</h1>
+    <content><![CDATA[<p><img src="https://courseshunter.com/media/images/command-line-essentials-git-bash-for-windows.jpg" alt="git"></p>
+<span id="more"></span>
+<h1>git学习笔记</h1>
 <h2 id="1-分布式基本结构"><a class="header-anchor" href="#1-分布式基本结构">¶</a>1 分布式基本结构</h2>
 <p>工作区-暂存区-本地仓库-远程仓库</p>
 <ul>
@@ -1588,6 +1661,54 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>git 使用报错以及解决办法</title>
+    <url>/2021/06/11/git-%E4%BD%BF%E7%94%A8%E6%8A%A5%E9%94%99%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<h1>常见错误</h1>
+<p>git是我们日常工作中需要用到的工具，所以由于多人协作的缘故或者是其他一些原因经常会遇见一些错误，以下是我在使用git的过程中遇见的一些错误以下做一个总结</p>
+<h2 id="错误类型：错误码"><a class="header-anchor" href="#错误类型：错误码">¶</a>错误类型：错误码</h2>
+<h3 id="错误码：443"><a class="header-anchor" href="#错误码：443">¶</a>错误码：443</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
+<p>解决办法：接触SSL验证，再次git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<p>错误类型：Push</p>
+<h2 id="push时出错"><a class="header-anchor" href="#push时出错">¶</a>push时出错</h2>
+<h3 id="请求出错"><a class="header-anchor" href="#请求出错">¶</a>请求出错</h3>
+<p>报错代码：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
+<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
+<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
+<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
+<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
+<h3 id="失败提交"><a class="header-anchor" href="#失败提交">¶</a>失败提交</h3>
+<h4 id="错误展示"><a class="header-anchor" href="#错误展示">¶</a>错误展示</h4>
+<p><strong>错误提示：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">error: failed to push some refs to &#x27;https://gitee.com/xxx/xxx.git&#x27;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113408024.png" alt="failed to push"></p>
+<p><strong>解决方案：</strong></p>
+<p>这个错误一般情况下都是本地仓库和远程仓库版本不一致的问题，解决办法就是<code>git pull</code>下拉，但是下拉又会遇见以下问题，好家伙</p>
+<p><strong>错误提示：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113648936.png" alt="refusing to merge"></p>
+<p>拒绝合并没有关系的历史，</p>
+<h4 id="原因分析"><a class="header-anchor" href="#原因分析">¶</a>原因分析</h4>
+<p>我认为这种问题一般都是在第一次上传时会遇见的问题，比如说，远程仓库使用了<code>README.md</code>和<code>.gitignore</code>进行了初始化，本地仓库没有这两个文件，但是本地仓库不是空文件夹，那么最开始<code>git init</code>之后如果直接push的话就会出现以上问题。因为其实条件下，本地库和远程库是没有任何历史相干性的，所以这个时候无论是push还是pull都是不可以的，push不了是因为本地库和远程库版本不一致，pull不了是因为历史不相干，好家伙，没办法治他了？</p>
+<h4 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h4>
+<p>下拉时使用以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-hostories</span><br></pre></td></tr></table></figure>
+<p>添加一个参数，这样在之后就可以下拉了，下拉之后，再push就没有问题啦</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo+next配置</title>
     <url>/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
@@ -1663,125 +1784,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Next</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo+github搭建个人博客</title>
-    <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h1>简介</h1>
-<p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
-<span id="more"></span>
-<p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
-<p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
-<p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
-<div class="note primary"><blockquote>
-<p>本文为个人查漏补缺所用，暂时不写那么详细</p>
-<p>最开始的git安装和github账户注册在这里不再进行赘述</p>
-<p>不明白这些的同学，请自行查阅相关资料</p>
-</blockquote>
-</div>
-<h1>安装node.js和git</h1>
-<h2 id="下载路径"><a class="header-anchor" href="#下载路径">¶</a>下载路径</h2>
-<div class="note success"><blockquote>
-<p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
-<p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
-<p>里面都有选项，请选择适合自己的版本下载</p>
-</blockquote>
-</div>
-<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
-<p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
-<p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
-<p>node.js安装完成后，使用win+r打开运行，在运行的输入框中输入cmd，打开cmd，在cmd中输入node -v 以及npm -v看是否有版本显示，如下图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
-<p>有版本显示就说明已经安装好了</p>
-<h1>连接Github</h1>
-<h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
-<p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局用户名</span></span><br><span class="line">git config --global user.name &quot;你的GitHub 用户名&quot;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置github全局邮箱</span></span><br><span class="line">git config --global user.email &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p>
-<p>如果想要知道有没有设置成功，按照以下命名进行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --list --global</span><br></pre></td></tr></table></figure>
-<p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p>
-</blockquote>
-</div>
-<h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
-<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;</span><br></pre></td></tr></table></figure>
-<p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
-<p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
-<p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
-<h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
-<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>连接成功的，会弹出以下字样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
-<div class="note success"><blockquote>
-<p>说明：不要管后面那个&quot;but Github does not provide shell access&quot;。</p>
-<p>实在好奇为什么的话，以下是翻译</p>
-<p>你已经成功验证，但是Github不提供shell访问</p>
-</blockquote>
-</div>
-<h1>创建Github Pages仓库</h1>
-<p>GitHub 主页右上角加号 -&gt; New repository</p>
-<ul>
-<li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
-<li>选择<code>public</code></li>
-<li>勾选<code>Add a README file</code></li>
-<li>点击<code>Create Repository</code></li>
-</ul>
-<div class="note info"><blockquote>
-<p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p>
-</blockquote>
-</div>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
-<p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
-<h1>安装hexo</h1>
-<p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
-<h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
-<p>使用<code>npm</code>安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<div class="note info"><blockquote>
-<p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p>
-</blockquote>
-</div>
-<h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
-<p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span></span><br><span class="line">hexo init</span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装组件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>本地预览，输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br></pre></td></tr></table></figure>
-<p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
-<div class="note info"><blockquote>
-<p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p>
-</blockquote>
-</div>
-<h1>部署hexo到Github pages</h1>
-<p>首先是安装<code>hexo-deployer-git</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
-<div class="note primary"><blockquote>
-<p>说明：</p>
-<ul>
-<li>:    后面有一个空格，一定要注意这一点</li>
-<li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li>
-</ul>
-</blockquote>
-</div>
-<p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-<p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
       </tags>
   </entry>
   <entry>
@@ -2198,84 +2200,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>picgo+gitee实现markdown图片上传自动化</title>
-    <url>/2021/05/22/picgo+gitee/</url>
-    <content><![CDATA[<h1>picgo+gitee实现markdown图片上传自动化</h1>
-<span id="more"></span>
-<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
-<p>markdown编辑工具：typora</p>
-<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
-<p>图床仓库：gitee</p>
-<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
-<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
-<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
-<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
-<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
-<ul>
-<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
-<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
-<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
-<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
-<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
-</ul>
-<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
-<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
-<p>和平常新建仓库没有什么区别，有几点注意事项</p>
-<ul>
-<li>需要设置为开源</li>
-<li>需要使用Readme文件初始化仓库</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
-<p>图中标注的地方需要注意一下</p>
-<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
-<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
-<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
-<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
-<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
-<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
-<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
-<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
-<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
-<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
-<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
-<p>至此结束。</p>
-<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
-<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
-<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
-<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;success&quot;</span>:<span class="literal">false</span>,<span class="attr">&quot;message&quot;</span>:<span class="string">&quot;upload error&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>更改方案</strong></p>
-<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
-<ol>
-<li>打开PicGo软件</li>
-<li>打开相册</li>
-<li>删除Typora相关图标</li>
-<li>重新配置Server</li>
-<li><font color='red'>重启PicGo</font></li>
-</ol>
-<p>或许可能是私人令牌的问题，重新获取下令牌</p>
-<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
-<p><font color='red'>终极办法：</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210703115042.png" alt="打开时间戳重命名"></p>
-<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
-<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>markdown语法以及Typora使用(高级)</title>
     <url>/2021/06/14/markdown%E8%AF%AD%E6%B3%95%E4%BB%A5%E5%8F%8ATypora%E4%BD%BF%E7%94%A8-%E9%AB%98%E7%BA%A7/</url>
     <content><![CDATA[<h1>前言</h1>
@@ -2374,6 +2298,84 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
         <tag>Ahk</tag>
         <tag>HTML</tag>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>picgo+gitee实现markdown图片上传自动化</title>
+    <url>/2021/05/22/picgo+gitee/</url>
+    <content><![CDATA[<h1>picgo+gitee实现markdown图片上传自动化</h1>
+<span id="more"></span>
+<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
+<p>markdown编辑工具：typora</p>
+<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
+<p>图床仓库：gitee</p>
+<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
+<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
+<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
+<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
+<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
+<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
+<ul>
+<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
+<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
+<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
+<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
+<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
+</ul>
+<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
+<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
+<p>和平常新建仓库没有什么区别，有几点注意事项</p>
+<ul>
+<li>需要设置为开源</li>
+<li>需要使用Readme文件初始化仓库</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
+<p>图中标注的地方需要注意一下</p>
+<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
+<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
+<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
+<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
+<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
+<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
+<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
+<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
+<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
+<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
+<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
+<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
+<p>至此结束。</p>
+<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
+<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
+<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
+<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;success&quot;</span>:<span class="literal">false</span>,<span class="attr">&quot;message&quot;</span>:<span class="string">&quot;upload error&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>更改方案</strong></p>
+<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
+<ol>
+<li>打开PicGo软件</li>
+<li>打开相册</li>
+<li>删除Typora相关图标</li>
+<li>重新配置Server</li>
+<li><font color='red'>重启PicGo</font></li>
+</ol>
+<p>或许可能是私人令牌的问题，重新获取下令牌</p>
+<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
+<p><font color='red'>终极办法：</font></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210703115042.png" alt="打开时间戳重命名"></p>
+<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
+<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
