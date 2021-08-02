@@ -22,18 +22,18 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;conquerorlei.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:&quot;utterances&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null,&quot;activeClass&quot;:&quot;utterances&quot;},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
-<meta name="description" content="mysql相关操作 ¶1 用户管理 ¶1.1  创建用户，分配权限">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql常用命令">
 <meta property="og:url" content="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="mysql相关操作 ¶1 用户管理 ¶1.1  创建用户，分配权限">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse4-mm.cn.bing.net/th/id/OIP-C.qLkH4ISyf21N3BXmsSJe5AHaD4?pid=ImgDet&amp;rs=1">
 <meta property="article:published_time" content="2021-05-25T11:00:53.000Z">
-<meta property="article:modified_time" content="2021-05-25T15:11:00.318Z">
+<meta property="article:modified_time" content="2021-08-02T16:08:47.770Z">
 <meta property="article:author" content="李先雷">
 <meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse4-mm.cn.bing.net/th/id/OIP-C.qLkH4ISyf21N3BXmsSJe5AHaD4?pid=ImgDet&amp;rs=1">
 
 
 <link rel="canonical" href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
@@ -178,7 +178,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -251,10 +251,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-05-25 19:00:53 / 修改时间：23:11:00" itemprop="dateCreated datePublished" datetime="2021-05-25T19:00:53+08:00">2021-05-25</time>
+      <time title="创建时间：2021-05-25 19:00:53" itemprop="dateCreated datePublished" datetime="2021-05-25T19:00:53+08:00">2021-05-25</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-03 00:08:47" itemprop="dateModified" datetime="2021-08-03T00:08:47+08:00">2021-08-03</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -298,10 +304,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1>mysql相关操作</h1>
+        <p><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.qLkH4ISyf21N3BXmsSJe5AHaD4?pid=ImgDet&amp;rs=1" alt="mysql"></p>
+<span id="more"></span>
+<h1>mysql相关操作</h1>
 <h2 id="1-用户管理"><a class="header-anchor" href="#1-用户管理">¶</a>1 用户管理</h2>
 <h3 id="1-1-创建用户，分配权限"><a class="header-anchor" href="#1-1-创建用户，分配权限">¶</a>1.1  创建用户，分配权限</h3>
-<span id="more"></span>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line">#使用数据库mysql</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;zhangsan123&#x27;</span>;</span><br><span class="line">#<span class="keyword">create</span> <span class="keyword">user</span> <span class="string">&#x27;用户名&#x27;</span>@<span class="string">&#x27;loaclhost&#x27;</span> identified <span class="keyword">by</span> <span class="string">&#x27;密码&#x27;</span>;</span><br><span class="line">#localhost是指本地才可以连接;可以改成<span class="string">&#x27;%&#x27;</span>，表示任意ip都可以连接;也可以改成指定ip;</span><br><span class="line">#在mysql8中，不能使用添加操作实现创建用户</span><br><span class="line"><span class="keyword">grant</span> <span class="keyword">select</span>,<span class="keyword">insert</span>,<span class="keyword">delete</span>,update <span class="keyword">on</span> test.<span class="operator">*</span> <span class="keyword">to</span> <span class="string">&#x27;zhangsan&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span>;</span><br><span class="line">#<span class="keyword">grant</span> 权限 <span class="keyword">on</span> 数据库.指定表名 <span class="keyword">to</span> <span class="string">&#x27;用户名&#x27;</span>:</span><br><span class="line">flush privileges;</span><br><span class="line">#刷新权限</span><br></pre></td></tr></table></figure>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#错误操作</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">user</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="keyword">user</span>,host)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">values</span>(<span class="string">&#x27;zhangsan&#x27;</span>,<span class="string">&#x27;localhost&#x27;</span>);</span><br><span class="line">ERROR <span class="number">1364</span> (HY000): Field <span class="string">&#x27;ssl_cipher&#x27;</span> doesn<span class="string">&#x27;t have a default value</span></span><br></pre></td></tr></table></figure>
 <h3 id="1-2-修改用户密码"><a class="header-anchor" href="#1-2-修改用户密码">¶</a>1.2  修改用户密码</h3>
@@ -457,7 +464,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">73k</span>
+    <span title="站点总字数">74k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
