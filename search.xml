@@ -263,31 +263,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
-    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
-    <content><![CDATA[<p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" alt="python pip"></p>
-<span id="more"></span>
-<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<h1>解决办法</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1>原因</h1>
-<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
-<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
-<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Python</category>
-        <category>pip</category>
-      </categories>
-      <tags>
-        <tag>pip</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux常用命令</title>
     <url>/2021/06/29/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
@@ -505,6 +480,43 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
+    <url>/2021/06/12/ModuleNotFoundError-No-module-named-pip/</url>
+    <content><![CDATA[<p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" alt="python pip"></p>
+<span id="more"></span>
+<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
+<h1>解决办法</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1>原因</h1>
+<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
+<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
+<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Python</category>
+        <category>pip</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot框架搭建</title>
+    <url>/2021/06/28/SpringBoot%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>FrameWork</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot远程debug</title>
     <url>/2021/07/12/SpringBoot%E8%BF%9C%E7%A8%8Bdebug/</url>
     <content><![CDATA[<p><img src="https://ucarecdn.com/df898380-25a5-4296-9633-0ed47a9c717d/-/autorotate/yes/" alt="SpringBoot"></p>
@@ -560,18 +572,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>SpringBoot</tag>
         <tag>Debug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot框架搭建</title>
-    <url>/2021/06/28/SpringBoot%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
       </tags>
   </entry>
   <entry>
@@ -1086,21 +1086,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>binary not found</title>
-    <url>/2021/05/25/binary-not-found/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75a32aba13161e7315b964bcae238040?rik=jSFCMWvsL4%2fI3Q&amp;riu=http%3a%2f%2fi2.hdslb.com%2fbfs%2farchive%2f6faaf195d512f35b98d62d112be3607a0cd65991.jpg&amp;ehk=9ZOxq2FO5wRa3NhrfcALS25moCAwv9R8CGz41dTjgU4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="嵌入式"></p>
-<span id="more"></span>
-<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ajax—servlet实现前后端交互</title>
     <url>/2021/06/11/ajax-servlet%E5%AE%9E%E7%8E%B0%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92/</url>
     <content><![CDATA[<p><img src="https://coachtestprep.s3.amazonaws.com/uploads/course/header_image/8727/udemy-logo.png" alt="JQuery AJAX"></p>
@@ -1232,6 +1217,21 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Ajax</tag>
         <tag>Servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>binary not found</title>
+    <url>/2021/05/25/binary-not-found/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75a32aba13161e7315b964bcae238040?rik=jSFCMWvsL4%2fI3Q&amp;riu=http%3a%2f%2fi2.hdslb.com%2fbfs%2farchive%2f6faaf195d512f35b98d62d112be3607a0cd65991.jpg&amp;ehk=9ZOxq2FO5wRa3NhrfcALS25moCAwv9R8CGz41dTjgU4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="嵌入式"></p>
+<span id="more"></span>
+<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -1707,85 +1707,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>hexo+next配置</title>
-    <url>/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
-<span id="more"></span>
-<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
-<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
-<h1>Hexo配置</h1>
-<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
-<p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
-<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<div class="note success"><blockquote>
-<p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
-</blockquote>
-</div>
-<h1>next主题配置</h1>
-<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
-<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>修改一下<code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>修改一下<code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
-<div class="note info"><blockquote>
-<p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
-<p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
-<p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
-</blockquote>
-</div>
-<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
-<p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
-<p>其次就是对配置文件的设置</p>
-<div class="note primary"><blockquote>
-<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
-<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
-</blockquote>
-</div>
-<p>根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
-<p><code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
-<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
-<p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
-<p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
-<p>官方：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>以下为使用方法，直接在markdown文档中写标签就好</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
-<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo+github搭建个人博客</title>
     <url>/2021/05/23/hexo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Hexo+Github Page"></p>
@@ -1903,6 +1824,85 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Hexo</tag>
         <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo+next配置</title>
+    <url>/2021/05/24/hexo-next%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
+<span id="more"></span>
+<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
+<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
+<h1>Hexo配置</h1>
+<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
+<p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
+<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="note success"><blockquote>
+<p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
+</blockquote>
+</div>
+<h1>next主题配置</h1>
+<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
+<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>修改一下<code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>修改一下<code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
+<div class="note info"><blockquote>
+<p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
+<p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
+<p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
+</blockquote>
+</div>
+<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
+<p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
+<p>其次就是对配置文件的设置</p>
+<div class="note primary"><blockquote>
+<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
+<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
+</blockquote>
+</div>
+<p>根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
+<p><code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
+<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
+<p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
+<p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
+<p>官方：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>以下为使用方法，直接在markdown文档中写标签就好</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
+<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -2321,85 +2321,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>picgo+gitee实现markdown图片上传自动化</title>
-    <url>/2021/05/22/picgo+gitee/</url>
-    <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
-<span id="more"></span>
-<h1>picgo+gitee实现markdown图片上传自动化</h1>
-<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
-<p>markdown编辑工具：typora</p>
-<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
-<p>图床仓库：gitee</p>
-<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
-<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
-<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
-<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
-<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
-<ul>
-<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
-<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
-<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
-<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
-<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
-</ul>
-<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
-<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
-<p>和平常新建仓库没有什么区别，有几点注意事项</p>
-<ul>
-<li>需要设置为开源</li>
-<li>需要使用Readme文件初始化仓库</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
-<p>图中标注的地方需要注意一下</p>
-<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
-<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
-<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
-<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
-<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
-<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
-<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
-<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
-<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
-<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
-<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
-<p>至此结束。</p>
-<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
-<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
-<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
-<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;success&quot;</span>:<span class="literal">false</span>,<span class="attr">&quot;message&quot;</span>:<span class="string">&quot;upload error&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>更改方案</strong></p>
-<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
-<ol>
-<li>打开PicGo软件</li>
-<li>打开相册</li>
-<li>删除Typora相关图标</li>
-<li>重新配置Server</li>
-<li><font color='red'>重启PicGo</font></li>
-</ol>
-<p>或许可能是私人令牌的问题，重新获取下令牌</p>
-<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
-<p><font color='red'>终极办法：</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" alt="打开时间戳重命名"></p>
-<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
-<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>markdown语法以及Typora使用(高级)</title>
     <url>/2021/06/14/markdown%E8%AF%AD%E6%B3%95%E4%BB%A5%E5%8F%8ATypora%E4%BD%BF%E7%94%A8-%E9%AB%98%E7%BA%A7/</url>
     <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
@@ -2499,6 +2420,85 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
         <tag>Ahk</tag>
         <tag>HTML</tag>
         <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>picgo+gitee实现markdown图片上传自动化</title>
+    <url>/2021/05/22/picgo+gitee/</url>
+    <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
+<span id="more"></span>
+<h1>picgo+gitee实现markdown图片上传自动化</h1>
+<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
+<p>markdown编辑工具：typora</p>
+<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
+<p>图床仓库：gitee</p>
+<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
+<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
+<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
+<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
+<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
+<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
+<ul>
+<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
+<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
+<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
+<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
+<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
+</ul>
+<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
+<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
+<p>和平常新建仓库没有什么区别，有几点注意事项</p>
+<ul>
+<li>需要设置为开源</li>
+<li>需要使用Readme文件初始化仓库</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
+<p>图中标注的地方需要注意一下</p>
+<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
+<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
+<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
+<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
+<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
+<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
+<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
+<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
+<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
+<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
+<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
+<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
+<p>至此结束。</p>
+<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
+<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
+<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
+<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;success&quot;</span>:<span class="literal">false</span>,<span class="attr">&quot;message&quot;</span>:<span class="string">&quot;upload error&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>更改方案</strong></p>
+<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
+<ol>
+<li>打开PicGo软件</li>
+<li>打开相册</li>
+<li>删除Typora相关图标</li>
+<li>重新配置Server</li>
+<li><font color='red'>重启PicGo</font></li>
+</ol>
+<p>或许可能是私人令牌的问题，重新获取下令牌</p>
+<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
+<p><font color='red'>终极办法：</font></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" alt="打开时间戳重命名"></p>
+<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
+<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
@@ -2670,6 +2670,40 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于new和delete的问题</title>
+    <url>/2021/08/20/%E5%85%B3%E4%BA%8Enew%E5%92%8Cdelete%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
+<span id="more"></span>
+<h1>问题描述</h1>
+<p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p>
+<div class="note success"><p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
+</div>
+<p>发生问题的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initList</span><span class="params">(LinkedList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l = <span class="keyword">new</span> LinkedList; <span class="comment">//问题所在行</span></span><br><span class="line">    <span class="keyword">if</span> (l == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结构体定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; LNode, *LinkedList;</span><br></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
+<p>等等！</p>
+<p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *intp;</span><br><span class="line"><span class="keyword">int</span> *s = <span class="keyword">new</span> intp*;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对不起，我刚刚好像就做了😥</p>
+</blockquote>
+<div class="note primary"><p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
+</div>
+<p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
+<h1>改动</h1>
+<p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">l = <span class="keyword">new</span> LNode;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <tags>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
