@@ -6,7 +6,7 @@
   <link href="https://conquerorlei.github.io/atom.xml" rel="self"/>
   
   <link href="https://conquerorlei.github.io/"/>
-  <updated>2021-08-20T10:11:13.598Z</updated>
+  <updated>2021-08-20T10:15:17.575Z</updated>
   <id>https://conquerorlei.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://conquerorlei.github.io/2021/08/20/%E5%85%B3%E4%BA%8Enew%E5%92%8Cdelete%E7%9A%84%E9%97%AE%E9%A2%98/"/>
     <id>https://conquerorlei.github.io/2021/08/20/%E5%85%B3%E4%BA%8Enew%E5%92%8Cdelete%E7%9A%84%E9%97%AE%E9%A2%98/</id>
     <published>2021-08-20T09:39:44.000Z</published>
-    <updated>2021-08-20T10:11:13.598Z</updated>
+    <updated>2021-08-20T10:15:17.575Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p><span id="more"></span><h1>问题描述</h1><p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p><div class="note success"><p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p></div><p>发生问题的代码如下：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initList</span><span class="params">(LinkedList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l = <span class="keyword">new</span> LinkedList; <span class="comment">//问题所在行</span></span><br><span class="line">    <span class="keyword">if</span> (l == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>结构体定义如下：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; LNode, *LinkedList;</span><br></pre></td></tr></table></figure><h1>分析</h1><p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p><p>等等！</p><p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *intp;</span><br><span class="line"><span class="keyword">int</span> *s = <span class="keyword">new</span> intp*;</span><br></pre></td></tr></table></figure><blockquote><p>对不起，我刚刚好像就做了😥</p></blockquote><div class="note primary"><p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p></div><p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p><h1>改动</h1><p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l = <span class="keyword">new</span> LNode;</span><br></pre></td></tr></table></figure><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
     
@@ -29,6 +29,10 @@
     <summary type="html">&lt;p&gt;&lt;img src=&quot;https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;amp;risl=&amp;amp;pid=ImgRaw&amp;amp;r=0&quot; alt=&quot;new and delete&quot;&gt;&lt;/p&gt;</summary>
     
     
+    
+    <category term="Error" scheme="https://conquerorlei.github.io/categories/Error/"/>
+    
+    <category term="Cpp" scheme="https://conquerorlei.github.io/categories/Cpp/"/>
     
     
     <category term="Cpp" scheme="https://conquerorlei.github.io/tags/Cpp/"/>
@@ -184,9 +188,9 @@
     
     <category term="Linux" scheme="https://conquerorlei.github.io/categories/Linux/"/>
     
-    <category term="运维" scheme="https://conquerorlei.github.io/categories/Linux/%E8%BF%90%E7%BB%B4/"/>
-    
     <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+    
+    <category term="运维" scheme="https://conquerorlei.github.io/categories/Linux/%E8%BF%90%E7%BB%B4/"/>
     
     
     <category term="SpringBoot" scheme="https://conquerorlei.github.io/tags/SpringBoot/"/>
