@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;conquerorlei.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:&quot;utterances&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null,&quot;activeClass&quot;:&quot;utterances&quot;},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/36736/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse2-mm.cn.bing.net/th/id/OIP-C.ABjebgItCCVwn7kiCdItzAHaDF?pid=ImgDet&amp;rs=1">
+<meta property="article:published_time" content="2021-07-03T02:48:48.000Z">
+<meta property="article:modified_time" content="2021-08-21T14:44:51.005Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse2-mm.cn.bing.net/th/id/OIP-C.ABjebgItCCVwn7kiCdItzAHaDF?pid=ImgDet&amp;rs=1">
+
+
+<link rel="canonical" href="https://conquerorlei.github.io/posts/36736/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;posts&#x2F;36736&#x2F;&quot;,&quot;path&quot;:&quot;posts&#x2F;36736&#x2F;&quot;,&quot;title&quot;:&quot;git命令&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>git命令 | conquerorLei</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="conquerorLei" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">conquerorLei</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">further study make me better</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">git学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">1 分布式基本结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.2.</span> <span class="nav-text">2 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-add-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.1.</span> <span class="nav-text">1 add 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-commit-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.2.</span> <span class="nav-text">2 commit 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-status-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.3.</span> <span class="nav-text">3 status 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-diff-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.4.</span> <span class="nav-text">4 diff 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-reset-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.5.</span> <span class="nav-text">5 reset 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-rm-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.6.</span> <span class="nav-text">6 rm 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-mv-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.7.</span> <span class="nav-text">7 mv 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-log-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.8.</span> <span class="nav-text">8 log 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-remote%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.9.</span> <span class="nav-text">9 remote命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-fetch%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.10.</span> <span class="nav-text">10 fetch命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-push-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.11.</span> <span class="nav-text">11 push 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-pull-%E5%91%BD%E4%BB%A4"><span class="nav-number">1.2.12.</span> <span class="nav-text">12 pull 命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">2 多人协作</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">conquerorLei</p>
+  <div class="site-description" itemprop="description">学习总结 学习经历 个人小站</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/conquerorLei" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;conquerorLei" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:xl90236@163.com" title="E-Mail → mailto:xl90236@163.com" rel="noopener external nofollow noreferrer" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/conquerorLei" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener external nofollow noreferrer" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://conquerorlei.github.io/posts/36736/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="conquerorLei">
+      <meta itemprop="description" content="学习总结 学习经历 个人小站">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="conquerorLei">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git命令
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-03 10:48:48" itemprop="dateCreated datePublished" datetime="2021-07-03T10:48:48+08:00">2021-07-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-21 22:44:51" itemprop="dateModified" datetime="2021-08-21T22:44:51+08:00">2021-08-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ABjebgItCCVwn7kiCdItzAHaDF?pid=ImgDet&amp;rs=1" alt="git"></p>
+<span id="more"></span>
+<h1>git学习笔记</h1>
+<h2 id="1-分布式基本结构"><a class="header-anchor" href="#1-分布式基本结构">¶</a>1 分布式基本结构</h2>
+<p>工作区-暂存区-本地仓库-远程仓库</p>
+<ul>
+<li>工作区就是电脑本地就能看见的文件目录</li>
+<li><code>git add</code> 命令将新增的文件添加到暂存区</li>
+<li><code>git commit</code> 命令将暂存区的文件提交到本地版本库中</li>
+<li>通过<code>git checkout</code>命令可以从本地版本库检查是否存在改动、新增、删除的文件或者对版本库的改动</li>
+<li><code>git push</code> 命令将代码上传到远程代码库上并合并</li>
+<li><code>git fetch</code> 和 <code>git clone</code> 命令可以将远程版本库克隆到本地，从远程获得代码库</li>
+<li><code>git pull</code> 命令下载远程代码并合并</li>
+</ul>
+<h2 id="2-基本操作"><a class="header-anchor" href="#2-基本操作">¶</a>2 基本操作</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">git init</td>
+<td style="text-align:left">仓库初始化</td>
+</tr>
+<tr>
+<td style="text-align:left">git add</td>
+<td style="text-align:left">添加文件到暂存区</td>
+</tr>
+<tr>
+<td style="text-align:left">git commit</td>
+<td style="text-align:left">提交代码到本地仓库</td>
+</tr>
+<tr>
+<td style="text-align:left">git push</td>
+<td style="text-align:left">将暂存区文件提交到远程仓库并和并</td>
+</tr>
+<tr>
+<td style="text-align:left">git clone</td>
+<td style="text-align:left">克隆一个版本库</td>
+</tr>
+<tr>
+<td style="text-align:left">git log</td>
+<td style="text-align:left">获取日志</td>
+</tr>
+<tr>
+<td style="text-align:left">git status</td>
+<td style="text-align:left">获取仓库当前的状态</td>
+</tr>
+<tr>
+<td style="text-align:left">git diff</td>
+<td style="text-align:left">比较工作区和暂存区的差异</td>
+</tr>
+<tr>
+<td style="text-align:left">git config</td>
+<td style="text-align:left">配置git</td>
+</tr>
+<tr>
+<td style="text-align:left">git rm</td>
+<td style="text-align:left">删除工作区文件</td>
+</tr>
+<tr>
+<td style="text-align:left">git mv</td>
+<td style="text-align:left">移动工作区文件</td>
+</tr>
+<tr>
+<td style="text-align:left">git remote</td>
+<td style="text-align:left">远程仓库操作</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<p>除上述命令之外的其他命令行命令，<strong>注意空格以及在使用命令时不能有&quot;&lt;&gt;&quot;</strong></p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mkdir <foldername></td>
+<td>创建文件夹</td>
+</tr>
+<tr>
+<td>touch <filename></td>
+<td>创建文件</td>
+</tr>
+<tr>
+<td>cd <path></td>
+<td>进入路径</td>
+</tr>
+<tr>
+<td>ls</td>
+<td>查看当前目录下的文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-add-命令"><a class="header-anchor" href="#1-add-命令">¶</a>1 add 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git add <file1> <file2> &lt;…&gt;</td>
+<td>添加多个文件到暂存区(注意文件之间以空格隔开)</td>
+</tr>
+<tr>
+<td>git add <dir></td>
+<td>添加指令目录到暂存区，包括暂存区所有文件</td>
+</tr>
+<tr>
+<td>git add .</td>
+<td>添加当前目录下所有文件到暂存区</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-commit-命令"><a class="header-anchor" href="#2-commit-命令">¶</a>2 commit 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释(message 是一些备注信息)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git commit -m “message”</td>
+<td>提交暂存区内容到本地仓库</td>
+</tr>
+<tr>
+<td>git commit <file1> <file2> -m “message”</td>
+<td>提交指定文件到本地仓库</td>
+</tr>
+<tr>
+<td>git commit -am “message”</td>
+<td>跳过git add 直接提交</td>
+</tr>
+<tr>
+<td>git commit -amend</td>
+<td>重新提交(主要是小错误，例如忘记提交某一文件，或者提交信息小错误)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-status-命令"><a class="header-anchor" href="#3-status-命令">¶</a>3 status 命令</h3>
+<p>git status 命令主要查看上次提交后有没有再次修改</p>
+<p>git commit -s 简短显示状态信息</p>
+<h3 id="4-diff-命令"><a class="header-anchor" href="#4-diff-命令">¶</a>4 diff 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git diff <file></td>
+<td>显示暂存区和工作区之间差异</td>
+</tr>
+<tr>
+<td>git diff --cached <file></td>
+<td>显示暂存区和上一次提交之间的差异(其中cached可以被stored代替)</td>
+</tr>
+<tr>
+<td>git diff  <first-branch> <second-branch></td>
+<td>显示两次提交之间的差异</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-reset-命令"><a class="header-anchor" href="#5-reset-命令">¶</a>5 reset 命令</h3>
+<p>版本回退命令</p>
+<p>基本格式如下</p>
+<ul>
+<li>git reset &lt;–soft|–mixed|–hard&gt; <HEAD> <file>
+<ul>
+<li>–mixed 为默认参数一般不需要说明，用于保持暂存区文件与上次提交的一致，工作区文件不变
+<ul>
+<li><code>git reset HEAD^</code>      #回退到上一个版本</li>
+<li><code>git reset HEAD^^</code>    #回退到上上一个版本</li>
+<li><code>git reset HEAD^ hello.txt</code>    #回退 hello.txt 文件版本到上一个版本</li>
+<li><code>git reset 052e</code>           #回退到指定版本</li>
+</ul>
+</li>
+<li>–soft 用于回退到某个版本
+<ul>
+<li><code>git reset --soft HEAD~3</code>       #回退到上上上一个版本</li>
+<li><code>git reset --soft</code></li>
+</ul>
+</li>
+<li>–hard 参数撤销工作区中所有为提交的修改内容，将工作区和暂存区所有文件都回退到上一个版本并删除所有的提交信息
+<ul>
+<li><code>git reset --hard HEAD~3</code>     #回退到上上上个版本</li>
+<li><code>git reset --hard origin/master</code>   #回退到和远程一致的版本</li>
+<li><code>git reset --hard HEAD^</code>       #回退到上个版本</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>执行git reset HEAD 命令已经取消之前的git add操作，但不希望包含在下一提交的<strong>快照</strong>中的缓存。使用git commit -am “message” 提交</p>
+<p>解释：git reset 是版本回退命令，但是在执行它之后，远程库并不会因此而改变，这也从另一方面说明了分布式管理的好处：这在于一人撤销提交操作，不会影响到其他人的提交操作，既保证了合作也保证了独立。那么问题来了，怎样来合并不同的版本库呢？不停地使用git pull命令或者git fetch 和git merge从而保证远程库和本地库保持一致？</p>
+<p>remarks:需要注意的是，可以使用git reflog来显示最近执行的commit操作以及reset操作，进而可以指定版本号进行回退。值得注意的是，本地版本库允许有多次不同的提交，使用reset命令只可以订从最早提交的开始到指定的提交结束从而进行上传或者是返回后对指定版本号下的内容进行修改。但是倘若已经提交到了远程库，这时候再在本地版本库长记性reset命令，会导致HEAD指针与当前origin/master不符，即HEAD指针落后于当前的origin/master是不行的。如果强行在上传后执行reset命令，再次提交时就会出现错误。错误提示信息如下：</p>
+<p>! [rejected]        master -&gt; master (non-fast-forward)</p>
+<p>error: failed to push some refs to ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitee.com/QingShanxl/lixianlei.git">https://gitee.com/QingShanxl/lixianlei.git</a>’</p>
+<p>hint: <font color="red">Updates were rejected because the tip of your current branch is behind</font></p>
+<p>hint: <font color="red">its remote counterpart. </font>Integrate the remote changes (e.g. ‘git pull …’) before pushing again.</p>
+<p>hint: See the ‘Note about fast-forwards’ in ‘git push --help’ for details.</p>
+<p><font color='cornflowerblue'>the main error has signed in color “red”</font></p>
+<h3 id="6-rm-命令"><a class="header-anchor" href="#6-rm-命令">¶</a>6 rm 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git rm <file></td>
+<td>删除工作区文件</td>
+</tr>
+<tr>
+<td>git rm -f <file></td>
+<td>强制删除文件(如果删除之前修改过并且保存到暂存区的话，必须强制删除)</td>
+</tr>
+<tr>
+<td>git rm -cached <file></td>
+<td>删除暂存区的文件(工作区保留)</td>
+</tr>
+<tr>
+<td>git rm -f *</td>
+<td>删除此目录下的所有文件和子目录</td>
+</tr>
+</tbody>
+</table>
+<p>可以递归删除，如果<file>是一个文件夹，则会递归删除此文件夹及其内部的子目录和所有文件</p>
+<h3 id="7-mv-命令"><a class="header-anchor" href="#7-mv-命令">¶</a>7 mv 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git mv <file> <new file></td>
+<td>重命名</td>
+</tr>
+<tr>
+<td>git mv <file> <destination direction></td>
+<td>移动文件到某一指定目录</td>
+</tr>
+<tr>
+<td>git mv -f <file> <new file></td>
+<td>重命名(新文件名已经存在，但依然要重命名)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="8-log-命令"><a class="header-anchor" href="#8-log-命令">¶</a>8 log 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git log</td>
+<td>显示提交历史</td>
+</tr>
+<tr>
+<td>git log --oneline</td>
+<td>按行显示提交历史</td>
+</tr>
+<tr>
+<td>git log --graph</td>
+<td>显示提交历史中什么时候出现分支以及分支合并</td>
+</tr>
+<tr>
+<td>git log --reverse</td>
+<td>反向显示提交历史</td>
+</tr>
+<tr>
+<td>git log -p -num</td>
+<td>显示最近num次提交历史中差异以及补丁信息</td>
+</tr>
+<tr>
+<td>git log --author</td>
+<td>指定作者显示提交信息</td>
+</tr>
+<tr>
+<td>git log --stat</td>
+<td>简要显示提交历史</td>
+</tr>
+<tr>
+<td>git log --since</td>
+<td>显示指定时间之后的提交历史(参数可以用–after代替)</td>
+</tr>
+<tr>
+<td>git log --until</td>
+<td>显示指定时间之前的提交历史(参数可以用–before代替)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="9-remote命令"><a class="header-anchor" href="#9-remote命令">¶</a>9 remote命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git remote -v</td>
+<td>显示所有远程仓库</td>
+</tr>
+<tr>
+<td>git remote show <remote></td>
+<td>显示指定远程仓库的信息</td>
+</tr>
+<tr>
+<td>git remote add <shortname> <url></td>
+<td>添加远程代码库</td>
+</tr>
+<tr>
+<td>git remote rm <shortname></td>
+<td>删除远程版本库(删除的是本地仓库对远程仓库的引用)</td>
+</tr>
+<tr>
+<td>git remote rename <shortname> <new shortname></td>
+<td>重命名</td>
+</tr>
+</tbody>
+</table>
+<h3 id="10-fetch命令"><a class="header-anchor" href="#10-fetch命令">¶</a>10 fetch命令</h3>
+<p>git fetch命令用于从远程库下载修改内容，其后需要 git merge 命令用于合并代码库。保证在远程库中做出的修改在本地体现。</p>
+<p>测试用例：</p>
+<ul>
+<li>在远程库中修改相关的Readme.txt</li>
+<li><code>git fetch origin</code></li>
+<li><code>git merge origin/master</code></li>
+<li>最终在本地的Readme.txt 文件中显示了修改</li>
+</ul>
+<h3 id="11-push-命令"><a class="header-anchor" href="#11-push-命令">¶</a>11 push 命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>命令解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>git push &lt;远程主机名&gt; &lt;本地分支名&gt;</td>
+<td>上传代码到远程仓库</td>
+</tr>
+<tr>
+<td>git push --force &lt;远程主机名&gt; &lt;本地分支名&gt;</td>
+<td>强制上传</td>
+</tr>
+<tr>
+<td>git push &lt;远程主机名&gt; --delete &lt;本地分支名&gt;</td>
+<td>删除本地分支</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-pull-命令"><a class="header-anchor" href="#12-pull-命令">¶</a>12 pull 命令</h3>
+<p>格式：<code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></p>
+<p>相当于 <code>git fetch</code> 和  <code>git merge</code> 的合成</p>
+<h2 id="2-多人协作"><a class="header-anchor" href="#2-多人协作">¶</a>2 多人协作</h2>
+<p>在多人协作方面，不同人并不可见当前其他成员正在建立或使用的分支，即使执行checkout命令，也不能转化到他进行操作的分支上。例如，一名成员创建了&quot;w#2&quot;分支，另外一名成员在进行分支跳转时只能跳转到以前的分支或者master分支，不能直接跳转到当前成员创建的&quot;w#2&quot;分支上，这样，有利于分支管理，不需要过多的合并操作。</p>
+<p>或者说，本地用户建立的远程分支会提交到远程库上，可以通过git push origin 分支名来指定提交的分支。另外就是就是不同的用户想要在相同的分支上去操作，不必在本地新建同名的分支，只不过在提交的时候需要不同的指定，例如将更改从master提交到w#2，可以通过这样一条命令来制定操作：git push origin w#2,这样就从当前分支提交到了远程的w#2分支，但是本地看不到不同分支间的差距</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>conquerorLei
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://conquerorlei.github.io/posts/36736/" title="git命令">https://conquerorlei.github.io/posts/36736/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Git/" rel="tag"># Git</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/10774/" rel="prev" title="Vim配置美化">
+                  <i class="fa fa-chevron-left"></i> Vim配置美化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/28022/" rel="next" title="Linux云服务器部署springboot项目">
+                  Linux云服务器部署springboot项目 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div><script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lei</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">88k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:20</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener external nofollow noreferrer" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener external nofollow noreferrer" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-ribbon@1/canvas-ribbon.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;posts&#x2F;36736&#x2F;&quot;}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+<script class="next-config" data-name="utterances" type="application/json">{&quot;enable&quot;:true,&quot;repo&quot;:&quot;conquerorLei&#x2F;conquerorLei.github.io&quot;,&quot;issue_term&quot;:&quot;pathname&quot;,&quot;theme&quot;:&quot;github-light&quot;}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
