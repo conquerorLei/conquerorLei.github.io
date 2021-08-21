@@ -29,6 +29,31 @@
       </tags>
   </entry>
   <entry>
+    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
+    <url>/posts/37853/</url>
+    <content><![CDATA[<p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" alt="python pip"></p>
+<span id="more"></span>
+<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
+<h1>解决办法</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<h1>原因</h1>
+<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
+<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
+<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>Error</category>
+        <category>pip</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除</title>
     <url>/posts/35421/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png" alt="warning: LF will be replaced by CRLF"></p>
@@ -264,43 +289,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
-    <url>/posts/37853/</url>
-    <content><![CDATA[<p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" alt="python pip"></p>
-<span id="more"></span>
-<p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<h1>解决办法</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span></span><br><span class="line">python -m ensurepip</span><br><span class="line"><span class="meta">#</span><span class="bash"> 再进行安装</span></span><br><span class="line">python -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
-<h1>原因</h1>
-<p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
-<div class="note primary"><p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p>
-<p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Python</category>
-        <category>pip</category>
-      </categories>
-      <tags>
-        <tag>pip</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot框架搭建</title>
-    <url>/posts/22603/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux常用命令</title>
     <url>/posts/48230/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
@@ -518,76 +506,15 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>SpringBoot远程debug</title>
-    <url>/posts/29958/</url>
-    <content><![CDATA[<p><img src="https://ucarecdn.com/df898380-25a5-4296-9633-0ed47a9c717d/-/autorotate/yes/" alt="SpringBoot"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>前段时间使用了解和学习SpringBoot的过程中，后端业务逻辑有一些问题，但是使用本地debug根本无法进入断点，后来经过网络学习获得远程debug的方法，特于此记录</p>
-<p><strong>工具</strong></p>
-<ul>
-<li>IDEA</li>
-<li>JDK14</li>
-</ul>
-<h1>过程</h1>
-<h2 id="新建Remote-Jvm-Debug"><a class="header-anchor" href="#新建Remote-Jvm-Debug">¶</a>新建Remote Jvm Debug</h2>
-<ol>
-<li>点击Edit configuration</li>
-<li>点击+</li>
-<li>找到Remote Jvm Debug</li>
-</ol>
-<h2 id="添加参数"><a class="header-anchor" href="#添加参数">¶</a>添加参数</h2>
-<p>基本上只需要修改一下名称、命令参数以及监听端口就可以啦，这边给个截图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802121222.png" alt="Debug Configuration"></p>
-<p>Jvm Command如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:<span class="number">5005</span></span><br></pre></td></tr></table></figure>
-<p>点击应用，点击ok，这样就配置好了</p>
-<h2 id="运行Remote-Debug"><a class="header-anchor" href="#运行Remote-Debug">¶</a>运行Remote Debug</h2>
-<p>这边和本地Debug有些不同的是，远程Debug需要先使用Maven将项目打包为Jar，然后指定端口运行Jar。</p>
-<h3 id="Jar包"><a class="header-anchor" href="#Jar包">¶</a>Jar包</h3>
-<p>使用Maven的clean和package将项目打包为jar</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802234952.png" alt="使用Maven生成Jar"></p>
-<p>在控制台中输入一下命令</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=<span class="number">5005</span>,suspend=n -jar demo.jar</span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>其中<font color='red'>demo.jar</font>为你打包之后的jar包名称，自行更改即可</p>
-<p>需要注意一下几点：</p>
-<ol>
-<li>5005端口被占用：参考此<a href="https://conquerorlei.github.io/2021/05/22/tomcatError/">博客</a></li>
-</ol>
-</blockquote>
-</div>
-<h3 id="运行Debug"><a class="header-anchor" href="#运行Debug">¶</a>运行Debug</h3>
-<p>运行完Jar包之后记得点击Debug那个按钮</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210803000307.png" alt="Debug"></p>
-<h3 id="断点"><a class="header-anchor" href="#断点">¶</a>断点</h3>
-<p>这个就不用说了吧，本地断点就好啦，在浏览器中输入项目网址，运行的过程中会自动进入断点的</p>
-<div class="note primary"><p>需要注意的是，此时监听端口为<font color='cornflowerblue'>5005</font>，记得更改8080为5005</p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
+    <title>SpringBoot框架搭建</title>
+    <url>/posts/22603/</url>
+    <content><![CDATA[]]></content>
       <categories>
         <category>FrameWork</category>
         <category>SpringBoot</category>
       </categories>
       <tags>
         <tag>SpringBoot</tag>
-        <tag>Debug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring是什么</title>
-    <url>/posts/46178/</url>
-    <content><![CDATA[<h1>前言</h1>
-]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>LOC</tag>
-        <tag>DI</tag>
       </tags>
   </entry>
   <entry>
@@ -1236,6 +1163,79 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>SpringBoot远程debug</title>
+    <url>/posts/29958/</url>
+    <content><![CDATA[<p><img src="https://ucarecdn.com/df898380-25a5-4296-9633-0ed47a9c717d/-/autorotate/yes/" alt="SpringBoot"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>前段时间使用了解和学习SpringBoot的过程中，后端业务逻辑有一些问题，但是使用本地debug根本无法进入断点，后来经过网络学习获得远程debug的方法，特于此记录</p>
+<p><strong>工具</strong></p>
+<ul>
+<li>IDEA</li>
+<li>JDK14</li>
+</ul>
+<h1>过程</h1>
+<h2 id="新建Remote-Jvm-Debug"><a class="header-anchor" href="#新建Remote-Jvm-Debug">¶</a>新建Remote Jvm Debug</h2>
+<ol>
+<li>点击Edit configuration</li>
+<li>点击+</li>
+<li>找到Remote Jvm Debug</li>
+</ol>
+<h2 id="添加参数"><a class="header-anchor" href="#添加参数">¶</a>添加参数</h2>
+<p>基本上只需要修改一下名称、命令参数以及监听端口就可以啦，这边给个截图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802121222.png" alt="Debug Configuration"></p>
+<p>Jvm Command如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:<span class="number">5005</span></span><br></pre></td></tr></table></figure>
+<p>点击应用，点击ok，这样就配置好了</p>
+<h2 id="运行Remote-Debug"><a class="header-anchor" href="#运行Remote-Debug">¶</a>运行Remote Debug</h2>
+<p>这边和本地Debug有些不同的是，远程Debug需要先使用Maven将项目打包为Jar，然后指定端口运行Jar。</p>
+<h3 id="Jar包"><a class="header-anchor" href="#Jar包">¶</a>Jar包</h3>
+<p>使用Maven的clean和package将项目打包为jar</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802234952.png" alt="使用Maven生成Jar"></p>
+<p>在控制台中输入一下命令</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=<span class="number">5005</span>,suspend=n -jar demo.jar</span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>其中<font color='red'>demo.jar</font>为你打包之后的jar包名称，自行更改即可</p>
+<p>需要注意一下几点：</p>
+<ol>
+<li>5005端口被占用：参考此<a href="https://conquerorlei.github.io/2021/05/22/tomcatError/">博客</a></li>
+</ol>
+</blockquote>
+</div>
+<h3 id="运行Debug"><a class="header-anchor" href="#运行Debug">¶</a>运行Debug</h3>
+<p>运行完Jar包之后记得点击Debug那个按钮</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210803000307.png" alt="Debug"></p>
+<h3 id="断点"><a class="header-anchor" href="#断点">¶</a>断点</h3>
+<p>这个就不用说了吧，本地断点就好啦，在浏览器中输入项目网址，运行的过程中会自动进入断点的</p>
+<div class="note primary"><p>需要注意的是，此时监听端口为<font color='cornflowerblue'>5005</font>，记得更改8080为5005</p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>FrameWork</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>Debug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring是什么</title>
+    <url>/posts/46178/</url>
+    <content><![CDATA[<h1>前言</h1>
+]]></content>
+      <categories>
+        <category>FrameWork</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>LOC</tag>
+        <tag>DI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>项目中数据库问题</title>
     <url>/posts/44965/</url>
     <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
@@ -1259,6 +1259,55 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Mysql</tag>
         <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git 使用报错以及解决办法</title>
+    <url>/posts/34931/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.5ZVnEHdqMkr0oPHWFA0RzAHaD3?pid=ImgDet&amp;rs=1" alt="git github"></p>
+<span id="more"></span>
+<h1>常见错误</h1>
+<p>git是我们日常工作中需要用到的工具，所以由于多人协作的缘故或者是其他一些原因经常会遇见一些错误，以下是我在使用git的过程中遇见的一些错误以下做一个总结</p>
+<h2 id="错误类型：错误码"><a class="header-anchor" href="#错误类型：错误码">¶</a>错误类型：错误码</h2>
+<h3 id="错误码：443"><a class="header-anchor" href="#错误码：443">¶</a>错误码：443</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
+<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
+<p>解决办法：接触SSL验证，再次git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<p>错误类型：Push</p>
+<h2 id="push时出错"><a class="header-anchor" href="#push时出错">¶</a>push时出错</h2>
+<h3 id="请求出错"><a class="header-anchor" href="#请求出错">¶</a>请求出错</h3>
+<p>报错代码：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
+<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
+<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
+<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
+<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
+<h3 id="失败提交"><a class="header-anchor" href="#失败提交">¶</a>失败提交</h3>
+<h4 id="错误展示"><a class="header-anchor" href="#错误展示">¶</a>错误展示</h4>
+<p><strong>错误提示：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">error: failed to push some refs to &#x27;https://gitee.com/xxx/xxx.git&#x27;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113408024.png" alt="failed to push"></p>
+<p><strong>解决方案：</strong></p>
+<p>这个错误一般情况下都是本地仓库和远程仓库版本不一致的问题，解决办法就是<code>git pull</code>下拉，但是下拉又会遇见以下问题，好家伙</p>
+<p><strong>错误提示：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113648936.png" alt="refusing to merge"></p>
+<p>拒绝合并没有关系的历史，</p>
+<h4 id="原因分析"><a class="header-anchor" href="#原因分析">¶</a>原因分析</h4>
+<p>我认为这种问题一般都是在第一次上传时会遇见的问题，比如说，远程仓库使用了<code>README.md</code>和<code>.gitignore</code>进行了初始化，本地仓库没有这两个文件，但是本地仓库不是空文件夹，那么最开始<code>git init</code>之后如果直接push的话就会出现以上问题。因为其实条件下，本地库和远程库是没有任何历史相干性的，所以这个时候无论是push还是pull都是不可以的，push不了是因为本地库和远程库版本不一致，pull不了是因为历史不相干，好家伙，没办法治他了？</p>
+<h4 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h4>
+<p>下拉时使用以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-hostories</span><br></pre></td></tr></table></figure>
+<p>添加一个参数，这样在之后就可以下拉了，下拉之后，再push就没有问题啦</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -1659,52 +1708,31 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>git 使用报错以及解决办法</title>
-    <url>/posts/34931/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.5ZVnEHdqMkr0oPHWFA0RzAHaD3?pid=ImgDet&amp;rs=1" alt="git github"></p>
+    <title>hexo同级多级分类配置</title>
+    <url>/posts/63081/</url>
+    <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
 <span id="more"></span>
-<h1>常见错误</h1>
-<p>git是我们日常工作中需要用到的工具，所以由于多人协作的缘故或者是其他一些原因经常会遇见一些错误，以下是我在使用git的过程中遇见的一些错误以下做一个总结</p>
-<h2 id="错误类型：错误码"><a class="header-anchor" href="#错误类型：错误码">¶</a>错误类型：错误码</h2>
-<h3 id="错误码：443"><a class="header-anchor" href="#错误码：443">¶</a>错误码：443</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
-<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
-<p>解决办法：接触SSL验证，再次git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<p>错误类型：Push</p>
-<h2 id="push时出错"><a class="header-anchor" href="#push时出错">¶</a>push时出错</h2>
-<h3 id="请求出错"><a class="header-anchor" href="#请求出错">¶</a>请求出错</h3>
-<p>报错代码：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
-<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
-<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
-<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
-<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
-<h3 id="失败提交"><a class="header-anchor" href="#失败提交">¶</a>失败提交</h3>
-<h4 id="错误展示"><a class="header-anchor" href="#错误展示">¶</a>错误展示</h4>
-<p><strong>错误提示：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">error: failed to push some refs to &#x27;https://gitee.com/xxx/xxx.git&#x27;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113408024.png" alt="failed to push"></p>
-<p><strong>解决方案：</strong></p>
-<p>这个错误一般情况下都是本地仓库和远程仓库版本不一致的问题，解决办法就是<code>git pull</code>下拉，但是下拉又会遇见以下问题，好家伙</p>
-<p><strong>错误提示：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113648936.png" alt="refusing to merge"></p>
-<p>拒绝合并没有关系的历史，</p>
-<h4 id="原因分析"><a class="header-anchor" href="#原因分析">¶</a>原因分析</h4>
-<p>我认为这种问题一般都是在第一次上传时会遇见的问题，比如说，远程仓库使用了<code>README.md</code>和<code>.gitignore</code>进行了初始化，本地仓库没有这两个文件，但是本地仓库不是空文件夹，那么最开始<code>git init</code>之后如果直接push的话就会出现以上问题。因为其实条件下，本地库和远程库是没有任何历史相干性的，所以这个时候无论是push还是pull都是不可以的，push不了是因为本地库和远程库版本不一致，pull不了是因为历史不相干，好家伙，没办法治他了？</p>
-<h4 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h4>
-<p>下拉时使用以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-hostories</span><br></pre></td></tr></table></figure>
-<p>添加一个参数，这样在之后就可以下拉了，下拉之后，再push就没有问题啦</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
+<h1>前言</h1>
+<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
+<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<div class="note success"><blockquote>
+<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
+</blockquote>
+</div>
+<h1>同级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
+<h1>多级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
-        <category>Error</category>
-        <category>Git</category>
+        <category>环境搭建</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -1907,85 +1935,105 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>hexo同级多级分类配置</title>
-    <url>/posts/63081/</url>
-    <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
+    <title>markdown语法以及Typora使用(高级)</title>
+    <url>/posts/54024/</url>
+    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
 <span id="more"></span>
 <h1>前言</h1>
-<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
-<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
+<h1>HTML+CSS</h1>
+<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
 <div class="note success"><blockquote>
-<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
+<p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p>
+<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
+<p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p>
+<p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">这是一个普通段落。</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">这是另一个普通段落。</span><br></pre></td></tr></table></figure>
+<p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p>
+<p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p>
+<p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p>
 </blockquote>
 </div>
-<h1>同级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
-<h1>多级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo进阶(1):优化文章链接为数字编号</title>
-    <url>/posts/59826/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
-<span id="more"></span>
-<h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3>
-<p>下图为我的一篇文章的网址<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212118319.png" alt="检索网址太长"></p>
-<p>如果进行分享的话，就会出现以下情况</p>
-<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://conquerorlei.github.io/2021/08/20/%E5%85%B3%E4%BA%8Enew%E5%92%8Cdelete%E7%9A%84%E9%97%AE%E9%A2%98/</span><br></pre></td></tr></table></figure>
-<p>这样的话，其实本质上是没有问题的，但是为什么别人的网站网址就是干干净净的，我的小破站文章网址就这么长呢。我不甘心，于是就开始找方法进行修改。</p>
-<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
-<p>其实出现这种网址的情况，本质上是hexo的config的问题。在hexo的根目录下的_config.yml文件中，我发现了一下的配置</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br></pre></td></tr></table></figure>
-<p>这样的话，你的文章名就是<font color='red'>年份月份日期加题目</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212134814.jpeg" alt="这是什么？？？"></p>
-<p>尽管这还可以，不影响正常使用，但是我要网址这么长干嘛</p>
-<p>而且！！！由于编码的问题，我分享的时候，别人看见了还会问问后面的<font color='red'>%E5%85%B3%E4%BA%8E</font>是什么，这我能说什么，我写的汉字嘛？</p>
-<p>还有一个问题就是，一旦我修改了文章名称以及日期什么的，链接就无效了。</p>
-<p>这我能乐意嘛？不能🙉，不换掉干什么？留着下饭？😅</p>
-<h3 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h3>
-<p>下载个插件吧！<code>abbrlink</code>，这是他的<a href="https://github.com/rozbo/hexo-abbrlink"><font color='cornflowerblue'>github仓库地址</font></a></p>
-<h4 id="安装abbrlink插件"><a class="header-anchor" href="#安装abbrlink插件">¶</a>安装abbrlink插件</h4>
-<p>使用cmd命令提示符进入hexo的根目录(<font color='red'>也就是平常执行hexo命令的地方</font>)，输入以下命令使用<code>npm</code>安装插件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212156402.png" alt="安装完之后的命令提示"></p>
-<h4 id="启用abbrlink插件"><a class="header-anchor" href="#启用abbrlink插件">¶</a>启用abbrlink插件</h4>
-<p>使用文本编辑器打开hexo根目录下的_config.yml，找到并修改以下内容</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="comment"># permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="comment"># permalink_defaults:</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:abbrlink/</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span> <span class="comment"># support crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>   <span class="comment"># support dec(default) and hex</span></span><br></pre></td></tr></table></figure>
-<h4 id="参数说明"><a class="header-anchor" href="#参数说明">¶</a>参数说明</h4>
-<p>abbrlink一共有两个参数:</p>
+<p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
+<p>答案是肯定的，以下为在添加自定义CSS</p>
+<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
+<p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
+<p>大致流程就是</p>
 <ul>
-<li>alg – Algorithm：对应随机算法参数，可选值为crc16和crc32</li>
-<li>rep – Represent：对应生成的数字表示方法，可选值为hex和dec</li>
+<li>打开Typora编辑器</li>
+<li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
+<li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
+<li>这样会打开本地的Typora主题文件夹
+<ul>
+<li>一种修改方式为修改<code>base.user.css</code></li>
+<li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
+<li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
 </ul>
-<p>以下为实例：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># crc16 &amp; hex</span></span><br><span class="line"><span class="string">/posts/66c8/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc16 &amp; dec</span></span><br><span class="line"><span class="string">/posts/65535/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc32 &amp; hex</span></span><br><span class="line"><span class="string">/posts/8ddf18fb/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc32 &amp; dec</span></span><br><span class="line"><span class="string">/posts/1690090958/</span></span><br></pre></td></tr></table></figure>
-<div class="note success"><p><font color='red'>crc16算法产生的随机数最大值为65536</font></p>
-</div>
-<h4 id="使用abbrlink"><a class="header-anchor" href="#使用abbrlink">¶</a>使用abbrlink</h4>
-<p>直接执行清除和渲染就可以啦</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
-<p>这样在原本markdown文档头部的yml内部就会产生一个随机数，专属于这篇文章的随机数</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212246514.png" alt="abbrlink随机数"></p>
+</li>
+<li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
+</ul>
+<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
+<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.task-list-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for completed tasks */</span></span><br><span class="line">    <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.task-list-not-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for incomplete tasks */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试用例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
+<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
+<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [x] <span class="xml"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span>写博客<span class="xml"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<ul>
+<li>[ ] 写博客</li>
+<li>[x] <del>写博客</del></li>
+</ul>
+<p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
+<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* the usual value of color ： red | blue | green | yellow *</span>/</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><font color='red'>红色</font></p>
+<p>其他的<font>属性也可以进行更改</p>
+<blockquote>
+<p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
+</blockquote>
+<h1>PicGo</h1>
+<p>这边有了一片博客关于图床的设置，直接提供链接</p>
+<p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
+<h1><a id="#a2">Ahk脚本</a></h1>
+<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
+<p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
+<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
+<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
+<p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
+<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
+<p><a href="https://www.autohotkey.com/">下载地址</a></p>
+<p>安装过程没有什么好说的，一路Next</p>
+<p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
+<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
+<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
+<p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
+<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
+<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
+<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(<span class="string">&quot;orange&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(<span class="string">&quot;red&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(<span class="string">&quot;cornflowerblue&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+G 荧光绿色</span><br><span class="line">	^!g::addFontColor(<span class="string">&quot;lawngreen&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+T 黄色</span><br><span class="line">	^!t::addFontColor(<span class="string">&quot;tomato&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
+<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
+<p><strong>未完待续</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
+        <category>Software</category>
+        <category>Typora</category>
+        <category>Picgo</category>
+        <category>HotKey</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
+        <tag>Ahk</tag>
+        <tag>HTML</tag>
+        <tag>CSS</tag>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -2376,105 +2424,133 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>markdown语法以及Typora使用(高级)</title>
-    <url>/posts/54024/</url>
-    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
+    <title>hexo进阶(1):优化文章链接为数字编号</title>
+    <url>/posts/59826/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
 <span id="more"></span>
-<h1>前言</h1>
-<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
-<h1>HTML+CSS</h1>
-<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
-<div class="note success"><blockquote>
-<p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p>
-<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
-<p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p>
-<p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">这是一个普通段落。</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">这是另一个普通段落。</span><br></pre></td></tr></table></figure>
-<p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p>
-<p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p>
-<p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p>
-</blockquote>
+<h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3>
+<p>下图为我的一篇文章的网址<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212118319.png" alt="检索网址太长"></p>
+<p>如果进行分享的话，就会出现以下情况</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line">https://conquerorlei.github.io/2021/08/20/%E5%85%B3%E4%BA%8Enew%E5%92%8Cdelete%E7%9A%84%E9%97%AE%E9%A2%98/</span><br></pre></td></tr></table></figure>
+<p>这样的话，其实本质上是没有问题的，但是为什么别人的网站网址就是干干净净的，我的小破站文章网址就这么长呢。我不甘心，于是就开始找方法进行修改。</p>
+<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
+<p>其实出现这种网址的情况，本质上是hexo的config的问题。在hexo的根目录下的_config.yml文件中，我发现了一下的配置</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br></pre></td></tr></table></figure>
+<p>这样的话，你的文章名就是<font color='red'>年份月份日期加题目</font></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212134814.jpeg" alt="这是什么？？？"></p>
+<p>尽管这还可以，不影响正常使用，但是我要网址这么长干嘛</p>
+<p>而且！！！由于编码的问题，我分享的时候，别人看见了还会问问后面的<font color='red'>%E5%85%B3%E4%BA%8E</font>是什么，这我能说什么，我写的汉字嘛？</p>
+<p>还有一个问题就是，一旦我修改了文章名称以及日期什么的，链接就无效了。</p>
+<p>这我能乐意嘛？不能🙉，不换掉干什么？留着下饭？😅</p>
+<h3 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h3>
+<p>下载个插件吧！<code>abbrlink</code>，这是他的<a href="https://github.com/rozbo/hexo-abbrlink"><font color='cornflowerblue'>github仓库地址</font></a></p>
+<h4 id="安装abbrlink插件"><a class="header-anchor" href="#安装abbrlink插件">¶</a>安装abbrlink插件</h4>
+<p>使用cmd命令提示符进入hexo的根目录(<font color='red'>也就是平常执行hexo命令的地方</font>)，输入以下命令使用<code>npm</code>安装插件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212156402.png" alt="安装完之后的命令提示"></p>
+<h4 id="启用abbrlink插件"><a class="header-anchor" href="#启用abbrlink插件">¶</a>启用abbrlink插件</h4>
+<p>使用文本编辑器打开hexo根目录下的_config.yml，找到并修改以下内容</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="comment"># permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="comment"># permalink_defaults:</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:abbrlink/</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span> <span class="comment"># support crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>   <span class="comment"># support dec(default) and hex</span></span><br></pre></td></tr></table></figure>
+<h4 id="参数说明"><a class="header-anchor" href="#参数说明">¶</a>参数说明</h4>
+<p>abbrlink一共有两个参数:</p>
+<ul>
+<li>alg – Algorithm：对应随机算法参数，可选值为crc16和crc32</li>
+<li>rep – Represent：对应生成的数字表示方法，可选值为hex和dec</li>
+</ul>
+<p>以下为实例：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># crc16 &amp; hex</span></span><br><span class="line"><span class="string">/posts/66c8/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc16 &amp; dec</span></span><br><span class="line"><span class="string">/posts/65535/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc32 &amp; hex</span></span><br><span class="line"><span class="string">/posts/8ddf18fb/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc32 &amp; dec</span></span><br><span class="line"><span class="string">/posts/1690090958/</span></span><br></pre></td></tr></table></figure>
+<div class="note success"><p><font color='red'>crc16算法产生的随机数最大值为65536</font></p>
 </div>
-<p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
-<p>答案是肯定的，以下为在添加自定义CSS</p>
-<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
-<p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
-<p>大致流程就是</p>
-<ul>
-<li>打开Typora编辑器</li>
-<li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
-<li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
-<li>这样会打开本地的Typora主题文件夹
-<ul>
-<li>一种修改方式为修改<code>base.user.css</code></li>
-<li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
-<li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
-</ul>
-</li>
-<li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
-</ul>
-<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
-<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.task-list-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for completed tasks */</span></span><br><span class="line">    <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.task-list-not-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for incomplete tasks */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>测试用例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
-<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
-<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [x] <span class="xml"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span>写博客<span class="xml"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<ul>
-<li>[ ] 写博客</li>
-<li>[x] <del>写博客</del></li>
-</ul>
-<p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
-<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* the usual value of color ： red | blue | green | yellow *</span>/</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<p><font color='red'>红色</font></p>
-<p>其他的<font>属性也可以进行更改</p>
-<blockquote>
-<p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
-</blockquote>
-<h1>PicGo</h1>
-<p>这边有了一片博客关于图床的设置，直接提供链接</p>
-<p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
-<h1><a id="#a2">Ahk脚本</a></h1>
-<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
-<p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
-<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
-<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
-<p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
-<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
-<p><a href="https://www.autohotkey.com/">下载地址</a></p>
-<p>安装过程没有什么好说的，一路Next</p>
-<p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
-<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
-<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
-<p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
-<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
-<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
-<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(<span class="string">&quot;orange&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(<span class="string">&quot;red&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(<span class="string">&quot;cornflowerblue&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+G 荧光绿色</span><br><span class="line">	^!g::addFontColor(<span class="string">&quot;lawngreen&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+T 黄色</span><br><span class="line">	^!t::addFontColor(<span class="string">&quot;tomato&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
-<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
-<p><strong>未完待续</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="使用abbrlink"><a class="header-anchor" href="#使用abbrlink">¶</a>使用abbrlink</h4>
+<p>直接执行清除和渲染就可以啦</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
+<p>这样在原本markdown文档头部的yml内部就会产生一个随机数，专属于这篇文章的随机数</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212246514.png" alt="abbrlink随机数"></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Software</category>
-        <category>Typora</category>
-        <category>Picgo</category>
-        <category>HotKey</category>
+        <category>环境搭建</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Markdown</tag>
-        <tag>Ahk</tag>
-        <tag>HTML</tag>
-        <tag>CSS</tag>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode C/C++头文件问题</title>
+    <url>/posts/55983/</url>
+    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
+<span id="more"></span>
+<h1>头文件问题</h1>
+<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
+<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
+<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
+<div class="note primary"><p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
+</div>
+<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
+<div class="note primary"><p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
+</div>
+<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
+<p>我想这个便不需要多加说明，这边只给定一个格式</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __ABC_H__ <span class="comment">//包拯不重复</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __ABC_H__ <span class="comment">//定义</span></span></span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//和ifndef配套使用</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
+<div class="note primary"><p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
+</div>
+<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
+<p>框内一共有三个内容</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;args&quot;</span>: [</span><br><span class="line">	<span class="string">&quot;-g&quot;</span>,</span><br><span class="line">	<span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="comment">// 头文件的实现文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="comment">// 头文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<div class="note info"><p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p>
+<p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
+</div>
+<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
+<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We&#x27;re best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x = <span class="number">1024</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test函数内部 x=%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test前 x=%d\n&quot;</span>, x);</span><br><span class="line">    test(x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test后 x=%d\n&quot;</span>, x);</span><br><span class="line">    test_1(x);</span><br><span class="line">    test_2(x);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>vscode配置文件</h1>
+<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW86&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;gcc&quot;</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;g++&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;ostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iomanip&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;array&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;atomic&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;*.tcc&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clocale&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cmath&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdarg&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstddef&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdint&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdio&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdlib&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstring&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ctime&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwchar&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;deque&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;unordered_map&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;vector&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;exception&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;algorithm&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory_resource&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;optional&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string_view&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;system_error&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tuple&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type_traits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;utility&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;initializer_list&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iosfwd&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;istream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;limits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;sstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;stdexcept&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;streambuf&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;typeinfo&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tidl_alg_int.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="string">&quot;Disabled&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;gcc&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
+<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>环境搭建</category>
+        <category>Software</category>
+        <category>Cpp</category>
+        <category>Vscode</category>
+      </categories>
+      <tags>
+        <tag>Vscode</tag>
+        <tag>Sundry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tensorflow-numpy-matplotlib线性回归</title>
+    <url>/posts/50065/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>神经网络与机器学习</category>
+      </categories>
+      <tags>
+        <tag>Numpy</tag>
+        <tag>Matplotlib</tag>
+        <tag>Tensorflow</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -2557,147 +2633,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>Tomcat error</title>
-    <url>/posts/37247/</url>
-    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
-<span id="more"></span>
-<h1>1099端口已经被占用</h1>
-<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
-<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
-<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
-<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
-<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode C/C++头文件问题</title>
-    <url>/posts/55983/</url>
-    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
-<span id="more"></span>
-<h1>头文件问题</h1>
-<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
-<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
-<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
-<div class="note primary"><p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
-</div>
-<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
-<div class="note primary"><p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
-</div>
-<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
-<p>我想这个便不需要多加说明，这边只给定一个格式</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __ABC_H__ <span class="comment">//包拯不重复</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __ABC_H__ <span class="comment">//定义</span></span></span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//和ifndef配套使用</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
-<div class="note primary"><p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
-</div>
-<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
-<p>框内一共有三个内容</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;args&quot;</span>: [</span><br><span class="line">	<span class="string">&quot;-g&quot;</span>,</span><br><span class="line">	<span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="comment">// 头文件的实现文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="comment">// 头文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-<div class="note info"><p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p>
-<p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
-</div>
-<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
-<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We&#x27;re best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x = <span class="number">1024</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test函数内部 x=%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test前 x=%d\n&quot;</span>, x);</span><br><span class="line">    test(x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test后 x=%d\n&quot;</span>, x);</span><br><span class="line">    test_1(x);</span><br><span class="line">    test_2(x);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>vscode配置文件</h1>
-<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW86&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;gcc&quot;</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;g++&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;ostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iomanip&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;array&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;atomic&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;*.tcc&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clocale&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cmath&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdarg&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstddef&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdint&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdio&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdlib&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstring&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ctime&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwchar&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;deque&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;unordered_map&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;vector&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;exception&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;algorithm&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory_resource&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;optional&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string_view&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;system_error&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tuple&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type_traits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;utility&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;initializer_list&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iosfwd&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;istream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;limits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;sstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;stdexcept&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;streambuf&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;typeinfo&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tidl_alg_int.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="string">&quot;Disabled&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;gcc&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
-<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>环境搭建</category>
-        <category>Software</category>
-        <category>Vscode</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-        <tag>Vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>tensorflow-numpy-matplotlib线性回归</title>
-    <url>/posts/50065/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>Python</category>
-        <category>神经网络与机器学习</category>
-      </categories>
-      <tags>
-        <tag>Numpy</tag>
-        <tag>Matplotlib</tag>
-        <tag>Tensorflow</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于new和delete的问题</title>
-    <url>/posts/36390/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
-<span id="more"></span>
-<h1>问题描述</h1>
-<p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p>
-<div class="note success"><p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
-</div>
-<p>发生问题的代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initList</span><span class="params">(LinkedList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l = <span class="keyword">new</span> LinkedList; <span class="comment">//问题所在行</span></span><br><span class="line">    <span class="keyword">if</span> (l == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结构体定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; LNode, *LinkedList;</span><br></pre></td></tr></table></figure>
-<h1>分析</h1>
-<p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
-<p>等等！</p>
-<p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *intp;</span><br><span class="line"><span class="keyword">int</span> *s = <span class="keyword">new</span> intp*;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>对不起，我刚刚好像就做了😥</p>
-</blockquote>
-<div class="note primary"><p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
-</div>
-<p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
-<h1>改动</h1>
-<p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">l = <span class="keyword">new</span> LNode;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Cpp</category>
-      </categories>
-      <tags>
-        <tag>Cpp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>以O(1)的空间复杂度交换两个数据</title>
     <url>/posts/18813/</url>
     <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-96d58dc7ea889b98102cbad4c53bb91e_720w.jpg?source=172ae18b" alt="Algorithm"></p>
@@ -2763,6 +2698,72 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat error</title>
+    <url>/posts/37247/</url>
+    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
+<span id="more"></span>
+<h1>1099端口已经被占用</h1>
+<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
+<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
+<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
+<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
+<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于new和delete的问题</title>
+    <url>/posts/36390/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
+<span id="more"></span>
+<h1>问题描述</h1>
+<p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p>
+<div class="note success"><p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
+</div>
+<p>发生问题的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initList</span><span class="params">(LinkedList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l = <span class="keyword">new</span> LinkedList; <span class="comment">//问题所在行</span></span><br><span class="line">    <span class="keyword">if</span> (l == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结构体定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; LNode, *LinkedList;</span><br></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
+<p>等等！</p>
+<p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *intp;</span><br><span class="line"><span class="keyword">int</span> *s = <span class="keyword">new</span> intp*;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>对不起，我刚刚好像就做了😥</p>
+</blockquote>
+<div class="note primary"><p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
+</div>
+<p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
+<h1>改动</h1>
+<p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">l = <span class="keyword">new</span> LNode;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Cpp</category>
+      </categories>
+      <tags>
+        <tag>Cpp</tag>
       </tags>
   </entry>
   <entry>
