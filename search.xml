@@ -65,229 +65,13 @@
 ]]></content>
       <categories>
         <category>Error</category>
-        <category>Hexo</category>
+        <category>环境搭建</category>
         <category>Git</category>
+        <category>Hexo</category>
       </categories>
       <tags>
         <tag>Git</tag>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Linux常用命令</title>
-    <url>/posts/48230/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
-<span id="more"></span>
-<h1>Linux系统指令以及快捷键</h1>
-<h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
-<p>程序员职业生涯中少不了使用Linux系统，掌握一部分常用的Linux快捷键以及了解Linux命令行常用指令将会使你的工作事半功倍。以下为个人对经常使用的指令的总结，持续更新。</p>
-<p>本文以ubuntu20.04作为操作版本进行操作，获取的截图都是ubuntu20.04系统下的。</p>
-<h2 id="Linux文件系统目录结构"><a class="header-anchor" href="#Linux文件系统目录结构">¶</a>Linux文件系统目录结构</h2>
-<table>
-<thead>
-<tr>
-<th>目录</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/bin</td>
-<td>可执行程序</td>
-</tr>
-<tr>
-<td>/dev</td>
-<td>块、字符设备结点文件</td>
-</tr>
-<tr>
-<td>/etc</td>
-<td>主要配置文件和初始化配置文件</td>
-</tr>
-<tr>
-<td>/lib</td>
-<td>基本的库文件，如：C库，内核模块(modules)</td>
-</tr>
-<tr>
-<td>/mnt</td>
-<td>挂载点，临时挂载文件系统用</td>
-</tr>
-<tr>
-<td>/opt</td>
-<td>附加的软件包</td>
-</tr>
-<tr>
-<td>/proc</td>
-<td>虚拟文件系统，用于内核与进程通信</td>
-</tr>
-<tr>
-<td>/sbin</td>
-<td>基本的系统管理程序</td>
-</tr>
-<tr>
-<td>/tmp</td>
-<td>临时文件目录</td>
-</tr>
-<tr>
-<td>/usr</td>
-<td>更多的用户程序，包括“X Server”</td>
-</tr>
-<tr>
-<td>/sys</td>
-<td>虚拟文件系统sysfs挂载点</td>
-</tr>
-<tr>
-<td>/var</td>
-<td>可变信息存储，如log等</td>
-</tr>
-</tbody>
-</table>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629154641.png" alt="Ubuntus20.04目录结构"></p>
-<div class="note primary"><blockquote>
-<p>大致上，ubuntu的文件目录结构基本是没有什么大的变化的，但是不同版本之间可能会有一些不同，例如，ubuntu20.04将lib文件夹分割为32和64的库文件以及公用部分lib。</p>
-</blockquote>
-</div>
-<h2 id="Linux操作"><a class="header-anchor" href="#Linux操作">¶</a>Linux操作</h2>
-<h3 id="bash快捷键"><a class="header-anchor" href="#bash快捷键">¶</a>bash快捷键</h3>
-<table>
-<thead>
-<tr>
-<th>快捷键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+Alt+T</td>
-<td>打开Terminal</td>
-</tr>
-<tr>
-<td>Ctrl+‘+’</td>
-<td>字体放大</td>
-</tr>
-<tr>
-<td>Ctrl+‘-’</td>
-<td>字体缩小</td>
-</tr>
-<tr>
-<td>Ctrl+L</td>
-<td>清屏</td>
-</tr>
-<tr>
-<td>TAB</td>
-<td>双击TAB将列出包含当前指令的命令</td>
-</tr>
-<tr>
-<td>Ctrl+C</td>
-<td>终端当前正在执行的指令(经常在进入到root之后)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Bash内部命令"><a class="header-anchor" href="#Bash内部命令">¶</a>Bash内部命令</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">History #显示历史命令</span><br><span class="line">history -c #清除历史命令</span><br><span class="line">History -w #保存历史命令道HISTFILE</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">Alias#</span><span class="bash">显示全部命令别名</span></span><br><span class="line">alias l=“ls -la”#赋予l ls -la含义</span><br><span class="line">unalias l #删除别名l</span><br><span class="line"></span><br><span class="line">echo ”I love u“ #屏幕输出，，，，</span><br><span class="line">export HELLO = &quot;HELLO WORLD&quot; #定义当前用户环境变量</span><br><span class="line">env #显示环境变量</span><br><span class="line">source #执行环境变量</span><br><span class="line">pwd #显示当前所在目录</span><br></pre></td></tr></table></figure>
-<h3 id="部分系统命令"><a class="header-anchor" href="#部分系统命令">¶</a>部分系统命令</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dmesg   	#启动日志</span><br><span class="line">uptime 		#用户登录信息，系统使用时间</span><br><span class="line">uname -a 	#显示系统信息</span><br><span class="line">df -T      	#挂载分区使用情况</span><br></pre></td></tr></table></figure>
-<h3 id="网络命令"><a class="header-anchor" href="#网络命令">¶</a>网络命令</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">netstat -tnlp 	#显示处于坚挺状态的TCP端口</span><br><span class="line">netstat -unlp 	#显示处于坚挺状态的UDP端口</span><br><span class="line">ifconfig 		#显示网卡参数</span><br><span class="line">ethtool eth0</span><br><span class="line">ifconfig eth1 add 192.168.0.1 up 	#配置eth1的Ip地址并使用</span><br><span class="line">ifup eht0 		#启用</span><br><span class="line">ifdown	 		#禁用	</span><br><span class="line">ping 192.168.0.111 	#向另一条计算机监测网络是否通信正常</span><br><span class="line">ping www.baidu.com</span><br><span class="line">route 				#显示路由表</span><br><span class="line">route add -net 192.168.1.0 netmask 225.225.225.0 gw 10.2.11</span><br><span class="line">					#添加一条达到192.168.1.0网段的路由</span><br><span class="line">traceroute www.baidu.com #追综达到baidu的路由地址</span><br></pre></td></tr></table></figure>
-<h3 id="安装包管理"><a class="header-anchor" href="#安装包管理">¶</a>安装包管理</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -l 		#列出已经安装的全部软件包</span><br><span class="line">dpkg -l *vim* 	#列出包含vim字符的所有安装了的软件包</span><br><span class="line">dpkg -L vim 	#列出vim的文件</span><br><span class="line">dpkg -S file 	#查看文件夹中安装的软件包</span><br><span class="line">dpkg -i xxx.deb #安装软件包</span><br><span class="line">apt-cache search open 		#搜寻包含名字含有open的软件宝</span><br><span class="line">apt-file search file 		#搜寻file中包含的软件包</span><br><span class="line">apt-cache show openssh 		#展示软件openssh的发行信息</span><br><span class="line">apt-get install vim zip 	#安装vim，Zip两个软件</span><br><span class="line">apt-get --reinstall     	#重新安装</span><br><span class="line">apt-get remove   			#卸载但是保留配置信息</span><br><span class="line">apt-get purge 				#卸载并删除配置信息</span><br><span class="line">apt-get update 				#更新或者更改源信息后必须执行：同步源索引文件到本地（root权限）</span><br><span class="line">apt-get upgrade 			#全面升级（root权限）</span><br><span class="line">apt-get source vim 			#查看vim源代码</span><br><span class="line">apt-get build-dep  vim 		#构建编译vim所需环境</span><br><span class="line">apkg -buildpackage -rfakeroot 	#编译并生成软件</span><br></pre></td></tr></table></figure>
-<h3 id="常用命令"><a class="header-anchor" href="#常用命令">¶</a>常用命令</h3>
-<h4 id="关机和重启"><a class="header-anchor" href="#关机和重启">¶</a>关机和重启</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shutdown</span></span><br><span class="line">shutdown -h now 	#立即关机</span><br><span class="line">shutdown -h 10  	#&quot;10分钟后关机&quot; </span><br><span class="line">shutdown -c 		#取消</span><br><span class="line">Shutdown -r 16:30 #指定时间重启</span><br><span class="line">shutdown -h 16:30 #指定时间关机</span><br><span class="line"></span><br><span class="line">reboot 			#立即重启</span><br><span class="line"></span><br><span class="line">halt poweroff #暴力关机</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> sync和shutdown同时使用可能会好一些</span></span><br><span class="line">sync 				#磁盘高速缓存内容同步到磁盘</span><br><span class="line">Systemctl hibernate #进入睡眠</span><br></pre></td></tr></table></figure>
-<h4 id="查看系统信息和历史命令"><a class="header-anchor" href="#查看系统信息和历史命令">¶</a>查看系统信息和历史命令</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname</span><br><span class="line">uname -r</span><br><span class="line">uname -a</span><br></pre></td></tr></table></figure>
-<p><strong>历史命令查看与管理</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">history</span><br><span class="line">history -c</span><br><span class="line">history -s</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629170332.png" alt="系统信息和历史命令"></p>
-<h4 id="查看当前用户"><a class="header-anchor" href="#查看当前用户">¶</a>查看当前用户</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">whoami		#who am i 我是谁</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172431.png" alt="查看当前用户"></p>
-<h4 id="查看目录下的内容"><a class="header-anchor" href="#查看目录下的内容">¶</a>查看目录下的内容</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls #查看简略信息</span><br><span class="line">ls -l #查看详细信息</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172726.png" alt="ls命令"></p>
-<h4 id="路径命令"><a class="header-anchor" href="#路径命令">¶</a>路径命令</h4>
-<h5 id="改变路径"><a class="header-anchor" href="#改变路径">¶</a>改变路径</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 指定路径			#跳转到指定路径</span><br><span class="line">cd 回车 			#跳转到根目录</span><br><span class="line">cd .. 				#回到上一层</span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>cd全称change directory，表示更改路径</p>
-</blockquote>
-</div>
-<h5 id="查看当前路径"><a class="header-anchor" href="#查看当前路径">¶</a>查看当前路径</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pwd		#查看当前路径</span><br></pre></td></tr></table></figure>
-<h4 id="文件相关命令"><a class="header-anchor" href="#文件相关命令">¶</a>文件相关命令</h4>
-<h5 id="文件夹命令"><a class="header-anchor" href="#文件夹命令">¶</a>文件夹命令</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建文件夹</span></span><br><span class="line">mkdir &#123;文件夹名称&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash">删除文件夹</span></span><br><span class="line">rmdir &#123;文件夹名称&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="创建文件命令"><a class="header-anchor" href="#创建文件命令">¶</a>创建文件命令</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">touch 1.c   #新建一个空文件1.c</span><br><span class="line">touch 1.c   #该文件夹已有1.c ， 改变1.c的时间戳</span><br></pre></td></tr></table></figure>
-<h5 id="拷贝文件命令"><a class="header-anchor" href="#拷贝文件命令">¶</a>拷贝文件命令</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cp /mnt/hgfs/arm-test/stack.c  .     #拷贝其他目录下的stack.c 到当前目录 </span><br></pre></td></tr></table></figure>
-<h5 id="移动文件命令"><a class="header-anchor" href="#移动文件命令">¶</a>移动文件命令</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir testdir		#创建文件夹testdir</span><br><span class="line">					# 格式 mv &#123;文件名&#125; &#123;文件夹名称&#125;</span><br><span class="line">mv   1.c  testdir   #移动1.c 到文件夹 testdir</span><br><span class="line">cd   testdir</span><br><span class="line">					# 格式 mv &#123;文件名称&#125; &#123;更改后的文件名称&#125;</span><br><span class="line">mv  1.c  2.c  		#改名1.c  为 2.c</span><br></pre></td></tr></table></figure>
-<h5 id="移除文件或者目录"><a class="header-anchor" href="#移除文件或者目录">¶</a>移除文件或者目录</h5>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm  1.c   		#删除1.c</span><br><span class="line">cd .. </span><br><span class="line">rm -rf testdir  #删除一个文件夹 </span><br></pre></td></tr></table></figure>
-<h5 id="更改文件权限命令"><a class="header-anchor" href="#更改文件权限命令">¶</a>更改文件权限命令</h5>
-<p>Chmod命令主要用于修改、设置文件权限</p>
-<p>chmod 修改文件权限主要有两种方式： 字母法与数字法</p>
-<p>虽然数字法相对字母法简单，但是数字法是基于字母法，所以这里先介绍字母法。</p>
-<h6 id="字母法：chmod-u-g-o-a-r-w-x-文件名"><a class="header-anchor" href="#字母法：chmod-u-g-o-a-r-w-x-文件名">¶</a>字母法：chmod  (u g o a)   (+ - =)   (r w x)   (文件名)</h6>
-<p>以上是chmod的用法，每个括号是一个参数， 前三个括号主要放在一起使用即 chmod + 设置模式 + 文件名；下面先介绍这些参数的意义：</p>
-<p>[u g o a]	含义
-u	user 表示该文件的所有者
-g	group 表示与该文件的所有者属于同一组( group )者，即用户组
-o	other 表示其它用户组
-a	all 表示这三者皆是</p>
-<p>[+  -  =]	含义</p>
-<ul>
-<li>[-] 增加权限</li>
-</ul>
-<ul>
-<li>[+] 撤销权限</li>
-<li>[=] 设定权限</li>
-</ul>
-<p>[r   w   x]	含义
-r	read 表示可读取，对于一个目录，如果没有r权限，那么就意味着不能通过ls查看这个目录的内容。
-w	write 表示可写入，对于一个目录，如果没有w权限，那么就意味着不能在目录下创建新的文件。
-x	excute 表示可执行，对于一个目录，如果没有x权限，那么就意味着不能通过cd进入这个目录。</p>
-<p>**用法：**chmod + 设置模式 + 文件名
-中间的设置模式，要分别对u(user), g(group), o(other)设置权限。</p>
-<p>chmod u+rwx, g+rwx, o+rwx filename 改命令说明对filename文件， 赋予user、group、other均有read、write、excute的权限
-所以设置模式中应该包含对三种用户类型的权限设置，各自独立，互不影响。</p>
-<p><strong>举例说明：</strong></p>
-<p>chmod u+rw filename   说明对于filname, 只赋予user用户, read、write权限
-chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、excute权限；赋予group用户read、write权限</p>
-<blockquote>
-<p>（chmod + 设置模式 + 文件名）    设置模式中包含对三种类型用户（u、g、o）的权限设置，这三者各自独立，互不干扰。</p>
-</blockquote>
-<h6 id="数字法"><a class="header-anchor" href="#数字法">¶</a>数字法</h6>
-<p>数字法是基于字母法的表示，如果字母法懂了，数字法就好懂，并且易于使用。</p>
-<p>**用法：**chmod + 数字组合 + 文件名
-数字组合一般包含三个数字：</p>
-<p>第一个数字对应字母法的用户u（user）</p>
-<p>第二个数字对应字母法的用户g（group）</p>
-<p>第三个数字对应字母法的用户o（other）</p>
-<p><strong>另外：</strong></p>
-<p>r  (read)     ----------------&gt;   4</p>
-<p>w (write)    ----------------&gt;   2</p>
-<p>x (excute)  ----------------&gt;   1</p>
-<p><strong>示例详解：</strong></p>
-<p>数字法：chmod  777   文件名   &lt;-----------对应--------------&gt;    字母法： chmod u+rwx, g+rwx, o+rwx  文件名</p>
-<p>第一个数字7：代表用户 u 的权限 rwx， 4 ® + 2 (w) + 1 (x) =  7</p>
-<p>第二个数字7：代表用户 g 的权限 rwx,    4 ® + 2 (w) + 1 (x) =  7</p>
-<p>第三个数字7：代表用户 o 的权限 rwx,    4 ® + 2 (w) + 1 (x) =  7</p>
-<p><strong>举例说明：</strong></p>
-<p>数字法：chmod  755 filename    对应    字母法： chmod u+rwx, g+rx, o+rx filename
-数字法：chmod  751 filename    对应    字母法： chmod u+rwx, g+rx, o+x  filename
-数字法：chmod  765 filename    对应    字母法： chmod u+rwx, g+rw, o+rx filename</p>
-<h4 id="打包命令"><a class="header-anchor" href="#打包命令">¶</a>打包命令</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar zcvf ../test.gz ./*  #打包当前目录所有文件， 生成包 ， 包是上级目录下的test.gz </span><br><span class="line">tar zxvf ../test.gz .    #解包上级目录下的test.gz ， 解包到当前目录 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">z ----------- 有压缩功能</span><br><span class="line">c ----------- create 产生文件包</span><br><span class="line">x ----------- extract 解包文件 </span><br><span class="line">v ----------- 打包或解包， 可以看到过程 </span><br></pre></td></tr></table></figure>
-<p>到目前为止，常用的Linux快捷键以及命令行命令已经总结结束啦！</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>Terminal</tag>
       </tags>
   </entry>
   <entry>
@@ -517,6 +301,223 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>Linux常用命令</title>
+    <url>/posts/48230/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
+<span id="more"></span>
+<h1>Linux系统指令以及快捷键</h1>
+<h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
+<p>程序员职业生涯中少不了使用Linux系统，掌握一部分常用的Linux快捷键以及了解Linux命令行常用指令将会使你的工作事半功倍。以下为个人对经常使用的指令的总结，持续更新。</p>
+<p>本文以ubuntu20.04作为操作版本进行操作，获取的截图都是ubuntu20.04系统下的。</p>
+<h2 id="Linux文件系统目录结构"><a class="header-anchor" href="#Linux文件系统目录结构">¶</a>Linux文件系统目录结构</h2>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/bin</td>
+<td>可执行程序</td>
+</tr>
+<tr>
+<td>/dev</td>
+<td>块、字符设备结点文件</td>
+</tr>
+<tr>
+<td>/etc</td>
+<td>主要配置文件和初始化配置文件</td>
+</tr>
+<tr>
+<td>/lib</td>
+<td>基本的库文件，如：C库，内核模块(modules)</td>
+</tr>
+<tr>
+<td>/mnt</td>
+<td>挂载点，临时挂载文件系统用</td>
+</tr>
+<tr>
+<td>/opt</td>
+<td>附加的软件包</td>
+</tr>
+<tr>
+<td>/proc</td>
+<td>虚拟文件系统，用于内核与进程通信</td>
+</tr>
+<tr>
+<td>/sbin</td>
+<td>基本的系统管理程序</td>
+</tr>
+<tr>
+<td>/tmp</td>
+<td>临时文件目录</td>
+</tr>
+<tr>
+<td>/usr</td>
+<td>更多的用户程序，包括“X Server”</td>
+</tr>
+<tr>
+<td>/sys</td>
+<td>虚拟文件系统sysfs挂载点</td>
+</tr>
+<tr>
+<td>/var</td>
+<td>可变信息存储，如log等</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629154641.png" alt="Ubuntus20.04目录结构"></p>
+<div class="note primary"><blockquote>
+<p>大致上，ubuntu的文件目录结构基本是没有什么大的变化的，但是不同版本之间可能会有一些不同，例如，ubuntu20.04将lib文件夹分割为32和64的库文件以及公用部分lib。</p>
+</blockquote>
+</div>
+<h2 id="Linux操作"><a class="header-anchor" href="#Linux操作">¶</a>Linux操作</h2>
+<h3 id="bash快捷键"><a class="header-anchor" href="#bash快捷键">¶</a>bash快捷键</h3>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+Alt+T</td>
+<td>打开Terminal</td>
+</tr>
+<tr>
+<td>Ctrl+‘+’</td>
+<td>字体放大</td>
+</tr>
+<tr>
+<td>Ctrl+‘-’</td>
+<td>字体缩小</td>
+</tr>
+<tr>
+<td>Ctrl+L</td>
+<td>清屏</td>
+</tr>
+<tr>
+<td>TAB</td>
+<td>双击TAB将列出包含当前指令的命令</td>
+</tr>
+<tr>
+<td>Ctrl+C</td>
+<td>终端当前正在执行的指令(经常在进入到root之后)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Bash内部命令"><a class="header-anchor" href="#Bash内部命令">¶</a>Bash内部命令</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">History #显示历史命令</span><br><span class="line">history -c #清除历史命令</span><br><span class="line">History -w #保存历史命令道HISTFILE</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">Alias#</span><span class="bash">显示全部命令别名</span></span><br><span class="line">alias l=“ls -la”#赋予l ls -la含义</span><br><span class="line">unalias l #删除别名l</span><br><span class="line"></span><br><span class="line">echo ”I love u“ #屏幕输出，，，，</span><br><span class="line">export HELLO = &quot;HELLO WORLD&quot; #定义当前用户环境变量</span><br><span class="line">env #显示环境变量</span><br><span class="line">source #执行环境变量</span><br><span class="line">pwd #显示当前所在目录</span><br></pre></td></tr></table></figure>
+<h3 id="部分系统命令"><a class="header-anchor" href="#部分系统命令">¶</a>部分系统命令</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dmesg   	#启动日志</span><br><span class="line">uptime 		#用户登录信息，系统使用时间</span><br><span class="line">uname -a 	#显示系统信息</span><br><span class="line">df -T      	#挂载分区使用情况</span><br></pre></td></tr></table></figure>
+<h3 id="网络命令"><a class="header-anchor" href="#网络命令">¶</a>网络命令</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">netstat -tnlp 	#显示处于坚挺状态的TCP端口</span><br><span class="line">netstat -unlp 	#显示处于坚挺状态的UDP端口</span><br><span class="line">ifconfig 		#显示网卡参数</span><br><span class="line">ethtool eth0</span><br><span class="line">ifconfig eth1 add 192.168.0.1 up 	#配置eth1的Ip地址并使用</span><br><span class="line">ifup eht0 		#启用</span><br><span class="line">ifdown	 		#禁用	</span><br><span class="line">ping 192.168.0.111 	#向另一条计算机监测网络是否通信正常</span><br><span class="line">ping www.baidu.com</span><br><span class="line">route 				#显示路由表</span><br><span class="line">route add -net 192.168.1.0 netmask 225.225.225.0 gw 10.2.11</span><br><span class="line">					#添加一条达到192.168.1.0网段的路由</span><br><span class="line">traceroute www.baidu.com #追综达到baidu的路由地址</span><br></pre></td></tr></table></figure>
+<h3 id="安装包管理"><a class="header-anchor" href="#安装包管理">¶</a>安装包管理</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dpkg -l 		#列出已经安装的全部软件包</span><br><span class="line">dpkg -l *vim* 	#列出包含vim字符的所有安装了的软件包</span><br><span class="line">dpkg -L vim 	#列出vim的文件</span><br><span class="line">dpkg -S file 	#查看文件夹中安装的软件包</span><br><span class="line">dpkg -i xxx.deb #安装软件包</span><br><span class="line">apt-cache search open 		#搜寻包含名字含有open的软件宝</span><br><span class="line">apt-file search file 		#搜寻file中包含的软件包</span><br><span class="line">apt-cache show openssh 		#展示软件openssh的发行信息</span><br><span class="line">apt-get install vim zip 	#安装vim，Zip两个软件</span><br><span class="line">apt-get --reinstall     	#重新安装</span><br><span class="line">apt-get remove   			#卸载但是保留配置信息</span><br><span class="line">apt-get purge 				#卸载并删除配置信息</span><br><span class="line">apt-get update 				#更新或者更改源信息后必须执行：同步源索引文件到本地（root权限）</span><br><span class="line">apt-get upgrade 			#全面升级（root权限）</span><br><span class="line">apt-get source vim 			#查看vim源代码</span><br><span class="line">apt-get build-dep  vim 		#构建编译vim所需环境</span><br><span class="line">apkg -buildpackage -rfakeroot 	#编译并生成软件</span><br></pre></td></tr></table></figure>
+<h3 id="常用命令"><a class="header-anchor" href="#常用命令">¶</a>常用命令</h3>
+<h4 id="关机和重启"><a class="header-anchor" href="#关机和重启">¶</a>关机和重启</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shutdown</span></span><br><span class="line">shutdown -h now 	#立即关机</span><br><span class="line">shutdown -h 10  	#&quot;10分钟后关机&quot; </span><br><span class="line">shutdown -c 		#取消</span><br><span class="line">Shutdown -r 16:30 #指定时间重启</span><br><span class="line">shutdown -h 16:30 #指定时间关机</span><br><span class="line"></span><br><span class="line">reboot 			#立即重启</span><br><span class="line"></span><br><span class="line">halt poweroff #暴力关机</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> sync和shutdown同时使用可能会好一些</span></span><br><span class="line">sync 				#磁盘高速缓存内容同步到磁盘</span><br><span class="line">Systemctl hibernate #进入睡眠</span><br></pre></td></tr></table></figure>
+<h4 id="查看系统信息和历史命令"><a class="header-anchor" href="#查看系统信息和历史命令">¶</a>查看系统信息和历史命令</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname</span><br><span class="line">uname -r</span><br><span class="line">uname -a</span><br></pre></td></tr></table></figure>
+<p><strong>历史命令查看与管理</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">history</span><br><span class="line">history -c</span><br><span class="line">history -s</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629170332.png" alt="系统信息和历史命令"></p>
+<h4 id="查看当前用户"><a class="header-anchor" href="#查看当前用户">¶</a>查看当前用户</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">whoami		#who am i 我是谁</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172431.png" alt="查看当前用户"></p>
+<h4 id="查看目录下的内容"><a class="header-anchor" href="#查看目录下的内容">¶</a>查看目录下的内容</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ls #查看简略信息</span><br><span class="line">ls -l #查看详细信息</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172726.png" alt="ls命令"></p>
+<h4 id="路径命令"><a class="header-anchor" href="#路径命令">¶</a>路径命令</h4>
+<h5 id="改变路径"><a class="header-anchor" href="#改变路径">¶</a>改变路径</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd 指定路径			#跳转到指定路径</span><br><span class="line">cd 回车 			#跳转到根目录</span><br><span class="line">cd .. 				#回到上一层</span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>cd全称change directory，表示更改路径</p>
+</blockquote>
+</div>
+<h5 id="查看当前路径"><a class="header-anchor" href="#查看当前路径">¶</a>查看当前路径</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pwd		#查看当前路径</span><br></pre></td></tr></table></figure>
+<h4 id="文件相关命令"><a class="header-anchor" href="#文件相关命令">¶</a>文件相关命令</h4>
+<h5 id="文件夹命令"><a class="header-anchor" href="#文件夹命令">¶</a>文件夹命令</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建文件夹</span></span><br><span class="line">mkdir &#123;文件夹名称&#125;</span><br><span class="line"><span class="meta">#</span><span class="bash">删除文件夹</span></span><br><span class="line">rmdir &#123;文件夹名称&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="创建文件命令"><a class="header-anchor" href="#创建文件命令">¶</a>创建文件命令</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">touch 1.c   #新建一个空文件1.c</span><br><span class="line">touch 1.c   #该文件夹已有1.c ， 改变1.c的时间戳</span><br></pre></td></tr></table></figure>
+<h5 id="拷贝文件命令"><a class="header-anchor" href="#拷贝文件命令">¶</a>拷贝文件命令</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cp /mnt/hgfs/arm-test/stack.c  .     #拷贝其他目录下的stack.c 到当前目录 </span><br></pre></td></tr></table></figure>
+<h5 id="移动文件命令"><a class="header-anchor" href="#移动文件命令">¶</a>移动文件命令</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir testdir		#创建文件夹testdir</span><br><span class="line">					# 格式 mv &#123;文件名&#125; &#123;文件夹名称&#125;</span><br><span class="line">mv   1.c  testdir   #移动1.c 到文件夹 testdir</span><br><span class="line">cd   testdir</span><br><span class="line">					# 格式 mv &#123;文件名称&#125; &#123;更改后的文件名称&#125;</span><br><span class="line">mv  1.c  2.c  		#改名1.c  为 2.c</span><br></pre></td></tr></table></figure>
+<h5 id="移除文件或者目录"><a class="header-anchor" href="#移除文件或者目录">¶</a>移除文件或者目录</h5>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm  1.c   		#删除1.c</span><br><span class="line">cd .. </span><br><span class="line">rm -rf testdir  #删除一个文件夹 </span><br></pre></td></tr></table></figure>
+<h5 id="更改文件权限命令"><a class="header-anchor" href="#更改文件权限命令">¶</a>更改文件权限命令</h5>
+<p>Chmod命令主要用于修改、设置文件权限</p>
+<p>chmod 修改文件权限主要有两种方式： 字母法与数字法</p>
+<p>虽然数字法相对字母法简单，但是数字法是基于字母法，所以这里先介绍字母法。</p>
+<h6 id="字母法：chmod-u-g-o-a-r-w-x-文件名"><a class="header-anchor" href="#字母法：chmod-u-g-o-a-r-w-x-文件名">¶</a>字母法：chmod  (u g o a)   (+ - =)   (r w x)   (文件名)</h6>
+<p>以上是chmod的用法，每个括号是一个参数， 前三个括号主要放在一起使用即 chmod + 设置模式 + 文件名；下面先介绍这些参数的意义：</p>
+<p>[u g o a]	含义
+u	user 表示该文件的所有者
+g	group 表示与该文件的所有者属于同一组( group )者，即用户组
+o	other 表示其它用户组
+a	all 表示这三者皆是</p>
+<p>[+  -  =]	含义</p>
+<ul>
+<li>[-] 增加权限</li>
+</ul>
+<ul>
+<li>[+] 撤销权限</li>
+<li>[=] 设定权限</li>
+</ul>
+<p>[r   w   x]	含义
+r	read 表示可读取，对于一个目录，如果没有r权限，那么就意味着不能通过ls查看这个目录的内容。
+w	write 表示可写入，对于一个目录，如果没有w权限，那么就意味着不能在目录下创建新的文件。
+x	excute 表示可执行，对于一个目录，如果没有x权限，那么就意味着不能通过cd进入这个目录。</p>
+<p>**用法：**chmod + 设置模式 + 文件名
+中间的设置模式，要分别对u(user), g(group), o(other)设置权限。</p>
+<p>chmod u+rwx, g+rwx, o+rwx filename 改命令说明对filename文件， 赋予user、group、other均有read、write、excute的权限
+所以设置模式中应该包含对三种用户类型的权限设置，各自独立，互不影响。</p>
+<p><strong>举例说明：</strong></p>
+<p>chmod u+rw filename   说明对于filname, 只赋予user用户, read、write权限
+chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、excute权限；赋予group用户read、write权限</p>
+<blockquote>
+<p>（chmod + 设置模式 + 文件名）    设置模式中包含对三种类型用户（u、g、o）的权限设置，这三者各自独立，互不干扰。</p>
+</blockquote>
+<h6 id="数字法"><a class="header-anchor" href="#数字法">¶</a>数字法</h6>
+<p>数字法是基于字母法的表示，如果字母法懂了，数字法就好懂，并且易于使用。</p>
+<p>**用法：**chmod + 数字组合 + 文件名
+数字组合一般包含三个数字：</p>
+<p>第一个数字对应字母法的用户u（user）</p>
+<p>第二个数字对应字母法的用户g（group）</p>
+<p>第三个数字对应字母法的用户o（other）</p>
+<p><strong>另外：</strong></p>
+<p>r  (read)     ----------------&gt;   4</p>
+<p>w (write)    ----------------&gt;   2</p>
+<p>x (excute)  ----------------&gt;   1</p>
+<p><strong>示例详解：</strong></p>
+<p>数字法：chmod  777   文件名   &lt;-----------对应--------------&gt;    字母法： chmod u+rwx, g+rwx, o+rwx  文件名</p>
+<p>第一个数字7：代表用户 u 的权限 rwx， 4 ® + 2 (w) + 1 (x) =  7</p>
+<p>第二个数字7：代表用户 g 的权限 rwx,    4 ® + 2 (w) + 1 (x) =  7</p>
+<p>第三个数字7：代表用户 o 的权限 rwx,    4 ® + 2 (w) + 1 (x) =  7</p>
+<p><strong>举例说明：</strong></p>
+<p>数字法：chmod  755 filename    对应    字母法： chmod u+rwx, g+rx, o+rx filename
+数字法：chmod  751 filename    对应    字母法： chmod u+rwx, g+rx, o+x  filename
+数字法：chmod  765 filename    对应    字母法： chmod u+rwx, g+rw, o+rx filename</p>
+<h4 id="打包命令"><a class="header-anchor" href="#打包命令">¶</a>打包命令</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar zcvf ../test.gz ./*  #打包当前目录所有文件， 生成包 ， 包是上级目录下的test.gz </span><br><span class="line">tar zxvf ../test.gz .    #解包上级目录下的test.gz ， 解包到当前目录 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">z ----------- 有压缩功能</span><br><span class="line">c ----------- create 产生文件包</span><br><span class="line">x ----------- extract 解包文件 </span><br><span class="line">v ----------- 打包或解包， 可以看到过程 </span><br></pre></td></tr></table></figure>
+<p>到目前为止，常用的Linux快捷键以及命令行命令已经总结结束啦！</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Terminal</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SpringBoot远程debug</title>
     <url>/posts/29958/</url>
     <content><![CDATA[<p><img src="https://ucarecdn.com/df898380-25a5-4296-9633-0ed47a9c717d/-/autorotate/yes/" alt="SpringBoot"></p>
@@ -572,6 +573,21 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>SpringBoot</tag>
         <tag>Debug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring是什么</title>
+    <url>/posts/46178/</url>
+    <content><![CDATA[<h1>前言</h1>
+]]></content>
+      <categories>
+        <category>FrameWork</category>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>LOC</tag>
+        <tag>DI</tag>
       </tags>
   </entry>
   <entry>
@@ -1071,21 +1087,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Spring是什么</title>
-    <url>/posts/46178/</url>
-    <content><![CDATA[<h1>前言</h1>
-]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>LOC</tag>
-        <tag>DI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ajax—servlet实现前后端交互</title>
     <url>/posts/27591/</url>
     <content><![CDATA[<p><img src="https://coachtestprep.s3.amazonaws.com/uploads/course/header_image/8727/udemy-logo.png" alt="JQuery AJAX"></p>
@@ -1220,55 +1221,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>git 使用报错以及解决办法</title>
-    <url>/posts/34931/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.5ZVnEHdqMkr0oPHWFA0RzAHaD3?pid=ImgDet&amp;rs=1" alt="git github"></p>
-<span id="more"></span>
-<h1>常见错误</h1>
-<p>git是我们日常工作中需要用到的工具，所以由于多人协作的缘故或者是其他一些原因经常会遇见一些错误，以下是我在使用git的过程中遇见的一些错误以下做一个总结</p>
-<h2 id="错误类型：错误码"><a class="header-anchor" href="#错误类型：错误码">¶</a>错误类型：错误码</h2>
-<h3 id="错误码：443"><a class="header-anchor" href="#错误码：443">¶</a>错误码：443</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
-<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
-<p>解决办法：接触SSL验证，再次git</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
-<p>错误类型：Push</p>
-<h2 id="push时出错"><a class="header-anchor" href="#push时出错">¶</a>push时出错</h2>
-<h3 id="请求出错"><a class="header-anchor" href="#请求出错">¶</a>请求出错</h3>
-<p>报错代码：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
-<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
-<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
-<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
-<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
-<h3 id="失败提交"><a class="header-anchor" href="#失败提交">¶</a>失败提交</h3>
-<h4 id="错误展示"><a class="header-anchor" href="#错误展示">¶</a>错误展示</h4>
-<p><strong>错误提示：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">error: failed to push some refs to &#x27;https://gitee.com/xxx/xxx.git&#x27;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113408024.png" alt="failed to push"></p>
-<p><strong>解决方案：</strong></p>
-<p>这个错误一般情况下都是本地仓库和远程仓库版本不一致的问题，解决办法就是<code>git pull</code>下拉，但是下拉又会遇见以下问题，好家伙</p>
-<p><strong>错误提示：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113648936.png" alt="refusing to merge"></p>
-<p>拒绝合并没有关系的历史，</p>
-<h4 id="原因分析"><a class="header-anchor" href="#原因分析">¶</a>原因分析</h4>
-<p>我认为这种问题一般都是在第一次上传时会遇见的问题，比如说，远程仓库使用了<code>README.md</code>和<code>.gitignore</code>进行了初始化，本地仓库没有这两个文件，但是本地仓库不是空文件夹，那么最开始<code>git init</code>之后如果直接push的话就会出现以上问题。因为其实条件下，本地库和远程库是没有任何历史相干性的，所以这个时候无论是push还是pull都是不可以的，push不了是因为本地库和远程库版本不一致，pull不了是因为历史不相干，好家伙，没办法治他了？</p>
-<h4 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h4>
-<p>下拉时使用以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-hostories</span><br></pre></td></tr></table></figure>
-<p>添加一个参数，这样在之后就可以下拉了，下拉之后，再push就没有问题啦</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>binary not found</title>
     <url>/posts/18281/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75a32aba13161e7315b964bcae238040?rik=jSFCMWvsL4%2fI3Q&amp;riu=http%3a%2f%2fi2.hdslb.com%2fbfs%2farchive%2f6faaf195d512f35b98d62d112be3607a0cd65991.jpg&amp;ehk=9ZOxq2FO5wRa3NhrfcALS25moCAwv9R8CGz41dTjgU4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="嵌入式"></p>
@@ -1281,6 +1233,32 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目中数据库问题</title>
+    <url>/posts/44965/</url>
+    <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
+<span id="more"></span>
+<h1>防止SQL注入</h1>
+<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+<h1>对JDBC连接进行统一管理</h1>
+<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1>索引异常</h1>
+<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
+<h1>Data too lang</h1>
+<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Database</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -1681,6 +1659,55 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>git 使用报错以及解决办法</title>
+    <url>/posts/34931/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.5ZVnEHdqMkr0oPHWFA0RzAHaD3?pid=ImgDet&amp;rs=1" alt="git github"></p>
+<span id="more"></span>
+<h1>常见错误</h1>
+<p>git是我们日常工作中需要用到的工具，所以由于多人协作的缘故或者是其他一些原因经常会遇见一些错误，以下是我在使用git的过程中遇见的一些错误以下做一个总结</p>
+<h2 id="错误类型：错误码"><a class="header-anchor" href="#错误类型：错误码">¶</a>错误类型：错误码</h2>
+<h3 id="错误码：443"><a class="header-anchor" href="#错误码：443">¶</a>错误码：443</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">OpenSSL SSL_connect: Connection was reset in connection to github.com:443</span><br></pre></td></tr></table></figure>
+<p>产生原因：一般是这是因为服务器的SSL证书没有经过第三方机构的签署，所以才报错</p>
+<p>解决办法：接触SSL验证，再次git</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git config --global http.sslVerify &quot;false&quot;</span><br></pre></td></tr></table></figure>
+<p>错误类型：Push</p>
+<h2 id="push时出错"><a class="header-anchor" href="#push时出错">¶</a>push时出错</h2>
+<h3 id="请求出错"><a class="header-anchor" href="#请求出错">¶</a>请求出错</h3>
+<p>报错代码：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: HttpRequestException encountered.</span><br><span class="line">   发送请求时出错。</span><br></pre></td></tr></table></figure>
+<p>产生原因：<strong>Github 禁用了TLS v1.0 and v1.1</strong></p>
+<p>解决办法：<strong>必须更新Windows的git凭证管理器</strong></p>
+<p>下载地址：<a href="https://github.com/Microsoft/Git-Credential-Manager-for-Windows/releases/">windows git凭证管理器</a></p>
+<p>安装没什么好说的，accept-&gt;next-&gt;finish</p>
+<h3 id="失败提交"><a class="header-anchor" href="#失败提交">¶</a>失败提交</h3>
+<h4 id="错误展示"><a class="header-anchor" href="#错误展示">¶</a>错误展示</h4>
+<p><strong>错误提示：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">error: failed to push some refs to &#x27;https://gitee.com/xxx/xxx.git&#x27;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113408024.png" alt="failed to push"></p>
+<p><strong>解决方案：</strong></p>
+<p>这个错误一般情况下都是本地仓库和远程仓库版本不一致的问题，解决办法就是<code>git pull</code>下拉，但是下拉又会遇见以下问题，好家伙</p>
+<p><strong>错误提示：</strong></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">fatal: refusing to merge unrelated histories</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210703113648936.png" alt="refusing to merge"></p>
+<p>拒绝合并没有关系的历史，</p>
+<h4 id="原因分析"><a class="header-anchor" href="#原因分析">¶</a>原因分析</h4>
+<p>我认为这种问题一般都是在第一次上传时会遇见的问题，比如说，远程仓库使用了<code>README.md</code>和<code>.gitignore</code>进行了初始化，本地仓库没有这两个文件，但是本地仓库不是空文件夹，那么最开始<code>git init</code>之后如果直接push的话就会出现以上问题。因为其实条件下，本地库和远程库是没有任何历史相干性的，所以这个时候无论是push还是pull都是不可以的，push不了是因为本地库和远程库版本不一致，pull不了是因为历史不相干，好家伙，没办法治他了？</p>
+<h4 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h4>
+<p>下拉时使用以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git pull origin master --allow-unrelated-hostories</span><br></pre></td></tr></table></figure>
+<p>添加一个参数，这样在之后就可以下拉了，下拉之后，再push就没有问题啦</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo+github搭建个人博客</title>
     <url>/posts/36674/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Hexo+Github Page"></p>
@@ -1801,60 +1828,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>项目中数据库问题</title>
-    <url>/posts/44965/</url>
-    <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
-<span id="more"></span>
-<h1>防止SQL注入</h1>
-<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
-<h1>对JDBC连接进行统一管理</h1>
-<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1>索引异常</h1>
-<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1>Data too lang</h1>
-<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Database</category>
-      </categories>
-      <tags>
-        <tag>Mysql</tag>
-        <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo同级多级分类配置</title>
-    <url>/posts/63081/</url>
-    <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
-<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
-<div class="note success"><blockquote>
-<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
-</blockquote>
-</div>
-<h1>同级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
-<h1>多级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo+next配置</title>
     <url>/posts/20416/</url>
     <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
@@ -1923,6 +1896,34 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
 <p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo同级多级分类配置</title>
+    <url>/posts/63081/</url>
+    <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
+<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<div class="note success"><blockquote>
+<p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p>
+</blockquote>
+</div>
+<h1>同级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">注意方括号</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">Java</span>]</span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>]</span><br></pre></td></tr></table></figure>
+<h1>多级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">//</span> <span class="string">默认情况</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">框架</span></span><br><span class="line">	<span class="bullet">-</span> <span class="string">Spring</span></span><br><span class="line">	</span><br><span class="line"><span class="string">//</span> <span class="string">另一种写法</span></span><br><span class="line"><span class="attr">categories:</span></span><br><span class="line">	<span class="bullet">-</span> [<span class="string">框架</span>,<span class="string">Spring</span>]</span><br></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>环境搭建</category>
@@ -2556,89 +2557,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>tensorflow-numpy-matplotlib线性回归</title>
-    <url>/posts/50065/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>Python</category>
-        <category>神经网络与机器学习</category>
-      </categories>
-      <tags>
-        <tag>Numpy</tag>
-        <tag>Matplotlib</tag>
-        <tag>Tensorflow</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>以O(1)的空间复杂度交换两个数据</title>
-    <url>/posts/18813/</url>
-    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-96d58dc7ea889b98102cbad4c53bb91e_720w.jpg?source=172ae18b" alt="Algorithm"></p>
-<span id="more"></span>
-<h1>题目、要求、描述</h1>
-<p>题目描述：要求对于顺序表l进行逆序操作，要求空间复杂度为O(1)。</p>
-<p>要求：</p>
-<ol>
-<li>顺序表的结构已经被定义</li>
-</ol>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *data;</span><br><span class="line">    <span class="keyword">int</span> MaxSize;</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125; SqlList;</span><br></pre></td></tr></table></figure>
-<p>解释：直接原地操作进行交换，也就是说在原来的空间消耗基础上，不消耗其他多余内存的情况下，原地交换数据</p>
-<p>分析：最开始没有从计算机的底层实现去考虑如何交换，考虑的是如何从软件、代码、程序的角度绕过去，但是发现，做了了一堆无用功。为了简化思路，后来直接用a和b两个数，如何不利用第三个数c直接交换a和b呢？</p>
-<h1>解决方案</h1>
-<h2 id="使用基本的加减运算"><a class="header-anchor" href="#使用基本的加减运算">¶</a>使用基本的加减运算</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    a = a + b;</span><br><span class="line">    b = a - b;</span><br><span class="line">    a = a - b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="note success"><ol>
-<li>
-<p>a = (a+b)，此时a的值已经改变，用<font color='cornflowerblue'>a<sub>(a+b)</sub></font>来表示，<font color='red'>下标表示现在的值</font></p>
-</li>
-<li>
-<p><font color='cornflowerblue'>a<sub>(a+b)</sub></font>-b=<font color='cornflowerblue'>b<sub>a</sub></font>，这是得到a原来的值，此时b即为<font color='cornflowerblue'>b<sub>a</sub></font>，也就是上述第三行代码的由来；</p>
-</li>
-<li>
-<p><font color='cornflowerblue'>a<sub>(a+b)</sub></font>-<font color='cornflowerblue'>b<sub>a</sub></font>=<font color='cornflowerblue'>a<sub>b</sub></font>，很显然，此时得到的是原本a的值</p>
-</li>
-</ol>
-</div>
-<h2 id="使用异或运算"><a class="header-anchor" href="#使用异或运算">¶</a>使用异或运算</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    a = a ^ b;</span><br><span class="line">    b = a ^ b;</span><br><span class="line">    a = a ^ b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="note primary"><p>其实这边使用的思想很简单，利用的就是：</p>
-<ul>
-<li>两个相同的数异或为0</li>
-<li>任何数异或0都为它本身</li>
-<li>异或运算满足分配率</li>
-</ul>
-<p><font color='orange'>a ^ b ^ a = a ^ a ^ b = 0 ^ b = b</font></p>
-<p>这样的话再简单一分析，其实很容易就得出来上述算法：</p>
-<ol>
-<li>a ^ b = <font color='cornflowerblue'>a<sub>(a^b)</sub></font>，<font color='red'>下标表示现在的值</font></li>
-<li><font color='cornflowerblue'>a<sub>(a^b)</sub></font> ^ b = <font color='cornflowerblue'>b<sub>a</sub></font></li>
-<li><font color='cornflowerblue'>a<sub>(a^b)</sub></font> ^ <font color='cornflowerblue'>b<sub>a</sub></font> = <font color='cornflowerblue'>a<sub>b</sub></font></li>
-</ol>
-</div>
-<h1>实现代码</h1>
-<h2 id="算法部分代码"><a class="header-anchor" href="#算法部分代码">¶</a>算法部分代码</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;sequence_list.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">invertSequence</span><span class="params">(SqlList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l.length == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length / <span class="number">2</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 三次异或则交换数据</span></span><br><span class="line">        l.data[i] = l.data[i] ^ l.data[l.length - i - <span class="number">1</span>];</span><br><span class="line">        l.data[l.length - i - <span class="number">1</span>] = l.data[i] ^ l.data[l.length - i - <span class="number">1</span>];</span><br><span class="line">        l.data[i] = l.data[i] ^ l.data[l.length - i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SqlList l;</span><br><span class="line">    <span class="built_in">initList</span>(l);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">printList</span>(l);</span><br><span class="line">    <span class="built_in">invertSequence</span>(l);</span><br><span class="line">    <span class="built_in">printList</span>(l);</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="sequence-list-h"><a class="header-anchor" href="#sequence-list-h">¶</a>sequence_list.h</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __SEQUENCE_LIST__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __SEQUENCE_LIST__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> InitSize 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义顺序表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *data;</span><br><span class="line">    <span class="keyword">int</span> MaxSize;</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125; SqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序表相关操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initList</span><span class="params">(SqlList &amp;l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">increaseSize</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> len)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insertList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i, <span class="keyword">int</span> e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">deleteList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">(SqlList l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">locateElem</span><span class="params">(SqlList l, <span class="keyword">int</span> e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">getElem</span><span class="params">(SqlList l, <span class="keyword">int</span> i, <span class="keyword">int</span> &amp;e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(SqlList l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destoryList</span><span class="params">(SqlList &amp;l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printList</span><span class="params">(SqlList l)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="sequence-list-cpp"><a class="header-anchor" href="#sequence-list-cpp">¶</a>sequence_list.cpp</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;sequence_list.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initList</span><span class="params">(SqlList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l.data = <span class="keyword">new</span> <span class="keyword">int</span>[InitSize];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; InitSize; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l.length = <span class="number">0</span>;</span><br><span class="line">    l.MaxSize = InitSize;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">increaseSize</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = l.data;</span><br><span class="line">    l.data = <span class="keyword">new</span> <span class="keyword">int</span>[l.MaxSize + len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[i] = p[i];</span><br><span class="line">    &#125;</span><br><span class="line">    l.MaxSize += len;</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insertList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i, <span class="keyword">int</span> e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; l.length + <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l.length &gt;= l.MaxSize)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = l.length; j &gt;= i; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[j] = l.data[j - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    l.data[i - <span class="number">1</span>] = e;</span><br><span class="line">    l.length++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">deleteList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; l.length + <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l.length &gt;= l.MaxSize)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; l.length; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[j - <span class="number">1</span>] = l.data[j];</span><br><span class="line">    &#125;</span><br><span class="line">    l.length--;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">(SqlList l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> l.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">locateElem</span><span class="params">(SqlList l, <span class="keyword">int</span> e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (l.data[i] == e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">getElem</span><span class="params">(SqlList l, <span class="keyword">int</span> i, <span class="keyword">int</span> &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; l.length)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; l.MaxSize)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    e = l.data[i];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(SqlList l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l.length != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destoryList</span><span class="params">(SqlList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> l.data;</span><br><span class="line">    l.data = <span class="literal">NULL</span>;</span><br><span class="line">    l.length = <span class="number">0</span>;</span><br><span class="line">    l.MaxSize = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printList</span><span class="params">(SqlList l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l.length == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;空顺序表&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, l.data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>运行结果</h1>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108192300998.png" alt="运行结果"></p>
-<div class="note success"><p>第一排输出的是没有进行逆转之前的数据，从下标0开始输出</p>
-<p>第二排输出的是进行逆转之后的数据，从下标0开始输出</p>
-</div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tomcat error</title>
     <url>/posts/37247/</url>
     <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
@@ -2727,6 +2645,21 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>tensorflow-numpy-matplotlib线性回归</title>
+    <url>/posts/50065/</url>
+    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>Python</category>
+        <category>神经网络与机器学习</category>
+      </categories>
+      <tags>
+        <tag>Numpy</tag>
+        <tag>Matplotlib</tag>
+        <tag>Tensorflow</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于new和delete的问题</title>
     <url>/posts/36390/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
@@ -2762,6 +2695,74 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>以O(1)的空间复杂度交换两个数据</title>
+    <url>/posts/18813/</url>
+    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-96d58dc7ea889b98102cbad4c53bb91e_720w.jpg?source=172ae18b" alt="Algorithm"></p>
+<span id="more"></span>
+<h1>题目、要求、描述</h1>
+<p>题目描述：要求对于顺序表l进行逆序操作，要求空间复杂度为O(1)。</p>
+<p>要求：</p>
+<ol>
+<li>顺序表的结构已经被定义</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *data;</span><br><span class="line">    <span class="keyword">int</span> MaxSize;</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125; SqlList;</span><br></pre></td></tr></table></figure>
+<p>解释：直接原地操作进行交换，也就是说在原来的空间消耗基础上，不消耗其他多余内存的情况下，原地交换数据</p>
+<p>分析：最开始没有从计算机的底层实现去考虑如何交换，考虑的是如何从软件、代码、程序的角度绕过去，但是发现，做了了一堆无用功。为了简化思路，后来直接用a和b两个数，如何不利用第三个数c直接交换a和b呢？</p>
+<h1>解决方案</h1>
+<h2 id="使用基本的加减运算"><a class="header-anchor" href="#使用基本的加减运算">¶</a>使用基本的加减运算</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    a = a + b;</span><br><span class="line">    b = a - b;</span><br><span class="line">    a = a - b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note success"><ol>
+<li>
+<p>a = (a+b)，此时a的值已经改变，用<font color='cornflowerblue'>a<sub>(a+b)</sub></font>来表示，<font color='red'>下标表示现在的值</font></p>
+</li>
+<li>
+<p><font color='cornflowerblue'>a<sub>(a+b)</sub></font>-b=<font color='cornflowerblue'>b<sub>a</sub></font>，这是得到a原来的值，此时b即为<font color='cornflowerblue'>b<sub>a</sub></font>，也就是上述第三行代码的由来；</p>
+</li>
+<li>
+<p><font color='cornflowerblue'>a<sub>(a+b)</sub></font>-<font color='cornflowerblue'>b<sub>a</sub></font>=<font color='cornflowerblue'>a<sub>b</sub></font>，很显然，此时得到的是原本a的值</p>
+</li>
+</ol>
+</div>
+<h2 id="使用异或运算"><a class="header-anchor" href="#使用异或运算">¶</a>使用异或运算</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">exchange</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span>&#123;</span><br><span class="line">    a = a ^ b;</span><br><span class="line">    b = a ^ b;</span><br><span class="line">    a = a ^ b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note primary"><p>其实这边使用的思想很简单，利用的就是：</p>
+<ul>
+<li>两个相同的数异或为0</li>
+<li>任何数异或0都为它本身</li>
+<li>异或运算满足分配率</li>
+</ul>
+<p><font color='orange'>a ^ b ^ a = a ^ a ^ b = 0 ^ b = b</font></p>
+<p>这样的话再简单一分析，其实很容易就得出来上述算法：</p>
+<ol>
+<li>a ^ b = <font color='cornflowerblue'>a<sub>(a^b)</sub></font>，<font color='red'>下标表示现在的值</font></li>
+<li><font color='cornflowerblue'>a<sub>(a^b)</sub></font> ^ b = <font color='cornflowerblue'>b<sub>a</sub></font></li>
+<li><font color='cornflowerblue'>a<sub>(a^b)</sub></font> ^ <font color='cornflowerblue'>b<sub>a</sub></font> = <font color='cornflowerblue'>a<sub>b</sub></font></li>
+</ol>
+</div>
+<h1>实现代码</h1>
+<h2 id="算法部分代码"><a class="header-anchor" href="#算法部分代码">¶</a>算法部分代码</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;sequence_list.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">invertSequence</span><span class="params">(SqlList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l.length == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length / <span class="number">2</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 三次异或则交换数据</span></span><br><span class="line">        l.data[i] = l.data[i] ^ l.data[l.length - i - <span class="number">1</span>];</span><br><span class="line">        l.data[l.length - i - <span class="number">1</span>] = l.data[i] ^ l.data[l.length - i - <span class="number">1</span>];</span><br><span class="line">        l.data[i] = l.data[i] ^ l.data[l.length - i - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    SqlList l;</span><br><span class="line">    <span class="built_in">initList</span>(l);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">    <span class="built_in">insertList</span>(l, <span class="number">1</span>, <span class="number">7</span>);</span><br><span class="line">    <span class="built_in">printList</span>(l);</span><br><span class="line">    <span class="built_in">invertSequence</span>(l);</span><br><span class="line">    <span class="built_in">printList</span>(l);</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="sequence-list-h"><a class="header-anchor" href="#sequence-list-h">¶</a>sequence_list.h</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __SEQUENCE_LIST__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __SEQUENCE_LIST__</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> InitSize 10</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义顺序表</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> *data;</span><br><span class="line">    <span class="keyword">int</span> MaxSize;</span><br><span class="line">    <span class="keyword">int</span> length;</span><br><span class="line">&#125; SqlList;</span><br><span class="line"></span><br><span class="line"><span class="comment">//顺序表相关操作</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initList</span><span class="params">(SqlList &amp;l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">increaseSize</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> len)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insertList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i, <span class="keyword">int</span> e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">deleteList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">(SqlList l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">locateElem</span><span class="params">(SqlList l, <span class="keyword">int</span> e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">getElem</span><span class="params">(SqlList l, <span class="keyword">int</span> i, <span class="keyword">int</span> &amp;e)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(SqlList l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destoryList</span><span class="params">(SqlList &amp;l)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printList</span><span class="params">(SqlList l)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="sequence-list-cpp"><a class="header-anchor" href="#sequence-list-cpp">¶</a>sequence_list.cpp</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;sequence_list.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">initList</span><span class="params">(SqlList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l.data = <span class="keyword">new</span> <span class="keyword">int</span>[InitSize];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; InitSize; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l.length = <span class="number">0</span>;</span><br><span class="line">    l.MaxSize = InitSize;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">increaseSize</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *p = l.data;</span><br><span class="line">    l.data = <span class="keyword">new</span> <span class="keyword">int</span>[l.MaxSize + len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[i] = p[i];</span><br><span class="line">    &#125;</span><br><span class="line">    l.MaxSize += len;</span><br><span class="line">    <span class="keyword">delete</span> p;</span><br><span class="line">    p = <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">insertList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i, <span class="keyword">int</span> e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; l.length + <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l.length &gt;= l.MaxSize)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = l.length; j &gt;= i; j--)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[j] = l.data[j - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    l.data[i - <span class="number">1</span>] = e;</span><br><span class="line">    l.length++;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">deleteList</span><span class="params">(SqlList &amp;l, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; l.length + <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (l.length &gt;= l.MaxSize)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; l.length; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        l.data[j - <span class="number">1</span>] = l.data[j];</span><br><span class="line">    &#125;</span><br><span class="line">    l.length--;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getLength</span><span class="params">(SqlList l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> l.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">locateElem</span><span class="params">(SqlList l, <span class="keyword">int</span> e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (l.data[i] == e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">getElem</span><span class="params">(SqlList l, <span class="keyword">int</span> i, <span class="keyword">int</span> &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; <span class="number">1</span> || i &gt; l.length)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &gt; l.MaxSize)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    e = l.data[i];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">(SqlList l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l.length != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">destoryList</span><span class="params">(SqlList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">delete</span> l.data;</span><br><span class="line">    l.data = <span class="literal">NULL</span>;</span><br><span class="line">    l.length = <span class="number">0</span>;</span><br><span class="line">    l.MaxSize = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printList</span><span class="params">(SqlList l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l.length == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;空顺序表&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; l.length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d\t&quot;</span>, l.data[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>运行结果</h1>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108192300998.png" alt="运行结果"></p>
+<div class="note success"><p>第一排输出的是没有进行逆转之前的数据，从下标0开始输出</p>
+<p>第二排输出的是进行逆转之后的数据，从下标0开始输出</p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
       </tags>
   </entry>
   <entry>
@@ -2843,17 +2844,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>编译原理词法分析器的设计与实现</title>
-    <url>/posts/65201/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>编译原理</category>
-      </categories>
-      <tags>
-        <tag>词法分析</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法·方阵</title>
     <url>/posts/49440/</url>
     <content><![CDATA[<h1>方阵</h1>
@@ -2878,6 +2868,17 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编译原理词法分析器的设计与实现</title>
+    <url>/posts/65201/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>编译原理</category>
+      </categories>
+      <tags>
+        <tag>词法分析</tag>
       </tags>
   </entry>
   <entry>
