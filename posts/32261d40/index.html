@@ -23,28 +23,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;conquerorlei.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:&quot;utterances&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null,&quot;activeClass&quot;:&quot;utterances&quot;},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于new和delete的问题">
-<meta property="og:url" content="https://conquerorlei.github.io/posts/36390/index.html">
+<meta property="og:title" content="数组中第k个最大元素">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/32261d40/index.html">
 <meta property="og:site_name" content="conquerorLei">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png">
-<meta property="article:published_time" content="2021-08-20T09:39:44.000Z">
-<meta property="article:modified_time" content="2021-08-21T14:41:42.123Z">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051253595.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png">
+<meta property="article:published_time" content="2021-09-05T04:34:43.000Z">
+<meta property="article:modified_time" content="2021-09-05T05:16:58.613Z">
 <meta property="article:author" content="conquerorLei">
-<meta property="article:tag" content="Cpp">
+<meta property="article:tag" content="Daily">
+<meta property="article:tag" content="Data Structure">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png">
 
 
-<link rel="canonical" href="https://conquerorlei.github.io/posts/36390/">
+<link rel="canonical" href="https://conquerorlei.github.io/posts/32261d40/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;posts&#x2F;36390&#x2F;&quot;,&quot;path&quot;:&quot;posts&#x2F;36390&#x2F;&quot;,&quot;title&quot;:&quot;关于new和delete的问题&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;posts&#x2F;32261d40&#x2F;&quot;,&quot;path&quot;:&quot;posts&#x2F;32261d40&#x2F;&quot;,&quot;title&quot;:&quot;数组中第k个最大元素&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>关于new和delete的问题 | conquerorLei</title><script src="/js/config.js"></script>
+<title>数组中第k个最大元素 | conquerorLei</title><script src="/js/config.js"></script>
   
 
 
@@ -152,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">改动</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%9C%B0%E5%9D%80"><span class="nav-number">1.</span> <span class="nav-text">题目地址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">题目初始分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%B6%E7%A9%BA%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-number">4.</span> <span class="nav-text">时空复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9B%E6%89%A3%E7%BB%93%E6%9E%9C"><span class="nav-number">5.</span> <span class="nav-text">力扣结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D%E8%A7%A3%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">第二种解法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -229,7 +231,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://conquerorlei.github.io/posts/36390/">
+    <link itemprop="mainEntityOfPage" href="https://conquerorlei.github.io/posts/32261d40/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -242,7 +244,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          关于new和delete的问题
+          数组中第k个最大元素
         </h1>
 
         <div class="post-meta-container">
@@ -252,27 +254,25 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2021-08-20 17:39:44" itemprop="dateCreated datePublished" datetime="2021-08-20T17:39:44+08:00">2021-08-20</time>
+      <time title="创建时间：2021-09-05 12:34:43 / 修改时间：13:16:58" itemprop="dateCreated datePublished" datetime="2021-09-05T12:34:43+08:00">2021-09-05</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-21 22:41:42" itemprop="dateModified" datetime="2021-08-21T22:41:42+08:00">2021-08-21</time>
-      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Error/" itemprop="url" rel="index"><span itemprop="name">Error</span></a>
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Cpp/" itemprop="url" rel="index"><span itemprop="name">Cpp</span></a>
+          <a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
         </span>
     </span>
 
@@ -291,7 +291,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>711</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -309,31 +309,31 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
+        <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" alt="结果"></p>
 <span id="more"></span>
-<h1>问题描述</h1>
-<p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p>
-<div class="note success"><p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目初始分析"><a class="header-anchor" href="#题目初始分析">¶</a>题目初始分析</h4>
+<p>寻找第k个最大元素，我第一时间想到的就是对数组进行排序，递增则为nums[nums.length-k]，递减则为nums[k-1]。</p>
+<p>这样的话，其实根本不需要对数组进行全排序，按照冒泡排序的基本思想，每次冒牌排序(假设我按照增序排列)，都可以选出来最大的数排在数组的最后一个位置。而且下一次冒泡排序就不用遍历整个数组，因为没有必要对最大的数和前面的数，因为这种比较是无效的，相当于我们的比较范围是在伴随着冒泡排序的进行不断缩小的。</p>
+<div class="note primary"><p>需要注意的是，题目当中并没有要求你排除重复项，例如[4,5,5,6]，k=4，那么第k大的数就是4</p>
+<p>如果需要排除重复项，那么上述的算法就需要更改了</p>
 </div>
-<p>发生问题的代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">initList</span><span class="params">(LinkedList &amp;l)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    l = <span class="keyword">new</span> LinkedList; <span class="comment">//问题所在行</span></span><br><span class="line">    <span class="keyword">if</span> (l == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    l-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>结构体定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">LNode</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125; LNode, *LinkedList;</span><br></pre></td></tr></table></figure>
-<h1>分析</h1>
-<p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
-<p>等等！</p>
-<p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> *intp;</span><br><span class="line"><span class="keyword">int</span> *s = <span class="keyword">new</span> intp*;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>对不起，我刚刚好像就做了😥</p>
-</blockquote>
-<div class="note primary"><p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
-</div>
-<p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
-<h1>改动</h1>
-<p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">l = <span class="keyword">new</span> LNode;</span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;nums.length-<span class="number">1</span>-i;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j]&gt;nums[j+<span class="number">1</span>])&#123;</span><br><span class="line">                    nums[j] +=nums[j+<span class="number">1</span>];</span><br><span class="line">                    nums[j+<span class="number">1</span>] = nums[j]-nums[j+<span class="number">1</span>];</span><br><span class="line">                    nums[j] -= nums[j+<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums[nums.length-k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="时空复杂度"><a class="header-anchor" href="#时空复杂度">¶</a>时空复杂度</h4>
+<p>时间复杂度：考虑到最坏情况下的算法，时间复杂度应该为O(n(n+1)/2)=O(n<sup>2</sup>)</p>
+<p>空间复杂度：O(1)，直接对数组进行的原地排序</p>
+<h4 id="力扣结果"><a class="header-anchor" href="#力扣结果">¶</a>力扣结果</h4>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051253595.png" alt="力扣通过结果"></p>
+<p>这样的话，按照我个人的分析，时间消耗会很大，空间消耗由于我没有引入太多的其他变量，直接使用加法处理的两数交换。执行时间太长了。我还在想一个时间消耗比较小的方法。</p>
+<h4 id="第二种解法"><a class="header-anchor" href="#第二种解法">¶</a>第二种解法</h4>
+<p>对于Java编程语言来说，其Array类中封装了sort方法，而且此sort方法采用了快速排序的方法，时间复杂度比冒泡排序小的多。</p>
+<p>时间复杂度：O(nlogn)</p>
+<p>空间复杂度：O(logn)</p>
+<p>空间消耗主要是因为sort方法使用了栈，栈的最大高度是logn</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findKthLargest</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">return</span> nums[nums.length - k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" alt="结果"></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
     </div>
@@ -352,7 +352,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://conquerorlei.github.io/posts/36390/" title="关于new和delete的问题">https://conquerorlei.github.io/posts/36390/</a>
+      <a href="https://conquerorlei.github.io/posts/32261d40/" title="数组中第k个最大元素">https://conquerorlei.github.io/posts/32261d40/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener external nofollow noreferrer" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -361,21 +361,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Cpp/" rel="tag"># Cpp</a>
+              <a href="/tags/Daily/" rel="tag"># Daily</a>
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/18813/" rel="prev" title="以O(1)的空间复杂度交换两个数据">
-                  <i class="fa fa-chevron-left"></i> 以O(1)的空间复杂度交换两个数据
+                <a href="/posts/caebe662/" rel="prev" title="Java实现LRU缓冲机制">
+                  <i class="fa fa-chevron-left"></i> Java实现LRU缓冲机制
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/59826/" rel="next" title="hexo进阶(1):优化文章链接为数字编号">
-                  hexo进阶(1):优化文章链接为数字编号 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -463,7 +461,7 @@
 
 
   <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;posts&#x2F;36390&#x2F;&quot;}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{&quot;enable&quot;:true,&quot;home&quot;:true,&quot;archive&quot;:true,&quot;delay&quot;:true,&quot;timeout&quot;:3000,&quot;priority&quot;:true,&quot;ignores&quot;:null,&quot;url&quot;:&quot;https:&#x2F;&#x2F;conquerorlei.github.io&#x2F;posts&#x2F;32261d40&#x2F;&quot;}</script>
   <script src="/js/third-party/quicklink.js"></script>
 <script class="next-config" data-name="utterances" type="application/json">{&quot;enable&quot;:true,&quot;repo&quot;:&quot;conquerorLei&#x2F;conquerorLei.github.io&quot;,&quot;issue_term&quot;:&quot;pathname&quot;,&quot;theme&quot;:&quot;github-light&quot;}</script>
 <script src="/js/third-party/comments/utterances.js"></script>
