@@ -29,30 +29,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Java实现LRU缓冲机制</title>
-    <url>/posts/caebe662/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051050092.png" alt="力扣刷题结果"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/lru-cache/">146. LRU 缓存机制 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
-<p>既然是实现LRU缓冲，那么就需要明白LRU的工作原理，最近经常使用的往前排，那么最近不经常使用的往后排。这种特性下，使用数据结构链表就可以进行LRU的工作状态描述。很显然，LRU缓冲的实现需要不断地移动元素到链头和链尾，这样的话使用双链表就可以进行描述，设置一个伪头结点，设置一个伪尾结点。</p>
-<p>另外需要注意到的是，给定一个键值Key，如何能够确定此链表中有没有此结点，如果有的话则返回。如果按照一般的做法，肯定就是遍历整个链表，这样的事，时间复杂度会被增大到O(n)，如何能将时间复杂度控制到O(1)呢？很简单，将键值和对应的双链表结点存储在一张表中，这里我选择的是HashMap也就是哈希映射。这样在进行判断链表中是否存在键值为key的结点是，就可以直接查看表，时间复杂度为O(1)。</p>
-<h4 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">DLinkedList</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> key;</span><br><span class="line">        <span class="keyword">int</span> value;</span><br><span class="line">        DLinkedList pre;</span><br><span class="line">        DLinkedList next;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DLinkedList</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DLinkedList</span><span class="params">(<span class="keyword">int</span> _key,<span class="keyword">int</span> _value)</span></span>&#123;</span><br><span class="line">            key = _key;</span><br><span class="line">            value = _value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="keyword">private</span> DLinkedList head,tail;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer,DLinkedList&gt; cache = <span class="keyword">new</span> HashMap&lt;Integer,DLinkedList&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">        head = <span class="keyword">new</span> DLinkedList();</span><br><span class="line">        tail = <span class="keyword">new</span> DLinkedList();</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.pre = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        DLinkedList node = cache.get(key);</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        moveToHead(node);</span><br><span class="line">        <span class="keyword">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        DLinkedList node = cache.get(key);</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>)&#123;</span><br><span class="line">            DLinkedList temp = <span class="keyword">new</span> DLinkedList(key,value);</span><br><span class="line">            cache.put(key,temp);</span><br><span class="line">            addToHead(temp);</span><br><span class="line">            size++;</span><br><span class="line">            <span class="keyword">if</span>(size &gt; capacity)&#123;</span><br><span class="line">                DLinkedList res = removeTail();</span><br><span class="line">                cache.remove(res.key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            node.value = value;</span><br><span class="line">            moveToHead(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addToHead</span><span class="params">(DLinkedList node)</span></span>&#123;</span><br><span class="line">        node.pre = head;</span><br><span class="line">        node.next = head.next;</span><br><span class="line">        head.next.pre = node;</span><br><span class="line">        head.next = node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeNode</span><span class="params">(DLinkedList node)</span></span>&#123;</span><br><span class="line">        node.pre.next = node.next;</span><br><span class="line">        node.next.pre = node.pre;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveToHead</span><span class="params">(DLinkedList node)</span></span>&#123;</span><br><span class="line">        removeNode(node);</span><br><span class="line">        addToHead(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> DLinkedList <span class="title">removeTail</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DLinkedList s = tail.pre;</span><br><span class="line">        removeNode(s);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * LRUCache obj = new LRUCache(capacity);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj.get(key);</span></span><br><span class="line"><span class="comment"> * obj.put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除</title>
     <url>/posts/35421/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png" alt="warning: LF will be replaced by CRLF"></p>
@@ -96,6 +72,359 @@
       <tags>
         <tag>Git</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java实现LRU缓冲机制</title>
+    <url>/posts/caebe662/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051050092.png" alt="力扣刷题结果"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/lru-cache/">146. LRU 缓存机制 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
+<p>既然是实现LRU缓冲，那么就需要明白LRU的工作原理，最近经常使用的往前排，那么最近不经常使用的往后排。这种特性下，使用数据结构链表就可以进行LRU的工作状态描述。很显然，LRU缓冲的实现需要不断地移动元素到链头和链尾，这样的话使用双链表就可以进行描述，设置一个伪头结点，设置一个伪尾结点。</p>
+<p>另外需要注意到的是，给定一个键值Key，如何能够确定此链表中有没有此结点，如果有的话则返回。如果按照一般的做法，肯定就是遍历整个链表，这样的事，时间复杂度会被增大到O(n)，如何能将时间复杂度控制到O(1)呢？很简单，将键值和对应的双链表结点存储在一张表中，这里我选择的是HashMap也就是哈希映射。这样在进行判断链表中是否存在键值为key的结点是，就可以直接查看表，时间复杂度为O(1)。</p>
+<h4 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">DLinkedList</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> key;</span><br><span class="line">        <span class="keyword">int</span> value;</span><br><span class="line">        DLinkedList pre;</span><br><span class="line">        DLinkedList next;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DLinkedList</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">DLinkedList</span><span class="params">(<span class="keyword">int</span> _key,<span class="keyword">int</span> _value)</span></span>&#123;</span><br><span class="line">            key = _key;</span><br><span class="line">            value = _value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="keyword">private</span> DLinkedList head,tail;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer,DLinkedList&gt; cache = <span class="keyword">new</span> HashMap&lt;Integer,DLinkedList&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">        head = <span class="keyword">new</span> DLinkedList();</span><br><span class="line">        tail = <span class="keyword">new</span> DLinkedList();</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.pre = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        DLinkedList node = cache.get(key);</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        moveToHead(node);</span><br><span class="line">        <span class="keyword">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        DLinkedList node = cache.get(key);</span><br><span class="line">        <span class="keyword">if</span>(node == <span class="keyword">null</span>)&#123;</span><br><span class="line">            DLinkedList temp = <span class="keyword">new</span> DLinkedList(key,value);</span><br><span class="line">            cache.put(key,temp);</span><br><span class="line">            addToHead(temp);</span><br><span class="line">            size++;</span><br><span class="line">            <span class="keyword">if</span>(size &gt; capacity)&#123;</span><br><span class="line">                DLinkedList res = removeTail();</span><br><span class="line">                cache.remove(res.key);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            node.value = value;</span><br><span class="line">            moveToHead(node);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addToHead</span><span class="params">(DLinkedList node)</span></span>&#123;</span><br><span class="line">        node.pre = head;</span><br><span class="line">        node.next = head.next;</span><br><span class="line">        head.next.pre = node;</span><br><span class="line">        head.next = node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeNode</span><span class="params">(DLinkedList node)</span></span>&#123;</span><br><span class="line">        node.pre.next = node.next;</span><br><span class="line">        node.next.pre = node.pre;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveToHead</span><span class="params">(DLinkedList node)</span></span>&#123;</span><br><span class="line">        removeNode(node);</span><br><span class="line">        addToHead(node);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> DLinkedList <span class="title">removeTail</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DLinkedList s = tail.pre;</span><br><span class="line">        removeNode(s);</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your LRUCache object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * LRUCache obj = new LRUCache(capacity);</span></span><br><span class="line"><span class="comment"> * int param_1 = obj.get(key);</span></span><br><span class="line"><span class="comment"> * obj.put(key,value);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Apply</category>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java数组</title>
+    <url>/posts/e3345db4/</url>
+    <content><![CDATA[<p><img src="https://www.geekxh.com/assets/img/3.305e9fcd.jpg" alt="数组"></p>
+<span id="more"></span>
+<h4 id="数组"><a class="header-anchor" href="#数组">¶</a>数组</h4>
+<p>是多个相同类型的数据按照一定的顺序排列的集合，使用一个名字命名并通过标号的方式对这次为数据进行统一的管理。</p>
+<h4 id="相关概念"><a class="header-anchor" href="#相关概念">¶</a>相关概念</h4>
+<ol>
+<li>数组名</li>
+<li>元素</li>
+<li>角标</li>
+<li>数组的长度：元素的个数</li>
+</ol>
+<h4 id="特点"><a class="header-anchor" href="#特点">¶</a>特点</h4>
+<ol>
+<li>数组是有序排列的</li>
+</ol>
+<div class="note info"><p>需要注意的是，这个有序指的不是元素本身在数组中是有序的，比如1、2、3、4、5、6、7、8、9，指的是数组中各个元素的排列是有序的，按照标号进行的一个位置排序，不是对内部元素的排序</p>
+</div>
+<ol start="2">
+<li>
+<p>数组是引用类型的变量。数组中的元素可以是基本数据类型，也可以是引用数据类型。</p>
+</li>
+<li>
+<p>创建数组对象时是在内存中开辟的一段连续的内存空间</p>
+</li>
+<li>
+<p>数组一旦建立，长度不可修改</p>
+</li>
+</ol>
+<h4 id="分类"><a class="header-anchor" href="#分类">¶</a>分类</h4>
+<ol>
+<li>按照维度：可以分为一维数组和二维数组</li>
+<li>按照数组中元素：可以是基本数据类型元素的数组，可以是引用数据类型元素的数组</li>
+</ol>
+<h4 id="一维数组的使用"><a class="header-anchor" href="#一维数组的使用">¶</a>一维数组的使用</h4>
+<h5 id="声明和初始化"><a class="header-anchor" href="#声明和初始化">¶</a>声明和初始化</h5>
+<p>静态初始化:数组初始化和数组元素的赋值同时进行
+动态初始化：数组初始化合数组元素的赋值操作分开操作</p>
+<div class="note info"><p>数组一旦初始化完成，其长度就确定了</p>
+</div>
+<div class="note success"><p>可以为<font color='red'>int[] nums</font>也可以是<font color='red'>int nums[]</font></p>
+</div>
+<h5 id="调用数组指定位置的元素"><a class="header-anchor" href="#调用数组指定位置的元素">¶</a>调用数组指定位置的元素</h5>
+<p>通过下角标的方式调用</p>
+<div class="note success"><p>数组的角标从0开始的，到数组的长度-1结束</p>
+</div>
+<h5 id="获取数组的长度"><a class="header-anchor" href="#获取数组的长度">¶</a>获取数组的长度</h5>
+<p>根据数组的属性：<font color='red'>length</font></p>
+<h5 id="遍历数组"><a class="header-anchor" href="#遍历数组">¶</a>遍历数组</h5>
+<p>循环，直接for或者while都可以</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums ;<span class="comment">//声明</span></span><br><span class="line">        <span class="comment">//静态初始化:数组初始化和数组元素的赋值同时进行</span></span><br><span class="line">        nums = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1001</span>,<span class="number">1002</span>,<span class="number">1003</span>,<span class="number">1004</span>&#125;;</span><br><span class="line">        <span class="comment">//动态初始化：数组初始化合数组元素的赋值操作分开操作</span></span><br><span class="line">        String[] names = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br><span class="line">        names[<span class="number">0</span>] = <span class="string">&quot;zhangsan&quot;</span>;</span><br><span class="line">        names[<span class="number">1</span>] = <span class="string">&quot;lisi&quot;</span>;</span><br><span class="line">        names[<span class="number">2</span>] = <span class="string">&quot;WangWu&quot;</span>;</span><br><span class="line">        names[<span class="number">3</span>] = <span class="string">&quot;chenqi&quot;</span>;</span><br><span class="line">        names[<span class="number">4</span>] = <span class="string">&quot;zhouyang&quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// foreach默认情况下是正向遍历</span></span><br><span class="line">        <span class="keyword">for</span>(String s:names)&#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 逆向遍历</span></span><br><span class="line">        <span class="keyword">int</span> length = nums.length;</span><br><span class="line">        <span class="keyword">while</span>((--length)&gt;-<span class="number">1</span>)&#123;</span><br><span class="line">            System.out.println(nums[length]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="数组的默认初始化值"><a class="header-anchor" href="#数组的默认初始化值">¶</a>数组的默认初始化值</h5>
+<table>
+<thead>
+<tr>
+<th>数组元素数据类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float/double</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>char</td>
+<td>0或者’\u0000’，而非’0’</td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false(<font color='red'>底层false是0</font>)</td>
+</tr>
+<tr>
+<td>引用数据类型</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest01</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">4</span>];</span><br><span class="line">        System.out.println(arr1[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(<span class="string">&quot;-------------------&quot;</span>);</span><br><span class="line">        <span class="keyword">float</span>[] arr2 = <span class="keyword">new</span> <span class="keyword">float</span>[<span class="number">4</span>];</span><br><span class="line">        System.out.println(arr2[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(<span class="string">&quot;-------------------&quot;</span>);</span><br><span class="line">        <span class="keyword">char</span>[] arr3 = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">4</span>];</span><br><span class="line">        System.out.println(<span class="string">&quot;----&quot;</span>+arr3[<span class="number">0</span>]+<span class="string">&quot;****&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span>(arr3[<span class="number">0</span>] == <span class="number">0</span>)&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">&quot;-------------------&quot;</span>);</span><br><span class="line">        <span class="keyword">boolean</span>[] arr4 = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">4</span>];</span><br><span class="line">        System.out.println(arr4[<span class="number">0</span>]);</span><br><span class="line">        System.out.println(<span class="string">&quot;-------------------&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="一维数组的内存解析"><a class="header-anchor" href="#一维数组的内存解析">¶</a>一维数组的内存解析</h5>
+<p>JVM中内存空间</p>
+<ol>
+<li>栈(Stack)：存放的是局部变量，<font color='red'>放在方法中的变量都叫局部变量</font></li>
+<li>堆(heap)：存放的是<font color='red'>new出来的结构（对象数组）</font></li>
+<li>方法取(Method Area)
+<ol>
+<li>常量池</li>
+<li>静态域</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">5</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>分析第二行的内存结构</p>
+<ol>
+<li>arr是局部变量，故而其名称应该存在栈中</li>
+<li>数据存储是new出来的，故而数据存储在堆中</li>
+</ol>
+<div class="note info"><p>堆中首个元素的地址是一个16进制的数，应该村存在栈中的arr的内存空间内，这样在进行数组访问时，先访问栈找到数组的首地址，去堆中访问指定的地址，根据角标获取数组内部元素的值</p>
+</div>
+<div class="note success"><p>另外就是，栈是有弹栈操作的，只要栈中的数据弹出栈，例如弹出了数组首地址，这样的话，堆中的数据就会在之后的对一段时间被JVM的垃圾回收机制回收</p>
+</div>
+<h4 id="二维数组的使用"><a class="header-anchor" href="#二维数组的使用">¶</a>二维数组的使用</h4>
+<p>多位数组的概念，其实本质上和数组元素类型是有关系的。由于数组元素可以是引用数据类型，而数组也是引用数据类型，那么为什么不可以数组的元素是一个数组呢？</p>
+<p>二维数组的概念就是一个数组作为另外一个数组的元素存在</p>
+<div class="note info"><p>从数组的底层实现来看，其实没有多维数组</p>
+</div>
+<h5 id="初始化"><a class="header-anchor" href="#初始化">¶</a>初始化</h5>
+<div class="note primary"><p>以下两个是相通的</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] nums = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line"><span class="keyword">int</span>[] nums[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+</div>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 静态初始化</span></span><br><span class="line"><span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>&#125;,&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line"><span class="comment">//动态初始化</span></span><br><span class="line">String[][] arr1 = <span class="keyword">new</span> String[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">String[][] arr2 = <span class="keyword">new</span> String[<span class="number">3</span>][]; <span class="comment">// 两个的区别在于没有对列进行赋值。</span></span><br></pre></td></tr></table></figure>
+<h5 id="调用指定位置的元素"><a class="header-anchor" href="#调用指定位置的元素">¶</a>调用指定位置的元素</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(arr[<span class="number">0</span>][<span class="number">1</span>]);</span><br><span class="line">System.out.println(arr1[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">arr2[<span class="number">0</span>] = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>对于第四行，初始的情况下没有对列进行初始化，故而，在此需要初始化，否则直接调用会出现空指针异常</p>
+</div>
+<h5 id="获取数组的长度-v2"><a class="header-anchor" href="#获取数组的长度-v2">¶</a>获取数组的长度</h5>
+<p>arr.length表示一共多少个一个数组，arr[0].length表示当前下标下的数组的长度。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(arr.length);</span><br><span class="line">System.out.println(arr[<span class="number">0</span>].length);</span><br><span class="line">System.out.println(arr[<span class="number">1</span>].length);</span><br></pre></td></tr></table></figure>
+<h5 id="遍历二维数组"><a class="header-anchor" href="#遍历二维数组">¶</a>遍历二维数组</h5>
+<p>两层循环，直接就可以了。</p>
+<h5 id="默认初始化值"><a class="header-anchor" href="#默认初始化值">¶</a>默认初始化值</h5>
+<p>外层元素默认情况下为<font color='red'>一个地址的值</font>，内层元素默认初始化值见一维数组的初始化值。对于内层数组没有初始化的情况下，外层数组的下标对应的值为<font color='red'>null</font></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 静态初始化</span></span><br><span class="line">        <span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>&#125;,&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line">        <span class="comment">//动态初始化</span></span><br><span class="line">        String[][] arr1 = <span class="keyword">new</span> String[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">        String[][] arr2 = <span class="keyword">new</span> String[<span class="number">3</span>][]; <span class="comment">// 两个的区别在于没有对列进行赋值。</span></span><br><span class="line">        <span class="keyword">int</span>[][] arr3 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        System.out.println(arr[<span class="number">0</span>][<span class="number">1</span>]);</span><br><span class="line">        System.out.println(arr1[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始的情况下没有对列进行初始化，故而，在此需要初始化，否则直接调用会出现空指针异常</span></span><br><span class="line">        arr2[<span class="number">0</span>] = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">        System.out.println(arr.length);</span><br><span class="line">        System.out.println(arr[<span class="number">0</span>].length);</span><br><span class="line">        System.out.println(arr[<span class="number">1</span>].length);</span><br><span class="line"></span><br><span class="line">        System.out.println(arr3); <span class="comment">// [[I@1540e19d</span></span><br><span class="line">        System.out.println(arr3[<span class="number">0</span>]); <span class="comment">// [I@677327b6</span></span><br><span class="line">        System.out.println(arr3[<span class="number">0</span>][<span class="number">0</span>]); <span class="comment">// 0</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(arr2[<span class="number">1</span>]); <span class="comment">// null</span></span><br><span class="line">        System.out.println(arr2[<span class="number">1</span>][<span class="number">0</span>]); <span class="comment">// NullPointerException</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux云服务器部署springboot项目</title>
+    <url>/posts/28022/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Gy9LurVhf8pLsRhWLsl7TwHaEh?pid=ImgDet&amp;rs=1" alt="SpringBoot"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>本次需要进行云服务器部署的是一个java Springboot项目，使用的是阿里云的<code>ecs</code>云服务器，具体配置如下一个标题所示。云服务器部署环节是项目发布的很重要一步，所以这里简单写一下Linux云服务器部署Springboot项目</p>
+<h1>云服务器配置</h1>
+<h2 id="购买云服务器"><a class="header-anchor" href="#购买云服务器">¶</a>购买云服务器</h2>
+<p>二话不说，购买什么的就不提了奥，这里我选择的云服务器配置如下</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU&amp;内存</td>
+<td>1核 2 GiB</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>Ubuntu  18.04 64位</td>
+</tr>
+<tr>
+<td>当前使用带宽</td>
+<td>1Mbps</td>
+</tr>
+<tr>
+<td>网络类型</td>
+<td>专用网络</td>
+</tr>
+<tr>
+<td>磁盘容量</td>
+<td>40GB</td>
+</tr>
+<tr>
+<td>服务器类型</td>
+<td>ecs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xshell的使用"><a class="header-anchor" href="#xshell的使用">¶</a>xshell的使用</h2>
+<h3 id="xshell简介"><a class="header-anchor" href="#xshell简介">¶</a>xshell简介</h3>
+<p><code>XShell</code>是一个强大的安全终端模拟软件，它支持<code>SSH1</code>，<code>SSH2</code>，以及Microsoft Windows平台的TELNET协议。</p>
+<p><code>XShell</code>可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
+<p>当然亦可以访问虚拟接中的<code>Linux</code>系统。由于在虚拟机中操作<code>Linux</code>系统需要频繁切换鼠标，缺乏个性化设置，不支持中文显示，所以我们将使用<code>XShell</code>来连接并使用安装好Linux系统的虚拟机。</p>
+<h3 id="xshell下载"><a class="header-anchor" href="#xshell下载">¶</a>xshell下载</h3>
+<p><a href="https://www.netsarang.com/zh/xshell-download/">下载地址</a>:<a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></p>
+<p>下载过程中可能会出现一些问题，由于它的企业版需要付款，但是我们只是个人使用，所以，我们需要注意以下我们的选项</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143748.png" alt="xshell下载主页选择免费授权界面"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143906.png" alt="填写选项"></p>
+<p>这样点击下载后<code>netsarang</code>官网就会将xshell下载地址发送到您的邮箱，点击下载地址并开始下载，下载后安装就好。</p>
+<h3 id="xshell安装"><a class="header-anchor" href="#xshell安装">¶</a>xshell安装</h3>
+<p>安装过程中没有什么好说的，按照他给你的提示安装就好，我个人建议在选择安装位置时，尽量不要选择系统盘。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708151105.png" alt="xshell安装位置选择"></p>
+<p>这个算是老生常谈，我也就提一句。以下内容就是xhsell的使用了。</p>
+<h3 id="xshell连接阿里云"><a class="header-anchor" href="#xshell连接阿里云">¶</a>xshell连接阿里云</h3>
+<p>打开xshell，新建会话</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153012.png" alt="xshell新建会话"></p>
+<p>属性值：</p>
+<ul>
+<li>名称：随便填写，表示的当前会话的名称</li>
+<li>主机：填写购买的云服务器上面的公网ip</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153121.png" alt="xshell用户身份验证"></p>
+<ul>
+<li>用户名：root</li>
+<li>密码：你在云服务器上面创建的实例的密码</li>
+</ul>
+<p>设置完成之后直接连接</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708181405.png" alt="连接成功之后的界面"></p>
+<h2 id="云服务器软件安装"><a class="header-anchor" href="#云服务器软件安装">¶</a>云服务器软件安装</h2>
+<p>以下的内容都是在<code>xshell</code>打开的会话中执行的。</p>
+<h3 id="安装mysql"><a class="header-anchor" href="#安装mysql">¶</a>安装mysql</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更新apt-get软件源</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-server</span></span><br><span class="line">apt-get install mysql-server</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-client</span></span><br><span class="line">apt-get install mysql-client</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql library</span></span><br><span class="line">apt-get install libmysqlclient-dev</span><br></pre></td></tr></table></figure>
+<div class="note success"><blockquote>
+<p>一般而言，云服务器中是直接以root登录的，并且直接给定的root权限，没有sudo命令，所以不用sudo安装</p>
+<p>安装过程中一般不会提醒设置密码，默认情况下是没有密码的</p>
+</blockquote>
+</div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看是否成功安装//一般安装成功后就会自行启动</span></span><br><span class="line">netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200204.png" alt="执行结果"></p>
+<p>剩余的就是mysql的常用指令了，这里不再赘述，不了解mysql常用指令的同学请移步到<a href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a></p>
+<h3 id="安装java11"><a class="header-anchor" href="#安装java11">¶</a>安装java11</h3>
+<p>在xshell中执行以下指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install openjdk-11-jdk</span><br></pre></td></tr></table></figure>
+<p>安装过程中会让你输入一个Y或n的，输入Y就可以</p>
+<p>下载完成之后，输入以下命令查看java版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200015.png" alt="查看java版本"></p>
+<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz">¶</a>安装lrzsz</h3>
+<h4 id="lrzsz简介"><a class="header-anchor" href="#lrzsz简介">¶</a>lrzsz简介</h4>
+<p>lrzsz是一个unix通信套件提供的X，Y，和ZModem文件传输协议。</p>
+<h4 id="lrzsz安装"><a class="header-anchor" href="#lrzsz安装">¶</a>lrzsz安装</h4>
+<p>在shell中写入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install lrzsz</span><br></pre></td></tr></table></figure>
+<p>安装过程中需要输入的看一下提示，输入Y或者n就可以，Y就代表yes，n就代表no</p>
+<h4 id="lrzsz使用"><a class="header-anchor" href="#lrzsz使用">¶</a>lrzsz使用</h4>
+<p>常用的有两个命令，rz和sz</p>
+<p>其中rz是上传，sz是下载</p>
+<p>没什么好说的，例如上传，直接输入rz然后回车就好</p>
+<h5 id="上传命令rz"><a class="header-anchor" href="#上传命令rz">¶</a>上传命令rz</h5>
+<p>一般而言，使用rz从本地上传到云服务器，可能会存在编码的问题，我们尽可能较少这么意外因素产生的影响，直接使用<code>-be</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rz -be</span><br></pre></td></tr></table></figure>
+<p>解释：</p>
+<ul>
+<li>
+<p>-b：binary 用binary的方式上传下载，不解释字符为ASCII</p>
+</li>
+<li>
+<p>-e ：强制escape 所有控制字符</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708201921.png" alt="输入rz -be之后选择文件传输"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202436.png" alt="上传过程"></p>
+<p>等他上传好即可，进入root下输入ls即可查看上传的文件</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202713.png" alt="上传成功"></p>
+<h5 id="下载命令sz"><a class="header-anchor" href="#下载命令sz">¶</a>下载命令sz</h5>
+<p>下载命令不经常使用，但是依旧可以将云服务器上面的日志文件下载到本地</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213519.png" alt="下载文件"></p>
+<p>需要注意的是，需要输入文件的名称，然后选择文件的步骤和上传相同</p>
+<p>下载到本地的日志文件</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213654.png" alt="下载到本地的日志文件"></p>
+<h1>springboot部署</h1>
+<h2 id="生成jar包"><a class="header-anchor" href="#生成jar包">¶</a>生成jar包</h2>
+<p>现在大多数springboot项目都在使用maven进行包管理，使用maven能够很简单地打包jar，我使用的是IDEA，按照下图顺序执行</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203453.png" alt="maven打包"></p>
+<p><strong>生成的jar路径</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203704.png" alt="jar path"></p>
+<h2 id="上传"><a class="header-anchor" href="#上传">¶</a>上传</h2>
+<p>不需要多说，直接按照上面提到的rz指令上传</p>
+<h2 id="运行"><a class="header-anchor" href="#运行">¶</a>运行</h2>
+<p>进入root，运行一下jar包</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -jar &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205713.png" alt="熟悉的spring项目启动界面"></p>
+<h2 id="访问"><a class="header-anchor" href="#访问">¶</a>访问</h2>
+<p>使用的公网IP访问你的项目，第一次都会很慢，遇见这个的时候不要慌张哦</p>
+<h1>错误汇总</h1>
+<h2 id="port-8080-are-already-in-use"><a class="header-anchor" href="#port-8080-are-already-in-use">¶</a>port 8080 are already in use</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708204536.png" alt="port 8080 are already in use"></p>
+<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
+<p>输入一下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看端口8080占用情况</span></span><br><span class="line">netstat -tln | grep 8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看端口属于哪个程序,端口被哪个进程占用</span></span><br><span class="line">lsof -i :8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀掉这个进程</span></span><br><span class="line">kill -9 878</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看端口8080占用情况，没有任何输出则表示端口没有被占用</span></span><br><span class="line">netstat -tln | grep 8080</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205128.png" alt="解决截图"></p>
+<h2 id="公网IP无法访问"><a class="header-anchor" href="#公网IP无法访问">¶</a>公网IP无法访问</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210109.png" alt="公网IP无法访问"></p>
+<h3 id="解决办法-v2"><a class="header-anchor" href="#解决办法-v2">¶</a>解决办法</h3>
+<p>登录你的云服务器，我的是阿里云，进入控制台之后找到你出案件的实例，点击<code>安全组</code>，然后点击<code>配置规则</code></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210343.png" alt="设置安全组规则1"></p>
+<p><strong>添加安全组</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210822.png" alt="添加安全组1"></p>
+<p>然后！！！</p>
+<p>这里是很需要很重要很重要的，重要的事情说三遍</p>
+<p><font color='red'>重启云服务器</font></p>
+<p><font color='red'>重启云服务器</font></p>
+<p><font color='red'>重启云服务器</font></p>
+<p>不然上面做的是不生效的</p>
+<h2 id="关闭xshell后无法访问项目"><a class="header-anchor" href="#关闭xshell后无法访问项目">¶</a>关闭xshell后无法访问项目</h2>
+<p>其实这个不算错误，也算啦</p>
+<p>其实也没什么，要想在后台运行，需要借助<code>nohup</code></p>
+<h3 id="nohup简介"><a class="header-anchor" href="#nohup简介">¶</a>nohup简介</h3>
+<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
+<p>在缺省情况下该作业的所有输出都被重定向到同级文件夹下一个名为nohup.out的文件中。</p>
+<h3 id="命令格式"><a class="header-anchor" href="#命令格式">¶</a>命令格式</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup Command [ Arg … ] [　&amp; ]</span><br></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup command &gt; myout.file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="nohup运行java-jar"><a class="header-anchor" href="#nohup运行java-jar">¶</a>nohup运行java -jar</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup java -jar association-0.0.1-SNAPSHOT.jar &gt; /root/output/association.log &amp;</span><br></pre></td></tr></table></figure>
+<p>输出到<code>/root/output/association.log</code></p>
+<h3 id="命令使用错误"><a class="header-anchor" href="#命令使用错误">¶</a>命令使用错误</h3>
+<p>唉，这个说多了都是泪</p>
+<p><font color='red'>没有加&amp;</font>，记得把<font color='red'>&amp;</font>补上，当时查这个错误查了半天，命令没问题就可以理所当然地退出<code>xshell</code>了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213228.png" alt="正确截图"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Linux</category>
+        <category>环境搭建</category>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>ECS</tag>
       </tags>
   </entry>
   <entry>
@@ -316,204 +645,57 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Linux云服务器部署springboot项目</title>
-    <url>/posts/28022/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Gy9LurVhf8pLsRhWLsl7TwHaEh?pid=ImgDet&amp;rs=1" alt="SpringBoot"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>本次需要进行云服务器部署的是一个java Springboot项目，使用的是阿里云的<code>ecs</code>云服务器，具体配置如下一个标题所示。云服务器部署环节是项目发布的很重要一步，所以这里简单写一下Linux云服务器部署Springboot项目</p>
-<h1>云服务器配置</h1>
-<h2 id="购买云服务器"><a class="header-anchor" href="#购买云服务器">¶</a>购买云服务器</h2>
-<p>二话不说，购买什么的就不提了奥，这里我选择的云服务器配置如下</p>
+    <title>Java运行机制</title>
+    <url>/posts/3fd0dbbc/</url>
+    <content><![CDATA[<span id="more"></span>
+<p>创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，<font color='red'>本质上是java.exe将字节码文件装载到JVM上运行</font>。</p>
+<p>需要注意的是：
+一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。</p>
+<p>转义字符</p>
 <table>
 <thead>
 <tr>
-<th>描述</th>
-<th>配置</th>
+<th>字符</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>CPU&amp;内存</td>
-<td>1核 2 GiB</td>
+<td>\t</td>
+<td>一个指标为</td>
 </tr>
 <tr>
-<td>操作系统</td>
-<td>Ubuntu  18.04 64位</td>
+<td>\n</td>
+<td>换行符</td>
 </tr>
 <tr>
-<td>当前使用带宽</td>
-<td>1Mbps</td>
+<td>\\</td>
+<td>一个\</td>
 </tr>
 <tr>
-<td>网络类型</td>
-<td>专用网络</td>
+<td>\&quot;</td>
+<td>一个&quot;</td>
 </tr>
 <tr>
-<td>磁盘容量</td>
-<td>40GB</td>
+<td>\’</td>
+<td>一个’’</td>
 </tr>
 <tr>
-<td>服务器类型</td>
-<td>ecs</td>
+<td>\r</td>
+<td>一个回车</td>
 </tr>
 </tbody>
 </table>
-<h2 id="xshell的使用"><a class="header-anchor" href="#xshell的使用">¶</a>xshell的使用</h2>
-<h3 id="xshell简介"><a class="header-anchor" href="#xshell简介">¶</a>xshell简介</h3>
-<p><code>XShell</code>是一个强大的安全终端模拟软件，它支持<code>SSH1</code>，<code>SSH2</code>，以及Microsoft Windows平台的TELNET协议。</p>
-<p><code>XShell</code>可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
-<p>当然亦可以访问虚拟接中的<code>Linux</code>系统。由于在虚拟机中操作<code>Linux</code>系统需要频繁切换鼠标，缺乏个性化设置，不支持中文显示，所以我们将使用<code>XShell</code>来连接并使用安装好Linux系统的虚拟机。</p>
-<h3 id="xshell下载"><a class="header-anchor" href="#xshell下载">¶</a>xshell下载</h3>
-<p><a href="https://www.netsarang.com/zh/xshell-download/">下载地址</a>:<a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></p>
-<p>下载过程中可能会出现一些问题，由于它的企业版需要付款，但是我们只是个人使用，所以，我们需要注意以下我们的选项</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143748.png" alt="xshell下载主页选择免费授权界面"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143906.png" alt="填写选项"></p>
-<p>这样点击下载后<code>netsarang</code>官网就会将xshell下载地址发送到您的邮箱，点击下载地址并开始下载，下载后安装就好。</p>
-<h3 id="xshell安装"><a class="header-anchor" href="#xshell安装">¶</a>xshell安装</h3>
-<p>安装过程中没有什么好说的，按照他给你的提示安装就好，我个人建议在选择安装位置时，尽量不要选择系统盘。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708151105.png" alt="xshell安装位置选择"></p>
-<p>这个算是老生常谈，我也就提一句。以下内容就是xhsell的使用了。</p>
-<h3 id="xshell连接阿里云"><a class="header-anchor" href="#xshell连接阿里云">¶</a>xshell连接阿里云</h3>
-<p>打开xshell，新建会话</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153012.png" alt="xshell新建会话"></p>
-<p>属性值：</p>
-<ul>
-<li>名称：随便填写，表示的当前会话的名称</li>
-<li>主机：填写购买的云服务器上面的公网ip</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153121.png" alt="xshell用户身份验证"></p>
-<ul>
-<li>用户名：root</li>
-<li>密码：你在云服务器上面创建的实例的密码</li>
-</ul>
-<p>设置完成之后直接连接</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708181405.png" alt="连接成功之后的界面"></p>
-<h2 id="云服务器软件安装"><a class="header-anchor" href="#云服务器软件安装">¶</a>云服务器软件安装</h2>
-<p>以下的内容都是在<code>xshell</code>打开的会话中执行的。</p>
-<h3 id="安装mysql"><a class="header-anchor" href="#安装mysql">¶</a>安装mysql</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 更新apt-get软件源</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-server</span></span><br><span class="line">apt-get install mysql-server</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql-client</span></span><br><span class="line">apt-get install mysql-client</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装mysql library</span></span><br><span class="line">apt-get install libmysqlclient-dev</span><br></pre></td></tr></table></figure>
-<div class="note success"><blockquote>
-<p>一般而言，云服务器中是直接以root登录的，并且直接给定的root权限，没有sudo命令，所以不用sudo安装</p>
-<p>安装过程中一般不会提醒设置密码，默认情况下是没有密码的</p>
-</blockquote>
+<div class="note success"><p>一个回车和一个换行是不一样的，一个回车指的是不换行，光标直接从行尾跳到行头</p>
+<p>而换行是光标直接跳转到下一行行首</p>
 </div>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看是否成功安装//一般安装成功后就会自行启动</span></span><br><span class="line">netstat -tap | grep mysql</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200204.png" alt="执行结果"></p>
-<p>剩余的就是mysql的常用指令了，这里不再赘述，不了解mysql常用指令的同学请移步到<a href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a></p>
-<h3 id="安装java11"><a class="header-anchor" href="#安装java11">¶</a>安装java11</h3>
-<p>在xshell中执行以下指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install openjdk-11-jdk</span><br></pre></td></tr></table></figure>
-<p>安装过程中会让你输入一个Y或n的，输入Y就可以</p>
-<p>下载完成之后，输入以下命令查看java版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200015.png" alt="查看java版本"></p>
-<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz">¶</a>安装lrzsz</h3>
-<h4 id="lrzsz简介"><a class="header-anchor" href="#lrzsz简介">¶</a>lrzsz简介</h4>
-<p>lrzsz是一个unix通信套件提供的X，Y，和ZModem文件传输协议。</p>
-<h4 id="lrzsz安装"><a class="header-anchor" href="#lrzsz安装">¶</a>lrzsz安装</h4>
-<p>在shell中写入以下代码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">apt-get install lrzsz</span><br></pre></td></tr></table></figure>
-<p>安装过程中需要输入的看一下提示，输入Y或者n就可以，Y就代表yes，n就代表no</p>
-<h4 id="lrzsz使用"><a class="header-anchor" href="#lrzsz使用">¶</a>lrzsz使用</h4>
-<p>常用的有两个命令，rz和sz</p>
-<p>其中rz是上传，sz是下载</p>
-<p>没什么好说的，例如上传，直接输入rz然后回车就好</p>
-<h5 id="上传命令rz"><a class="header-anchor" href="#上传命令rz">¶</a>上传命令rz</h5>
-<p>一般而言，使用rz从本地上传到云服务器，可能会存在编码的问题，我们尽可能较少这么意外因素产生的影响，直接使用<code>-be</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rz -be</span><br></pre></td></tr></table></figure>
-<p>解释：</p>
-<ul>
-<li>
-<p>-b：binary 用binary的方式上传下载，不解释字符为ASCII</p>
-</li>
-<li>
-<p>-e ：强制escape 所有控制字符</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708201921.png" alt="输入rz -be之后选择文件传输"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202436.png" alt="上传过程"></p>
-<p>等他上传好即可，进入root下输入ls即可查看上传的文件</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202713.png" alt="上传成功"></p>
-<h5 id="下载命令sz"><a class="header-anchor" href="#下载命令sz">¶</a>下载命令sz</h5>
-<p>下载命令不经常使用，但是依旧可以将云服务器上面的日志文件下载到本地</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213519.png" alt="下载文件"></p>
-<p>需要注意的是，需要输入文件的名称，然后选择文件的步骤和上传相同</p>
-<p>下载到本地的日志文件</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213654.png" alt="下载到本地的日志文件"></p>
-<h1>springboot部署</h1>
-<h2 id="生成jar包"><a class="header-anchor" href="#生成jar包">¶</a>生成jar包</h2>
-<p>现在大多数springboot项目都在使用maven进行包管理，使用maven能够很简单地打包jar，我使用的是IDEA，按照下图顺序执行</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203453.png" alt="maven打包"></p>
-<p><strong>生成的jar路径</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203704.png" alt="jar path"></p>
-<h2 id="上传"><a class="header-anchor" href="#上传">¶</a>上传</h2>
-<p>不需要多说，直接按照上面提到的rz指令上传</p>
-<h2 id="运行"><a class="header-anchor" href="#运行">¶</a>运行</h2>
-<p>进入root，运行一下jar包</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">java -jar &lt;package-name&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205713.png" alt="熟悉的spring项目启动界面"></p>
-<h2 id="访问"><a class="header-anchor" href="#访问">¶</a>访问</h2>
-<p>使用的公网IP访问你的项目，第一次都会很慢，遇见这个的时候不要慌张哦</p>
-<h1>错误汇总</h1>
-<h2 id="port-8080-are-already-in-use"><a class="header-anchor" href="#port-8080-are-already-in-use">¶</a>port 8080 are already in use</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708204536.png" alt="port 8080 are already in use"></p>
-<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
-<p>输入一下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看端口8080占用情况</span></span><br><span class="line">netstat -tln | grep 8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash">查看端口属于哪个程序,端口被哪个进程占用</span></span><br><span class="line">lsof -i :8080</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 杀掉这个进程</span></span><br><span class="line">kill -9 878</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 再次查看端口8080占用情况，没有任何输出则表示端口没有被占用</span></span><br><span class="line">netstat -tln | grep 8080</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205128.png" alt="解决截图"></p>
-<h2 id="公网IP无法访问"><a class="header-anchor" href="#公网IP无法访问">¶</a>公网IP无法访问</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210109.png" alt="公网IP无法访问"></p>
-<h3 id="解决办法-v2"><a class="header-anchor" href="#解决办法-v2">¶</a>解决办法</h3>
-<p>登录你的云服务器，我的是阿里云，进入控制台之后找到你出案件的实例，点击<code>安全组</code>，然后点击<code>配置规则</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210343.png" alt="设置安全组规则1"></p>
-<p><strong>添加安全组</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210822.png" alt="添加安全组1"></p>
-<p>然后！！！</p>
-<p>这里是很需要很重要很重要的，重要的事情说三遍</p>
-<p><font color='red'>重启云服务器</font></p>
-<p><font color='red'>重启云服务器</font></p>
-<p><font color='red'>重启云服务器</font></p>
-<p>不然上面做的是不生效的</p>
-<h2 id="关闭xshell后无法访问项目"><a class="header-anchor" href="#关闭xshell后无法访问项目">¶</a>关闭xshell后无法访问项目</h2>
-<p>其实这个不算错误，也算啦</p>
-<p>其实也没什么，要想在后台运行，需要借助<code>nohup</code></p>
-<h3 id="nohup简介"><a class="header-anchor" href="#nohup简介">¶</a>nohup简介</h3>
-<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
-<p>在缺省情况下该作业的所有输出都被重定向到同级文件夹下一个名为nohup.out的文件中。</p>
-<h3 id="命令格式"><a class="header-anchor" href="#命令格式">¶</a>命令格式</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup Command [ Arg … ] [　&amp; ]</span><br></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup command &gt; myout.file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
-<h3 id="nohup运行java-jar"><a class="header-anchor" href="#nohup运行java-jar">¶</a>nohup运行java -jar</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup java -jar association-0.0.1-SNAPSHOT.jar &gt; /root/output/association.log &amp;</span><br></pre></td></tr></table></figure>
-<p>输出到<code>/root/output/association.log</code></p>
-<h3 id="命令使用错误"><a class="header-anchor" href="#命令使用错误">¶</a>命令使用错误</h3>
-<p>唉，这个说多了都是泪</p>
-<p><font color='red'>没有加&amp;</font>，记得把<font color='red'>&amp;</font>补上，当时查这个错误查了半天，命令没问题就可以理所当然地退出<code>xshell</code>了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213228.png" alt="正确截图"></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+]]></content>
       <categories>
-        <category>Error</category>
-        <category>Linux</category>
-        <category>环境搭建</category>
-        <category>运维</category>
+        <category>Java</category>
+        <category>Base</category>
       </categories>
       <tags>
-        <tag>SpringBoot</tag>
-        <tag>ECS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringBoot框架搭建</title>
-    <url>/posts/22603/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
+        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
@@ -1096,21 +1278,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Spring是什么</title>
-    <url>/posts/46178/</url>
-    <content><![CDATA[<h1>前言</h1>
-]]></content>
-      <categories>
-        <category>FrameWork</category>
-        <category>Spring</category>
-      </categories>
-      <tags>
-        <tag>Spring</tag>
-        <tag>LOC</tag>
-        <tag>DI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ajax—servlet实现前后端交互</title>
     <url>/posts/27591/</url>
     <content><![CDATA[<p><img src="https://coachtestprep.s3.amazonaws.com/uploads/course/header_image/8727/udemy-logo.png" alt="JQuery AJAX"></p>
@@ -1257,6 +1424,32 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>项目中数据库问题</title>
+    <url>/posts/44965/</url>
+    <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
+<span id="more"></span>
+<h1>防止SQL注入</h1>
+<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+<h1>对JDBC连接进行统一管理</h1>
+<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1>索引异常</h1>
+<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
+<h1>Data too lang</h1>
+<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Database</category>
+      </categories>
+      <tags>
+        <tag>Mysql</tag>
+        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -1706,29 +1899,82 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>项目中数据库问题</title>
-    <url>/posts/44965/</url>
-    <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
+    <title>hexo+next配置</title>
+    <url>/posts/20416/</url>
+    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
 <span id="more"></span>
-<h1>防止SQL注入</h1>
-<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
-<h1>对JDBC连接进行统一管理</h1>
-<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1>索引异常</h1>
-<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">check</span>(sex<span class="operator">=</span><span class="string">&#x27;男&#x27;</span> <span class="keyword">or</span> sex<span class="operator">=</span><span class="string">&#x27;女&#x27;</span>) <span class="keyword">default</span> <span class="string">&#x27;男&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1>Data too lang</h1>
-<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
+<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
+<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
+<h1>Hexo配置</h1>
+<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
+<p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
+<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="note success"><blockquote>
+<p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
+</blockquote>
+</div>
+<h1>next主题配置</h1>
+<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
+<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>修改一下<code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>修改一下<code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
+<div class="note info"><blockquote>
+<p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
+<p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
+<p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
+</blockquote>
+</div>
+<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
+<p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
+<p>其次就是对配置文件的设置</p>
+<div class="note primary"><blockquote>
+<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
+<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
+</blockquote>
+</div>
+<p>根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
+<p><code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
+<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
+<p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
+<p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
+<p>官方：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>以下为使用方法，直接在markdown文档中写标签就好</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
+<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
-        <category>Program</category>
-        <category>Database</category>
+        <category>环境搭建</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
-        <tag>MyBatis</tag>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -1852,85 +2098,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>hexo+next配置</title>
-    <url>/posts/20416/</url>
-    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
-<span id="more"></span>
-<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
-<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
-<h1>Hexo配置</h1>
-<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
-<p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
-<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<div class="note success"><blockquote>
-<p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
-</blockquote>
-</div>
-<h1>next主题配置</h1>
-<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
-<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>修改一下<code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>修改一下<code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
-<div class="note info"><blockquote>
-<p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
-<p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
-<p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
-</blockquote>
-</div>
-<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
-<p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
-<p>其次就是对配置文件的设置</p>
-<div class="note primary"><blockquote>
-<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
-<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
-</blockquote>
-</div>
-<p>根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
-<p><code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
-<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
-<p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
-<p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
-<p>官方：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>以下为使用方法，直接在markdown文档中写标签就好</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
-<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo同级多级分类配置</title>
     <url>/posts/63081/</url>
     <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
@@ -2013,105 +2180,33 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>markdown语法以及Typora使用(高级)</title>
-    <url>/posts/54024/</url>
-    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
-<h1>HTML+CSS</h1>
-<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
-<div class="note success"><blockquote>
-<p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p>
-<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
-<p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p>
-<p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">这是一个普通段落。</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">这是另一个普通段落。</span><br></pre></td></tr></table></figure>
-<p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p>
-<p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p>
-<p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p>
-</blockquote>
+    <title>k个一组反转链表</title>
+    <url>/posts/f63f9b79/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109132027464.png" alt="力扣刷题结果"></p>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="分析"><a class="header-anchor" href="#分析">¶</a>分析</h4>
+<p>根据题目的要求，需要原地进行反转，这个和直接反转链表没有很大的区别，只不过在反转的过程中，需要对头指针和右指针进行位置的确认。</p>
+<ol>
+<li>若链表的长度小于k，直接返回head头结点。</li>
+<li>设置一个头指针指向head</li>
+<li>设置一个尾指针b指向head，从head开始遍历，直到第k个结点停止遍历</li>
+<li>对[a,b)之间的链表进行翻转</li>
+<li>后面的处理过程和前面四步相同直接就是递归。</li>
+</ol>
+<div class="note primary"><p>需要注意的是，反转之后a就是尾结点，并且，需要注意的是，左闭右开区间，b不在反转区间内</p>
 </div>
-<p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
-<p>答案是肯定的，以下为在添加自定义CSS</p>
-<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
-<p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
-<p>大致流程就是</p>
-<ul>
-<li>打开Typora编辑器</li>
-<li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
-<li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
-<li>这样会打开本地的Typora主题文件夹
-<ul>
-<li>一种修改方式为修改<code>base.user.css</code></li>
-<li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
-<li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
-</ul>
-</li>
-<li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
-</ul>
-<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
-<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.task-list-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for completed tasks */</span></span><br><span class="line">    <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.task-list-not-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for incomplete tasks */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>测试用例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
-<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
-<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [x] <span class="xml"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span>写博客<span class="xml"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<ul>
-<li>[ ] 写博客</li>
-<li>[x] <del>写博客</del></li>
-</ul>
-<p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
-<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* the usual value of color ： red | blue | green | yellow *</span>/</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<p><font color='red'>红色</font></p>
-<p>其他的<font>属性也可以进行更改</p>
-<blockquote>
-<p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
-</blockquote>
-<h1>PicGo</h1>
-<p>这边有了一片博客关于图床的设置，直接提供链接</p>
-<p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
-<h1><a id="#a2">Ahk脚本</a></h1>
-<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
-<p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
-<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
-<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
-<p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
-<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
-<p><a href="https://www.autohotkey.com/">下载地址</a></p>
-<p>安装过程没有什么好说的，一路Next</p>
-<p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
-<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
-<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
-<p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
-<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
-<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
-<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(<span class="string">&quot;orange&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(<span class="string">&quot;red&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(<span class="string">&quot;cornflowerblue&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+G 荧光绿色</span><br><span class="line">	^!g::addFontColor(<span class="string">&quot;lawngreen&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+T 黄色</span><br><span class="line">	^!t::addFontColor(<span class="string">&quot;tomato&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
-<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
-<p><strong>未完待续</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseKGroup</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        ListNode a=head,b=head;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;k;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(b==<span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> head;</span><br><span class="line">            &#125;</span><br><span class="line">            b = b.next;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode newHead = reverse(a,b);</span><br><span class="line">        a.next = reverseKGroup(b,k);</span><br><span class="line">        <span class="keyword">return</span> newHead;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverse</span><span class="params">(ListNode a,ListNode b)</span></span>&#123;</span><br><span class="line">        ListNode next = <span class="keyword">null</span>;</span><br><span class="line">        ListNode pre = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(a!=b)&#123;</span><br><span class="line">            next = a.next;</span><br><span class="line">            a.next = pre;</span><br><span class="line">            pre = a;</span><br><span class="line">            a = next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Software</category>
-        <category>Typora</category>
-        <category>Picgo</category>
-        <category>HotKey</category>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
       </categories>
       <tags>
-        <tag>Ahk</tag>
-        <tag>HTML</tag>
-        <tag>CSS</tag>
-        <tag>Markdown</tag>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
       </tags>
   </entry>
   <entry>
@@ -2502,18 +2597,105 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>tensorflow-numpy-matplotlib线性回归</title>
-    <url>/posts/50065/</url>
-    <content><![CDATA[<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    <title>markdown语法以及Typora使用(高级)</title>
+    <url>/posts/54024/</url>
+    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
+<h1>HTML+CSS</h1>
+<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
+<div class="note success"><blockquote>
+<p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p>
+<p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p>
+<p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p>
+<p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">这是一个普通段落。</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"></span><br><span class="line">这是另一个普通段落。</span><br></pre></td></tr></table></figure>
+<p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p>
+<p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p>
+<p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p>
+</blockquote>
+</div>
+<p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
+<p>答案是肯定的，以下为在添加自定义CSS</p>
+<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
+<p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
+<p>大致流程就是</p>
+<ul>
+<li>打开Typora编辑器</li>
+<li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
+<li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
+<li>这样会打开本地的Typora主题文件夹
+<ul>
+<li>一种修改方式为修改<code>base.user.css</code></li>
+<li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
+<li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
+</ul>
+</li>
+<li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
+</ul>
+<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
+<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-class">.task-list-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for completed tasks */</span></span><br><span class="line">    <span class="attribute">text-decoration</span>: line-through;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.task-list-not-done</span> &#123;</span><br><span class="line">    <span class="comment">/* styles for incomplete tasks */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试用例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [ ] 输出倒逼输入</span><br><span class="line"><span class="bullet">-</span> [x] 写博客</span><br></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
+<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
+<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="bullet">-</span> [ ] 写博客</span><br><span class="line"><span class="bullet">-</span> [x] <span class="xml"><span class="tag">&lt;<span class="name">del</span>&gt;</span></span>写博客<span class="xml"><span class="tag">&lt;/<span class="name">del</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<ul>
+<li>[ ] 写博客</li>
+<li>[x] <del>写博客</del></li>
+</ul>
+<p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
+<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">/<span class="emphasis">* the usual value of color ： red | blue | green | yellow *</span>/</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="tag">&lt;/<span class="name">font</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><font color='red'>红色</font></p>
+<p>其他的<font>属性也可以进行更改</p>
+<blockquote>
+<p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
+</blockquote>
+<h1>PicGo</h1>
+<p>这边有了一片博客关于图床的设置，直接提供链接</p>
+<p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
+<h1><a id="#a2">Ahk脚本</a></h1>
+<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
+<p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
+<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
+<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
+<p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
+<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
+<p><a href="https://www.autohotkey.com/">下载地址</a></p>
+<p>安装过程没有什么好说的，一路Next</p>
+<p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
+<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
+<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
+<p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
+<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
+<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
+<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+O 橙色</span><br><span class="line">    ^!o::addFontColor(<span class="string">&quot;orange&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+R 红色</span><br><span class="line">    ^!r::addFontColor(<span class="string">&quot;red&quot;</span>)</span><br><span class="line"> </span><br><span class="line">    ; Ctrl+Alt+B 浅蓝色</span><br><span class="line">    ^!b::addFontColor(<span class="string">&quot;cornflowerblue&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+G 荧光绿色</span><br><span class="line">	^!g::addFontColor(<span class="string">&quot;lawngreen&quot;</span>)</span><br><span class="line">	</span><br><span class="line">	; Ctrl+Alt+T 黄色</span><br><span class="line">	^!t::addFontColor(<span class="string">&quot;tomato&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">; 快捷增加字体颜色</span><br><span class="line">addFontColor(color)&#123;</span><br><span class="line">    clipboard := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">    If(clipboard = <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
+<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
+<p><strong>未完待续</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
       <categories>
-        <category>Python</category>
-        <category>神经网络与机器学习</category>
+        <category>Software</category>
+        <category>Typora</category>
+        <category>Picgo</category>
+        <category>HotKey</category>
       </categories>
       <tags>
-        <tag>Numpy</tag>
-        <tag>Matplotlib</tag>
-        <tag>Tensorflow</tag>
-        <tag>Python</tag>
+        <tag>Markdown</tag>
+        <tag>Ahk</tag>
+        <tag>HTML</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -2593,67 +2775,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vscode C/C++头文件问题</title>
-    <url>/posts/55983/</url>
-    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
-<span id="more"></span>
-<h1>头文件问题</h1>
-<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
-<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
-<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
-<div class="note primary"><p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
-</div>
-<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
-<div class="note primary"><p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
-</div>
-<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
-<p>我想这个便不需要多加说明，这边只给定一个格式</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __ABC_H__ <span class="comment">//包拯不重复</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __ABC_H__ <span class="comment">//定义</span></span></span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//和ifndef配套使用</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
-<div class="note primary"><p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
-</div>
-<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
-<p>框内一共有三个内容</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;args&quot;</span>: [</span><br><span class="line">	<span class="string">&quot;-g&quot;</span>,</span><br><span class="line">	<span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="comment">// 头文件的实现文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="comment">// 头文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-<div class="note info"><p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p>
-<p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
-</div>
-<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
-<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We&#x27;re best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x = <span class="number">1024</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test函数内部 x=%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test前 x=%d\n&quot;</span>, x);</span><br><span class="line">    test(x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test后 x=%d\n&quot;</span>, x);</span><br><span class="line">    test_1(x);</span><br><span class="line">    test_2(x);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>vscode配置文件</h1>
-<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW86&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;gcc&quot;</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;g++&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;ostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iomanip&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;array&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;atomic&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;*.tcc&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clocale&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cmath&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdarg&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstddef&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdint&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdio&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdlib&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstring&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ctime&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwchar&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;deque&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;unordered_map&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;vector&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;exception&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;algorithm&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory_resource&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;optional&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string_view&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;system_error&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tuple&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type_traits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;utility&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;initializer_list&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iosfwd&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;istream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;limits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;sstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;stdexcept&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;streambuf&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;typeinfo&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tidl_alg_int.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="string">&quot;Disabled&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;gcc&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
-<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>环境搭建</category>
-        <category>Software</category>
-        <category>Cpp</category>
-        <category>Vscode</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-        <tag>Vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -2753,6 +2874,35 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>单链表的反转</title>
+    <url>/posts/733dbec/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109042234446.png" alt="力扣刷题结果"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目解题思路"><a class="header-anchor" href="#题目解题思路">¶</a>题目解题思路</h4>
+<p>链表的反转，其实很简单，每次在原链表按照遍历顺序取出一个结点，按照头插法，插入到另外一个链表就好了。</p>
+<p>时间复杂度：O(n)，时间消耗是由遍历链表产生的</p>
+<p>空间复杂度：O(1)。</p>
+<h4 id="解题代码"><a class="header-anchor" href="#解题代码">¶</a>解题代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode l = <span class="keyword">new</span> ListNode();</span><br><span class="line">        l.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode s = <span class="keyword">new</span> ListNode(head.val);</span><br><span class="line">            s.next = l.next;</span><br><span class="line">            l.next = s;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l = l.next;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="其他思路"><a class="header-anchor" href="#其他思路">¶</a>其他思路</h4>
+<h5 id="思路1"><a class="header-anchor" href="#思路1">¶</a>思路1</h5>
+<p>双指针：其实不用想太多啊，不就是让你进行链表反转吗，直接把只指针反过来就好了。怎么反过来？就是使用双指针，一个指针<font color='red'>cur</font>指向当前结点，一个指针指<font color='red'>pre</font>向后继结点，每次把两个结点之间的指针反过来就好啦，就是需要另外一个指针指向<font color='red'>pre</font>的下一个结点，这样会使空间复杂度提高一点，但依旧是O(1)；</p>
+<p><strong>代码实现</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode cur = <span class="keyword">null</span>,pre = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode temp = pre.next;</span><br><span class="line">            pre.next = cur;</span><br><span class="line">            cur = pre;</span><br><span class="line">            pre = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于new和delete的问题</title>
     <url>/posts/36390/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
@@ -2788,6 +2938,67 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode C/C++头文件问题</title>
+    <url>/posts/55983/</url>
+    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
+<span id="more"></span>
+<h1>头文件问题</h1>
+<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
+<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
+<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
+<div class="note primary"><p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
+</div>
+<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
+<div class="note primary"><p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
+</div>
+<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
+<p>我想这个便不需要多加说明，这边只给定一个格式</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __ABC_H__ <span class="comment">//包拯不重复</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __ABC_H__ <span class="comment">//定义</span></span></span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//和ifndef配套使用</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
+<div class="note primary"><p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
+</div>
+<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
+<p>框内一共有三个内容</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;args&quot;</span>: [</span><br><span class="line">	<span class="string">&quot;-g&quot;</span>,</span><br><span class="line">	<span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="comment">// 头文件的实现文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="comment">// 头文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<div class="note info"><p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p>
+<p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
+</div>
+<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
+<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We&#x27;re best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x = <span class="number">1024</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test函数内部 x=%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test前 x=%d\n&quot;</span>, x);</span><br><span class="line">    test(x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test后 x=%d\n&quot;</span>, x);</span><br><span class="line">    test_1(x);</span><br><span class="line">    test_2(x);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>vscode配置文件</h1>
+<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW86&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;gcc&quot;</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;g++&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;ostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iomanip&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;array&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;atomic&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;*.tcc&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clocale&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cmath&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdarg&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstddef&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdint&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdio&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdlib&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstring&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ctime&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwchar&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;deque&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;unordered_map&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;vector&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;exception&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;algorithm&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory_resource&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;optional&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string_view&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;system_error&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tuple&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type_traits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;utility&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;initializer_list&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iosfwd&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;istream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;limits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;sstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;stdexcept&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;streambuf&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;typeinfo&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tidl_alg_int.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="string">&quot;Disabled&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;gcc&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
+<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>环境搭建</category>
+        <category>Software</category>
+        <category>Cpp</category>
+        <category>Vscode</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>Vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -2860,8 +3071,8 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Java</category>
         <category>Error</category>
+        <category>Java</category>
         <category>环境搭建</category>
       </categories>
       <tags>
@@ -2909,53 +3120,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>单链表的反转</title>
-    <url>/posts/733dbec/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109042234446.png" alt="力扣刷题结果"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目解题思路"><a class="header-anchor" href="#题目解题思路">¶</a>题目解题思路</h4>
-<p>链表的反转，其实很简单，每次在原链表按照遍历顺序取出一个结点，按照头插法，插入到另外一个链表就好了。</p>
-<p>时间复杂度：O(n)，时间消耗是由遍历链表产生的</p>
-<p>空间复杂度：O(1)。</p>
-<h4 id="解题代码"><a class="header-anchor" href="#解题代码">¶</a>解题代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode l = <span class="keyword">new</span> ListNode();</span><br><span class="line">        l.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode s = <span class="keyword">new</span> ListNode(head.val);</span><br><span class="line">            s.next = l.next;</span><br><span class="line">            l.next = s;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l = l.next;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="其他思路"><a class="header-anchor" href="#其他思路">¶</a>其他思路</h4>
-<h5 id="思路1"><a class="header-anchor" href="#思路1">¶</a>思路1</h5>
-<p>双指针：其实不用想太多啊，不就是让你进行链表反转吗，直接把只指针反过来就好了。怎么反过来？就是使用双指针，一个指针<font color='red'>cur</font>指向当前结点，一个指针指<font color='red'>pre</font>向后继结点，每次把两个结点之间的指针反过来就好啦，就是需要另外一个指针指向<font color='red'>pre</font>的下一个结点，这样会使空间复杂度提高一点，但依旧是O(1)；</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode cur = <span class="keyword">null</span>,pre = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode temp = pre.next;</span><br><span class="line">            pre.next = cur;</span><br><span class="line">            cur = pre;</span><br><span class="line">            pre = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模式串匹配算法-kmp</title>
-    <url>/posts/8a5a5cfb/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.1f5c826340a17136f098ed9af5156aed?rik=3KU7EwW%2fM5bVvQ&amp;riu=http%3a%2f%2fwww.dxzy163.com%2fupload%2fimage%2f20200110%2f1578665177433932.jpg&amp;ehk=qMAcUEtiRUVeczE%2fZkssALB9BJgmunT3%2ftFJOAjbXS4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="模式匹配"></p>
-<span id="more"></span>
-<p>首次上传直接代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.java.kmp;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PatternMatch</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span>[] getNext(String pms) &#123;</span><br><span class="line">		<span class="keyword">int</span> len = pms.length();</span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> next[] = <span class="keyword">new</span> <span class="keyword">int</span>[len];</span><br><span class="line">		<span class="comment">//当只有一个字符的时候</span></span><br><span class="line">		next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt; len ; i++)&#123;</span><br><span class="line">			<span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; pms.charAt(i) != pms.charAt(j))&#123;</span><br><span class="line">				<span class="comment">//不等则回溯</span></span><br><span class="line">				j = next[j-<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(pms.charAt(i) == pms.charAt(j))&#123;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			next[i] = j;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">kmp</span><span class="params">(String pts,String pms)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> i ;</span><br><span class="line">		<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span>[] next = getNext(pms);</span><br><span class="line"></span><br><span class="line">		<span class="comment">//创建用于接收结果的列表</span></span><br><span class="line">		List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//		这种方法也是可以实现的，但是j在回溯的时候太复杂</span></span><br><span class="line"><span class="comment">//		while(i &lt; pts.length() &amp;&amp; j &lt; pms.length())&#123;</span></span><br><span class="line"><span class="comment">//			if(pts.charAt(i) == pms.charAt(j))&#123;</span></span><br><span class="line"><span class="comment">//				i++;</span></span><br><span class="line"><span class="comment">//				j++;</span></span><br><span class="line"><span class="comment">//			&#125;else&#123;</span></span><br><span class="line"><span class="comment">//				i++;</span></span><br><span class="line"><span class="comment">//				if(j!=0)&#123;</span></span><br><span class="line"><span class="comment">//					j = next[j-1]+1;&#125;</span></span><br><span class="line"><span class="comment">//			&#125;</span></span><br><span class="line"><span class="comment">//		&#125;</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(i = <span class="number">0</span>;i&lt;pts.length();i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(pms.length() == <span class="number">0</span>)&#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">while</span>(j&gt;<span class="number">0</span> &amp;&amp; pts.charAt(i)!=pms.charAt(j))&#123;</span><br><span class="line">				j = next[j-<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(pts.charAt(i)==pms.charAt(j))&#123;</span><br><span class="line">				j++;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(j == pms.length()) &#123;</span><br><span class="line">				list.add(i - j + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//				单行中有多个子串的情况</span></span><br><span class="line">				j = next[j-<span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>算法·方阵</title>
     <url>/posts/49440/</url>
     <content><![CDATA[<h1>方阵</h1>
@@ -2980,33 +3144,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </categories>
       <tags>
         <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>模式串匹配算法-暴力破解</title>
-    <url>/posts/58e2d768/</url>
-    <content><![CDATA[<p><img src="https://img-blog.csdnimg.cn/20190520191842645.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NwcmltZXNwbHVz,size_16,color_FFFFFF,t_70" alt="暴力法模式匹配"></p>
-<span id="more"></span>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>编译原理词法分析器的设计与实现</title>
-    <url>/posts/65201/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>编译原理</category>
-      </categories>
-      <tags>
-        <tag>词法分析</tag>
       </tags>
   </entry>
   <entry>
