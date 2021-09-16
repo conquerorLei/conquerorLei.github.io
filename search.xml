@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>http error</title>
-    <url>/posts/39167/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jwkxrc4PXMB0RJnrhP67zgHaEK?pid=ImgDet&amp;rs=1" alt="Http"></p>
-<span id="more"></span>
-<h1>404 not found</h1>
-<p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
-<p>解决办法：</p>
-<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
-<p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
-<h1>500异常</h1>
-<p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
-<h1>使用配对异常</h1>
-<p>一般而言，若是对request进行属性设置，则需要使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
-<p>进行数据转发，若使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>就会出现无法获取request属性的错误</p>
-<p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除</title>
     <url>/posts/35421/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png" alt="warning: LF will be replaced by CRLF"></p>
@@ -66,12 +38,40 @@
       <categories>
         <category>Error</category>
         <category>环境搭建</category>
-        <category>Git</category>
         <category>Hexo</category>
+        <category>Git</category>
       </categories>
       <tags>
         <tag>Git</tag>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>http error</title>
+    <url>/posts/39167/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jwkxrc4PXMB0RJnrhP67zgHaEK?pid=ImgDet&amp;rs=1" alt="Http"></p>
+<span id="more"></span>
+<h1>404 not found</h1>
+<p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
+<p>解决办法：</p>
+<figure class="highlight jsp"><table><tr><td class="code"><pre><span class="line">&lt;!-- 设置基址 --&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;%--&lt;base href=<span class="string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;</span><br><span class="line">&lt;base href=<span class="string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
+<h1>500异常</h1>
+<p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
+<h1>使用配对异常</h1>
+<p>一般而言，若是对request进行属性设置，则需要使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;跳转地址&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
+<p>进行数据转发，若使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;跳转地址&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>就会出现无法获取request属性的错误</p>
+<p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>Error</category>
+        <category>Program</category>
+      </categories>
+      <tags>
+        <tag>Http</tag>
       </tags>
   </entry>
   <entry>
@@ -229,6 +229,60 @@
 <p>外层元素默认情况下为<font color='red'>一个地址的值</font>，内层元素默认初始化值见一维数组的初始化值。对于内层数组没有初始化的情况下，外层数组的下标对应的值为<font color='red'>null</font></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest02</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 静态初始化</span></span><br><span class="line">        <span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[][]&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,&#123;<span class="number">4</span>,<span class="number">5</span>&#125;,&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>&#125;&#125;;</span><br><span class="line">        <span class="comment">//动态初始化</span></span><br><span class="line">        String[][] arr1 = <span class="keyword">new</span> String[<span class="number">3</span>][<span class="number">4</span>];</span><br><span class="line">        String[][] arr2 = <span class="keyword">new</span> String[<span class="number">3</span>][]; <span class="comment">// 两个的区别在于没有对列进行赋值。</span></span><br><span class="line">        <span class="keyword">int</span>[][] arr3 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        System.out.println(arr[<span class="number">0</span>][<span class="number">1</span>]);</span><br><span class="line">        System.out.println(arr1[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 初始的情况下没有对列进行初始化，故而，在此需要初始化，否则直接调用会出现空指针异常</span></span><br><span class="line">        arr2[<span class="number">0</span>] = <span class="keyword">new</span> String[<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line">        System.out.println(arr.length);</span><br><span class="line">        System.out.println(arr[<span class="number">0</span>].length);</span><br><span class="line">        System.out.println(arr[<span class="number">1</span>].length);</span><br><span class="line"></span><br><span class="line">        System.out.println(arr3); <span class="comment">// [[I@1540e19d</span></span><br><span class="line">        System.out.println(arr3[<span class="number">0</span>]); <span class="comment">// [I@677327b6</span></span><br><span class="line">        System.out.println(arr3[<span class="number">0</span>][<span class="number">0</span>]); <span class="comment">// 0</span></span><br><span class="line">        </span><br><span class="line">        System.out.println(arr2[<span class="number">1</span>]); <span class="comment">// null</span></span><br><span class="line">        System.out.println(arr2[<span class="number">1</span>][<span class="number">0</span>]); <span class="comment">// NullPointerException</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java运行机制</title>
+    <url>/posts/3fd0dbbc/</url>
+    <content><![CDATA[<span id="more"></span>
+<p>创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，<font color='red'>本质上是java.exe将字节码文件装载到JVM上运行</font>。</p>
+<p>需要注意的是：
+一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。</p>
+<p>转义字符</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\t</td>
+<td>一个指标为</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行符</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>一个\</td>
+</tr>
+<tr>
+<td>\&quot;</td>
+<td>一个&quot;</td>
+</tr>
+<tr>
+<td>\’</td>
+<td>一个’’</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>一个回车</td>
+</tr>
+</tbody>
+</table>
+<div class="note success"><p>一个回车和一个换行是不一样的，一个回车指的是不换行，光标直接从行尾跳到行头</p>
+<p>而换行是光标直接跳转到下一行行首</p>
+</div>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -418,8 +472,8 @@
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
         <category>Error</category>
-        <category>Linux</category>
         <category>环境搭建</category>
+        <category>Linux</category>
         <category>运维</category>
       </categories>
       <tags>
@@ -645,60 +699,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Java运行机制</title>
-    <url>/posts/3fd0dbbc/</url>
-    <content><![CDATA[<span id="more"></span>
-<p>创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，<font color='red'>本质上是java.exe将字节码文件装载到JVM上运行</font>。</p>
-<p>需要注意的是：
-一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。</p>
-<p>转义字符</p>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\t</td>
-<td>一个指标为</td>
-</tr>
-<tr>
-<td>\n</td>
-<td>换行符</td>
-</tr>
-<tr>
-<td>\\</td>
-<td>一个\</td>
-</tr>
-<tr>
-<td>\&quot;</td>
-<td>一个&quot;</td>
-</tr>
-<tr>
-<td>\’</td>
-<td>一个’’</td>
-</tr>
-<tr>
-<td>\r</td>
-<td>一个回车</td>
-</tr>
-</tbody>
-</table>
-<div class="note success"><p>一个回车和一个换行是不一样的，一个回车指的是不换行，光标直接从行尾跳到行头</p>
-<p>而换行是光标直接跳转到下一行行首</p>
-</div>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Base</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ModuleNotFoundError: No module named &#39;pip&#39;</title>
     <url>/posts/37853/</url>
     <content><![CDATA[<p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" alt="python pip"></p>
@@ -721,6 +721,147 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>pip</tag>
         <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL delete</title>
+    <url>/posts/5d234763/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL CRUD:Create(创建)</title>
+    <url>/posts/ef37b8e4/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7eb6f1b75e1bf1c6fa326235ecb3ca51?rik=%2faUb4dT1FhGsnQ&amp;riu=http%3a%2f%2fwww.beautifulwalldecals.com%2fimages%2fT%2fCUS656Create.jpg&amp;ehk=UDJoDEcyMOtVjLGORv3jFvd4fO9Yhy96HlwA63Kr9Hg%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="create"></p>
+<span id="more"></span>
+<h3 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">describe</span> students;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> Field <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> id    <span class="operator">|</span> <span class="type">int</span>         <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> auto_increment <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> sn    <span class="operator">|</span> <span class="type">int</span>         <span class="operator">|</span> YES  <span class="operator">|</span> UNI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> name  <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">20</span>) <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> qq    <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">20</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students;</span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="单行数据-全列插入"><a class="header-anchor" href="#单行数据-全列插入">¶</a>单行数据+全列插入</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> students <span class="keyword">values</span>(<span class="number">100</span>,<span class="number">10000</span>,<span class="string">&#x27;唐三&#x27;</span>,<span class="keyword">null</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> students <span class="keyword">values</span>(<span class="number">101</span>,<span class="number">10001</span>,<span class="string">&#x27;小舞&#x27;</span>,<span class="string">&#x27;11111&#x27;</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+------+-------+</span></span><br><span class="line"><span class="operator">|</span> id  <span class="operator">|</span> sn    <span class="operator">|</span> name <span class="operator">|</span> qq    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+------+-------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">100</span> <span class="operator">|</span> <span class="number">10000</span> <span class="operator">|</span> 唐三 <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">101</span> <span class="operator">|</span> <span class="number">10001</span> <span class="operator">|</span> 小舞 <span class="operator">|</span> <span class="number">11111</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+------+-------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="多行数据-指定列插入"><a class="header-anchor" href="#多行数据-指定列插入">¶</a>多行数据+指定列插入</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> students(id,sn,name) <span class="keyword">values</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="number">102</span>,<span class="number">10003</span>,<span class="string">&#x27;朱竹青&#x27;</span>),</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="number">103</span>,<span class="number">10004</span>,<span class="string">&#x27;奥斯卡&#x27;</span>);</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line">Records: <span class="number">2</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span><span class="operator">*</span> <span class="keyword">from</span> students;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="operator">|</span> id  <span class="operator">|</span> sn    <span class="operator">|</span> name   <span class="operator">|</span> qq    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">100</span> <span class="operator">|</span> <span class="number">10000</span> <span class="operator">|</span> 唐三   <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">101</span> <span class="operator">|</span> <span class="number">10001</span> <span class="operator">|</span> 小舞   <span class="operator">|</span> <span class="number">11111</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">102</span> <span class="operator">|</span> <span class="number">10003</span> <span class="operator">|</span> 朱竹青 <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">103</span> <span class="operator">|</span> <span class="number">10004</span> <span class="operator">|</span> 奥斯卡 <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h3 id="插入否则更新"><a class="header-anchor" href="#插入否则更新">¶</a>插入否则更新</h3>
+<div class="note danger"><p>由于主键或者唯一约束对应的值已经存在而导致的插入失败</p>
+</div>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span><span class="operator">*</span> <span class="keyword">from</span> students;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="operator">|</span> id  <span class="operator">|</span> sn    <span class="operator">|</span> name   <span class="operator">|</span> qq    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">100</span> <span class="operator">|</span> <span class="number">10000</span> <span class="operator">|</span> 唐三   <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">101</span> <span class="operator">|</span> <span class="number">10001</span> <span class="operator">|</span> 小舞   <span class="operator">|</span> <span class="number">11111</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">102</span> <span class="operator">|</span> <span class="number">10003</span> <span class="operator">|</span> 朱竹青 <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> <span class="number">103</span> <span class="operator">|</span> <span class="number">10004</span> <span class="operator">|</span> 奥斯卡 <span class="operator">|</span> <span class="keyword">NULL</span>  <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="number">4</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 主键约束冲突</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> students <span class="keyword">values</span>(<span class="number">100</span>,<span class="number">10010</span>,<span class="string">&#x27;唐大师&#x27;</span>,<span class="number">22222</span>);</span><br><span class="line">ERROR <span class="number">1062</span> (<span class="number">23000</span>): Duplicate entry <span class="string">&#x27;100&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;students.PRIMARY&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 唯一键约束冲突</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> students <span class="keyword">values</span>(<span class="number">104</span>,<span class="number">10000</span>,<span class="string">&#x27;唐大师&#x27;</span>,<span class="number">22222</span>);</span><br><span class="line">ERROR <span class="number">1062</span> (<span class="number">23000</span>): Duplicate entry <span class="string">&#x27;10000&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;students.sn&#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="note success"><p>分两种情况</p>
+<ul>
+<li>如果没有冲突，则直接插入</li>
+<li>如果有冲突，则对他的整个一行的值进行部分列更新</li>
+</ul>
+</div>
+<p>冲突的情况下使用的是<font color='red'>on duplicate key update</font></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> students <span class="keyword">values</span></span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> (<span class="number">100</span>,<span class="number">10010</span>,<span class="string">&#x27;唐大师&#x27;</span>,<span class="number">22222</span>)</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">on</span> duplicate key update name <span class="operator">=</span> <span class="keyword">values</span>(name), qq <span class="operator">=</span> <span class="keyword">values</span>(qq),sn <span class="operator">=</span> <span class="keyword">values</span>(sn);</span><br><span class="line">Query OK, <span class="number">2</span> <span class="keyword">rows</span> affected, <span class="number">3</span> warnings (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> students <span class="keyword">where</span> id <span class="operator">=</span> <span class="number">100</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="operator">|</span> id  <span class="operator">|</span> sn    <span class="operator">|</span> name   <span class="operator">|</span> qq    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="operator">|</span> <span class="number">100</span> <span class="operator">|</span> <span class="number">10010</span> <span class="operator">|</span> 唐大师 <span class="operator">|</span> <span class="number">22222</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-----+-------+--------+-------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL CRUD:Delete(删除)</title>
+    <url>/posts/1d5160cb/</url>
+    <content><![CDATA[<p><img src="https://static2.makeuseofimages.com/wp-content/uploads/2014/03/delete-file.jpg" alt="delete"></p>
+<span id="more"></span>
+<h3 id="删除数据-delete"><a class="header-anchor" href="#删除数据-delete">¶</a>删除数据(delete)</h3>
+<h4 id="删除指定数据"><a class="header-anchor" href="#删除指定数据">¶</a>删除指定数据</h4>
+<h5 id="案例表数据与结构"><a class="header-anchor" href="#案例表数据与结构">¶</a>案例表数据与结构</h5>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109151126299.png" alt="exam_result数据"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109151128884.png" alt="exam_result结构"></p>
+<h5 id="删除指定行"><a class="header-anchor" href="#删除指定行">¶</a>删除指定行</h5>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">delete</span> <span class="keyword">from</span> exam_result <span class="keyword">where</span> name<span class="operator">=</span><span class="string">&#x27;宋公明&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> exam_result <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;宋公明&#x27;</span>;</span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h4 id="删除整张表"><a class="header-anchor" href="#删除整张表">¶</a>删除整张表</h4>
+<h5 id="测试表数据与结构"><a class="header-anchor" href="#测试表数据与结构">¶</a>测试表数据与结构</h5>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">describe</span> for_delete;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> Field <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> id    <span class="operator">|</span> <span class="type">int</span>         <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> auto_increment <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> name  <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">20</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_delete;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> A    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> B    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> C    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="number">3</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<h5 id="删除"><a class="header-anchor" href="#删除">¶</a>删除</h5>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">delete</span> <span class="keyword">from</span> for_delete;</span><br><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_delete;</span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h5 id="删除之后再插入"><a class="header-anchor" href="#删除之后再插入">¶</a>删除之后再插入</h5>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> for_delete(name) <span class="keyword">values</span>(<span class="string">&#x27;D&#x27;</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_delete;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">4</span> <span class="operator">|</span> D    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<div class="note primary"><p>需要注意的是，尽管delete删除了整个表，但他是对数据进行操作的，表结构没有更改，在进行再次插入的时候，自增的键会从上次最后一个值(也就是原值)开始增加</p>
+</div>
+<h3 id="截断表-truncate"><a class="header-anchor" href="#截断表-truncate">¶</a>截断表(truncate)</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">truncate</span> [<span class="keyword">table</span>] table_name</span><br></pre></td></tr></table></figure>
+<div class="note success"><ol>
+<li>只能对整个表进行操作，不能像delete对指定数据或者指定行进行操作</li>
+<li>实际上MySQL没有对数据进行操作，所以比delete快</li>
+<li>会重置auto_increment，</li>
+</ol>
+</div>
+<h4 id="测试表结构和数据"><a class="header-anchor" href="#测试表结构和数据">¶</a>测试表结构和数据</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_truncate;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> A    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> B    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> C    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="number">3</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">describe</span> for_truncate;</span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> Field <span class="operator">|</span> Type        <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> id    <span class="operator">|</span> <span class="type">int</span>         <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> auto_increment <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> name  <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">10</span>) <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+-------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="number">2</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<h4 id="使用truncate命令"><a class="header-anchor" href="#使用truncate命令">¶</a>使用truncate命令</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">truncate</span> for_truncate;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.05</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_truncate;</span><br><span class="line"><span class="keyword">Empty</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> for_truncate(name) <span class="keyword">values</span>(<span class="string">&#x27;D&#x27;</span>);</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_truncate;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> D    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<div class="note info"><blockquote>
+<ol>
+<li>截断整张表影响的行数是0，所以没有对数据进行操作</li>
+<li>执行truncate之后再插入，自增清零重新增长</li>
+</ol>
+</blockquote>
+</div>
+<div class="note primary"><p>关于truncate的具体原理，这里不具体提及。truncate不会逐个清除用户数据块上的数据，而仅仅重置数据字典和元数据块上的元数据。换个方式理解的话，就是对映射关系进行了重置，但是本来存储在指定物理结构中的数据还是存在的，这些数据已经无效，所占用的物理空间等待系统回收。</p>
+</div>
+<p>由于truncate删除的数据存在，所以按理论来说是有回复的可能的。但是整个过程是非常麻烦的。所以一般我们在使用truncate命令之前，一般都会先将信息复制一遍</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> for_truncate;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> A    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> B    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> C    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="number">3</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">create</span> <span class="keyword">table</span> copy_for_truncate <span class="keyword">like</span> for_truncate;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.05</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">insert</span> <span class="keyword">into</span> copy_for_truncate</span><br><span class="line">    <span class="operator">-</span><span class="operator">&gt;</span> <span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">*</span> <span class="keyword">from</span> for_truncate;</span><br><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line">Records: <span class="number">3</span>  Duplicates: <span class="number">0</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> copy_for_truncate;</span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span> id <span class="operator">|</span> name <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">1</span> <span class="operator">|</span> A    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">2</span> <span class="operator">|</span> B    <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span>  <span class="number">3</span> <span class="operator">|</span> C    <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">----+------+</span></span><br><span class="line"><span class="number">3</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<p>然后之后再恢复的时候，再按照流程走一遍就好了。这个坏处就是，不能线上恢复，不然数据正在被使用，然后truncate，直接崩。这个命令，还是不要轻易使用。还有就是，这样的话，其实没有完成任何操作，形成了一个闭环。</p>
+<h3 id="重命名"><a class="header-anchor" href="#重命名">¶</a>重命名</h3>
+<p>重命名也可以删除表，这个删除是假的，表重命名了而已。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> tables;</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="operator">|</span> Tables_in_test_0906 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="operator">|</span> copy_for_truncate   <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> exam_result         <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> for_delete          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> for_truncate        <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> student             <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> rename <span class="keyword">table</span> copy_for_truncate <span class="keyword">to</span> table1;</span><br><span class="line">Query OK, <span class="number">0</span> <span class="keyword">rows</span> affected (<span class="number">0.03</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">show</span> tables;</span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="operator">|</span> Tables_in_test_0906 <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="operator">|</span> exam_result         <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> for_delete          <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> for_truncate        <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> student             <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> table1              <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">---------------------+</span></span><br><span class="line"><span class="number">5</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<div class="note success"><p><font color='red'>妈妈，他骗我！！！！！</font></p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL CRUD:Update(更新)</title>
+    <url>/posts/a54a76b0/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.KvdS1VFn8-gxlmTEWh_nPwHaFz?pid=ImgDet&amp;rs=1" alt="update"></p>
+<span id="more"></span>
+<h3 id="数据表和结构"><a class="header-anchor" href="#数据表和结构">¶</a>数据表和结构</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mysql&gt; describe exam_result;</span><br><span class="line">+---------+-------------+------+-----+---------+----------------+</span><br><span class="line">| Field   | Type        | Null | Key | Default | Extra          |</span><br><span class="line">+---------+-------------+------+-----+---------+----------------+</span><br><span class="line">| id      | int         | NO   | PRI | NULL    | auto_increment |</span><br><span class="line">| name    | varchar(20) | NO   |     | NULL    |                |</span><br><span class="line">| chinese | float       | YES  |     | 0       |                |</span><br><span class="line">| math    | float       | YES  |     | 0       |                |</span><br><span class="line">| english | float       | YES  |     | 0       |                |</span><br><span class="line">+---------+-------------+------+-----+---------+----------------+</span><br><span class="line">5 rows in set (0.01 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; select * from exam_result;</span><br><span class="line">+----+--------+---------+------+---------+</span><br><span class="line">| id | name   | chinese | math | english |</span><br><span class="line">+----+--------+---------+------+---------+</span><br><span class="line">|  1 | 唐三藏 |      67 |   98 |      56 |</span><br><span class="line">|  2 | 孙悟空 |      87 |   78 |      77 |</span><br><span class="line">|  3 | 猪悟能 |      88 |   98 |      90 |</span><br><span class="line">|  4 | 曹孟德 |      82 |   84 |      67 |</span><br><span class="line">|  5 | 刘玄德 |      55 |   85 |      45 |</span><br><span class="line">|  6 | 孙策   |      70 |   73 |      78 |</span><br><span class="line">+----+--------+---------+------+---------+</span><br><span class="line">6 rows in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="语法和作用"><a class="header-anchor" href="#语法和作用">¶</a>语法和作用</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">update table_name <span class="keyword">set</span> <span class="keyword">column</span> <span class="operator">=</span> expr [, <span class="keyword">column</span> <span class="operator">=</span> expe,...] [<span class="keyword">where</span> ...] [<span class="keyword">order</span> <span class="keyword">by</span> ...] [limit ...]</span><br></pre></td></tr></table></figure>
+<p>作用：对查询到的结果进行列植更新</p>
+<h3 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h3>
+<h4 id="将孙悟空同学的数学成绩变为80"><a class="header-anchor" href="#将孙悟空同学的数学成绩变为80">¶</a>将孙悟空同学的数学成绩变为80</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> update exam_result <span class="keyword">set</span> math <span class="operator">=</span> <span class="number">80</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;孙悟空&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">1</span>  Changed: <span class="number">1</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> math <span class="keyword">from</span> exam_result <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;孙悟空&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">------+</span></span><br><span class="line"><span class="operator">|</span> math <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+</span></span><br><span class="line"><span class="operator">|</span>   <span class="number">80</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.01</span> sec)</span><br></pre></td></tr></table></figure>
+<h4 id="将曹孟德的数学成绩变为50，语文成绩变为78"><a class="header-anchor" href="#将曹孟德的数学成绩变为50，语文成绩变为78">¶</a>将曹孟德的数学成绩变为50，语文成绩变为78</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> update exam_result <span class="keyword">set</span> math <span class="operator">=</span> <span class="number">50</span>,chinese <span class="operator">=</span> <span class="number">78</span> <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;曹孟德&#x27;</span>;</span><br><span class="line">Query OK, <span class="number">1</span> <span class="type">row</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">1</span>  Changed: <span class="number">1</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> name,chinese,math <span class="keyword">from</span> exam_result <span class="keyword">where</span> name <span class="operator">=</span> <span class="string">&#x27;曹孟德&#x27;</span>;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+------+</span></span><br><span class="line"><span class="operator">|</span> name   <span class="operator">|</span> chinese <span class="operator">|</span> math <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+------+</span></span><br><span class="line"><span class="operator">|</span> 曹孟德 <span class="operator">|</span>      <span class="number">78</span> <span class="operator">|</span>   <span class="number">50</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+------+</span></span><br><span class="line"><span class="number">1</span> <span class="type">row</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<h4 id="将总成绩倒数前三的同学数学加上30分"><a class="header-anchor" href="#将总成绩倒数前三的同学数学加上30分">¶</a>将总成绩倒数前三的同学数学加上30分</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> update exam_result <span class="keyword">set</span> math <span class="operator">=</span> math <span class="operator">+</span> <span class="number">30</span> <span class="keyword">order</span> <span class="keyword">by</span> chinese <span class="operator">+</span> math <span class="operator">+</span> english limit <span class="number">3</span>;</span><br><span class="line">Query OK, <span class="number">3</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">3</span>  Changed: <span class="number">3</span>  Warnings: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<div class="note info"><p>需要注意的是，MySQL不支持<font color='red'>+=</font>语法</p>
+</div>
+<h4 id="将所有同学的语文成绩乘2"><a class="header-anchor" href="#将所有同学的语文成绩乘2">¶</a>将所有同学的语文成绩乘2</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> name,chinese <span class="keyword">from</span> exam_result;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+</span></span><br><span class="line"><span class="operator">|</span> name   <span class="operator">|</span> chinese <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+</span></span><br><span class="line"><span class="operator">|</span> 唐三藏 <span class="operator">|</span>      <span class="number">67</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 孙悟空 <span class="operator">|</span>      <span class="number">87</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 猪悟能 <span class="operator">|</span>      <span class="number">88</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 曹孟德 <span class="operator">|</span>      <span class="number">78</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 刘玄德 <span class="operator">|</span>      <span class="number">55</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 孙策   <span class="operator">|</span>      <span class="number">70</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> update exam_result <span class="keyword">set</span> chinese <span class="operator">=</span> chinese <span class="operator">*</span> <span class="number">2</span>;</span><br><span class="line">Query OK, <span class="number">6</span> <span class="keyword">rows</span> affected (<span class="number">0.01</span> sec)</span><br><span class="line"><span class="keyword">Rows</span> matched: <span class="number">6</span>  Changed: <span class="number">6</span>  Warnings: <span class="number">0</span></span><br><span class="line"></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">select</span> name,chinese <span class="keyword">from</span> exam_result;</span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+</span></span><br><span class="line"><span class="operator">|</span> name   <span class="operator">|</span> chinese <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+</span></span><br><span class="line"><span class="operator">|</span> 唐三藏 <span class="operator">|</span>     <span class="number">134</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 孙悟空 <span class="operator">|</span>     <span class="number">174</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 猪悟能 <span class="operator">|</span>     <span class="number">176</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 曹孟德 <span class="operator">|</span>     <span class="number">156</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 刘玄德 <span class="operator">|</span>     <span class="number">110</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> 孙策   <span class="operator">|</span>     <span class="number">140</span> <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">--------+---------+</span></span><br><span class="line"><span class="number">6</span> <span class="keyword">rows</span> <span class="keyword">in</span> <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+<div class="note warning"><p>对整个表更新的操作需要慎用</p>
+</div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>CRUD</tag>
       </tags>
   </entry>
   <entry>
@@ -782,49 +923,21 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Utterance使用</title>
-    <url>/posts/19001/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.f8d19236e4b8cd3d0a9d99a76051e889?rik=cB%2fREdsmnz2Hwg&amp;riu=http%3a%2f%2fblogs.oregonstate.edu%2ffreechoicelab%2ffiles%2f2014%2f04%2fphoto-5.jpg&amp;ehk=FXgcuqW9kcVqj7LjLJ%2f08m5wYs2PiueXYeFgU%2fQBCEQ%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="utterance"></p>
+    <title>MySQL CRUD:Retrieve(检索)</title>
+    <url>/posts/b23f0e36/</url>
+    <content><![CDATA[<p><img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.FxU8bkrfIqTnzEfvIXNxDAHaFj?pid=ImgDet&amp;rs=1" alt="Retrieve"></p>
 <span id="more"></span>
-<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
-<h1>简介</h1>
-<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
-<p>这多香啊！！！</p>
-<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
-<h1>bug1 example.com公共域名</h1>
-<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
-<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
-<p>嗯？？？？</p>
-<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
-<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
-<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
-<div class="note primary"><blockquote>
-<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
-</blockquote>
-</div>
-<h1>回复评论</h1>
-<p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626005600.png" alt="Issue"></p>
-<p>进行回复时，其实也不算回复啦，就是有一个引用的功能，将你想要回复的内容通过引用输入就好啦</p>
-<p>进入对应的issue下</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010046.png" alt="对应issue"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010343.png" alt="引用回复"></p>
-<p>结果如下：</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010434.png" alt="测试用例"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010546.png" alt="测试结果1"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010620.png" alt="测试结果2"></p>
-<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
-<!-- 其中 class="blockquote-center" 是必须的 --> 
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<h3 id="数据库数据"><a class="header-anchor" href="#数据库数据">¶</a>数据库数据</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> if <span class="keyword">not</span> <span class="keyword">exists</span> exam_result(</span><br><span class="line">	id <span class="type">int</span> <span class="keyword">primary</span> key auto_increment,</span><br><span class="line">	name <span class="type">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="keyword">null</span> comment <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">	chinese <span class="type">float</span> <span class="keyword">default</span> <span class="number">0.0</span> comment <span class="string">&#x27;语文成绩&#x27;</span>,</span><br><span class="line">	math <span class="type">float</span> <span class="keyword">default</span> <span class="number">0.0</span> comment <span class="string">&#x27;数学成绩&#x27;</span>,</span><br><span class="line">	english <span class="type">float</span> <span class="keyword">default</span> <span class="number">0.0</span> comment <span class="string">&#x27;英语成绩&#x27;</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> exam_result(name,chinese,math,english) <span class="keyword">values</span></span><br><span class="line">	(<span class="string">&#x27;唐三藏&#x27;</span>,<span class="number">67</span>,<span class="number">98</span>,<span class="number">56</span>),</span><br><span class="line">	(<span class="string">&#x27;孙悟空&#x27;</span>,<span class="number">87</span>,<span class="number">78</span>,<span class="number">77</span>),</span><br><span class="line">	(<span class="string">&#x27;猪悟能&#x27;</span>,<span class="number">88</span>,<span class="number">98</span>,<span class="number">90</span>),</span><br><span class="line">	(<span class="string">&#x27;曹孟德&#x27;</span>,<span class="number">82</span>,<span class="number">84</span>,<span class="number">67</span>),</span><br><span class="line">	(<span class="string">&#x27;刘玄德&#x27;</span>,<span class="number">55</span>,<span class="number">85</span>,<span class="number">45</span>),</span><br><span class="line">	(<span class="string">&#x27;孙策&#x27;</span>,<span class="number">70</span>,<span class="number">73</span>,<span class="number">78</span>),</span><br><span class="line">	(<span class="string">&#x27;宋公明&#x27;</span>,<span class="number">75</span>,<span class="number">65</span>,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<p>​</p>
 ]]></content>
       <categories>
-        <category>环境搭建</category>
+        <category>Database</category>
+        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-        <tag>Utterance</tag>
+        <tag>MySQL</tag>
+        <tag>CRUD</tag>
       </tags>
   </entry>
   <entry>
@@ -1275,6 +1388,52 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>Gvim</tag>
         <tag>Vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Utterance使用</title>
+    <url>/posts/19001/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.f8d19236e4b8cd3d0a9d99a76051e889?rik=cB%2fREdsmnz2Hwg&amp;riu=http%3a%2f%2fblogs.oregonstate.edu%2ffreechoicelab%2ffiles%2f2014%2f04%2fphoto-5.jpg&amp;ehk=FXgcuqW9kcVqj7LjLJ%2f08m5wYs2PiueXYeFgU%2fQBCEQ%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="utterance"></p>
+<span id="more"></span>
+<p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
+<h1>简介</h1>
+<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
+<p>这多香啊！！！</p>
+<p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
+<h1>bug1 example.com公共域名</h1>
+<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
+<p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
+<p>嗯？？？？</p>
+<p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
+<p>于是我就开始排查，一般来说更改最多的都是<code>_config.yml</code>，我就站点和主题两个文件一块排查。</p>
+<p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
+<div class="note primary"><blockquote>
+<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
+</blockquote>
+</div>
+<h1>回复评论</h1>
+<p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626005600.png" alt="Issue"></p>
+<p>进行回复时，其实也不算回复啦，就是有一个引用的功能，将你想要回复的内容通过引用输入就好啦</p>
+<p>进入对应的issue下</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010046.png" alt="对应issue"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010343.png" alt="引用回复"></p>
+<p>结果如下：</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010434.png" alt="测试用例"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010546.png" alt="测试结果1"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626010620.png" alt="测试结果2"></p>
+<!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
+<!-- 其中 class="blockquote-center" 是必须的 --> 
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+        <tag>Utterance</tag>
       </tags>
   </entry>
   <entry>
@@ -1899,85 +2058,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>hexo+next配置</title>
-    <url>/posts/20416/</url>
-    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
-<span id="more"></span>
-<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
-<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
-<h1>Hexo配置</h1>
-<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
-<p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
-<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<div class="note success"><blockquote>
-<p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
-</blockquote>
-</div>
-<h1>next主题配置</h1>
-<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
-<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>修改一下<code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
-<p>修改一下根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<p>修改一下<code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
-<div class="note info"><blockquote>
-<p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
-<p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
-<p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
-</blockquote>
-</div>
-<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
-<p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
-<p>其次就是对配置文件的设置</p>
-<div class="note primary"><blockquote>
-<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
-<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
-</blockquote>
-</div>
-<p>根目录下的<code>_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
-<p><code>themes/next/_config.yml</code></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
-<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
-<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
-<p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
-<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
-<p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
-<p>官方：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>以下为使用方法，直接在markdown文档中写标签就好</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
-<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo+github搭建个人博客</title>
     <url>/posts/36674/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Hexo+Github Page"></p>
@@ -2126,6 +2206,85 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>hexo+next配置</title>
+    <url>/posts/20416/</url>
+    <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" alt="Hexo.NexT.Scheme"></p>
+<span id="more"></span>
+<p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
+<p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
+<h1>Hexo配置</h1>
+<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
+<p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/next-theme/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" alt="image-20210524171757123"></p>
+<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Site</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">hexo//</span> <span class="string">站点名称</span></span><br><span class="line"><span class="attr">subtitle:</span> <span class="string">//</span> <span class="string">副标题</span></span><br><span class="line"><span class="attr">description:</span> <span class="string">//</span> <span class="string">站点描述</span></span><br><span class="line"><span class="attr">keywords:</span> <span class="string">//</span> <span class="string">关键词用于检索站点</span></span><br><span class="line"><span class="attr">author:</span> <span class="string">John</span> <span class="string">Doe</span> <span class="string">//</span> <span class="string">作者</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">en</span> <span class="string">//</span> <span class="string">语言</span></span><br><span class="line"><span class="attr">timezone:</span> <span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<div class="note success"><blockquote>
+<p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p>
+</blockquote>
+</div>
+<h1>next主题配置</h1>
+<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
+<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">highlight:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">auto_detect:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">wrap:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">hljs:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>修改一下<code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="comment"># Code Highlight theme</span></span><br><span class="line">  <span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
+<p>修改一下根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">prismjs:</span></span><br><span class="line">  <span class="comment">#enable: false</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">preprocess:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">line_number:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">tab_replace:</span> <span class="string">&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>修改一下<code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">codeblock:</span></span><br><span class="line"><span class="comment"># Code Highlight theme</span></span><br><span class="line"><span class="comment"># All available themes: https://theme-next.js.org/highlight/</span></span><br><span class="line">  <span class="string">...</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">    <span class="attr">dark:</span> <span class="string">atom-one-dark-reasonable</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
+<div class="note info"><blockquote>
+<p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p>
+<p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p>
+<p><a href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p>
+</blockquote>
+</div>
+<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
+<p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 主页分页插件</span></span><br><span class="line">npm install hexo-generator-index --save</span><br><span class="line"><span class="meta">#</span><span class="bash"> 归档页分页插件</span></span><br><span class="line">npm install hexo-generator-archive --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
+<p>其次就是对配置文件的设置</p>
+<div class="note primary"><blockquote>
+<p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p>
+<p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p>
+</blockquote>
+</div>
+<p>根目录下的<code>_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">5</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-date</span></span><br></pre></td></tr></table></figure>
+<p><code>themes/next/_config.yml</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># archive generator settings</span></span><br><span class="line"><span class="comment"># See:</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># 归档页面</span></span><br><span class="line"><span class="attr">archive_generator:</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">yearly:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">monthly:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
+<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span></span><br><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
+<p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Search </span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br><span class="line">  <span class="attr">limit:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+<p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Search</span></span><br><span class="line"><span class="comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span></span><br><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># If auto, trigger search by changing input.</span></span><br><span class="line">  <span class="comment"># If manual, trigger search by pressing enter key or search button.</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">auto</span></span><br><span class="line">  <span class="comment"># Show top n results per article, show all results by setting to -1</span></span><br><span class="line">  <span class="attr">top_n_per_article:</span> <span class="number">1</span></span><br><span class="line">  <span class="comment"># Unescape html strings to the readable one.</span></span><br><span class="line">  <span class="attr">unescape:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># Preload the search data when the page loads.</span></span><br><span class="line">  <span class="attr">preload:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
+<p>按照 <a href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
+<p>官方：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>以下为使用方法，直接在markdown文档中写标签就好</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" alt="image-20210525215139140"></p>
+<p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">#IfWinActive ahk_exe Typora.exe</span><br><span class="line">&#123;</span><br><span class="line">    ; Ctrl+Alt+N 添加bootstrap note标签</span><br><span class="line">	^!n::addBootstrapNote()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">addBootstrapNote</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="attr">classname</span>:=[<span class="string">&quot;primary&quot;</span>,<span class="string">&quot;success&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;warning&quot;</span>,<span class="string">&quot;danger&quot;</span>]</span><br><span class="line">	Random, x, <span class="number">0</span>, <span class="number">3</span></span><br><span class="line">	<span class="attr">c</span>:=classname[x]</span><br><span class="line">    <span class="attr">clipboard</span> := <span class="string">&quot;&quot;</span> ; 清空剪切板</span><br><span class="line">    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制</span><br><span class="line">    SendInput &#123;TEXT&#125;&#123;<span class="string">`% note %c% `</span>%&#125;&#123;<span class="string">`% endnote `</span>%&#125;</span><br><span class="line">    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo进阶(1):优化文章链接为数字编号</title>
     <url>/posts/59826/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
@@ -2180,9 +2339,39 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
+    <title>hexo进阶(2):渲染MathJax数学公式</title>
+    <url>/posts/383f09c9/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
+<span id="more"></span>
+<h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3>
+<p>使用MarkDown语法描述问题时，难免会书写一些技术文档，技术文档中包含一些数学公式。但是Hexo在渲染MarkDown文档为Html时，就会遇见一些格式方面的问题。</p>
+<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
+<p>Hexo默认使用&quot;hexo-renderer-marked&quot;引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签。比如说对于下划线，在MarkDown语法中对应的斜体，这样的话渲染成Html标签就是<code>&lt;em&gt;</code>，但是在MathJax下划线有很深层次的含义。</p>
+<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
+<h4 id="查看npm安装的插件"><a class="header-anchor" href="#查看npm安装的插件">¶</a>查看npm安装的插件</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm ls -dept 0</span><br></pre></td></tr></table></figure>
+<h4 id="更换渲染引擎"><a class="header-anchor" href="#更换渲染引擎">¶</a>更换渲染引擎</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 如果npm安装的插件列表里面有hexo-renderer-marked就卸载</span></span><br><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm insatll hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<h4 id="修改-config-yml"><a class="header-anchor" href="#修改-config-yml">¶</a>修改_config.yml</h4>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># MathJax</span></span><br><span class="line"> <span class="comment"># Docs: https://github.com/hsfzxjy/hexo-renderer-kramed</span></span><br><span class="line"> <span class="attr">mathjax:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">perpage:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">cdn:</span> <span class="string">//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML</span></span><br></pre></td></tr></table></figure>
+<h4 id="front-matter添加标签"><a class="header-anchor" href="#front-matter添加标签">¶</a>front-matter添加标签</h4>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161836025.png" alt="front标签添加"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>k个一组反转链表</title>
     <url>/posts/f63f9b79/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109132027464.png" alt="力扣刷题结果"></p>
+<span id="more"></span>
 <h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
 <p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h4 id="分析"><a class="header-anchor" href="#分析">¶</a>分析</h4>
@@ -2798,11 +2987,183 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Program</category>
         <category>Error</category>
+        <category>Program</category>
       </categories>
       <tags>
         <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode C/C++头文件问题</title>
+    <url>/posts/55983/</url>
+    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
+<span id="more"></span>
+<h1>头文件问题</h1>
+<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
+<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
+<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
+<div class="note primary"><p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
+</div>
+<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
+<div class="note primary"><p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
+</div>
+<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
+<p>我想这个便不需要多加说明，这边只给定一个格式</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __ABC_H__ <span class="comment">//包拯不重复</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __ABC_H__ <span class="comment">//定义</span></span></span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//和ifndef配套使用</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
+<div class="note primary"><p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
+</div>
+<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
+<p>框内一共有三个内容</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;args&quot;</span>: [</span><br><span class="line">	<span class="string">&quot;-g&quot;</span>,</span><br><span class="line">	<span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="comment">// 头文件的实现文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="comment">// 头文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<div class="note info"><p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p>
+<p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
+</div>
+<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
+<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We&#x27;re best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x = <span class="number">1024</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test函数内部 x=%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test前 x=%d\n&quot;</span>, x);</span><br><span class="line">    test(x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test后 x=%d\n&quot;</span>, x);</span><br><span class="line">    test_1(x);</span><br><span class="line">    test_2(x);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>vscode配置文件</h1>
+<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW86&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;gcc&quot;</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;g++&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;ostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iomanip&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;array&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;atomic&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;*.tcc&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clocale&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cmath&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdarg&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstddef&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdint&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdio&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdlib&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstring&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ctime&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwchar&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;deque&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;unordered_map&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;vector&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;exception&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;algorithm&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory_resource&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;optional&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string_view&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;system_error&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tuple&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type_traits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;utility&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;initializer_list&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iosfwd&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;istream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;limits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;sstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;stdexcept&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;streambuf&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;typeinfo&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tidl_alg_int.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="string">&quot;Disabled&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;gcc&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
+<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+        <category>环境搭建</category>
+        <category>Software</category>
+        <category>Cpp</category>
+        <category>Vscode</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>Vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>x的平方根</title>
+    <url>/posts/e0a96f5e/</url>
+    <content><![CDATA[<p><img src="https://cdn.onlinewebfonts.com/svg/img_488274.png" alt="sqrt"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
+<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
+<p>废话少说，直接说想法。</p>
+<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>，也就是
+$$
+\sqrt{x} \leqslant \frac {x}{2}
+$$
+基于此，就有以下代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(x==<span class="number">1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>;i&lt;=x/<span class="number">2</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="number">1</span>),<span class="number">2</span>)))&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
+<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
+<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立
+$$
+k = max{k_i|k_i^2 \leqslant x} ,i \geqslant 1
+$$
+这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">mySqrt</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>,right = x,ans = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>((<span class="keyword">long</span>)mid*mid &lt;= x)&#123;</span><br><span class="line">                ans = mid;</span><br><span class="line">                left = mid + <span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                right = mid - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
+<hr>
+<p>未完待续，关于牛顿迭代法</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>二分法</category>
+        <category>暴力法</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>上楼梯</title>
+    <url>/posts/f0ef69bc/</url>
+    <content><![CDATA[<p><img src="https://ss0.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2588865287,1293565697&amp;fm=26&amp;gp=0.jpg" alt="上楼梯"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
+<p>其实我的思路最开始很简单，一共有n节台阶，假设上n节有f(n)种上法</p>
+<ul>
+<li>迈1节，一种迈法，就是上一节，即n==1时，f(1) = 1</li>
+<li>迈2节，两种迈法，一种是两次一节，一种是一次两节，即n==2时，f(2)==2</li>
+</ul>
+<p>而且很容易得出递推公式
+$$
+f(n) = f(n-1) + f(n-2)
+$$
+这样的话，直接就是一个递归啊</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> climbStairs(n-<span class="number">1</span>)+climbStairs(n-<span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，这样的话，时间复杂度是O(2^n)。由于算法是受时间限制的，当n=45的时候，代码直接被卡了<font color='red'>N/A</font>，我简直恨死这个东西了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161852878.png" alt="你喜欢这个嘛？"></p>
+<p>但是，肯定还是自己的算法不可以啊，不行？？？那就换😕</p>
+<p>那换个啥方法，不知道？那就先来个数学归纳吧</p>
+<ul>
+<li>n==1   f(1) = 1</li>
+<li>n==2   f(2) = 2</li>
+<li>n==3   f(3) = 3</li>
+<li>n==4   f(4) = 5</li>
+<li>n==5   f(5) = 8</li>
+<li>…</li>
+</ul>
+<p>有没发现，从第三项开始，每一项都是前两项的和，你想到了什么，斐波那契数列啊😲</p>
+<p>想一想，斐波那契数列怎么实现？</p>
+<p>（1）公式实现
+$$
+f(n) = \frac {1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right]
+$$
+至于具体怎么实现的，中间涉及了高等数学齐次线性和特征方程的概念，想要了解得同学，移步。</p>
+<p>（2）动态规划</p>
+<p>根据递推公式，我只需要记录三项的值，第三项的值由前两项得出，O(n)的时间复杂度就可以得出结果</p>
+<h4 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h4>
+<h5 id="公式法"><a class="header-anchor" href="#公式法">¶</a>公式法</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">double</span> sqrt5 = Math.sqrt(<span class="number">5</span>);</span><br><span class="line">        <span class="keyword">double</span> fib = Math.pow((<span class="number">1</span>+sqrt5)/<span class="number">2</span>,n+<span class="number">1</span>) - Math.pow((<span class="number">1</span>-sqrt5)/<span class="number">2</span>, n+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">int</span>)(fib/sqrt5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>很多同学对第四行为什么是<font color='red'>n+1</font>而不是<font color='red'>n</font>有疑问，其实这个就在于对斐波那契数列的了解程度了，其实对于斐波那契数列，最开始的两项应该是0和1，但是0+1=1，这样的话，最开始那一项对我们的结果没有什么影响，所以，我们的斐波那契数列，应该是这个样子的
+$$
+1,1,2,3,5,8,13,21,34,\cdots
+$$
+但是我们的算法第一项是1，第二项就是2，故而此时第n项就应该是第<font color='red'>n+1</font>项斐波那契数列的值，ok，分析结束😉</p>
+</div>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161943774.png" alt="公式法结果"></p>
+<h5 id="动态规划"><a class="header-anchor" href="#动态规划">¶</a>动态规划</h5>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">climbStairs</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">1</span>,q = <span class="number">2</span>,r = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">2</span>)<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            r = p + q;</span><br><span class="line">            p = q;</span><br><span class="line">            q = r;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161956443.png" alt="动态规划力扣结果"></p>
+<h4 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h4>
+<p>这个深刻的解释了，<font color='cornflowerblue'>算法的本质是数学</font>。加油！！！</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>动态规划</category>
+        <category>递归</category>
+        <category>斐波那契数列</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
@@ -2874,35 +3235,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>单链表的反转</title>
-    <url>/posts/733dbec/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109042234446.png" alt="力扣刷题结果"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目解题思路"><a class="header-anchor" href="#题目解题思路">¶</a>题目解题思路</h4>
-<p>链表的反转，其实很简单，每次在原链表按照遍历顺序取出一个结点，按照头插法，插入到另外一个链表就好了。</p>
-<p>时间复杂度：O(n)，时间消耗是由遍历链表产生的</p>
-<p>空间复杂度：O(1)。</p>
-<h4 id="解题代码"><a class="header-anchor" href="#解题代码">¶</a>解题代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode l = <span class="keyword">new</span> ListNode();</span><br><span class="line">        l.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode s = <span class="keyword">new</span> ListNode(head.val);</span><br><span class="line">            s.next = l.next;</span><br><span class="line">            l.next = s;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l = l.next;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="其他思路"><a class="header-anchor" href="#其他思路">¶</a>其他思路</h4>
-<h5 id="思路1"><a class="header-anchor" href="#思路1">¶</a>思路1</h5>
-<p>双指针：其实不用想太多啊，不就是让你进行链表反转吗，直接把只指针反过来就好了。怎么反过来？就是使用双指针，一个指针<font color='red'>cur</font>指向当前结点，一个指针指<font color='red'>pre</font>向后继结点，每次把两个结点之间的指针反过来就好啦，就是需要另外一个指针指向<font color='red'>pre</font>的下一个结点，这样会使空间复杂度提高一点，但依旧是O(1)；</p>
-<p><strong>代码实现</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode cur = <span class="keyword">null</span>,pre = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode temp = pre.next;</span><br><span class="line">            pre.next = cur;</span><br><span class="line">            cur = pre;</span><br><span class="line">            pre = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于new和delete的问题</title>
     <url>/posts/36390/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
@@ -2941,64 +3273,32 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>vscode C/C++头文件问题</title>
-    <url>/posts/55983/</url>
-    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
+    <title>单链表的反转</title>
+    <url>/posts/733dbec/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109042234446.png" alt="力扣刷题结果"></p>
 <span id="more"></span>
-<h1>头文件问题</h1>
-<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
-<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
-<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
-<div class="note primary"><p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
-</div>
-<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
-<div class="note primary"><p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
-</div>
-<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
-<p>我想这个便不需要多加说明，这边只给定一个格式</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __ABC_H__ <span class="comment">//包拯不重复</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __ABC_H__ <span class="comment">//定义</span></span></span><br><span class="line">	...</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">//和ifndef配套使用</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
-<div class="note primary"><p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
-</div>
-<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
-<p>框内一共有三个内容</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;args&quot;</span>: [</span><br><span class="line">	<span class="string">&quot;-g&quot;</span>,</span><br><span class="line">	<span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="comment">// 头文件的实现文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="comment">// 头文件所在路径</span></span><br><span class="line">    <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">    <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">],</span><br></pre></td></tr></table></figure>
-<div class="note info"><p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p>
-<p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
-</div>
-<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
-<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_1</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;I&#x27;m best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_2</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;We&#x27;re best!%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;linear_list_test_impl.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    x = <span class="number">1024</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test函数内部 x=%d\n&quot;</span>, x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test前 x=%d\n&quot;</span>, x);</span><br><span class="line">    test(x);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;调用test后 x=%d\n&quot;</span>, x);</span><br><span class="line">    test_1(x);</span><br><span class="line">    test_2(x);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1>vscode配置文件</h1>
-<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;MinGW86&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;intelliSenseMode&quot;</span>: <span class="string">&quot;gcc-x64&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;compilerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cStandard&quot;</span>: <span class="string">&quot;c11&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cppStandard&quot;</span>: <span class="string">&quot;c++17&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;includePath&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="number">4</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 使用 IntelliSense 了解相关属性。 </span></span><br><span class="line">    <span class="comment">// 悬停以查看现有属性的描述。</span></span><br><span class="line">    <span class="comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;gcc&quot;</span></span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;cppdbg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;stopAtEntry&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;environment&quot;</span>: [],</span><br><span class="line">        <span class="attr">&quot;externalConsole&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;MIMode&quot;</span>: <span class="string">&quot;gdb&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;miDebuggerPath&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;setupCommands&quot;</span>: [&#123;</span><br><span class="line">            <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;为 gdb 启用整齐打印&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;text&quot;</span>: <span class="string">&quot;-enable-pretty-printing&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;ignoreFailures&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;],</span><br><span class="line">        <span class="attr">&quot;preLaunchTask&quot;</span>: <span class="string">&quot;g++&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;files.associations&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;ostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iomanip&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iostream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;array&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;atomic&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;*.tcc&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;clocale&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cmath&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdarg&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstddef&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdint&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdio&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstdlib&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cstring&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;ctime&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwchar&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;cwctype&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;deque&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;unordered_map&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;vector&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;exception&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;algorithm&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;memory_resource&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;optional&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;string_view&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;system_error&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tuple&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type_traits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;utility&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;fstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;initializer_list&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;iosfwd&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;istream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;limits&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;new&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;sstream&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;stdexcept&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;streambuf&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;typeinfo&quot;</span>: <span class="string">&quot;cpp&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tidl_alg_int.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test.h&quot;</span>: <span class="string">&quot;c&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="string">&quot;c&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="string">&quot;Disabled&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;gcc&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;shell&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;g++&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-g&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-I&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-o&quot;</span>,</span><br><span class="line">            <span class="string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;options&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;cwd&quot;</span>: <span class="string">&quot;D:\\mingw64\\bin&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;problemMatcher&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">&quot;group&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;kind&quot;</span>: <span class="string">&quot;build&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;isDefault&quot;</span>: <span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;presentation&quot;</span>:&#123;</span><br><span class="line">            <span class="attr">&quot;echo&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;reveal&quot;</span>: <span class="string">&quot;always&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;focus&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">            <span class="attr">&quot;panel&quot;</span>: <span class="string">&quot;shared&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;showReuseMessage&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;clear&quot;</span>: <span class="literal">false</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;],</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
-<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/reverse-linked-list/">206. 反转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目解题思路"><a class="header-anchor" href="#题目解题思路">¶</a>题目解题思路</h4>
+<p>链表的反转，其实很简单，每次在原链表按照遍历顺序取出一个结点，按照头插法，插入到另外一个链表就好了。</p>
+<p>时间复杂度：O(n)，时间消耗是由遍历链表产生的</p>
+<p>空间复杂度：O(1)。</p>
+<h4 id="解题代码"><a class="header-anchor" href="#解题代码">¶</a>解题代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode l = <span class="keyword">new</span> ListNode();</span><br><span class="line">        l.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode s = <span class="keyword">new</span> ListNode(head.val);</span><br><span class="line">            s.next = l.next;</span><br><span class="line">            l.next = s;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        l = l.next;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="其他思路"><a class="header-anchor" href="#其他思路">¶</a>其他思路</h4>
+<h5 id="思路1"><a class="header-anchor" href="#思路1">¶</a>思路1</h5>
+<p>双指针：其实不用想太多啊，不就是让你进行链表反转吗，直接把只指针反过来就好了。怎么反过来？就是使用双指针，一个指针<font color='red'>cur</font>指向当前结点，一个指针指<font color='red'>pre</font>向后继结点，每次把两个结点之间的指针反过来就好啦，就是需要另外一个指针指向<font color='red'>pre</font>的下一个结点，这样会使空间复杂度提高一点，但依旧是O(1)；</p>
+<p><strong>代码实现</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * public class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode() &#123;&#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span></span><br><span class="line"><span class="comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">reverseList</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        ListNode cur = <span class="keyword">null</span>,pre = head;</span><br><span class="line">        <span class="keyword">while</span>(pre!= <span class="keyword">null</span>)&#123;</span><br><span class="line">            ListNode temp = pre.next;</span><br><span class="line">            pre.next = cur;</span><br><span class="line">            cur = pre;</span><br><span class="line">            pre = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cur;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Error</category>
-        <category>环境搭建</category>
-        <category>Software</category>
-        <category>Cpp</category>
-        <category>Vscode</category>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
       </categories>
       <tags>
-        <tag>Sundry</tag>
-        <tag>Vscode</tag>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
       </tags>
   </entry>
   <entry>
@@ -3120,33 +3420,6 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       </tags>
   </entry>
   <entry>
-    <title>算法·方阵</title>
-    <url>/posts/49440/</url>
-    <content><![CDATA[<h1>方阵</h1>
-<h2 id="描述："><a class="header-anchor" href="#描述：">¶</a>描述：</h2>
-<p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
-<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
-<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
-<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
-<span id="more"></span>
-<h2 id="理解："><a class="header-anchor" href="#理解：">¶</a>理解：</h2>
-<p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
-<h2 id="分析："><a class="header-anchor" href="#分析：">¶</a>分析：</h2>
-<p>由上面的理解可知，分两种情况讨论：</p>
-<ol>
-<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
-<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
-</ol>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>无重复最长子串长度</title>
     <url>/posts/f68e8708/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109042355161.png" alt="力扣刷题结果"></p>
@@ -3184,6 +3457,33 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法·方阵</title>
+    <url>/posts/49440/</url>
+    <content><![CDATA[<h1>方阵</h1>
+<h2 id="描述："><a class="header-anchor" href="#描述：">¶</a>描述：</h2>
+<p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
+<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
+<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
+<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
+<span id="more"></span>
+<h2 id="理解："><a class="header-anchor" href="#理解：">¶</a>理解：</h2>
+<p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
+<h2 id="分析："><a class="header-anchor" href="#分析：">¶</a>分析：</h2>
+<p>由上面的理解可知，分两种情况讨论：</p>
+<ol>
+<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
+<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
+</ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
@@ -3279,9 +3579,10 @@ Student：<font color='red'>javaBean</font>    描述：<font color='cornflowerb
 ]]></content>
       <categories>
         <category>Database</category>
+        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>Mysql</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
