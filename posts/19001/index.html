@@ -161,7 +161,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bug1-example-com%E5%85%AC%E5%85%B1%E5%9F%9F%E5%90%8D"><span class="nav-number">2.</span> <span class="nav-text">bug1 example.com公共域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E5%A4%8D%E8%AF%84%E8%AE%BA"><span class="nav-number">3.</span> <span class="nav-text">回复评论</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">bug1 example.com公共域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">回复评论</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -317,10 +317,12 @@
         <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.f8d19236e4b8cd3d0a9d99a76051e889?rik=cB%2fREdsmnz2Hwg&amp;riu=http%3a%2f%2fblogs.oregonstate.edu%2ffreechoicelab%2ffiles%2f2014%2f04%2fphoto-5.jpg&amp;ehk=FXgcuqW9kcVqj7LjLJ%2f08m5wYs2PiueXYeFgU%2fQBCEQ%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="utterance"></p>
 <span id="more"></span>
 <p>首先的Utterance的启用，这在上一篇博客已经有详细说明，这里说明一下Utterance的使用问题。</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
+<h1>简介</h1>
+<p>Utterance是一款Github app，每次收集到评论都会当做本博客项目的Issue提交，而且会通过邮件提醒你，这样不会错过其他人的评论，一些同学在评论区提出问题也能得到及时的回复。只需要这些同学稍微关注一下这个issue就好。</p>
 <p>这多香啊！！！</p>
 <p>不过最开始的时候我不会用，直接哭死当场，去网上查也没有查到我遇见的bug，就很奇怪。不过还好，最后实现了一次评论和一次回复，以下是我和Utterance的“征战”过程。</p>
-<h1 id="bug1-example-com公共域名"><a href="#bug1-example-com公共域名" class="headerlink" title="bug1 example.com公共域名"></a>bug1 example.com公共域名</h1><p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
+<h1>bug1 example.com公共域名</h1>
+<p>别提了，这个是当时我因为缺心眼漏掉的关键配置。</p>
 <p>这问题怎么来的呢？在我配置好Utterance之后，页面已经能够展示出来Utterance的评论区。但是当我尝试Utterance的登录时，他进入的页面不是预想的Github登录页面，而是<code>example.com</code></p>
 <p>嗯？？？？</p>
 <p>这是个什么东西？一查才知道这是公共站点，可是这么高大上的东西怎么会出现在我的小破站呢？</p>
@@ -328,10 +330,11 @@
 <p>其实利用编辑器的查找功能会好一些，但是当时没想起来。最终在站点的<code>_config.yml</code>里面找到了<code>example.com</code>，不怪别人就是因为没有好好看配置文件</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure>
 <div class="note primary"><blockquote>
-<p>这一段代码里面的url起始状态下是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://example.com/">https://example.com/</a> 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
+<p>这一段代码里面的url起始状态下是https://example.com/ 这样，当你点击<code>Utterance</code>下面的<code>sign in</code> 的时候，页面会自动从定向到<code>example.com</code></p>
 </blockquote>
 </div>
-<h1 id="回复评论"><a href="#回复评论" class="headerlink" title="回复评论"></a>回复评论</h1><p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
+<h1>回复评论</h1>
+<p>在有同学进行评论时，评论的内容会作为本博客仓库的issue被提交，这样管理者和预回复的同学就可以通过访问本仓库的github地址进行回复，下图为提交评论后在仓库issue界面的提交结果。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626005600.png" alt="Issue"></p>
 <p>进行回复时，其实也不算回复啦，就是有一个引用的功能，将你想要回复的内容通过引用输入就好啦</p>
 <p>进入对应的issue下</p>
@@ -344,7 +347,6 @@
 <!-- HTML方式: 直接在 Markdown 文件中编写 HTML 来调用 --> 
 <!-- 其中 class="blockquote-center" 是必须的 --> 
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-
 
     </div>
 
