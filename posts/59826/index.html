@@ -317,41 +317,34 @@
     <div class="post-body" itemprop="articleBody">
         <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
 <span id="more"></span>
-<h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3>
-<p>下图为我的一篇文章的网址<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212118319.png" alt="检索网址太长"></p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>下图为我的一篇文章的网址<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212118319.png" alt="检索网址太长"></p>
 <p>如果进行分享的话，就会出现以下情况</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://conquerorlei.github.io/2021/08/20/%E5%85%B3%E4%BA%8Enew%E5%92%8Cdelete%E7%9A%84%E9%97%AE%E9%A2%98/</span><br></pre></td></tr></table></figure>
 <p>这样的话，其实本质上是没有问题的，但是为什么别人的网站网址就是干干净净的，我的小破站文章网址就这么长呢。我不甘心，于是就开始找方法进行修改。</p>
-<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
-<p>其实出现这种网址的情况，本质上是hexo的config的问题。在hexo的根目录下的_config.yml文件中，我发现了一下的配置</p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>其实出现这种网址的情况，本质上是hexo的config的问题。在hexo的根目录下的_config.yml文件中，我发现了一下的配置</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">:year/:month/:day/:title/</span></span><br></pre></td></tr></table></figure>
 <p>这样的话，你的文章名就是<font color='red'>年份月份日期加题目</font></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212134814.jpeg" alt="这是什么？？？"></p>
 <p>尽管这还可以，不影响正常使用，但是我要网址这么长干嘛</p>
 <p>而且！！！由于编码的问题，我分享的时候，别人看见了还会问问后面的<font color='red'>%E5%85%B3%E4%BA%8E</font>是什么，这我能说什么，我写的汉字嘛？</p>
 <p>还有一个问题就是，一旦我修改了文章名称以及日期什么的，链接就无效了。</p>
-<p>这我能乐意嘛？不能🙉，不换掉干什么？留着下饭？😅</p>
-<h3 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h3>
-<p>下载个插件吧！<code>abbrlink</code>，这是他的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/rozbo/hexo-abbrlink"><font color='cornflowerblue'>github仓库地址</font></a></p>
-<h4 id="安装abbrlink插件"><a class="header-anchor" href="#安装abbrlink插件">¶</a>安装abbrlink插件</h4>
-<p>使用cmd命令提示符进入hexo的根目录(<font color='red'>也就是平常执行hexo命令的地方</font>)，输入以下命令使用<code>npm</code>安装插件</p>
+<p>这我能乐意嘛？不能:hear_no_evil:，不换掉干什么？留着下饭？:sweat_smile:</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>下载个插件吧！<code>abbrlink</code>，这是他的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/rozbo/hexo-abbrlink"><font color='cornflowerblue'>github仓库地址</font></a></p>
+<h4 id="安装abbrlink插件"><a href="#安装abbrlink插件" class="headerlink" title="安装abbrlink插件"></a>安装abbrlink插件</h4><p>使用cmd命令提示符进入hexo的根目录(<font color='red'>也就是平常执行hexo命令的地方</font>)，输入以下命令使用<code>npm</code>安装插件</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212156402.png" alt="安装完之后的命令提示"></p>
-<h4 id="启用abbrlink插件"><a class="header-anchor" href="#启用abbrlink插件">¶</a>启用abbrlink插件</h4>
-<p>使用文本编辑器打开hexo根目录下的_config.yml，找到并修改以下内容</p>
+<h4 id="启用abbrlink插件"><a href="#启用abbrlink插件" class="headerlink" title="启用abbrlink插件"></a>启用abbrlink插件</h4><p>使用文本编辑器打开hexo根目录下的_config.yml，找到并修改以下内容</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># URL</span></span><br><span class="line"><span class="comment">## Set your site url here. For example, if you use GitHub Page, set url as &#x27;https://username.github.io/project&#x27;</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">https://conquerorlei.github.io/</span></span><br><span class="line"><span class="comment"># permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="comment"># permalink_defaults:</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">posts/:abbrlink/</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span> <span class="comment"># support crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>   <span class="comment"># support dec(default) and hex</span></span><br></pre></td></tr></table></figure>
-<h4 id="参数说明"><a class="header-anchor" href="#参数说明">¶</a>参数说明</h4>
-<p>abbrlink一共有两个参数:</p>
+<h4 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h4><p>abbrlink一共有两个参数:</p>
 <ul>
-<li>alg – Algorithm：对应随机算法参数，可选值为crc16和crc32</li>
-<li>rep – Represent：对应生成的数字表示方法，可选值为hex和dec</li>
+<li>alg — Algorithm：对应随机算法参数，可选值为crc16和crc32</li>
+<li>rep — Represent：对应生成的数字表示方法，可选值为hex和dec</li>
 </ul>
 <p>以下为实例：</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># crc16 &amp; hex</span></span><br><span class="line"><span class="string">/posts/66c8/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc16 &amp; dec</span></span><br><span class="line"><span class="string">/posts/65535/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc32 &amp; hex</span></span><br><span class="line"><span class="string">/posts/8ddf18fb/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># crc32 &amp; dec</span></span><br><span class="line"><span class="string">/posts/1690090958/</span></span><br></pre></td></tr></table></figure>
-<div class="note success"><p><font color='red'>crc16算法产生的随机数最大值为65536</font></p>
+<div class="note success"><font color='red'>crc16算法产生的随机数最大值为65536</font>
 </div>
-<h4 id="使用abbrlink"><a class="header-anchor" href="#使用abbrlink">¶</a>使用abbrlink</h4>
-<p>直接执行清除和渲染就可以啦</p>
+<h4 id="使用abbrlink"><a href="#使用abbrlink" class="headerlink" title="使用abbrlink"></a>使用abbrlink</h4><p>直接执行清除和渲染就可以啦</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g</span><br></pre></td></tr></table></figure>
 <p>这样在原本markdown文档头部的yml内部就会产生一个随机数，专属于这篇文章的随机数</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108212246514.png" alt="abbrlink随机数"></p>

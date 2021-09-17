@@ -22,12 +22,12 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;conquerorlei.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Gemini&quot;,&quot;version&quot;:&quot;8.4.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:true,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:&quot;utterances&quot;,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null,&quot;activeClass&quot;:&quot;utterances&quot;},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;},&quot;path&quot;:&quot;&#x2F;search.xml&quot;,&quot;localsearch&quot;:{&quot;enable&quot;:true,&quot;trigger&quot;:&quot;auto&quot;,&quot;top_n_per_article&quot;:1,&quot;unescape&quot;:false,&quot;preload&quot;:false}}</script>
-<meta name="description" content="创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，本质上是java.exe将字节码文件装载到JVM上运行。 需要注意的是： 一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。 转义字符    字符">
+<meta name="description" content="创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，本质上是java.exe将字节码文件装载到JVM上运行。 需要注意的是：一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。 转义字符     字符">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java运行机制">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/3fd0dbbc/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，本质上是java.exe将字节码文件装载到JVM上运行。 需要注意的是： 一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。 转义字符    字符">
+<meta property="og:description" content="创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，本质上是java.exe将字节码文件装载到JVM上运行。 需要注意的是：一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。 转义字符     字符">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-05T07:11:20.000Z">
 <meta property="article:modified_time" content="2021-09-13T12:40:56.526Z">
@@ -291,7 +291,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>290</span>
+      <span>283</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -311,9 +311,9 @@
     <div class="post-body" itemprop="articleBody">
         <span id="more"></span>
 <p>创建或者修改成源文件之后，使用Javac.exe编译成字节码文件，也就是.class文件，然后使用java.exe运行字节码文件，<font color='red'>本质上是java.exe将字节码文件装载到JVM上运行</font>。</p>
-<p>需要注意的是：
-一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。</p>
+<p>需要注意的是：<br>一个源文件中只能有一个public修饰的类，通常这个类与文件名一致，其他类的数量不限。另外就是，不同类中都可以有main函数，只不过在编译的过程中会生成不同的字节码文件。</p>
 <p>转义字符</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -331,15 +331,15 @@
 <td>换行符</td>
 </tr>
 <tr>
-<td>\\</td>
+<td>\\\</td>
 <td>一个\</td>
 </tr>
 <tr>
-<td>\&quot;</td>
-<td>一个&quot;</td>
+<td>\\”</td>
+<td>一个”</td>
 </tr>
 <tr>
-<td>\’</td>
+<td>\\’</td>
 <td>一个’’</td>
 </tr>
 <tr>
@@ -348,6 +348,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <div class="note success"><p>一个回车和一个换行是不一样的，一个回车指的是不换行，光标直接从行尾跳到行头</p>
 <p>而换行是光标直接跳转到下一行行首</p>
 </div>
