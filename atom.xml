@@ -6,7 +6,7 @@
   <link href="https://conquerorlei.github.io/atom.xml" rel="self"/>
   
   <link href="https://conquerorlei.github.io/"/>
-  <updated>2021-09-17T13:50:05.153Z</updated>
+  <updated>2021-09-17T13:53:39.406Z</updated>
   <id>https://conquerorlei.github.io/</id>
   
   <author>
@@ -21,18 +21,18 @@
     <link href="https://conquerorlei.github.io/posts/af15db9a/"/>
     <id>https://conquerorlei.github.io/posts/af15db9a/</id>
     <published>2021-09-17T12:23:53.000Z</published>
-    <updated>2021-09-17T13:50:05.153Z</updated>
+    <updated>2021-09-17T13:53:39.406Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172035551.png" alt="Template render error"></p><span id="more"></span><h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3><p>在渲染的过程中遇见了以上问题，我直接就是一顿崩溃。对于某一个页面渲染失败，主要是文章中出现了nunjucks语法的字符。</p><h3 id="问题定位策略"><a class="header-anchor" href="#问题定位策略">¶</a>问题定位策略</h3><p>关于新出现的问题以及定位问题的策略相关</p><p>无论是谁在工作、还是日常生活都会出现问题，遇见问题先不要慌，先发个朋友圈？</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172050267.jpeg" alt="开个玩笑"></p><p>遇见问题了就去查问题啊，不要怕找不到一模一样的问题，先找一堆相关的问题，然后慢慢来呗。</p><ol><li>根据查到的问题及其解决方案确定出现这类问题的原因</li><li>根据原因回忆你在操作过程中可能出现的类似的情况</li><li>然后对操作进行复盘大致确定问题可能出现的范围</li><li>对范围内的类似情况进行逐一排查</li></ol><h3 id="问题解决"><a class="header-anchor" href="#问题解决">¶</a>问题解决</h3><p>在网上一查，无论是哪个网站提供的说法不是Hexo无法渲染大括号，还是存在<code>&#123;&#123;&#125;&#125;</code>，<code>&#123;#</code>，<code>'&#123;</code>，<code>&#123;% %&#125;</code>之类的，首先一点是Hexo是支持<code>&#123;%note%&#125;`标签的，但是我仔细收寻了我的文档，确定以及肯定我的文档当中没有除最后一个之外的其他三个。那就着重找最后一个呗。<br>对全局的`&#123;%note%&#125;&#123;%endnote%&#125;</code>进行排查，这有在这里才会出现Hexo无法转义的字符，或者说成是标签。可能出现的情况就是对于单一标签缺少一个大括号或者一个%，这样的话，使用文本编辑器里面的查找功能，很快就能定位到问题，果然就是缺少一个有括号，问题解决。😉</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172105539.png" alt="缺少右括号"></p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172035551.png" alt="Template render error"></p><span id="more"></span><h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3><p>在渲染的过程中遇见了以上问题，我直接就是一顿崩溃。对于某一个页面渲染失败，主要是文章中出现了nunjucks语法的字符。</p><h3 id="问题定位策略"><a class="header-anchor" href="#问题定位策略">¶</a>问题定位策略</h3><p>关于新出现的问题以及定位问题的策略相关</p><p>无论是谁在工作、还是日常生活都会出现问题，遇见问题先不要慌，先发个朋友圈？</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172050267.jpeg" alt="开个玩笑"></p><p>遇见问题了就去查问题啊，不要怕找不到一模一样的问题，先找一堆相关的问题，然后慢慢来呗。</p><ol><li>根据查到的问题及其解决方案确定出现这类问题的原因</li><li>根据原因回忆你在操作过程中可能出现的类似的情况</li><li>然后对操作进行复盘大致确定问题可能出现的范围</li><li>对范围内的类似情况进行逐一排查</li></ol><h3 id="问题解决"><a class="header-anchor" href="#问题解决">¶</a>问题解决</h3><p>在网上一查，无论是哪个网站提供的说法不是Hexo无法渲染大括号，还是存在<code>&#123;&#123;&#125;&#125;</code>，<code>&#123;#</code>，<code>'&#123;</code>，<code>&#123;% %&#125;</code>之类的，首先一点是Hexo是支持<code>&#123;%note%&#125;` 标签的，但是我仔细收寻了我的文档，确定以及肯定我的文档当中没有除最后一个之外的其他三个。那就着重找最后一个呗。对全局的 `&#123;%note%&#125;&#123;%endnote%&#125;</code> 进行排查，这有在这里才会出现Hexo无法转义的字符，或者说成是标签。可能出现的情况就是对于单一标签缺少一个大括号或者一个%，这样的话，使用文本编辑器里面的查找功能，很快就能定位到问题，果然就是缺少一个有括号，问题解决。😉</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172105539.png" alt="缺少右括号"></p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
     
     
     <summary type="html">&lt;p&gt;&lt;img src=&quot;https://gitee.com/QingShanxl/pictures/raw/master/img/202109172035551.png&quot; alt=&quot;Template render error&quot;&gt;&lt;/p&gt;</summary>
     
     
     
-    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
     <category term="Error" scheme="https://conquerorlei.github.io/categories/Error/"/>
+    
+    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
     <category term="Hexo" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/"/>
     
@@ -55,9 +55,9 @@
     
     
     
-    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    
     <category term="Error" scheme="https://conquerorlei.github.io/categories/Error/"/>
+    
+    <category term="环境搭建" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
     
     <category term="Hexo" scheme="https://conquerorlei.github.io/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/"/>
     
