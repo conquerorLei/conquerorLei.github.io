@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  <meta name="description" content="最近更换了Fluid主题，关于Fluid对于&amp;lt;blockquote&amp;gt;的样式我不算特别满意。特此对&amp;lt;blockquote&amp;gt;做了一个样式的覆盖。">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
   
-  <title>多版本java安装与更换 - conquerorLei</title>
+  <title>Hexo Fluid主题优化:关于blockquote的样式优化 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -172,7 +172,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="多版本java安装与更换">
+            <span class="h2" id="subtitle" title="Hexo Fluid主题优化:关于blockquote的样式优化">
               
             </span>
 
@@ -182,8 +182,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-07-12 16:59" pubdate>
-        2021年7月12日 下午
+      <time datetime="2021-09-19 23:25" pubdate>
+        2021年9月19日 晚上
       </time>
     </span>
   
@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      807 字
+      1.1k 字
     </span>
   
 
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      12
        分钟
     </span>
   
@@ -242,74 +242,56 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">多版本java安装与更换</h1>
+            <h1 style="display: none">Hexo Fluid主题优化:关于blockquote的样式优化</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021年9月19日 晚上
+                  本文最后更新于：2021年9月20日 凌晨
                 
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.57RW8_Q_6IjmGeqg2ss8OgHaEo?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Java"></p>
+              <p>最近更换了<font color='cornflowerblue'>Fluid</font>主题，关于<font color='cornflowerblue'>Fluid</font>对于<code>&lt;blockquote&gt;</code>的样式我不算特别满意。特此对<code>&lt;blockquote&gt;</code>做了一个样式的覆盖。</p>
 <span id="more"></span>
-<h1>前言</h1>
-<p>最近需要部署SpringBoot项目，但是原本装的jdk版本是1.8，运行jar要求的源发行版是52.0，jdk1.8是不满足要求的，主要是运行都运行不了，但是又不想卸载jdk1.8，这里提供java多版本切换的方法。</p>
-<h1>Java下载</h1>
-<p>这个原本不想说的，但是，唉，真正试过的都知道，好家伙，下载window x64 installer还需要登录，当然不怕麻烦的申请一个Orcle的号也行。如果不想申请，又想下载jdk，这边提供一个网址。</p>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://bugmenot.com/view/oracle.com">下载账号网页</a></p>
-<p>可能会和谐的哦，这边在提供一个账号和密码</p>
-<div class="note note-primary">
-            <blockquote><p><strong>用户名：</strong><code>2696671285@qq.com</code><strong>密码：</strong><code>Oracle123</code></p></blockquote>
+<h3 id="效果图"><a class="header-anchor" href="#效果图">¶</a>效果图</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109192329461.png" srcset="/img/loading.gif" lazyload alt="更改之后的blockquote样式"></p>
+<h3 id="创建和引入自定义CSS文件"><a class="header-anchor" href="#创建和引入自定义CSS文件">¶</a>创建和引入自定义CSS文件</h3>
+<p>秉持着不污染开源代码以及之后主题更新之后尽量减少维护的问题，这里使用的是<font color='cornflowerblue'>Fluid</font>的配置文件标签。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js</span><br><span class="hljs-comment"># Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`</span><br><span class="hljs-attr">custom_js:</span><br><br><span class="hljs-comment"># 指定自定义 .css 文件路径，用法和 custom_js 相同</span><br><span class="hljs-comment"># The usage is the same as custom_js</span><br><span class="hljs-attr">custom_css:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">/css/_custom/blockquote.css</span> <span class="hljs-comment"># 注意引用的格式</span><br></code></pre></td></tr></table></figure>
+<p>在custom_css之后就是我们引用的自定义样式文件的路径</p>
+<div class="note note-info">
+            <p>需要注意的是，这边一般选用的相对路径，这个相对路径是相对于source而言的。不同的安装方法对于source的寻址不同。</p><ul><li>对于npm安装方法，路径为<font color='red'>hexo安装路径/node_module/hexo-theme-fluid/source</font></li><li>对于release包下载解压的安装方法，路径为<font color='red'>hexo安装路径/themes/fluid/source</font></li></ul>
           </div>
-<p>使用这些账号密码就可以了。</p>
-<p>另外一些攻略提示可以通过监控网页元素，即F12进入开发者模式，获取下载链接，我试过了，或许下载链接后，进入迅雷，<font color='red'>提示有下载，但是访问不到资源</font></p>
-<h1>Java安装</h1>
-<p>这个就不用说了吧，按照<code>JDK</code>的安装程序提示一步一步做就好了，中间又有一个<code>JDK</code>的安装路径问题，我选择的是默认，即<code>C:\Program Files\Java</code></p>
-<p>如果你在<code>JDK</code>安装过程中更改了路径，记得把这个路径记住。</p>
-<p>另外，需要注意的是，自jdk11以来jdk的包里面就不包括jre文件夹了，需要自己生成一个</p>
-<p>步骤如下：</p>
-<ol>
-<li>使用管理员权限打开cmd</li>
-<li>进入jdk的安装路径</li>
-<li>执行以下命令</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 进入安装路径</span><br>cd C:\Program Files\Java\jdk-14.0.2<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 生成jre文件夹</span><br>bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203221.png" srcset="/img/loading.gif" lazyload alt="生成jre文件夹"></p>
-<h1>环境变量配置</h1>
-<p>下面就是重头戏了，<font color='red'>敲黑板！！！</font></p>
-<h2 id="修改JAVA-HOME为JAVA8-HOME"><a class="header-anchor" href="#修改JAVA-HOME为JAVA8-HOME">¶</a>修改JAVA_HOME为JAVA8_HOME</h2>
-<p>按照以下路径检索高级系统设置：<font color='cornflowerblue'>设置-&gt;系统-&gt;关于-&gt;高级系统设置</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210713181617867.png" srcset="/img/loading.gif" lazyload alt="高级系统寻址"></p>
-<p>点击：<font color='cornflowerblue'>高级-&gt;环境变量-&gt;系统变量</font>，在这里将原本的<code>JAVA_HOME</code>改为<code>JAVA8_HOME</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713194556.png" srcset="/img/loading.gif" lazyload alt="修改JAVA_HOME"></p>
-<h2 id="添加你新安装的jdk"><a class="header-anchor" href="#添加你新安装的jdk">¶</a>添加你新安装的jdk</h2>
-<p>我安装的是jdk-14.0.2，将系统变量命名为<code>JAVA14_HOME</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713194921.png" srcset="/img/loading.gif" lazyload alt="添加新的JAVA_HOME"></p>
-<div class="note note-primary">
-            <blockquote><p><font color='red'>变量值即为你的安装路径</font></p></blockquote>
-          </div>
-<h2 id="添加变量JAVA-HOME"><a class="header-anchor" href="#添加变量JAVA-HOME">¶</a>添加变量JAVA_HOME</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713195341.png" srcset="/img/loading.gif" lazyload alt="添加JAVA_HOME"></p>
+<p>为了与原来文件做一个区分，在<font color='cornflowerblue'>source/css/</font>路径下创建了一个自定义文件夹<code>custom</code>。在这个文件中创建自定义的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://baike.baidu.com/item/CSS/5457">样式层叠文件</a>:<code>blockquote.css</code>。</p>
 <div class="note note-success">
-            <blockquote><p>变量值结构为：<font color='red'>%变量名%</font></p><p>中间的变量名即为你想要使用的jdk版本</p></blockquote>
+            <p>注意一点，可以不出创建文件夹，如果创建问价的话，创建的文件夹尽量不要以下划线开头，算是一个铁的教训吧！<font color='red'>经过我的尝试，使用<code>_source</code>出现的问题就是系统检索不到css文件</font>，可能是下划线转义的问题，留个代办吧！</p>
           </div>
-<p>之前配置过jdk1.8的都配置过紫色框框里面的内容，这里是不需要改的</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203444.png" srcset="/img/loading.gif" lazyload alt="环境变量"></p>
-<h1>查看java版本</h1>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203939.png" srcset="/img/loading.gif" lazyload alt="查看java版本"></p>
-<h1>错误解决方案</h1>
-<h2 id="生成jre失败"><a class="header-anchor" href="#生成jre失败">¶</a>生成jre失败</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204256.png" srcset="/img/loading.gif" lazyload alt="生成jre文件夹错误"></p>
-<p>解决方案：</p>
-<p><font color='red'>使用管理员权限打开cmd</font></p>
-<h2 id="java和javac版本不一致"><a class="header-anchor" href="#java和javac版本不一致">¶</a>java和javac版本不一致</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204718.png" srcset="/img/loading.gif" lazyload alt="java与javac版本不一致"></p>
-<p>原因：</p>
-<p>同时安装了jdk14.0.2和jre14.0.2，且PATH变量中，C:\WINDOWS\system32或者C:\Program Files (x86)\Common Files\Oracle\Java\javapath目录在%JAVA_HOME%\bin之前。在Windows命令行下执行命令时，先从当前目录搜素，然后按照PATH设置的路径依次查找命令，而JRE安装时会将java.exe安装到C:\WINDOWS\system32目录下，所以执行java -version命令时，查看的是jre的版本，而javac -version时查看的jdk的版本。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204850.png" srcset="/img/loading.gif" lazyload alt="环境变量"></p>
-<p>解决方案：</p>
-<p>将<code>%JAVA_HOME%\bin</code>和<code>%JAVA_HOME%\jre\bin</code>移动到所有包含java以及<code>C:\WINDOWS\system32</code>的目录前面，这样就可以完美解决了</p>
+<h3 id="样式层叠文件的编写"><a class="header-anchor" href="#样式层叠文件的编写">¶</a>样式层叠文件的编写</h3>
+<p>在网上查了关于<code>&lt;blockquote&gt;</code>的相关信息，发现他的基本样式竟然和<code>note </code>的差不多，那我用<code>&lt;blockquote&gt;</code>的意义何在呢？想的就是与众不同些，在文章的末尾进行一个名人名言的引用，直接就是一个居中，多醒目，多有教育意义。</p>
+<p>好的，废话不多说，开搞。当然，你也可以直接跳过获取我的文件：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitee.com/QingShanxl/resource/blob/master/CSS/blockquote.css">CSS/blockquote.css · 青山/Resource - 码云 - 开源中国 (gitee.com)</a></p>
+<h4 id="搭一个框架"><a class="header-anchor" href="#搭一个框架">¶</a>搭一个框架</h4>
+<p>先对<code>&lt;blockquote&gt;</code>进行样式的定义，这是一个基础的样式，只有的<code>blockquote-center</code>会在此为基础上进行样式重叠等操作。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">blockquote</span> &#123;<br>	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">400</span>;<br>	<span class="hljs-attribute">font-style</span>: none;<br>	<span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Zilla Slab&quot;</span>, serif;<br>	<span class="hljs-attribute">border-left</span>: <span class="hljs-number">8px</span> solid <span class="hljs-number">#FFCD00</span>;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">1.875rem</span>;<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.4rem</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.7</span>;<br>	<span class="hljs-attribute">padding-top</span>: <span class="hljs-number">0.325rem</span>;<br>	<span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0.325rem</span>;<br>	<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1.875rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="blockquote-center作为blockquote的派生选择器"><a class="header-anchor" href="#blockquote-center作为blockquote的派生选择器">¶</a>blockquote-center作为blockquote的派生选择器</h4>
+<p>首先是对text文本的一个居中显示，其次就是在原来样式的基础上进行一个样式的重叠，主要是边框。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-class">.blockquote-center</span> &#123;<br>    <span class="hljs-attribute">text-align</span>: center;<br>    <span class="hljs-attribute">border</span>: none;<br>    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">2.5rem</span>;<br>    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">0.325rem</span>;<br>    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0.325rem</span>;<br>    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">0.325rem</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="字体颜色渐变"><a class="header-anchor" href="#字体颜色渐变">¶</a>字体颜色渐变</h4>
+<p>在blockquote中添加一下三行代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">-webkit-<span class="hljs-attribute">background-clip</span>: text;<br>-webkit-text-fill-<span class="hljs-attribute">color</span>: transparent;<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">90deg</span>, <span class="hljs-number">#e66465</span>, <span class="hljs-number">#9198e5</span> );<br></code></pre></td></tr></table></figure>
+<ul>
+<li>linear-gradient():线性渐变
+<ul>
+<li>90dep，0dep表示从下到上，90dep表示渐变轴顺时针旋转90度变为从左到右</li>
+<li><font color='lawngreen'>#e66465</font>是最左边的颜色，<font color='lawngreen'>#9198e5</font>是最右边的颜色</li>
+</ul>
+</li>
+<li><font color='cornflowerblue'>-webkit-background-clip: text;</font>表示以区块内的文字作为裁剪区域向外裁剪，文字的背景即为区块的背景，文字之外的区域都将被裁剪掉。</li>
+<li><font color='cornflowerblue'>-webkit-text-fill-color: transparent;</font>表示文字的填充颜色设置为透明</li>
+</ul>
+<div class="note note-primary">
+            <p>什么意思呢？就是说，我先生成了一张从左到右线性渐变的背景图片，然后背景图片上层叠了一些文件，以这些文字为边界进行裁剪，这时背景图片上的除了文字投影部分都被裁剪掉了，然后再对原本的文字做一个透明处理，就可以显示出来一个渐变文字啦</p>
+          </div>
+<p>其实本质上是两层的叠加，只不过原来的文字是透明的。所以依然可以被当成文字复制，但是你要知道的是，你看到的渐变其实是图片。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
@@ -322,9 +304,11 @@
                     
                       <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
                     
-                      <a class="hover-with-bg" href="/categories/Error/">Error</a>
+                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
                     
-                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
                     
                   </div>
                 
@@ -332,7 +316,11 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Sundry/">Sundry</a>
+                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
+                    
+                      <a class="hover-with-bg" href="/tags/css/">css</a>
                     
                   </div>
                 
@@ -349,18 +337,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/29958/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringBoot远程debug</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/28022/">
-                        <span class="hidden-mobile">Linux云服务器部署springboot项目</span>
+                      <a href="/posts/36727525/">
+                        <span class="hidden-mobile">关于算法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
