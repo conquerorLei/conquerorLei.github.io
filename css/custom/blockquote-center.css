@@ -1,0 +1,32 @@
+.blockquote--center {
+  border-left: none;
+  margin: 40px 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+}
+.blockquote--center ::before, ::after {
+    left: 0;
+    line-height: 1;
+    opacity: .6;
+    position: absolute;
+    width: 100%;
+}
+
+.blockquote--center::before {
+    border-top: 1px solid $grey-light;
+    text-align: left;
+    top: -20px;
+    font-family-icons('\f10d');
+}
+
+.blockquote--center::after {
+    border-bottom: 1px solid $grey-light;
+    bottom: -20px;
+    text-align: right;
+    font-family-icons('\f10e');
+}
+
+.blockquote--center p, div {
+    text-align: center;
+  }

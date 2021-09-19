@@ -167,6 +167,47 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo进阶(2):渲染MathJax数学公式</title>
+    <url>/posts/383f09c9/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
+<span id="more"></span>
+<h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3>
+<p>使用MarkDown语法描述问题时，难免会书写一些技术文档，技术文档中包含一些数学公式。但是Hexo在渲染MarkDown文档为Html时，就会遇见一些格式方面的问题。</p>
+<h3 id="技术参考"><a class="header-anchor" href="#技术参考">¶</a>技术参考</h3>
+<p><a href="https://theme-next.js.org/docs/third-party-services/math-equations">Math Equations | NexT (theme-next.js.org)</a></p>
+<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
+<p>Hexo默认使用&quot;hexo-renderer-marked&quot;引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签。比如说对于下划线，在MarkDown语法中对应的斜体，这样的话渲染成Html标签就是<code>&lt;em&gt;</code>，但是在MathJax下划线有很深层次的含义。</p>
+<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
+<h4 id="查看npm安装的插件"><a class="header-anchor" href="#查看npm安装的插件">¶</a>查看npm安装的插件</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm ls -dept 0<br></code></pre></td></tr></table></figure>
+<h4 id="更换渲染引擎"><a class="header-anchor" href="#更换渲染引擎">¶</a>更换渲染引擎</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 如果npm安装的插件列表里面有hexo-renderer-marked就卸载</span><br>npm uninstall hexo-renderer-marked --save<br>npm insatll hexo-renderer-kramed --save<br></code></pre></td></tr></table></figure>
+<h4 id="安装hexo-math"><a class="header-anchor" href="#安装hexo-math">¶</a>安装hexo-math</h4>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install hexo-amth --save<br></code></pre></td></tr></table></figure>
+<h4 id="修改themes-next-config-yml"><a class="header-anchor" href="#修改themes-next-config-yml">¶</a>修改themes\next\_config.yml</h4>
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">math:</span><br>  <span class="hljs-comment"># Default (false) will load mathjax / katex script on demand.</span><br>  <span class="hljs-comment"># That is it only render those page which has `mathjax: true` in front-matter.</span><br>  <span class="hljs-comment"># If you set it to true, it will load mathjax / katex srcipt EVERY PAGE.</span><br>  <span class="hljs-attr">every_page:</span> <span class="hljs-literal">false</span><br><br>  <span class="hljs-attr">mathjax:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment"># Available values: none | ams | all</span><br>    <span class="hljs-attr">tags:</span> <span class="hljs-string">ams</span><br><br>  <span class="hljs-attr">katex:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span><br>    <span class="hljs-attr">copy_tex:</span> <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<h4 id="修改hexo-node-modules-kramed-lib-rules-inline-js解决语义冲突"><a class="header-anchor" href="#修改hexo-node-modules-kramed-lib-rules-inline-js解决语义冲突">¶</a>修改hexo\node_modules\kramed\lib\rules\inline.js解决语义冲突</h4>
+<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> inline = &#123;<br>  <span class="hljs-comment">// escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br>  <span class="hljs-attr">escape</span>: <span class="hljs-regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,<br>  autolink: <span class="hljs-regexp">/^&lt;([^ &gt;]+(@|:\/)[^ &gt;]+)&gt;/</span>,<br>  url: noop,<br>  <span class="hljs-attr">html</span>: <span class="hljs-regexp">/^&lt;!--[\s\S]*?--&gt;|^&lt;(\w+(?!:\/|[^\w\s@]*@)\b)*?(?:&quot;[^&quot;]*&quot;|&#x27;[^&#x27;]*&#x27;|[^&#x27;&quot;&gt;])*?&gt;([\s\S]*?)?&lt;\/\1&gt;|^&lt;(\w+(?!:\/|[^\w\s@]*@)\b)(?:&quot;[^&quot;]*&quot;|&#x27;[^&#x27;]*&#x27;|[^&#x27;&quot;&gt;])*?&gt;/</span>,<br>  link: <span class="hljs-regexp">/^!?\[(inside)\]\(href\)/</span>,<br>  reflink: <span class="hljs-regexp">/^!?\[(inside)\]\s*\[([^\]]*)\]/</span>,<br>  nolink: <span class="hljs-regexp">/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/</span>,<br>  reffn: <span class="hljs-regexp">/^!?\[\^(inside)\]/</span>,<br>  strong: <span class="hljs-regexp">/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/</span>,<br>  <span class="hljs-comment">// em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br>  em: <span class="hljs-regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,<br>  code: <span class="hljs-regexp">/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/</span>,<br>  br: <span class="hljs-regexp">/^ &#123;2,&#125;\n(?!\s*$)/</span>,<br>  del: noop,<br>  <span class="hljs-attr">text</span>: <span class="hljs-regexp">/^[\s\S]+?(?=[\\&lt;!\[_*`$]| &#123;2,&#125;\n|$)/</span>,<br>  math: <span class="hljs-regexp">/^\$\$\s*([\s\S]*?[^\$])\s*\$\$(?!\$)/</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p>注释的两行使原本文件中的两行，注释行下面第一行就是新添加的行，也就是<font color='red'>escape</font>和<font color='red'>em</font>两个的值改变了</p>
+          </div>
+<h4 id="front-matter添加标签"><a class="header-anchor" href="#front-matter添加标签">¶</a>front-matter添加标签</h4>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161836025.png" alt="front标签添加"></p>
+<h3 id="其他问题汇总"><a class="header-anchor" href="#其他问题汇总">¶</a>其他问题汇总</h3>
+<h4 id="大括号无法渲染"><a class="header-anchor" href="#大括号无法渲染">¶</a>大括号无法渲染</h4>
+<p>使用<font color='red'>\lbrace</font>代替<font color='red'>\{</font></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo进阶(1):优化文章链接为数字编号</title>
     <url>/posts/59826/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
@@ -265,47 +306,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo进阶(2):渲染MathJax数学公式</title>
-    <url>/posts/383f09c9/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.01cf09502cb22f592b1671a4089db221?rik=2XqYUqu8AiQRKg&amp;riu=http%3a%2f%2fwww.lunwenhz.com%2fuploads%2fallimg%2f181101%2f33-1Q101142624146.jpg&amp;ehk=vSYNuW5k%2fn1%2fNA2JGyc%2fP%2bZI2upTc2a9MAd98VDF0uI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="优化篇"></p>
-<span id="more"></span>
-<h3 id="问题描述"><a class="header-anchor" href="#问题描述">¶</a>问题描述</h3>
-<p>使用MarkDown语法描述问题时，难免会书写一些技术文档，技术文档中包含一些数学公式。但是Hexo在渲染MarkDown文档为Html时，就会遇见一些格式方面的问题。</p>
-<h3 id="技术参考"><a class="header-anchor" href="#技术参考">¶</a>技术参考</h3>
-<p><a href="https://theme-next.js.org/docs/third-party-services/math-equations">Math Equations | NexT (theme-next.js.org)</a></p>
-<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
-<p>Hexo默认使用&quot;hexo-renderer-marked&quot;引擎渲染网页，该引擎会把一些特殊的markdown符号转换为相应的html标签。比如说对于下划线，在MarkDown语法中对应的斜体，这样的话渲染成Html标签就是<code>&lt;em&gt;</code>，但是在MathJax下划线有很深层次的含义。</p>
-<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
-<h4 id="查看npm安装的插件"><a class="header-anchor" href="#查看npm安装的插件">¶</a>查看npm安装的插件</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm ls -dept 0<br></code></pre></td></tr></table></figure>
-<h4 id="更换渲染引擎"><a class="header-anchor" href="#更换渲染引擎">¶</a>更换渲染引擎</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 如果npm安装的插件列表里面有hexo-renderer-marked就卸载</span><br>npm uninstall hexo-renderer-marked --save<br>npm insatll hexo-renderer-kramed --save<br></code></pre></td></tr></table></figure>
-<h4 id="安装hexo-math"><a class="header-anchor" href="#安装hexo-math">¶</a>安装hexo-math</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install hexo-amth --save<br></code></pre></td></tr></table></figure>
-<h4 id="修改themes-next-config-yml"><a class="header-anchor" href="#修改themes-next-config-yml">¶</a>修改themes\next\_config.yml</h4>
-<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">math:</span><br>  <span class="hljs-comment"># Default (false) will load mathjax / katex script on demand.</span><br>  <span class="hljs-comment"># That is it only render those page which has `mathjax: true` in front-matter.</span><br>  <span class="hljs-comment"># If you set it to true, it will load mathjax / katex srcipt EVERY PAGE.</span><br>  <span class="hljs-attr">every_page:</span> <span class="hljs-literal">false</span><br><br>  <span class="hljs-attr">mathjax:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment"># Available values: none | ams | all</span><br>    <span class="hljs-attr">tags:</span> <span class="hljs-string">ams</span><br><br>  <span class="hljs-attr">katex:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-comment"># See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span><br>    <span class="hljs-attr">copy_tex:</span> <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
-<h4 id="修改hexo-node-modules-kramed-lib-rules-inline-js解决语义冲突"><a class="header-anchor" href="#修改hexo-node-modules-kramed-lib-rules-inline-js解决语义冲突">¶</a>修改hexo\node_modules\kramed\lib\rules\inline.js解决语义冲突</h4>
-<figure class="highlight js"><table><tr><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> inline = &#123;<br>  <span class="hljs-comment">// escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span><br>  <span class="hljs-attr">escape</span>: <span class="hljs-regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,<br>  autolink: <span class="hljs-regexp">/^&lt;([^ &gt;]+(@|:\/)[^ &gt;]+)&gt;/</span>,<br>  url: noop,<br>  <span class="hljs-attr">html</span>: <span class="hljs-regexp">/^&lt;!--[\s\S]*?--&gt;|^&lt;(\w+(?!:\/|[^\w\s@]*@)\b)*?(?:&quot;[^&quot;]*&quot;|&#x27;[^&#x27;]*&#x27;|[^&#x27;&quot;&gt;])*?&gt;([\s\S]*?)?&lt;\/\1&gt;|^&lt;(\w+(?!:\/|[^\w\s@]*@)\b)(?:&quot;[^&quot;]*&quot;|&#x27;[^&#x27;]*&#x27;|[^&#x27;&quot;&gt;])*?&gt;/</span>,<br>  link: <span class="hljs-regexp">/^!?\[(inside)\]\(href\)/</span>,<br>  reflink: <span class="hljs-regexp">/^!?\[(inside)\]\s*\[([^\]]*)\]/</span>,<br>  nolink: <span class="hljs-regexp">/^!?\[((?:\[[^\]]*\]|[^\[\]])*)\]/</span>,<br>  reffn: <span class="hljs-regexp">/^!?\[\^(inside)\]/</span>,<br>  strong: <span class="hljs-regexp">/^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/</span>,<br>  <span class="hljs-comment">// em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br>  em: <span class="hljs-regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,<br>  code: <span class="hljs-regexp">/^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/</span>,<br>  br: <span class="hljs-regexp">/^ &#123;2,&#125;\n(?!\s*$)/</span>,<br>  del: noop,<br>  <span class="hljs-attr">text</span>: <span class="hljs-regexp">/^[\s\S]+?(?=[\\&lt;!\[_*`$]| &#123;2,&#125;\n|$)/</span>,<br>  math: <span class="hljs-regexp">/^\$\$\s*([\s\S]*?[^\$])\s*\$\$(?!\$)/</span>,<br>&#125;;<br></code></pre></td></tr></table></figure>
-<div class="note note-info">
-            <p>注释的两行使原本文件中的两行，注释行下面第一行就是新添加的行，也就是<font color='red'>escape</font>和<font color='red'>em</font>两个的值改变了</p>
-          </div>
-<h4 id="front-matter添加标签"><a class="header-anchor" href="#front-matter添加标签">¶</a>front-matter添加标签</h4>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161836025.png" alt="front标签添加"></p>
-<h3 id="其他问题汇总"><a class="header-anchor" href="#其他问题汇总">¶</a>其他问题汇总</h3>
-<h4 id="大括号无法渲染"><a class="header-anchor" href="#大括号无法渲染">¶</a>大括号无法渲染</h4>
-<p>使用<font color='red'>\lbrace</font>代替<font color='red'>\{</font></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -725,18 +725,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL delete</title>
-    <url>/posts/5d234763/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux常用命令</title>
     <url>/posts/48230/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
@@ -977,6 +965,18 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>MySQL delete</title>
+    <url>/posts/5d234763/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL CRUD:Create(创建)</title>
     <url>/posts/ef37b8e4/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7eb6f1b75e1bf1c6fa326235ecb3ca51?rik=%2faUb4dT1FhGsnQ&amp;riu=http%3a%2f%2fwww.beautifulwalldecals.com%2fimages%2fT%2fCUS656Create.jpg&amp;ehk=UDJoDEcyMOtVjLGORv3jFvd4fO9Yhy96HlwA63Kr9Hg%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="create"></p>
@@ -1085,70 +1085,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(sal) <span class="hljs-keyword">as</span> salavg,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-built_in">min</span>(sal)<span class="hljs-keyword">as</span> minsal,job,deptno<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">from</span> emp<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno,job;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+---------+-----------+--------+</span><br><span class="hljs-operator">|</span> salavg      <span class="hljs-operator">|</span> minsal  <span class="hljs-operator">|</span> job       <span class="hljs-operator">|</span> deptno <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+---------+-----------+--------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">950.000000</span> <span class="hljs-operator">|</span>  <span class="hljs-number">800.00</span> <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">1400.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">1250.00</span> <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">2975.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">2975.00</span> <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">2850.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">2850.00</span> <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">2450.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">2450.00</span> <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">3000.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">3000.00</span> <span class="hljs-operator">|</span> ANALYST   <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">5000.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">5000.00</span> <span class="hljs-operator">|</span> PRESIDENT <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">950.000000</span> <span class="hljs-operator">|</span>  <span class="hljs-number">950.00</span> <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-number">1300.000000</span> <span class="hljs-operator">|</span> <span class="hljs-number">1300.00</span> <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+---------+-----------+--------+</span><br><span class="hljs-number">9</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
 <h4 id="显示平均工资低于2000的部门和他的平均工资"><a class="header-anchor" href="#显示平均工资低于2000的部门和他的平均工资">¶</a>显示平均工资低于2000的部门和他的平均工资</h4>
 <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-built_in">avg</span>(sal) <span class="hljs-keyword">as</span> salavg,deptno<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">from</span> emp<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> deptno<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">having</span> salavg <span class="hljs-operator">&lt;</span> <span class="hljs-number">2000</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+--------+</span><br><span class="hljs-operator">|</span> salavg      <span class="hljs-operator">|</span> deptno <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+--------+</span><br><span class="hljs-operator">|</span> <span class="hljs-number">1566.666667</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+--------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL CRUD:Having和Where的区别</title>
-    <url>/posts/978101fb/</url>
-    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
-<span id="more"></span>
-<h3 id="综述"><a class="header-anchor" href="#综述">¶</a>综述</h3>
-<ol>
-<li>Where是约束声明，在结果返回之前起作用的，且Where中不能使用聚合函数。</li>
-<li>Having是过滤声明，在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。</li>
-</ol>
-<h3 id="区别"><a class="header-anchor" href="#区别">¶</a>区别</h3>
-<p>首先，需要说明的是，Having的使用是在Group之后的。</p>
-<ol>
-<li>Having子句可以让我们筛选成组后的各组数据而，Having子句在聚合后对组记录进行筛选。</li>
-<li>Where子句在聚合前先筛选记录．也就是说作用在Group By子句和Having子句前</li>
-</ol>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL CRUD:插入查询结果</title>
-    <url>/posts/823de3f/</url>
-    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
-<span id="more"></span>
-<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<p><strong>删除表中的重复记录</strong></p>
-<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
-<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
-<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
-<ol>
-<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<ol start="3">
-<li>重命名表</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
@@ -1346,47 +1282,56 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL: NULL与NULL的比较(=,&lt;=&gt;)</title>
-    <url>/posts/58b080ef/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109171626761.jpeg" alt="MySQL"></p>
+    <title>MySQL CRUD:Having和Where的区别</title>
+    <url>/posts/978101fb/</url>
+    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
 <span id="more"></span>
-<h3 id="MySQL-NULL的含义"><a class="header-anchor" href="#MySQL-NULL的含义">¶</a>MySQL NULL的含义</h3>
+<h3 id="综述"><a class="header-anchor" href="#综述">¶</a>综述</h3>
 <ol>
-<li>在普通的字段中，空值就代表空值，而不是空字符。也就是说，<font color='red'>NULL就是NULL，而不是’'</font></li>
-<li>如果将空值插入到TimesTamp类型的位置，空值就不是空值了</li>
+<li>Where是约束声明，在结果返回之前起作用的，且Where中不能使用聚合函数。</li>
+<li>Having是过滤声明，在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。</li>
 </ol>
-<h4 id="空值不一定为空"><a class="header-anchor" href="#空值不一定为空">¶</a>空值不一定为空</h4>
-<p>在MySQL数据库中，NULL对于一些特殊类型的列来说，其代表了一种特殊的含义，而不仅仅是一个空值。有两个特殊的值：</p>
+<h3 id="区别"><a class="header-anchor" href="#区别">¶</a>区别</h3>
+<p>首先，需要说明的是，Having的使用是在Group之后的。</p>
 <ol>
-<li>TimesTamp数据类型。如果往这个数据类型的列中插入Null值，则其代表的就是系统的当前时间。</li>
-<li>具有auto_increment属性的列。如果往这属性的列中插入Null值的话，则系统会插入一个正整数序列。</li>
+<li>Having子句可以让我们筛选成组后的各组数据而，Having子句在聚合后对组记录进行筛选。</li>
+<li>Where子句在聚合前先筛选记录．也就是说作用在Group By子句和Having子句前</li>
 </ol>
-<h4 id="空值不是空字符"><a class="header-anchor" href="#空值不是空字符">¶</a>空值不是空字符</h4>
-<ol>
-<li>Null 是没有的意思，不占用内存空间</li>
-<li>''是空的字符串，它是一个字符串，不过里面没有内容，但是在内存中是真实存在的</li>
-</ol>
-<h4 id="空值测试"><a class="header-anchor" href="#空值测试">¶</a>空值测试</h4>
-<p>对于此，我进行了以下测试</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> for_null;<br><span class="hljs-operator">+</span><span class="hljs-comment">-----------+--------------+------+-----+-------------------+-------------------+</span><br><span class="hljs-operator">|</span> Field     <span class="hljs-operator">|</span> Type         <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span>           <span class="hljs-operator">|</span> Extra             <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-----------+--------------+------+-----+-------------------+-------------------+</span><br><span class="hljs-operator">|</span> id        <span class="hljs-operator">|</span> <span class="hljs-type">int</span> unsigned <span class="hljs-operator">|</span> <span class="hljs-keyword">NO</span>   <span class="hljs-operator">|</span> PRI <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>              <span class="hljs-operator">|</span> auto_increment    <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-type">date</span>      <span class="hljs-operator">|</span> <span class="hljs-type">timestamp</span>    <span class="hljs-operator">|</span> <span class="hljs-keyword">NO</span>   <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span> <span class="hljs-operator">|</span> DEFAULT_GENERATED <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> test_null <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>)   <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>              <span class="hljs-operator">|</span>                   <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-----------+--------------+------+-----+-------------------+-------------------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> for_null(test_null) <span class="hljs-keyword">value</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> for_null(test_null) <span class="hljs-keyword">value</span>(<span class="hljs-keyword">null</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> for_null;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+---------------------+-----------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> <span class="hljs-type">date</span>                <span class="hljs-operator">|</span> test_null <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+---------------------+-----------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-number">2021</span><span class="hljs-number">-09</span><span class="hljs-number">-17</span> <span class="hljs-number">16</span>:<span class="hljs-number">51</span>:<span class="hljs-number">42</span> <span class="hljs-operator">|</span>           <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> <span class="hljs-number">2021</span><span class="hljs-number">-09</span><span class="hljs-number">-17</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">07</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>      <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+---------------------+-----------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<p>根据结果分析，两次插入的过程中没有插入到<font color='lawngreen'>id</font>和<font color='lawngreen'>date</font>，默认为<font color='red'>NULL</font>，但是插入之后，对于自增键来说，他会在原值的基础上自增并插入；对于timestamp类型的列date，直接插入了当时执行插入语句的时间。</p>
-<p>对于允许<font color='red'>NULL</font>的列<font color='lawngreen'>test_null</font>，插入<font color='red'>NULL</font>和<font color='red'>‘’</font>结果不一样</p>
-<h3 id="NULL的比较"><a class="header-anchor" href="#NULL的比较">¶</a>NULL的比较</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+----------+----------+</span><br><span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+----------+----------+</span><br><span class="hljs-operator">|</span>        <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+----------+----------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-keyword">null</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">1</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">0</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------+------------+------------+</span><br><span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">0</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------+------------+------------+</span><br><span class="hljs-operator">|</span>             <span class="hljs-number">1</span> <span class="hljs-operator">|</span>          <span class="hljs-number">0</span> <span class="hljs-operator">|</span>          <span class="hljs-number">0</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------+------------+------------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<p>这样就可以对select运算符的结果对应起来</p>
-<hr>
-<p>顺便提一句关于时间戳类型的列创建的过程</p>
-<h3 id="查看for-null表的创建过程"><a class="header-anchor" href="#查看for-null表的创建过程">¶</a>查看for_null表的创建过程</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> for_null;<br><span class="hljs-operator">+</span><span class="hljs-comment">----------+------------------------------------------------------------------------+</span><br><span class="hljs-operator">|</span> <span class="hljs-keyword">Table</span>    <span class="hljs-operator">|</span> <span class="hljs-keyword">Create</span> <span class="hljs-keyword">Table</span>                                                           <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----------+------------------------------------------------------------------------+</span><br><span class="hljs-operator">|</span> for_null <span class="hljs-operator">|</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `for_null` (                                              <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> `id` <span class="hljs-type">int</span> unsigned <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,                             <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> `<span class="hljs-type">date</span>` <span class="hljs-type">timestamp</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,                   <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> `test_null` <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,                                   <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> <span class="hljs-keyword">PRIMARY</span> KEY (`id`)                                                     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> ) ENGINE<span class="hljs-operator">=</span>InnoDB AUTO_INCREMENT<span class="hljs-operator">=</span><span class="hljs-number">3</span> <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8mb4               <span class="hljs-operator">|</span> <span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> <span class="hljs-keyword">COLLATE</span><span class="hljs-operator">=</span>utf8mb4_0900_ai_ci                                             <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----------+------------------------------------------------------------------------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="分析timestamp"><a class="header-anchor" href="#分析timestamp">¶</a>分析timestamp</h4>
-<ol>
-<li>timestamp必须被初始化，也就是说不能是NULL，默认值可以是&quot;0000-00-00 00:00:00&quot;</li>
-<li>timestamp不可以设置值，只能通过数据库自动修改</li>
-<li>一个表可以存在多个timestamp列，但只有一个列会根据数据更新而改变为数据库<strong>系统</strong>当前值，也就是说，多个timestamp没有意义</li>
-<li>timestamp列的默认值是current_timestamp常量值。当纪录数据发生变化的时候，timestamp列会自动将其值设定为current_timestamp。</li>
-</ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL CRUD:Update(更新)</title>
+    <url>/posts/a54a76b0/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.KvdS1VFn8-gxlmTEWh_nPwHaFz?pid=ImgDet&amp;rs=1" alt="update"></p>
+<span id="more"></span>
+<h3 id="数据表和结构"><a class="header-anchor" href="#数据表和结构">¶</a>数据表和结构</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs mysql">mysql&gt; describe exam_result;<br>+---------+-------------+------+-----+---------+----------------+<br>| Field   | Type        | Null | Key | Default | Extra          |<br>+---------+-------------+------+-----+---------+----------------+<br>| id      | int         | NO   | PRI | NULL    | auto_increment |<br>| name    | varchar(20) | NO   |     | NULL    |                |<br>| chinese | float       | YES  |     | 0       |                |<br>| math    | float       | YES  |     | 0       |                |<br>| english | float       | YES  |     | 0       |                |<br>+---------+-------------+------+-----+---------+----------------+<br>5 rows in set (0.01 sec)<br><br>mysql&gt; select * from exam_result;<br>+----+--------+---------+------+---------+<br>| id | name   | chinese | math | english |<br>+----+--------+---------+------+---------+<br>|  1 | 唐三藏 |      67 |   98 |      56 |<br>|  2 | 孙悟空 |      87 |   78 |      77 |<br>|  3 | 猪悟能 |      88 |   98 |      90 |<br>|  4 | 曹孟德 |      82 |   84 |      67 |<br>|  5 | 刘玄德 |      55 |   85 |      45 |<br>|  6 | 孙策   |      70 |   73 |      78 |<br>+----+--------+---------+------+---------+<br>6 rows in set (0.01 sec)<br></code></pre></td></tr></table></figure>
+<h3 id="语法和作用"><a class="header-anchor" href="#语法和作用">¶</a>语法和作用</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">update table_name <span class="hljs-keyword">set</span> <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expr [, <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expe,...] [<span class="hljs-keyword">where</span> ...] [<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ...] [limit ...]<br></code></pre></td></tr></table></figure>
+<p>作用：对查询到的结果进行列植更新</p>
+<h3 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h3>
+<h4 id="将孙悟空同学的数学成绩变为80"><a class="header-anchor" href="#将孙悟空同学的数学成绩变为80">¶</a>将孙悟空同学的数学成绩变为80</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">80</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span>   <span class="hljs-number">80</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="将曹孟德的数学成绩变为50，语文成绩变为78"><a class="header-anchor" href="#将曹孟德的数学成绩变为50，语文成绩变为78">¶</a>将曹孟德的数学成绩变为50，语文成绩变为78</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">50</span>,chinese <span class="hljs-operator">=</span> <span class="hljs-number">78</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese,math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span>   <span class="hljs-number">50</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="将总成绩倒数前三的同学数学加上30分"><a class="header-anchor" href="#将总成绩倒数前三的同学数学加上30分">¶</a>将总成绩倒数前三的同学数学加上30分</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> math <span class="hljs-operator">+</span> <span class="hljs-number">30</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> chinese <span class="hljs-operator">+</span> math <span class="hljs-operator">+</span> english limit <span class="hljs-number">3</span>;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">3</span>  Changed: <span class="hljs-number">3</span>  Warnings: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p>需要注意的是，MySQL不支持<font color='red'>+=</font>语法</p>
+          </div>
+<h4 id="将所有同学的语文成绩乘2"><a class="header-anchor" href="#将所有同学的语文成绩乘2">¶</a>将所有同学的语文成绩乘2</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>      <span class="hljs-number">67</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>      <span class="hljs-number">87</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>      <span class="hljs-number">88</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>      <span class="hljs-number">55</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>      <span class="hljs-number">70</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> chinese <span class="hljs-operator">=</span> chinese <span class="hljs-operator">*</span> <span class="hljs-number">2</span>;<br>Query OK, <span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">6</span>  Changed: <span class="hljs-number">6</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>     <span class="hljs-number">134</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>     <span class="hljs-number">174</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>     <span class="hljs-number">176</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>     <span class="hljs-number">156</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>     <span class="hljs-number">110</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>     <span class="hljs-number">140</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
 <div class="note note-warning">
-            <p>理论上<font color='lawngreen'>default '0000-00-00 00:00:00′</font>是可以的，但是每次数据更新，时间戳都是 <font color='lawngreen'>'0000-00-00 00:00:00′</font>，这样的话，时间戳就没有意义了</p>
+            <p>对整个表更新的操作需要慎用</p>
           </div>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
@@ -1396,7 +1341,44 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </categories>
       <tags>
         <tag>MySQL</tag>
-        <tag>NULL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL CRUD:插入查询结果</title>
+    <url>/posts/823de3f/</url>
+    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
+<span id="more"></span>
+<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<p><strong>删除表中的重复记录</strong></p>
+<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
+<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
+<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
+<ol>
+<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>重命名表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>CRUD</tag>
       </tags>
   </entry>
   <entry>
@@ -1472,42 +1454,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL CRUD:Update(更新)</title>
-    <url>/posts/a54a76b0/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.KvdS1VFn8-gxlmTEWh_nPwHaFz?pid=ImgDet&amp;rs=1" alt="update"></p>
-<span id="more"></span>
-<h3 id="数据表和结构"><a class="header-anchor" href="#数据表和结构">¶</a>数据表和结构</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs mysql">mysql&gt; describe exam_result;<br>+---------+-------------+------+-----+---------+----------------+<br>| Field   | Type        | Null | Key | Default | Extra          |<br>+---------+-------------+------+-----+---------+----------------+<br>| id      | int         | NO   | PRI | NULL    | auto_increment |<br>| name    | varchar(20) | NO   |     | NULL    |                |<br>| chinese | float       | YES  |     | 0       |                |<br>| math    | float       | YES  |     | 0       |                |<br>| english | float       | YES  |     | 0       |                |<br>+---------+-------------+------+-----+---------+----------------+<br>5 rows in set (0.01 sec)<br><br>mysql&gt; select * from exam_result;<br>+----+--------+---------+------+---------+<br>| id | name   | chinese | math | english |<br>+----+--------+---------+------+---------+<br>|  1 | 唐三藏 |      67 |   98 |      56 |<br>|  2 | 孙悟空 |      87 |   78 |      77 |<br>|  3 | 猪悟能 |      88 |   98 |      90 |<br>|  4 | 曹孟德 |      82 |   84 |      67 |<br>|  5 | 刘玄德 |      55 |   85 |      45 |<br>|  6 | 孙策   |      70 |   73 |      78 |<br>+----+--------+---------+------+---------+<br>6 rows in set (0.01 sec)<br></code></pre></td></tr></table></figure>
-<h3 id="语法和作用"><a class="header-anchor" href="#语法和作用">¶</a>语法和作用</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">update table_name <span class="hljs-keyword">set</span> <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expr [, <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expe,...] [<span class="hljs-keyword">where</span> ...] [<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ...] [limit ...]<br></code></pre></td></tr></table></figure>
-<p>作用：对查询到的结果进行列植更新</p>
-<h3 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h3>
-<h4 id="将孙悟空同学的数学成绩变为80"><a class="header-anchor" href="#将孙悟空同学的数学成绩变为80">¶</a>将孙悟空同学的数学成绩变为80</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">80</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span>   <span class="hljs-number">80</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="将曹孟德的数学成绩变为50，语文成绩变为78"><a class="header-anchor" href="#将曹孟德的数学成绩变为50，语文成绩变为78">¶</a>将曹孟德的数学成绩变为50，语文成绩变为78</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">50</span>,chinese <span class="hljs-operator">=</span> <span class="hljs-number">78</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese,math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span>   <span class="hljs-number">50</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="将总成绩倒数前三的同学数学加上30分"><a class="header-anchor" href="#将总成绩倒数前三的同学数学加上30分">¶</a>将总成绩倒数前三的同学数学加上30分</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> math <span class="hljs-operator">+</span> <span class="hljs-number">30</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> chinese <span class="hljs-operator">+</span> math <span class="hljs-operator">+</span> english limit <span class="hljs-number">3</span>;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">3</span>  Changed: <span class="hljs-number">3</span>  Warnings: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-<div class="note note-info">
-            <p>需要注意的是，MySQL不支持<font color='red'>+=</font>语法</p>
-          </div>
-<h4 id="将所有同学的语文成绩乘2"><a class="header-anchor" href="#将所有同学的语文成绩乘2">¶</a>将所有同学的语文成绩乘2</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>      <span class="hljs-number">67</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>      <span class="hljs-number">87</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>      <span class="hljs-number">88</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>      <span class="hljs-number">55</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>      <span class="hljs-number">70</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> chinese <span class="hljs-operator">=</span> chinese <span class="hljs-operator">*</span> <span class="hljs-number">2</span>;<br>Query OK, <span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">6</span>  Changed: <span class="hljs-number">6</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>     <span class="hljs-number">134</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>     <span class="hljs-number">174</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>     <span class="hljs-number">176</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>     <span class="hljs-number">156</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>     <span class="hljs-number">110</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>     <span class="hljs-number">140</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<div class="note note-warning">
-            <p>对整个表更新的操作需要慎用</p>
-          </div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL 复合查询</title>
     <url>/posts/1c07fddd/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109181053888.png" alt="Database"></p>
@@ -1522,6 +1468,60 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </categories>
       <tags>
         <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL: NULL与NULL的比较(=,&lt;=&gt;)</title>
+    <url>/posts/58b080ef/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109171626761.jpeg" alt="MySQL"></p>
+<span id="more"></span>
+<h3 id="MySQL-NULL的含义"><a class="header-anchor" href="#MySQL-NULL的含义">¶</a>MySQL NULL的含义</h3>
+<ol>
+<li>在普通的字段中，空值就代表空值，而不是空字符。也就是说，<font color='red'>NULL就是NULL，而不是’'</font></li>
+<li>如果将空值插入到TimesTamp类型的位置，空值就不是空值了</li>
+</ol>
+<h4 id="空值不一定为空"><a class="header-anchor" href="#空值不一定为空">¶</a>空值不一定为空</h4>
+<p>在MySQL数据库中，NULL对于一些特殊类型的列来说，其代表了一种特殊的含义，而不仅仅是一个空值。有两个特殊的值：</p>
+<ol>
+<li>TimesTamp数据类型。如果往这个数据类型的列中插入Null值，则其代表的就是系统的当前时间。</li>
+<li>具有auto_increment属性的列。如果往这属性的列中插入Null值的话，则系统会插入一个正整数序列。</li>
+</ol>
+<h4 id="空值不是空字符"><a class="header-anchor" href="#空值不是空字符">¶</a>空值不是空字符</h4>
+<ol>
+<li>Null 是没有的意思，不占用内存空间</li>
+<li>''是空的字符串，它是一个字符串，不过里面没有内容，但是在内存中是真实存在的</li>
+</ol>
+<h4 id="空值测试"><a class="header-anchor" href="#空值测试">¶</a>空值测试</h4>
+<p>对于此，我进行了以下测试</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> for_null;<br><span class="hljs-operator">+</span><span class="hljs-comment">-----------+--------------+------+-----+-------------------+-------------------+</span><br><span class="hljs-operator">|</span> Field     <span class="hljs-operator">|</span> Type         <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span>           <span class="hljs-operator">|</span> Extra             <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-----------+--------------+------+-----+-------------------+-------------------+</span><br><span class="hljs-operator">|</span> id        <span class="hljs-operator">|</span> <span class="hljs-type">int</span> unsigned <span class="hljs-operator">|</span> <span class="hljs-keyword">NO</span>   <span class="hljs-operator">|</span> PRI <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>              <span class="hljs-operator">|</span> auto_increment    <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> <span class="hljs-type">date</span>      <span class="hljs-operator">|</span> <span class="hljs-type">timestamp</span>    <span class="hljs-operator">|</span> <span class="hljs-keyword">NO</span>   <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span> <span class="hljs-operator">|</span> DEFAULT_GENERATED <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> test_null <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>)   <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>              <span class="hljs-operator">|</span>                   <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-----------+--------------+------+-----+-------------------+-------------------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> for_null(test_null) <span class="hljs-keyword">value</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> for_null(test_null) <span class="hljs-keyword">value</span>(<span class="hljs-keyword">null</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> for_null;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+---------------------+-----------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> <span class="hljs-type">date</span>                <span class="hljs-operator">|</span> test_null <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+---------------------+-----------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-number">2021</span><span class="hljs-number">-09</span><span class="hljs-number">-17</span> <span class="hljs-number">16</span>:<span class="hljs-number">51</span>:<span class="hljs-number">42</span> <span class="hljs-operator">|</span>           <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> <span class="hljs-number">2021</span><span class="hljs-number">-09</span><span class="hljs-number">-17</span> <span class="hljs-number">16</span>:<span class="hljs-number">52</span>:<span class="hljs-number">07</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>      <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+---------------------+-----------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<p>根据结果分析，两次插入的过程中没有插入到<font color='lawngreen'>id</font>和<font color='lawngreen'>date</font>，默认为<font color='red'>NULL</font>，但是插入之后，对于自增键来说，他会在原值的基础上自增并插入；对于timestamp类型的列date，直接插入了当时执行插入语句的时间。</p>
+<p>对于允许<font color='red'>NULL</font>的列<font color='lawngreen'>test_null</font>，插入<font color='red'>NULL</font>和<font color='red'>‘’</font>结果不一样</p>
+<h3 id="NULL的比较"><a class="header-anchor" href="#NULL的比较">¶</a>NULL的比较</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+----------+----------+</span><br><span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+----------+----------+</span><br><span class="hljs-operator">|</span>        <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------------+----------+----------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-keyword">null</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">1</span>,<span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">0</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------+------------+------------+</span><br><span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">1</span> <span class="hljs-operator">|</span> <span class="hljs-keyword">null</span> <span class="hljs-operator">&lt;=&gt;</span> <span class="hljs-number">0</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------+------------+------------+</span><br><span class="hljs-operator">|</span>             <span class="hljs-number">1</span> <span class="hljs-operator">|</span>          <span class="hljs-number">0</span> <span class="hljs-operator">|</span>          <span class="hljs-number">0</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------+------------+------------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<p>这样就可以对select运算符的结果对应起来</p>
+<hr>
+<p>顺便提一句关于时间戳类型的列创建的过程</p>
+<h3 id="查看for-null表的创建过程"><a class="header-anchor" href="#查看for-null表的创建过程">¶</a>查看for_null表的创建过程</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> for_null;<br><span class="hljs-operator">+</span><span class="hljs-comment">----------+------------------------------------------------------------------------+</span><br><span class="hljs-operator">|</span> <span class="hljs-keyword">Table</span>    <span class="hljs-operator">|</span> <span class="hljs-keyword">Create</span> <span class="hljs-keyword">Table</span>                                                           <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----------+------------------------------------------------------------------------+</span><br><span class="hljs-operator">|</span> for_null <span class="hljs-operator">|</span> <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `for_null` (                                              <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> `id` <span class="hljs-type">int</span> unsigned <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> AUTO_INCREMENT,                             <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> `<span class="hljs-type">date</span>` <span class="hljs-type">timestamp</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>,                   <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> `test_null` <span class="hljs-type">varchar</span>(<span class="hljs-number">2</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,                                   <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> <span class="hljs-keyword">PRIMARY</span> KEY (`id`)                                                     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> ) ENGINE<span class="hljs-operator">=</span>InnoDB AUTO_INCREMENT<span class="hljs-operator">=</span><span class="hljs-number">3</span> <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8mb4               <span class="hljs-operator">|</span> <span class="hljs-operator">|</span>          <span class="hljs-operator">|</span> <span class="hljs-keyword">COLLATE</span><span class="hljs-operator">=</span>utf8mb4_0900_ai_ci                                             <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----------+------------------------------------------------------------------------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="分析timestamp"><a class="header-anchor" href="#分析timestamp">¶</a>分析timestamp</h4>
+<ol>
+<li>timestamp必须被初始化，也就是说不能是NULL，默认值可以是&quot;0000-00-00 00:00:00&quot;</li>
+<li>timestamp不可以设置值，只能通过数据库自动修改</li>
+<li>一个表可以存在多个timestamp列，但只有一个列会根据数据更新而改变为数据库<strong>系统</strong>当前值，也就是说，多个timestamp没有意义</li>
+<li>timestamp列的默认值是current_timestamp常量值。当纪录数据发生变化的时候，timestamp列会自动将其值设定为current_timestamp。</li>
+</ol>
+<div class="note note-warning">
+            <p>理论上<font color='lawngreen'>default '0000-00-00 00:00:00′</font>是可以的，但是每次数据更新，时间戳都是 <font color='lawngreen'>'0000-00-00 00:00:00′</font>，这样的话，时间戳就没有意义了</p>
+          </div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>NULL</tag>
       </tags>
   </entry>
   <entry>
@@ -2295,6 +2295,105 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>hexo+github搭建个人博客</title>
+    <url>/posts/36674/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Hexo+Github Page"></p>
+<span id="more"></span>
+<h1>简介</h1>
+<p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
+<p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
+<p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
+<p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
+<div class="note note-primary">
+            <blockquote><p>本文为个人查漏补缺所用，暂时不写那么详细</p><p>最开始的git安装和github账户注册在这里不再进行赘述</p><p>不明白这些的同学，请自行查阅相关资料</p></blockquote>
+          </div>
+<h1>安装node.js和git</h1>
+<h2 id="下载路径"><a class="header-anchor" href="#下载路径">¶</a>下载路径</h2>
+<div class="note note-success">
+            <blockquote><p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p><p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p><p>里面都有选项，请选择适合自己的版本下载</p></blockquote>
+          </div>
+<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
+<p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
+<p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
+<p>node.js安装完成后，使用win+r打开运行，在运行的输入框中输入cmd，打开cmd，在cmd中输入node -v 以及npm -v看是否有版本显示，如下图</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
+<p>有版本显示就说明已经安装好了</p>
+<h1>连接Github</h1>
+<h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
+<p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 设置github全局用户名</span><br>git config --global user.name &quot;你的GitHub 用户名&quot;<br><span class="hljs-meta">#</span><span class="bash"> 设置github全局邮箱</span><br>git config --global user.email &quot;你的GitHub 邮箱&quot;<br></code></pre></td></tr></table></figure>
+<div class="note note-primary">
+            <blockquote><p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p><p>如果想要知道有没有设置成功，按照以下命名进行</p><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">git config --list --global<br></code></pre></td></tr></table></figure><p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p></blockquote>
+          </div>
+<h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
+<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;<br></code></pre></td></tr></table></figure>
+<p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
+<p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
+<p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
+<h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
+<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+<p>连接成功的，会弹出以下字样</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
+<div class="note note-success">
+            <blockquote><p>说明：不要管后面那个&quot;but Github does not provide shell access&quot;。</p><p>实在好奇为什么的话，以下是翻译</p><p>你已经成功验证，但是Github不提供shell访问</p></blockquote>
+          </div>
+<h1>创建Github Pages仓库</h1>
+<p>GitHub 主页右上角加号 -&gt; New repository</p>
+<ul>
+<li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
+<li>选择<code>public</code></li>
+<li>勾选<code>Add a README file</code></li>
+<li>点击<code>Create Repository</code></li>
+</ul>
+<div class="note note-info">
+            <blockquote><p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p></blockquote>
+          </div>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
+<p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
+<h1>安装hexo</h1>
+<p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
+<h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
+<p>使用<code>npm</code>安装</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install -g hexo-cli<br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <blockquote><p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p></blockquote>
+          </div>
+<h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
+<p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span><br>hexo init<br><span class="hljs-meta">#</span><span class="bash"> 安装组件</span><br>npm install<br></code></pre></td></tr></table></figure>
+<p>本地预览，输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure>
+<p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
+<div class="note note-info">
+            <blockquote><p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p></blockquote>
+          </div>
+<h1>部署hexo到Github pages</h1>
+<p>首先是安装<code>hexo-deployer-git</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+<p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
+<div class="note note-primary">
+            <blockquote><p>说明：</p><ul><li>:    后面有一个空格，一定要注意这一点</li><li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li></ul></blockquote>
+          </div>
+<p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br></code></pre></td></tr></table></figure>
+<p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git命令</title>
     <url>/posts/36736/</url>
     <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ABjebgItCCVwn7kiCdItzAHaDF?pid=ImgDet&amp;rs=1" alt="git"></p>
@@ -2692,105 +2791,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>hexo+github搭建个人博客</title>
-    <url>/posts/36674/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Hexo+Github Page"></p>
-<span id="more"></span>
-<h1>简介</h1>
-<p>目前很多用户都使用<code>github page</code>进行静态个人博客网站的搭建。由于<code>git</code>的功能很强大，再配合<code>hexo</code>的<code>git</code>配置，直接上传到<code>github</code>上，经过短暂的等待，就可以通过指定的网站访问自己的博客，而且不用考虑后期维护的问题。说实话，真的很香。</p>
-<p><code>GitHub Pages</code> 是由 <code>GitHub</code> 官方提供的一种免费的静态站点托管服务，让我们可以在 <code>GitHub</code> 仓库里托管和发布自己的静态网站页面。</p>
-<p><code>Hexo</code> 是一个快速、简洁且高效的静态博客框架，它基于 <code>Node.js</code> 运行，可以将我们撰写的 Markdown 文档解析渲染成静态的 HTML 网页。</p>
-<p>但是，通过上述方法搭建个人博客是有些小缺点的，就是每次上传到<code>github</code>之后都需要等待一段时间才能显示出修改，这一段时间可长可短。如果不想等待，还是自行购买云服务器，在云服务器上进行个人博客的搭建。</p>
-<div class="note note-primary">
-            <blockquote><p>本文为个人查漏补缺所用，暂时不写那么详细</p><p>最开始的git安装和github账户注册在这里不再进行赘述</p><p>不明白这些的同学，请自行查阅相关资料</p></blockquote>
-          </div>
-<h1>安装node.js和git</h1>
-<h2 id="下载路径"><a class="header-anchor" href="#下载路径">¶</a>下载路径</h2>
-<div class="note note-success">
-            <blockquote><p>git:   <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p><p>node.js:   <a href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p><p>里面都有选项，请选择适合自己的版本下载</p></blockquote>
-          </div>
-<h2 id="安装"><a class="header-anchor" href="#安装">¶</a>安装</h2>
-<p>安装过程都是让人感觉很舒适的，直接一路点击<strong>next</strong>，直接使用上述两项的默认配置就可以。如果非要看着选，没关系，有一项很重要，是否添加到系统变量(system path)，这个没碰见就算了，碰见了一定要勾选上，一路<strong>next</strong>的话，就不用想这么过了</p>
-<p>git安装成功后，在桌面右键，会出现<font color='cornflowerblue'>git bash</font>和<font color='cornflowerblue'>git gui</font>，如下图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png" alt="image-20210523201027630"></p>
-<p>node.js安装完成后，使用win+r打开运行，在运行的输入框中输入cmd，打开cmd，在cmd中输入node -v 以及npm -v看是否有版本显示，如下图</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png" alt="image-20210523201635647"></p>
-<p>有版本显示就说明已经安装好了</p>
-<h1>连接Github</h1>
-<h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
-<p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 设置github全局用户名</span><br>git config --global user.name &quot;你的GitHub 用户名&quot;<br><span class="hljs-meta">#</span><span class="bash"> 设置github全局邮箱</span><br>git config --global user.email &quot;你的GitHub 邮箱&quot;<br></code></pre></td></tr></table></figure>
-<div class="note note-primary">
-            <blockquote><p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p><p>如果想要知道有没有设置成功，按照以下命名进行</p><figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">git config --list --global<br></code></pre></td></tr></table></figure><p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p></blockquote>
-          </div>
-<h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
-<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;<br></code></pre></td></tr></table></figure>
-<p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
-<p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
-<p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" alt="image-20210523204048789"></p>
-<h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
-<p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
-<p>连接成功的，会弹出以下字样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" alt="image-20210523205339419"></p>
-<div class="note note-success">
-            <blockquote><p>说明：不要管后面那个&quot;but Github does not provide shell access&quot;。</p><p>实在好奇为什么的话，以下是翻译</p><p>你已经成功验证，但是Github不提供shell访问</p></blockquote>
-          </div>
-<h1>创建Github Pages仓库</h1>
-<p>GitHub 主页右上角加号 -&gt; New repository</p>
-<ul>
-<li>输入<code>Repository name</code>，按照以下格式<code>用户名.github.io</code></li>
-<li>选择<code>public</code></li>
-<li>勾选<code>Add a README file</code></li>
-<li>点击<code>Create Repository</code></li>
-</ul>
-<div class="note note-info">
-            <blockquote><p>说明：不勾选<code>Add a README file</code>也可以，因为如果后面没有配置，最后第一次上传到github上就会删除初始化的<code>README</code>文档，这个就留给读者自行努力吧</p></blockquote>
-          </div>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png" alt="image-20210523203715559"></p>
-<p>创建后默认自动启用 <code>HTTPS</code>，博客地址为：<code>https://用户名.github.io</code></p>
-<h1>安装hexo</h1>
-<p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
-<h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
-<p>使用<code>npm</code>安装</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install -g hexo-cli<br></code></pre></td></tr></table></figure>
-<div class="note note-info">
-            <blockquote><p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p></blockquote>
-          </div>
-<h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
-<p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span><br>hexo init<br><span class="hljs-meta">#</span><span class="bash"> 安装组件</span><br>npm install<br></code></pre></td></tr></table></figure>
-<p>本地预览，输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure>
-<p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" alt="image-20210523212717096"></p>
-<div class="note note-info">
-            <blockquote><p>说明：如果出现页面加载不出来，可能是端口被占用了。<code>Ctrl+C</code> 关闭服务器，运行 <code>hexo server -p 5000</code> 更改端口号后重试。</p></blockquote>
-          </div>
-<h1>部署hexo到Github pages</h1>
-<p>首先是安装<code>hexo-deployer-git</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
-<p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" alt="image-20210523213657537"></p>
-<div class="note note-primary">
-            <blockquote><p>说明：</p><ul><li>:    后面有一个空格，一定要注意这一点</li><li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li></ul></blockquote>
-          </div>
-<p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br></code></pre></td></tr></table></figure>
-<p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo同级多级分类配置</title>
     <url>/posts/63081/</url>
     <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
@@ -2847,207 +2847,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>markdown语法以及Typora使用(高级)</title>
-    <url>/posts/54024/</url>
-    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
-<h1>HTML+CSS</h1>
-<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
-<div class="note note-success">
-            <blockquote><p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p><p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p><p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p><figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">这是一个普通段落。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><br>这是另一个普通段落。<br></code></pre></td></tr></table></figure><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p><p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p><p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p></blockquote>
-          </div>
-<p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
-<p>答案是肯定的，以下为在添加自定义CSS</p>
-<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
-<p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
-<p>大致流程就是</p>
-<ul>
-<li>打开Typora编辑器</li>
-<li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
-<li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
-<li>这样会打开本地的Typora主题文件夹
-<ul>
-<li>一种修改方式为修改<code>base.user.css</code></li>
-<li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
-<li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
-</ul>
-</li>
-<li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
-</ul>
-<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
-<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs CSS"><span class="hljs-selector-class">.task-list-done</span> &#123;<br>    <span class="hljs-comment">/* styles for completed tasks */</span><br>    <span class="hljs-attribute">text-decoration</span>: line-through;<br>&#125;<br><span class="hljs-selector-class">.task-list-not-done</span> &#123;<br>    <span class="hljs-comment">/* styles for incomplete tasks */</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>测试用例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
-<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
-<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [x] <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span></span>写博客<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<ul>
-<li>[ ] 写博客</li>
-<li>[x] <del>写博客</del></li>
-</ul>
-<p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
-<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* the usual value of color ： red | blue | green | yellow *</span>/<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<p><font color='red'>红色</font></p>
-<p>其他的<font>属性也可以进行更改</p>
-<blockquote>
-<p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
-</blockquote>
-<h1>PicGo</h1>
-<p>这边有了一片博客关于图床的设置，直接提供链接</p>
-<p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
-<h1><a id="#a2">Ahk脚本</a></h1>
-<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
-<p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
-<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
-<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
-<p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
-<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
-<p><a href="https://www.autohotkey.com/">下载地址</a></p>
-<p>安装过程没有什么好说的，一路Next</p>
-<p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
-<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
-<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
-<p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
-<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
-<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
-<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">#IfWinActive ahk_exe Typora.exe<br>&#123;<br>    ; Ctrl+Alt+O 橙色<br>    ^!o::addFontColor(<span class="hljs-string">&quot;orange&quot;</span>)<br> <br>    ; Ctrl+Alt+R 红色<br>    ^!r::addFontColor(<span class="hljs-string">&quot;red&quot;</span>)<br> <br>    ; Ctrl+Alt+B 浅蓝色<br>    ^!b::addFontColor(<span class="hljs-string">&quot;cornflowerblue&quot;</span>)<br>	<br>	; Ctrl+Alt+G 荧光绿色<br>	^!g::addFontColor(<span class="hljs-string">&quot;lawngreen&quot;</span>)<br>	<br>	; Ctrl+Alt+T 黄色<br>	^!t::addFontColor(<span class="hljs-string">&quot;tomato&quot;</span>)<br>&#125;<br> <br>; 快捷增加字体颜色<br>addFontColor(color)&#123;<br>    clipboard := <span class="hljs-string">&quot;&quot;</span> ; 清空剪切板<br>    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制<br>    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;<br>    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴<br>    If(clipboard = <span class="hljs-string">&quot;&quot;</span>)&#123;<br>        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充<br>    &#125;else&#123;<br>        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
-<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
-<p><strong>未完待续</strong></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Software</category>
-        <category>Typora</category>
-        <category>Picgo</category>
-        <category>HotKey</category>
-      </categories>
-      <tags>
-        <tag>Ahk</tag>
-        <tag>HTML</tag>
-        <tag>CSS</tag>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Tomcat error</title>
-    <url>/posts/37247/</url>
-    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
-<span id="more"></span>
-<h1>1099端口已经被占用</h1>
-<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
-<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
-<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
-<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
-<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>picgo+gitee实现markdown图片上传自动化</title>
-    <url>/posts/12356/</url>
-    <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
-<span id="more"></span>
-<h1>picgo+gitee实现markdown图片上传自动化</h1>
-<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
-<p>markdown编辑工具：typora</p>
-<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
-<p>图床仓库：gitee</p>
-<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
-<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
-<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
-<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
-<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
-<ul>
-<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
-<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
-<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
-<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
-<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
-</ul>
-<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
-<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
-<p>和平常新建仓库没有什么区别，有几点注意事项</p>
-<ul>
-<li>需要设置为开源</li>
-<li>需要使用Readme文件初始化仓库</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
-<p>图中标注的地方需要注意一下</p>
-<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
-<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
-<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
-<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
-<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
-<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
-<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
-<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
-<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
-<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
-<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
-<p>至此结束。</p>
-<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
-<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
-<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
-<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;success&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-attr">&quot;message&quot;</span>:<span class="hljs-string">&quot;upload error&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>更改方案</strong></p>
-<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
-<ol>
-<li>打开PicGo软件</li>
-<li>打开相册</li>
-<li>删除Typora相关图标</li>
-<li>重新配置Server</li>
-<li><font color='red'>重启PicGo</font></li>
-</ol>
-<p>或许可能是私人令牌的问题，重新获取下令牌</p>
-<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
-<p><font color='red'>终极办法：</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" alt="打开时间戳重命名"></p>
-<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
-<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
@@ -3369,6 +3168,207 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>markdown语法以及Typora使用(高级)</title>
+    <url>/posts/54024/</url>
+    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
+<h1>HTML+CSS</h1>
+<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
+<div class="note note-success">
+            <blockquote><p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p><p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p><p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p><figure class="highlight html"><table><tr><td class="code"><pre><code class="hljs html">这是一个普通段落。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><br>这是另一个普通段落。<br></code></pre></td></tr></table></figure><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p><p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p><p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p></blockquote>
+          </div>
+<p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
+<p>答案是肯定的，以下为在添加自定义CSS</p>
+<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
+<p>使用自定义CSS请参考以下页面<a href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
+<p>大致流程就是</p>
+<ul>
+<li>打开Typora编辑器</li>
+<li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
+<li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
+<li>这样会打开本地的Typora主题文件夹
+<ul>
+<li>一种修改方式为修改<code>base.user.css</code></li>
+<li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
+<li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
+</ul>
+</li>
+<li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
+</ul>
+<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
+<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs CSS"><span class="hljs-selector-class">.task-list-done</span> &#123;<br>    <span class="hljs-comment">/* styles for completed tasks */</span><br>    <span class="hljs-attribute">text-decoration</span>: line-through;<br>&#125;<br><span class="hljs-selector-class">.task-list-not-done</span> &#123;<br>    <span class="hljs-comment">/* styles for incomplete tasks */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>测试用例：</strong></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" alt="添加自定义CSS之前"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" alt="添加自定义CSS之后"></p>
+<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
+<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [x] <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span></span>写博客<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<ul>
+<li>[ ] 写博客</li>
+<li>[x] <del>写博客</del></li>
+</ul>
+<p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
+<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* the usual value of color ： red | blue | green | yellow *</span>/<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<p><strong>效果：</strong></p>
+<p><font color='red'>红色</font></p>
+<p>其他的<font>属性也可以进行更改</p>
+<blockquote>
+<p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
+</blockquote>
+<h1>PicGo</h1>
+<p>这边有了一片博客关于图床的设置，直接提供链接</p>
+<p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
+<h1><a id="#a2">Ahk脚本</a></h1>
+<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
+<p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
+<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
+<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
+<p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
+<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
+<p><a href="https://www.autohotkey.com/">下载地址</a></p>
+<p>安装过程没有什么好说的，一路Next</p>
+<p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" alt="更改AutoHotKey安装路径"></p>
+<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
+<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
+<p>另外就是ahk脚本的编写，这边可以参考<a href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
+<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
+<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
+<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">#IfWinActive ahk_exe Typora.exe<br>&#123;<br>    ; Ctrl+Alt+O 橙色<br>    ^!o::addFontColor(<span class="hljs-string">&quot;orange&quot;</span>)<br> <br>    ; Ctrl+Alt+R 红色<br>    ^!r::addFontColor(<span class="hljs-string">&quot;red&quot;</span>)<br> <br>    ; Ctrl+Alt+B 浅蓝色<br>    ^!b::addFontColor(<span class="hljs-string">&quot;cornflowerblue&quot;</span>)<br>	<br>	; Ctrl+Alt+G 荧光绿色<br>	^!g::addFontColor(<span class="hljs-string">&quot;lawngreen&quot;</span>)<br>	<br>	; Ctrl+Alt+T 黄色<br>	^!t::addFontColor(<span class="hljs-string">&quot;tomato&quot;</span>)<br>&#125;<br> <br>; 快捷增加字体颜色<br>addFontColor(color)&#123;<br>    clipboard := <span class="hljs-string">&quot;&quot;</span> ; 清空剪切板<br>    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制<br>    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;<br>    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴<br>    If(clipboard = <span class="hljs-string">&quot;&quot;</span>)&#123;<br>        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充<br>    &#125;else&#123;<br>        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
+<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
+<p><strong>未完待续</strong></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Software</category>
+        <category>Typora</category>
+        <category>Picgo</category>
+        <category>HotKey</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+        <tag>Ahk</tag>
+        <tag>HTML</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>picgo+gitee实现markdown图片上传自动化</title>
+    <url>/posts/12356/</url>
+    <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
+<span id="more"></span>
+<h1>picgo+gitee实现markdown图片上传自动化</h1>
+<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
+<p>markdown编辑工具：typora</p>
+<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
+<p>图床仓库：gitee</p>
+<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
+<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
+<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
+<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
+<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
+<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
+<ul>
+<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
+<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
+<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
+<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
+<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
+</ul>
+<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
+<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
+<p>和平常新建仓库没有什么区别，有几点注意事项</p>
+<ul>
+<li>需要设置为开源</li>
+<li>需要使用Readme文件初始化仓库</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
+<p>图中标注的地方需要注意一下</p>
+<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
+<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
+<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
+<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
+<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
+<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
+<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
+<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
+<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
+<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
+<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
+<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
+<p>至此结束。</p>
+<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
+<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
+<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
+<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;success&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-attr">&quot;message&quot;</span>:<span class="hljs-string">&quot;upload error&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>更改方案</strong></p>
+<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
+<ol>
+<li>打开PicGo软件</li>
+<li>打开相册</li>
+<li>删除Typora相关图标</li>
+<li>重新配置Server</li>
+<li><font color='red'>重启PicGo</font></li>
+</ol>
+<p>或许可能是私人令牌的问题，重新获取下令牌</p>
+<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
+<p><font color='red'>终极办法：</font></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" alt="打开时间戳重命名"></p>
+<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
+<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat error</title>
+    <url>/posts/37247/</url>
+    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
+<span id="more"></span>
+<h1>1099端口已经被占用</h1>
+<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
+<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
+<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
+<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
+<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vscode C/C++头文件问题</title>
     <url>/posts/55983/</url>
     <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
@@ -3429,6 +3429,47 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>Sundry</tag>
         <tag>Vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>x的平方根</title>
+    <url>/posts/e0a96f5e/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" alt="x的平方根"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
+<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
+<p>废话少说，直接说想法。</p>
+<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
+$$
+\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
+$$
+基于此，就有以下代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
+<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
+<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
+$$
+\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
+$$
+这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
+<hr>
+<p>未完待续，关于牛顿迭代法</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>二分法</category>
+        <category>暴力法</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
@@ -3499,47 +3540,6 @@ $$
       </tags>
   </entry>
   <entry>
-    <title>x的平方根</title>
-    <url>/posts/e0a96f5e/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" alt="x的平方根"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
-<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
-<p>废话少说，直接说想法。</p>
-<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
-$$
-\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
-$$
-基于此，就有以下代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>结果</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
-<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
-<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
-$$
-\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
-$$
-这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>结果</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
-<hr>
-<p>未完待续，关于牛顿迭代法</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Algorithm</category>
-        <category>二分法</category>
-        <category>暴力法</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>以O(1)的空间复杂度交换两个数据</title>
     <url>/posts/18813/</url>
     <content><![CDATA[<p><img src="https://pic3.zhimg.com/v2-96d58dc7ea889b98102cbad4c53bb91e_720w.jpg?source=172ae18b" alt="Algorithm"></p>
@@ -3588,21 +3588,6 @@ $$
       </tags>
   </entry>
   <entry>
-    <title>关于算法</title>
-    <url>/posts/36727525/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109182337195.png" alt="Algorithm"></p>
-<span id="more"></span>
-<p>算法的</p>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于new和delete的问题</title>
     <url>/posts/36390/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
@@ -3640,6 +3625,21 @@ $$
       </categories>
       <tags>
         <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于算法</title>
+    <url>/posts/36727525/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109182337195.png" alt="Algorithm"></p>
+<span id="more"></span>
+<p>算法的</p>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
@@ -3785,33 +3785,6 @@ $$
       </tags>
   </entry>
   <entry>
-    <title>算法·方阵</title>
-    <url>/posts/49440/</url>
-    <content><![CDATA[<h1>方阵</h1>
-<h2 id="描述："><a class="header-anchor" href="#描述：">¶</a>描述：</h2>
-<p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
-<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
-<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
-<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
-<span id="more"></span>
-<h2 id="理解："><a class="header-anchor" href="#理解：">¶</a>理解：</h2>
-<p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
-<h2 id="分析："><a class="header-anchor" href="#分析：">¶</a>分析：</h2>
-<p>由上面的理解可知，分两种情况讨论：</p>
-<ol>
-<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
-<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
-</ol>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>无重复最长子串长度</title>
     <url>/posts/f68e8708/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109042355161.png" alt="力扣刷题结果"></p>
@@ -3840,6 +3813,33 @@ $$
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>算法·方阵</title>
+    <url>/posts/49440/</url>
+    <content><![CDATA[<h1>方阵</h1>
+<h2 id="描述："><a class="header-anchor" href="#描述：">¶</a>描述：</h2>
+<p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
+<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
+<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
+<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
+<span id="more"></span>
+<h2 id="理解："><a class="header-anchor" href="#理解：">¶</a>理解：</h2>
+<p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
+<h2 id="分析："><a class="header-anchor" href="#分析：">¶</a>分析：</h2>
+<p>由上面的理解可知，分两种情况讨论：</p>
+<ol>
+<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
+<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" alt="Alt text" title="方阵斜线算法"></li>
+</ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
