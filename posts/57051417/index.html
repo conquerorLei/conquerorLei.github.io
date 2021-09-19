@@ -258,13 +258,13 @@
 <h3 id="创建和引入自定义CSS文件"><a class="header-anchor" href="#创建和引入自定义CSS文件">¶</a>创建和引入自定义CSS文件</h3>
 <p>秉持着不污染开源代码以及之后主题更新之后尽量减少维护的问题，这里使用的是<font color='cornflowerblue'>Fluid</font>的配置文件标签。</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js</span><br><span class="hljs-comment"># Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`</span><br><span class="hljs-attr">custom_js:</span><br><br><span class="hljs-comment"># 指定自定义 .css 文件路径，用法和 custom_js 相同</span><br><span class="hljs-comment"># The usage is the same as custom_js</span><br><span class="hljs-attr">custom_css:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">/css/_custom/blockquote.css</span> <span class="hljs-comment"># 注意引用的格式</span><br></code></pre></td></tr></table></figure>
-<p>在custom_css之后就是我们引用的自定义样式文件的路径</p>
+<p>在<font color='lawngreen'>custom_css</font>之后就是我们引用的自定义样式文件的路径</p>
 <div class="note note-info">
             <p>需要注意的是，这边一般选用的相对路径，这个相对路径是相对于source而言的。不同的安装方法对于source的寻址不同。</p><ul><li>对于npm安装方法，路径为<font color='red'>hexo安装路径/node_module/hexo-theme-fluid/source</font></li><li>对于release包下载解压的安装方法，路径为<font color='red'>hexo安装路径/themes/fluid/source</font></li></ul>
           </div>
 <p>为了与原来文件做一个区分，在<font color='cornflowerblue'>source/css/</font>路径下创建了一个自定义文件夹<code>custom</code>。在这个文件中创建自定义的<a target="_blank" rel="noopener external nofollow noreferrer" href="https://baike.baidu.com/item/CSS/5457">样式层叠文件</a>:<code>blockquote.css</code>。</p>
 <div class="note note-success">
-            <p>注意一点，可以不出创建文件夹，如果创建问价的话，创建的文件夹尽量不要以下划线开头，算是一个铁的教训吧！<font color='red'>经过我的尝试，使用<code>_source</code>出现的问题就是系统检索不到css文件</font>，可能是下划线转义的问题，留个代办吧！</p>
+            <p>注意一点，可以不创建文件夹，如果创建文件夹的话，创建的文件夹尽量不要以下划线开头，算是一个铁的教训吧！<font color='red'>经过我的尝试，使用<code>_source</code>出现的问题就是系统检索不到css文件</font>，可能是下划线转义的问题，留个代办吧！</p>
           </div>
 <h3 id="样式层叠文件的编写"><a class="header-anchor" href="#样式层叠文件的编写">¶</a>样式层叠文件的编写</h3>
 <p>在网上查了关于<code>&lt;blockquote&gt;</code>的相关信息，发现他的基本样式竟然和<code>note </code>的差不多，那我用<code>&lt;blockquote&gt;</code>的意义何在呢？想的就是与众不同些，在文章的末尾进行一个名人名言的引用，直接就是一个居中，多醒目，多有教育意义。</p>
@@ -289,7 +289,7 @@
 <li><font color='cornflowerblue'>-webkit-text-fill-color: transparent;</font>表示文字的填充颜色设置为透明</li>
 </ul>
 <div class="note note-primary">
-            <p>什么意思呢？就是说，我先生成了一张从左到右线性渐变的背景图片，然后背景图片上层叠了一些文件，以这些文字为边界进行裁剪，这时背景图片上的除了文字投影部分都被裁剪掉了，然后再对原本的文字做一个透明处理，就可以显示出来一个渐变文字啦</p>
+            <p>什么意思呢？就是说，我先生成了一张从左到右线性渐变的背景图片，然后背景图片上层叠了一些文字，以这些文字为边界进行裁剪，这时背景图片上的除了文字投影部分都被裁剪掉了，然后再对原本的文字做一个透明处理，就可以显示出来一个渐变文字啦</p>
           </div>
 <p>其实本质上是两层的叠加，只不过原来的文字是透明的。所以依然可以被当成文字复制，但是你要知道的是，你看到的渐变其实是图片。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
@@ -320,7 +320,7 @@
                     
                       <a class="hover-with-bg" href="/tags/Fluid/">Fluid</a>
                     
-                      <a class="hover-with-bg" href="/tags/css/">css</a>
+                      <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
                     
                   </div>
                 
