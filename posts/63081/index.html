@@ -253,14 +253,18 @@
             <div class="markdown-body">
               <p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" srcset="/img/loading.gif" lazyload alt="categories"></p>
 <span id="more"></span>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架—这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring—这就是多级分类</p>
+<h1>前言</h1>
+<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
 <p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
 <div class="note note-success">
             <blockquote><p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p></blockquote>
           </div>
-<h1 id="同级分类"><a href="#同级分类" class="headerlink" title="同级分类"></a>同级分类</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">注意方括号</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">Java</span>]<br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>]<br></code></pre></td></tr></table></figure>
-<h1 id="多级分类"><a href="#多级分类" class="headerlink" title="多级分类"></a>多级分类</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">默认情况</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">框架</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">Spring</span><br>	<br><span class="hljs-string">//</span> <span class="hljs-string">另一种写法</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>,<span class="hljs-string">Spring</span>]<br></code></pre></td></tr></table></figure>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
+<h1>同级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">注意方括号</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">Java</span>]<br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>]<br></code></pre></td></tr></table></figure>
+<h1>多级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">默认情况</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">框架</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">Spring</span><br>	<br><span class="hljs-string">//</span> <span class="hljs-string">另一种写法</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>,<span class="hljs-string">Spring</span>]<br></code></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
             </div>
             <hr>
