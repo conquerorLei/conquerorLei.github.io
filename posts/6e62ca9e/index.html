@@ -7,15 +7,14 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="¶方法的重载(overload)
-在同一个类中，允许存在一个以上的同名方法，只要参数个数和参数类型不同即可，这个就是重载。
+  <meta name="description" content="方法的重载(overload)在同一个类中，允许存在一个以上的同名方法，只要参数个数和参数类型不同即可，这个就是重载。
 两同一不同：同一个类，相同方法名；参数列表不同（参数个数不同、参数类型不同）">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
@@ -248,13 +247,12 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-21 19:44
+                  本文最后更新于：2021-09-21 19:45
                 
               </p>
             
             <div class="markdown-body">
-              <h3 id="方法的重载-overload"><a class="header-anchor" href="#方法的重载-overload">¶</a>方法的重载(overload)</h3>
-<p>在同一个类中，允许存在一个以上的同名方法，只要参数个数和参数类型不同即可，这个就是重载。</p>
+              <h3 id="方法的重载-overload"><a href="#方法的重载-overload" class="headerlink" title="方法的重载(overload)"></a>方法的重载(overload)</h3><p>在同一个类中，允许存在一个以上的同名方法，只要参数个数和参数类型不同即可，这个就是重载。</p>
 <p>两同一不同：同一个类，相同方法名；参数列表不同（参数个数不同、参数类型不同）</p>
 <span id="more"></span>
 <div class="note note-warning">
@@ -262,13 +260,12 @@
           </div>
 <p>举例：reverse数组</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@describtion</span> //TODO 整型数组反转</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-doctag">@link</span> int[]&#125;</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> arr</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@time</span> 2021/9/18 17:39</span><br><span class="hljs-comment">    **/</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] reverse(<span class="hljs-keyword">int</span>[] arr)&#123;<br>       <span class="hljs-keyword">int</span> len = arr.length;<br>       <span class="hljs-keyword">int</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[len];<br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> temp : arr)&#123;<br>           res[--len] = temp;<br>       &#125;<br>       <span class="hljs-keyword">return</span> res;<br>   &#125;<br>   <span class="hljs-comment">/**</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@describtion</span> //TODO 双精度浮点型数组反转</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-doctag">@link</span> double[]&#125;</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@param</span> arr</span><br><span class="hljs-comment">    * <span class="hljs-doctag">@time</span> 2021/9/18 21:15</span><br><span class="hljs-comment">    **/</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span>[] reverse(<span class="hljs-keyword">double</span>[] arr)&#123;<br>       <span class="hljs-keyword">int</span> len = arr.length;<br>       <span class="hljs-keyword">double</span>[] res = <span class="hljs-keyword">new</span> <span class="hljs-keyword">double</span>[len];<br>       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">double</span> temp : arr)&#123;<br>           res[--len] = temp;<br>       &#125;<br>       <span class="hljs-keyword">return</span> res;<br>   &#125;<br></code></pre></td></tr></table></figure>
-<p>在通过对象调用方法时，如何确定某一个指定的方法：<font color='orange'>对象名—&gt;参数列表</font>，参数列表的不同相当于给了解释器一个解释，解释了此处调用的是哪个方法。</p>
+<p>在通过对象调用方法时，如何确定某一个指定的方法：<font color='orange'>对象名—-&gt;参数列表</font>，参数列表的不同相当于给了解释器一个解释，解释了此处调用的是哪个方法。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getMax</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a,<span class="hljs-keyword">int</span> b)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> Math.max(a,b);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getMax</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x,<span class="hljs-keyword">int</span> y)</span></span>&#123;<br>    <span class="hljs-keyword">return</span> Math.max(x,y);<br>&#125;<br></code></pre></td></tr></table></figure>
 <div class="note note-danger">
-            <p>这两个方法是一样的</p><p><font color='red'>‘getMax(int, int)’ is already defined in 'com.study.oop.OverLoadTest</font></p>
+            <p>这两个方法是一样的</p><font color='red'>'getMax(int, int)' is already defined in 'com.study.oop.OverLoadTest</font>
           </div>
-<h3 id="可变个数形参的方法"><a class="header-anchor" href="#可变个数形参的方法">¶</a>可变个数形参的方法</h3>
-<p><code>JDK5.0</code>新增的内容，允许直接定义能和<font color='orange'>多个实参</font>相匹配的形参。从而，可以用一种更加简单的方式，来传递个数可变的形参。</p>
+<h3 id="可变个数形参的方法"><a href="#可变个数形参的方法" class="headerlink" title="可变个数形参的方法"></a>可变个数形参的方法</h3><p><code>JDK5.0</code>新增的内容，允许直接定义能和<font color='orange'>多个实参</font>相匹配的形参。从而，可以用一种更加简单的方式，来传递个数可变的形参。</p>
 <p>具体使用</p>
 <ol>
 <li>格式：<font color='red'>数据类型 … 变量名</font></li>
@@ -282,12 +279,9 @@
 <div class="note note-warning">
             <p><font color='red'>数据类型 … 变量名</font>和<font color='red'>数据类型[] 变量名</font>是一样的，但是他们两个调用的方式是不一样的。比如现在我一个下面的方法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">show</span><span class="hljs-params">(String[] strings)</span></span>&#123;<br>    System.out.println(<span class="hljs-string">&quot;String[] strings&quot;</span>);<br>&#125;<br><span class="hljs-comment">// 调用</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    MethodArgsTest mat = <span class="hljs-keyword">new</span> MethodArgsTest();<br>    <span class="hljs-comment">// mat.show(&quot;hello&quot;,&quot;world&quot;);是错的</span><br>    mat.show(<span class="hljs-keyword">new</span> String[]&#123;<span class="hljs-string">&quot;aa&quot;</span>,<span class="hljs-string">&quot;bb&quot;</span>&#125;); <span class="hljs-comment">// 这个是对的</span><br>&#125;<br></code></pre></td></tr></table></figure>
           </div>
-<h3 id="方法参数的值传递机制"><a class="header-anchor" href="#方法参数的值传递机制">¶</a>方法参数的值传递机制</h3>
-<h4 id="形参和实参的去区别"><a class="header-anchor" href="#形参和实参的去区别">¶</a>形参和实参的去区别</h4>
-<p>形参：方法定义时，声明的小括号内的参数</p>
+<h3 id="方法参数的值传递机制"><a href="#方法参数的值传递机制" class="headerlink" title="方法参数的值传递机制"></a>方法参数的值传递机制</h3><h4 id="形参和实参的去区别"><a href="#形参和实参的去区别" class="headerlink" title="形参和实参的去区别"></a>形参和实参的去区别</h4><p>形参：方法定义时，声明的小括号内的参数</p>
 <p>实参：方法调用时，实际传递给形参的值</p>
-<h4 id="值传递机制"><a class="header-anchor" href="#值传递机制">¶</a>值传递机制</h4>
-<ul>
+<h4 id="值传递机制"><a href="#值传递机制" class="headerlink" title="值传递机制"></a>值传递机制</h4><ul>
 <li>如果是基本数据类型，那么赋值的是变量所保存的<font color='orange'>数据值</font>，需要注意的是，<font color='red'>存储的数据值</font></li>
 <li>如果是引用数据类型，那么复制的是变量的首地址</li>
 </ul>
@@ -298,20 +292,18 @@
 <div class="note note-info">
             <p>本质上，基本数据类型传入参数是复制了一份数据，而引用数据类型复制的是地址。这样的情况下，可以说成是，基本数据类型传入相当于<font color='orange'>在复制的数据之上的操作</font>，但是引用数据类型传入是<font color='orange'>和原来一样的数据</font>。</p>
           </div>
-<h4 id="一个例子"><a class="header-anchor" href="#一个例子">¶</a>一个例子</h4>
-<p>对Circle类进行循环输出，每次循环半径加一。</p>
+<h4 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h4><p>对Circle类进行循环输出，每次循环半径加一。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109211930880.png" srcset="/img/loading.gif" lazyload alt="要求结果"></p>
-<h5 id="Circle类"><a class="header-anchor" href="#Circle类">¶</a>Circle类</h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/21 11:04</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> radius;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Circle</span><span class="hljs-params">()</span></span>&#123;<br>        radius = <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Circle</span><span class="hljs-params">(<span class="hljs-keyword">double</span> r)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.radius = r;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRadius</span><span class="hljs-params">(<span class="hljs-keyword">double</span> r)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.radius = r;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getRadius</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> radius;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getArea</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> Math.PI * Math.pow(radius,<span class="hljs-number">2</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="Circle类"><a href="#Circle类" class="headerlink" title="Circle类"></a>Circle类</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/21 11:04</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Circle</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">double</span> radius;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Circle</span><span class="hljs-params">()</span></span>&#123;<br>        radius = <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Circle</span><span class="hljs-params">(<span class="hljs-keyword">double</span> r)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.radius = r;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRadius</span><span class="hljs-params">(<span class="hljs-keyword">double</span> r)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.radius = r;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getRadius</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> radius;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> <span class="hljs-title">getArea</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> Math.PI * Math.pow(radius,<span class="hljs-number">2</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>测试与功能实现类：PassObject</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/21 19:22</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PassObject</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(Circle c, <span class="hljs-keyword">int</span> time)</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;radius\t\tarea&quot;</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= time; i++) &#123;<br>            c.setRadius(i);<br>            System.out.println(c.getRadius() + <span class="hljs-string">&quot;\t\t&quot;</span> + c.getArea());<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Circle c = <span class="hljs-keyword">new</span> Circle();<br>        PassObject po = <span class="hljs-keyword">new</span> PassObject();<br>        po.print(c,<span class="hljs-number">5</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="递归方法"><a class="header-anchor" href="#递归方法">¶</a>递归方法</h3>
-<p>递归方法：一个方法体内调用它自身</p>
+<h3 id="递归方法"><a href="#递归方法" class="headerlink" title="递归方法"></a>递归方法</h3><p>递归方法：一个方法体内调用它自身</p>
 <p>一般情况而言，写算法的过程中，可能会用到递归调用，站内的文章有一些关于算法的用到了递归</p>
 <p><a href="https://conquerorlei.github.io/posts/f63f9b79/">k个一组反转链表 - conquerorLei</a></p>
 <p><a href="https://conquerorlei.github.io/posts/f0ef69bc/">上楼梯 - conquerorLei</a></p>
 <p>递归是需要递归边界的，不能无穷调用，否则就会抛出异常StackOverflowError<font color='orange'>，堆栈溢出</font></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>
@@ -349,6 +341,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/posts/1e2265e0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL 表的內连和外连</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

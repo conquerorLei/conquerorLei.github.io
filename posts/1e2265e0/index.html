@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="学习总结 学习经历 个人小站">
+  <meta name="author" content="conquerorLei">
+  <meta name="keywords" content="">
+  
+  <title>MySQL 表的內连和外连 - conquerorLei</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+<link rel="stylesheet" href="/css/custom/blockquote.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="conquerorLei" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MySQL 表的內连和外连">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-09-21 21:32" pubdate>
+        2021-09-21 21:32
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MySQL 表的內连和外连</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2021-09-21 22:56
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>表的连接分为內连和外连</p>
+<h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><p>内连接实际上就是利用where子句对两种表形成<a target="_blank" rel="noopener external nofollow noreferrer" href="https://baike.baidu.com/item/笛卡尔乘积/6323173">笛卡尔乘积</a>的进行筛选。其实之前我们进行都是内连接，只不过写法不同。</p>
+<p>笛卡尔乘积就是我们线性代数中使用的叉乘运算。</p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> column1 <span class="hljs-keyword">from</span> table1 <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> table2 <span class="hljs-keyword">on</span> conditions <span class="hljs-keyword">and</span> conditions;<br></code></pre></td></tr></table></figure>
+<p><strong>案例</strong>：显示SMITH的名字和部门名称</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 使用之前的写法</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> ename,dname <span class="hljs-keyword">from</span> emp,dept<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> emp.deptno <span class="hljs-operator">=</span> dept.deptno <br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">and</span> emp.ename <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SMITH&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-operator">|</span> ename <span class="hljs-operator">|</span> dname    <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-operator">|</span> SMITH <span class="hljs-operator">|</span> RESEARCH <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br><span class="hljs-comment">-- 使用表的内连接标准写法</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> ename,dname <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> dept<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> emp.deptno <span class="hljs-operator">=</span> dept.deptno<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">and</span> emp.ename <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SMITH&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-operator">|</span> ename <span class="hljs-operator">|</span> dname    <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-operator">|</span> SMITH <span class="hljs-operator">|</span> RESEARCH <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<div class="note note-primary">
+            <p>inner可以省略</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> ename,dname <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">join</span> dept<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> emp.deptno <span class="hljs-operator">=</span> dept.deptno<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">and</span> emp.ename <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;SMITH&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-operator">|</span> ename <span class="hljs-operator">|</span> dname    <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-operator">|</span> SMITH <span class="hljs-operator">|</span> RESEARCH <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+----------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure><p>和之前的写法不同的是，将逗号换成了<font color='orange'>join</font></p>
+          </div>
+<h3 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h3><p>外连接分为左外连接和右外连接</p>
+<h4 id="数据和表结构"><a href="#数据和表结构" class="headerlink" title="数据和表结构"></a>数据和表结构</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> exam;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+-------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> grade <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+-------+</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">1</span> <span class="hljs-operator">|</span>    <span class="hljs-number">56</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">2</span> <span class="hljs-operator">|</span>    <span class="hljs-number">76</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>   <span class="hljs-number">11</span> <span class="hljs-operator">|</span>     <span class="hljs-number">8</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+-------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> stu;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">1</span> <span class="hljs-operator">|</span> jack <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">2</span> <span class="hljs-operator">|</span> tom  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">3</span> <span class="hljs-operator">|</span> kity <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">4</span> <span class="hljs-operator">|</span> nono <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">4</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> exam;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>  <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> grade <span class="hljs-operator">|</span> <span class="hljs-type">int</span>  <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> stu;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">10</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="左外连接"><a href="#左外连接" class="headerlink" title="左外连接"></a>左外连接</h4><p>如果联合查询，左侧的表<font color='orange'>完全显示</font>我们就说是<font color='cornflowerblue'>左外连接</font></p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> column1,column2,... <span class="hljs-keyword">from</span> table1 <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> table2 <span class="hljs-keyword">on</span> conditions;<br></code></pre></td></tr></table></figure>
+<p><strong><span id = 'item1'>案例一</span></strong>：查询所有学生的成绩，如果这个学生没有成绩，也要将学生的个人信息打出来</p>
+<p>[<font color='red'>分析</font>] 题目当中有一个隐含的条件，就是无论有没有成绩，学生的个人信息都要显示出来，个人信息表就是<font color='orange'>stu</font>，可以作为左表出现，<font color='orange'>exam</font>为成绩信息，作为右表，然后进行左外连接，就可以显示出来所有的个人信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> stu.id,name,grade<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">from</span> stu <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> exam<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">on</span> stu.id <span class="hljs-operator">=</span> exam.id;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+-------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> grade <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+-------+</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">1</span> <span class="hljs-operator">|</span> jack <span class="hljs-operator">|</span>    <span class="hljs-number">56</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">2</span> <span class="hljs-operator">|</span> tom  <span class="hljs-operator">|</span>    <span class="hljs-number">76</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">3</span> <span class="hljs-operator">|</span> kity <span class="hljs-operator">|</span>  <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">4</span> <span class="hljs-operator">|</span> nono <span class="hljs-operator">|</span>  <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+-------+</span><br><span class="hljs-number">4</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="右外连接"><a href="#右外连接" class="headerlink" title="右外连接"></a>右外连接</h4><p>如果联合查询，右侧的表<font color='orange'>完全显示</font>我们就说是<font color='cornflowerblue'>右外连接</font></p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> column1,column2,... <span class="hljs-keyword">from</span> table1 <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> table2 <span class="hljs-keyword">on</span> conditions;<br></code></pre></td></tr></table></figure>
+<p>同样是<a href="#item1">案例一</a>的题目，只不过需要通过右外连接来实现</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> stu.id,name,grade<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">from</span> exam <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> stu<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">on</span> stu.id <span class="hljs-operator">=</span> exam.id;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+-------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> grade <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+-------+</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">1</span> <span class="hljs-operator">|</span> jack <span class="hljs-operator">|</span>    <span class="hljs-number">56</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">2</span> <span class="hljs-operator">|</span> tom  <span class="hljs-operator">|</span>    <span class="hljs-number">76</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">3</span> <span class="hljs-operator">|</span> kity <span class="hljs-operator">|</span>  <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>    <span class="hljs-number">4</span> <span class="hljs-operator">|</span> nono <span class="hljs-operator">|</span>  <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+-------+</span><br><span class="hljs-number">4</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<div class="note note-primary">
+            <p>基本上和左外连接是一模一样的，就是换了个关键字和表的顺序</p>
+          </div>
+<p><strong>案例二</strong>：列出部门名称和这邪恶部门的员工信息，同时列出没有部门员工</p>
+<p>本案例使用的数据是<a href="https://conquerorlei.github.io/posts/7b68b62c/">MySQL CRUD:Group By的使用 - conquerorLei</a>此博客中使用的表数据，也就是scott的表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 左外查询</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> dept.dname,emp.<span class="hljs-operator">*</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">from</span> emp <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> dept<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">on</span> emp.deptno <span class="hljs-operator">=</span> dept.deptno;<br><span class="hljs-operator">+</span><span class="hljs-comment">------------+-------+--------+-----------+------+------------+---------+---------+--------+</span><br><span class="hljs-operator">|</span> dname      <span class="hljs-operator">|</span> empno <span class="hljs-operator">|</span> ename  <span class="hljs-operator">|</span> job       <span class="hljs-operator">|</span> mgr  <span class="hljs-operator">|</span> hiredate   <span class="hljs-operator">|</span> sal     <span class="hljs-operator">|</span> comm    <span class="hljs-operator">|</span> deptno <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------------+-------+--------+-----------+------+------------+---------+---------+--------+</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7369</span> <span class="hljs-operator">|</span> SMITH  <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7902</span> <span class="hljs-operator">|</span> <span class="hljs-number">1980</span><span class="hljs-number">-12</span><span class="hljs-number">-17</span> <span class="hljs-operator">|</span>  <span class="hljs-number">800.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7499</span> <span class="hljs-operator">|</span> ALLEN  <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-02</span><span class="hljs-number">-20</span> <span class="hljs-operator">|</span> <span class="hljs-number">1600.00</span> <span class="hljs-operator">|</span>  <span class="hljs-number">300.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7521</span> <span class="hljs-operator">|</span> WARD   <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-02</span><span class="hljs-number">-22</span> <span class="hljs-operator">|</span> <span class="hljs-number">1250.00</span> <span class="hljs-operator">|</span>  <span class="hljs-number">500.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7566</span> <span class="hljs-operator">|</span> JONES  <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span> <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-04</span><span class="hljs-number">-02</span> <span class="hljs-operator">|</span> <span class="hljs-number">2975.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7654</span> <span class="hljs-operator">|</span> MARTIN <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-09</span><span class="hljs-number">-28</span> <span class="hljs-operator">|</span> <span class="hljs-number">1250.00</span> <span class="hljs-operator">|</span> <span class="hljs-number">1400.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> BLAKE  <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span> <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-05</span><span class="hljs-number">-01</span> <span class="hljs-operator">|</span> <span class="hljs-number">2850.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> ACCOUNTING <span class="hljs-operator">|</span>  <span class="hljs-number">7782</span> <span class="hljs-operator">|</span> CLARK  <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span> <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-06</span><span class="hljs-number">-09</span> <span class="hljs-operator">|</span> <span class="hljs-number">2450.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7788</span> <span class="hljs-operator">|</span> SCOTT  <span class="hljs-operator">|</span> ANALYST   <span class="hljs-operator">|</span> <span class="hljs-number">7566</span> <span class="hljs-operator">|</span> <span class="hljs-number">1987</span><span class="hljs-number">-04</span><span class="hljs-number">-19</span> <span class="hljs-operator">|</span> <span class="hljs-number">3000.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> ACCOUNTING <span class="hljs-operator">|</span>  <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> KING   <span class="hljs-operator">|</span> PRESIDENT <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-11</span><span class="hljs-number">-17</span> <span class="hljs-operator">|</span> <span class="hljs-number">5000.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7844</span> <span class="hljs-operator">|</span> TURNER <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-09</span><span class="hljs-number">-08</span> <span class="hljs-operator">|</span> <span class="hljs-number">1500.00</span> <span class="hljs-operator">|</span>    <span class="hljs-number">0.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7876</span> <span class="hljs-operator">|</span> ADAMS  <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7788</span> <span class="hljs-operator">|</span> <span class="hljs-number">1987</span><span class="hljs-number">-05</span><span class="hljs-number">-23</span> <span class="hljs-operator">|</span> <span class="hljs-number">1100.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7900</span> <span class="hljs-operator">|</span> JAMES  <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-12</span><span class="hljs-number">-03</span> <span class="hljs-operator">|</span>  <span class="hljs-number">950.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7902</span> <span class="hljs-operator">|</span> FORD   <span class="hljs-operator">|</span> ANALYST   <span class="hljs-operator">|</span> <span class="hljs-number">7566</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-12</span><span class="hljs-number">-03</span> <span class="hljs-operator">|</span> <span class="hljs-number">3000.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> ACCOUNTING <span class="hljs-operator">|</span>  <span class="hljs-number">7934</span> <span class="hljs-operator">|</span> MILLER <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7782</span> <span class="hljs-operator">|</span> <span class="hljs-number">1982</span><span class="hljs-number">-01</span><span class="hljs-number">-23</span> <span class="hljs-operator">|</span> <span class="hljs-number">1300.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------------+-------+--------+-----------+------+------------+---------+---------+--------+</span><br><span class="hljs-number">14</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br><span class="hljs-comment">-- 右外查询</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> dept.dname,emp.<span class="hljs-operator">*</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">from</span> dept <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> emp<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">on</span> emp.deptno <span class="hljs-operator">=</span> dept.deptno;<br><span class="hljs-operator">+</span><span class="hljs-comment">------------+-------+--------+-----------+------+------------+---------+---------+--------+</span><br><span class="hljs-operator">|</span> dname      <span class="hljs-operator">|</span> empno <span class="hljs-operator">|</span> ename  <span class="hljs-operator">|</span> job       <span class="hljs-operator">|</span> mgr  <span class="hljs-operator">|</span> hiredate   <span class="hljs-operator">|</span> sal     <span class="hljs-operator">|</span> comm    <span class="hljs-operator">|</span> deptno <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------------+-------+--------+-----------+------+------------+---------+---------+--------+</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7369</span> <span class="hljs-operator">|</span> SMITH  <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7902</span> <span class="hljs-operator">|</span> <span class="hljs-number">1980</span><span class="hljs-number">-12</span><span class="hljs-number">-17</span> <span class="hljs-operator">|</span>  <span class="hljs-number">800.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7499</span> <span class="hljs-operator">|</span> ALLEN  <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-02</span><span class="hljs-number">-20</span> <span class="hljs-operator">|</span> <span class="hljs-number">1600.00</span> <span class="hljs-operator">|</span>  <span class="hljs-number">300.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7521</span> <span class="hljs-operator">|</span> WARD   <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-02</span><span class="hljs-number">-22</span> <span class="hljs-operator">|</span> <span class="hljs-number">1250.00</span> <span class="hljs-operator">|</span>  <span class="hljs-number">500.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7566</span> <span class="hljs-operator">|</span> JONES  <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span> <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-04</span><span class="hljs-number">-02</span> <span class="hljs-operator">|</span> <span class="hljs-number">2975.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7654</span> <span class="hljs-operator">|</span> MARTIN <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-09</span><span class="hljs-number">-28</span> <span class="hljs-operator">|</span> <span class="hljs-number">1250.00</span> <span class="hljs-operator">|</span> <span class="hljs-number">1400.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> BLAKE  <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span> <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-05</span><span class="hljs-number">-01</span> <span class="hljs-operator">|</span> <span class="hljs-number">2850.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> ACCOUNTING <span class="hljs-operator">|</span>  <span class="hljs-number">7782</span> <span class="hljs-operator">|</span> CLARK  <span class="hljs-operator">|</span> MANAGER   <span class="hljs-operator">|</span> <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-06</span><span class="hljs-number">-09</span> <span class="hljs-operator">|</span> <span class="hljs-number">2450.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7788</span> <span class="hljs-operator">|</span> SCOTT  <span class="hljs-operator">|</span> ANALYST   <span class="hljs-operator">|</span> <span class="hljs-number">7566</span> <span class="hljs-operator">|</span> <span class="hljs-number">1987</span><span class="hljs-number">-04</span><span class="hljs-number">-19</span> <span class="hljs-operator">|</span> <span class="hljs-number">3000.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> ACCOUNTING <span class="hljs-operator">|</span>  <span class="hljs-number">7839</span> <span class="hljs-operator">|</span> KING   <span class="hljs-operator">|</span> PRESIDENT <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-11</span><span class="hljs-number">-17</span> <span class="hljs-operator">|</span> <span class="hljs-number">5000.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7844</span> <span class="hljs-operator">|</span> TURNER <span class="hljs-operator">|</span> SALESMAN  <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-09</span><span class="hljs-number">-08</span> <span class="hljs-operator">|</span> <span class="hljs-number">1500.00</span> <span class="hljs-operator">|</span>    <span class="hljs-number">0.00</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7876</span> <span class="hljs-operator">|</span> ADAMS  <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7788</span> <span class="hljs-operator">|</span> <span class="hljs-number">1987</span><span class="hljs-number">-05</span><span class="hljs-number">-23</span> <span class="hljs-operator">|</span> <span class="hljs-number">1100.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> SALES      <span class="hljs-operator">|</span>  <span class="hljs-number">7900</span> <span class="hljs-operator">|</span> JAMES  <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7698</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-12</span><span class="hljs-number">-03</span> <span class="hljs-operator">|</span>  <span class="hljs-number">950.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">30</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> RESEARCH   <span class="hljs-operator">|</span>  <span class="hljs-number">7902</span> <span class="hljs-operator">|</span> FORD   <span class="hljs-operator">|</span> ANALYST   <span class="hljs-operator">|</span> <span class="hljs-number">7566</span> <span class="hljs-operator">|</span> <span class="hljs-number">1981</span><span class="hljs-number">-12</span><span class="hljs-number">-03</span> <span class="hljs-operator">|</span> <span class="hljs-number">3000.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">20</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> ACCOUNTING <span class="hljs-operator">|</span>  <span class="hljs-number">7934</span> <span class="hljs-operator">|</span> MILLER <span class="hljs-operator">|</span> CLERK     <span class="hljs-operator">|</span> <span class="hljs-number">7782</span> <span class="hljs-operator">|</span> <span class="hljs-number">1982</span><span class="hljs-number">-01</span><span class="hljs-number">-23</span> <span class="hljs-operator">|</span> <span class="hljs-number">1300.00</span> <span class="hljs-operator">|</span>    <span class="hljs-keyword">NULL</span> <span class="hljs-operator">|</span>     <span class="hljs-number">10</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------------+-------+--------+-----------+------+------------+---------+---------+--------+</span><br><span class="hljs-number">14</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h3 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h3><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/combine-two-tables/">175. 组合两个表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/rank-scores/">178. 分数排名 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/exchange-seats/">626. 换座位 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Database/">Database</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Database/MySQL/">MySQL</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/6e62ca9e/">
+                        <span class="hidden-mobile">Java 再谈Java方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'conquerorLei/conquerorLei.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":50})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

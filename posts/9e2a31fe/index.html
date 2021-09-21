@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      632 字
+      526 字
     </span>
   
 
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      5
        分钟
     </span>
   
@@ -246,46 +246,57 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-20 21:13
+                  本文最后更新于：2021-09-21 21:33
                 
               </p>
             
             <div class="markdown-body">
               <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" srcset="/img/loading.gif" lazyload alt="MySQL子查询"></p>
 <span id="more"></span>
-<h3 id="in-exists"><a class="header-anchor" href="#in-exists">¶</a>in/exists</h3>
-<p><font color='cornflowerblue'>in</font>和<font color='cornflowerblue'>exists</font>都可用于子查询。以下是他们两个的区别</p>
-<ul>
-<li><font color='cornflowerblue'>in</font>在使用的过程中，会缓存子查询的结果集，然后对主查询的每个记录进行查询</li>
-<li><font color='cornflowerblue'>exists</font>在使用的过程中，不会缓存子查询的结果集。先对主查询进行查询，然后根据子查询是否为真来进行确定结果集是否存入主查询的结果集。</li>
-</ul>
-<p>最大的区别有两个：</p>
-<ol>
-<li>有没有对子查询结果进行缓存</li>
-<li>先进行的是主查询还是子查询</li>
-</ol>
-<p><strong>常见问题</strong>：对于<font color='cornflowerblue'>exists</font>为什么主查询和子查询筛选的字段都不一样，还是能够返回结果？</p>
-<p>要解决这个问题，需要了解一下<font color='cornflowerblue'>exists</font>的执行流程</p>
+<h3 id="in-exists"><a href="#in-exists" class="headerlink" title="in/exists"></a>in/exists</h3><font color='cornflowerblue'>in</font>和<font color='cornflowerblue'>exists</font>都可用于子查询。以下是他们两个的区别
+
+- <font color='cornflowerblue'>in</font>在使用的过程中，会缓存子查询的结果集，然后对主查询的每个记录进行查询
+- <font color='cornflowerblue'>exists</font>在使用的过程中，不会缓存子查询的结果集。先对主查询进行查询，然后根据子查询是否为真来进行确定结果集是否存入主查询的结果集。
+
+最大的区别有两个：
+
+1. 有没有对子查询结果进行缓存
+2. 先进行的是主查询还是子查询
+
+**常见问题**：对于<font color='cornflowerblue'>exists</font>为什么主查询和子查询筛选的字段都不一样，还是能够返回结果？
+
+要解决这个问题，需要了解一下<font color='cornflowerblue'>exists</font>的执行流程
+
 <div class="note note-info">
             <p><font color='cornflowerblue'>exists</font>的执行流程就是，先进行主查询得到一个表，然后对这个临时表中的每个记录都进行<font color='cornflowerblue'>where</font>之后的条件判断，如果成立则返回<font color='lawngreen'>true</font>，不成立返回<font color='lawngreen'>false</font>。返回<font color='lawngreen'>true</font>则将此记录存入主查询的结果集，返回<font color='lawngreen'>false</font>则不存入。一种通俗的理解就是，将主查询的每一行带入子查询进行查询，如果子查询返回的结果与空进行判断，如果为空则返回<font color='lawngreen'>true</font>，如果返回<font color='lawngreen'>true</font>那么就将这条记录存到主查询的结果集；反之，如果子查询的结果为空，那么就不存。</p>
           </div>
-<p>这样的话，其实字段一样或者不一样意义都不大，因为我只是看有没有返回的结果，而不是说具体看返回的结果是什么。</p>
-<h3 id="all-any-some"><a class="header-anchor" href="#all-any-some">¶</a>all/any/some</h3>
-<p><strong>区别</strong>：</p>
-<ul>
-<li><font color='cornflowerblue'>all</font>表示的是只有所有的数据都满足条件，条件才成立</li>
-<li><font color='cornflowerblue'>any</font>表示的是只要有一天数据满足条件，条件就成立</li>
-<li><font color='cornflowerblue'>some</font>表示的是只要有一些数据满足条件就成立。<font color='cornflowerblue'>some</font>可以说成是<font color='cornflowerblue'>any</font>的别称，一般很少用</li>
-</ul>
+
+这样的话，其实字段一样或者不一样意义都不大，因为我只是看有没有返回的结果，而不是说具体看返回的结果是什么。
+
+### all/any/some
+
+**区别**：
+
+- <font color='cornflowerblue'>all</font>表示的是只有所有的数据都满足条件，条件才成立
+- <font color='cornflowerblue'>any</font>表示的是只要有一天数据满足条件，条件就成立
+- <font color='cornflowerblue'>some</font>表示的是只要有一些数据满足条件就成立。<font color='cornflowerblue'>some</font>可以说成是<font color='cornflowerblue'>any</font>的别称，一般很少用
+
 <div class="note note-warning">
-            <p>all/any/some的使用都需要用到比较操作运算符，也就是<font color='lawngreen'>=</font>，<font color='lawngreen'>&gt;</font>，<font color='lawngreen'>&lt;</font>，<font color='lawngreen'>&lt;&gt;</font>这里一类的</p>
+            <p>all/any/some的使用都需要用到比较操作运算符，也就是<font color='lawngreen'>=</font>，<font color='lawngreen'&gt;></font>，&lt;font color='lawngreen'><</font>，<font color='lawngreen'>&lt;&gt;</font>这里一类的</p>
           </div>
-<p><strong>some和any的区别</strong>：</p>
-<p><font color='cornflowerblue'>some</font>一般用于等式中，而<font color='cornflowerblue'>any</font>一般用于非等式中。</p>
-<p><strong>all和any的特殊情况</strong>：</p>
-<p>对于<font color='cornflowerblue'>all</font>如果表示空表，那么返回<font color='lawngreen'>true</font>；如果子查询含有<font color='lawngreen'>NULL</font>，那么结果就为空</p>
-<p>对于<font color='cornflowerblue'>any</font>，无论是空表还是子查询含有<font color='lawngreen'>NULL</font>，结果都是<font color='lawngreen'>NULL</font></p>
+
+**some和any的区别**：
+
+<font color='cornflowerblue'>some</font>一般用于等式中，而<font color='cornflowerblue'>any</font>一般用于非等式中。
+
+**all和any的特殊情况**：
+
+对于<font color='cornflowerblue'>all</font>如果表示空表，那么返回<font color='lawngreen'>true</font>；如果子查询含有<font color='lawngreen'>NULL</font>，那么结果就为空
+
+对于<font color='cornflowerblue'>any</font>，无论是空表还是子查询含有<font color='lawngreen'>NULL</font>，结果都是<font color='lawngreen'>NULL</font>
+
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>
@@ -305,7 +316,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
+                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
                     
                   </div>
                 

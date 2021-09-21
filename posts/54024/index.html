@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -253,24 +253,20 @@
             <div class="markdown-body">
               <p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Markdwon"></p>
 <span id="more"></span>
-<h1>前言</h1>
-<p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
-<h1>HTML+CSS</h1>
-<p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本篇博客将从图床和HotKey两个软件以及HTML和CSS两个方面描述一下程序员经常使用的样式管理和个人云图库</p>
+<h1 id="HTML-CSS"><a href="#HTML-CSS" class="headerlink" title="HTML+CSS"></a>HTML+CSS</h1><p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
 <div class="note note-success">
             <blockquote><p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p><p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p><p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html">这是一个普通段落。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><br>这是另一个普通段落。<br></code></pre></td></tr></table></figure><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p><p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p><p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p></blockquote>
           </div>
 <p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
 <p>答案是肯定的，以下为在添加自定义CSS</p>
-<h2 id="a-id-a1-添加自定义CSS-a"><a class="header-anchor" href="#a-id-a1-添加自定义CSS-a">¶</a><a id="#a1">添加自定义CSS</a></h2>
-<p>使用自定义CSS请参考以下页面<a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
+<h2 id="添加自定义CSS"><a href="#添加自定义CSS" class="headerlink" title="添加自定义CSS"></a><a id="#a1">添加自定义CSS</a></h2><p>使用自定义CSS请参考以下页面<a target="_blank" rel="noopener external nofollow noreferrer" href="https://support.typora.io/Add-Custom-CSS/">添加自定义CSS</a></p>
 <p>大致流程就是</p>
 <ul>
 <li>打开Typora编辑器</li>
 <li>在工具栏的<font color='red'>文件</font>中找到<font color='red'>偏好设置</font></li>
 <li>在偏好设置中找到<font color='cornflowerblue'>外观</font>，点击外观后在用户区找到<font color='cornflowerblue'>“打开主题文件夹”</font>按钮，点击就好</li>
-<li>这样会打开本地的Typora主题文件夹
-<ul>
+<li>这样会打开本地的Typora主题文件夹<ul>
 <li>一种修改方式为修改<code>base.user.css</code></li>
 <li>另外一种是修改<code>&#123;current-theme&#125;.user.css</code></li>
 <li>二者区别不大，根据名字也可以判断出来，一个是应用于所有主题，一个是当前主题</li>
@@ -278,15 +274,13 @@
 </li>
 <li>我使用的是<code>base.user.css</code>文件，一般情况下，两个文件都是不存在的，都需要新建。</li>
 </ul>
-<h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
-<p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
+<h3 id="任务列表CSS控制样式"><a href="#任务列表CSS控制样式" class="headerlink" title="任务列表CSS控制样式"></a>任务列表CSS控制样式</h3><p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs CSS"><span class="hljs-selector-class">.task-list-done</span> &#123;<br>    <span class="hljs-comment">/* styles for completed tasks */</span><br>    <span class="hljs-attribute">text-decoration</span>: line-through;<br>&#125;<br><span class="hljs-selector-class">.task-list-not-done</span> &#123;<br>    <span class="hljs-comment">/* styles for incomplete tasks */</span><br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>测试用例：</strong></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" srcset="/img/loading.gif" lazyload alt="添加自定义CSS之前"></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" srcset="/img/loading.gif" lazyload alt="添加自定义CSS之后"></p>
-<h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
-<p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
+<h2 id="使用HTML标签"><a href="#使用HTML标签" class="headerlink" title="使用HTML标签"></a>使用HTML标签</h2><p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [x] <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span></span>写博客<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ul>
@@ -294,40 +288,33 @@
 <li>[x] <del>写博客</del></li>
 </ul>
 <p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
-<h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* the usual value of color ： red | blue | green | yellow *</span>/<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<h3 id="字体颜色"><a href="#字体颜色" class="headerlink" title="字体颜色"></a>字体颜色</h3><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* the usual value of color ： red | blue | green | yellow *</span>/<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
 <p><strong>效果：</strong></p>
-<p><font color='red'>红色</font></p>
+<font color='red'>红色</font>
+
 <p>其他的<font>属性也可以进行更改</p>
 <blockquote>
 <p>按照我的理解，平常我们经常使用的HTML标签，Markdown也兼容</p>
 </blockquote>
-<h1>PicGo</h1>
-<p>这边有了一片博客关于图床的设置，直接提供链接</p>
+<h1 id="PicGo"><a href="#PicGo" class="headerlink" title="PicGo"></a>PicGo</h1><p>这边有了一片博客关于图床的设置，直接提供链接</p>
 <p><a href="https://conquerorlei.github.io/2021/05/22/picgo+gitee/">PicGo+gitee</a></p>
-<h1><a id="#a2">Ahk脚本</a></h1>
-<p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
+<h1 id="Ahk脚本"><a href="#Ahk脚本" class="headerlink" title="Ahk脚本"></a><a id="#a2">Ahk脚本</a></h1><p>相信按照我的Hexo搭建博客的有兴趣的一定会尝试着使用HotKey这个软件进行热键编辑</p>
 <p>这里对HotKey这个软件和Ahk这个脚本做一个简单的介绍</p>
-<h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
-<p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>HotKey大家都熟，像我们平时使用的<code>Win+Shift+s</code>就是一个windows系统定义的热键，用来快速截屏。当然，热键可以大致理解为快捷键。但是对于大多数操作系统而言，快捷键的定义是有限的，而且其一般而言都是针对大多数用户，提供一大部分的基础功能，而对于用户的个性化需求，则不能够满足。但是，有一个脚本，全称<code>AutoHotKey</code>弥补了这一缺陷。AutoHotkey 是一个自动化软件工具，通过热键、热字串或设定的条件自动执行重复性工作。当然，我更喜欢叫他简称，Ahk。</p>
 <p>故而，我们只需要了解一些Ahk的语法，使用AutoHotKey这个软件就可以完成我们日常的大多数重复性工作。</p>
-<h2 id="下载和安装"><a class="header-anchor" href="#下载和安装">¶</a>下载和安装</h2>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.autohotkey.com/">下载地址</a></p>
+<h2 id="下载和安装"><a href="#下载和安装" class="headerlink" title="下载和安装"></a>下载和安装</h2><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.autohotkey.com/">下载地址</a></p>
 <p>安装过程没有什么好说的，一路Next</p>
 <p>有一点需要注意，就是软件的安装路径更改问题，不过老司机不用多说，都会改</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png" srcset="/img/loading.gif" lazyload alt="更改AutoHotKey安装路径"></p>
-<h2 id="创建一个ahk脚本"><a class="header-anchor" href="#创建一个ahk脚本">¶</a>创建一个ahk脚本</h2>
-<p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
+<h2 id="创建一个ahk脚本"><a href="#创建一个ahk脚本" class="headerlink" title="创建一个ahk脚本"></a>创建一个ahk脚本</h2><p>创建一个ahk脚本其实和创建Markdown文档是一样的，新建记事本改个后缀名就好</p>
 <p>另外就是ahk脚本的编写，这边可以参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://wyagd001.github.io/zh-cn/docs/AutoHotkey.htm">ahk脚本中文参考手册</a></p>
-<h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
-<h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
-<p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><h3 id="Typora字体颜色"><a href="#Typora字体颜色" class="headerlink" title="Typora字体颜色"></a>Typora字体颜色</h3><p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs json">#IfWinActive ahk_exe Typora.exe<br>&#123;<br>    ; Ctrl+Alt+O 橙色<br>    ^!o::addFontColor(<span class="hljs-string">&quot;orange&quot;</span>)<br> <br>    ; Ctrl+Alt+R 红色<br>    ^!r::addFontColor(<span class="hljs-string">&quot;red&quot;</span>)<br> <br>    ; Ctrl+Alt+B 浅蓝色<br>    ^!b::addFontColor(<span class="hljs-string">&quot;cornflowerblue&quot;</span>)<br>	<br>	; Ctrl+Alt+G 荧光绿色<br>	^!g::addFontColor(<span class="hljs-string">&quot;lawngreen&quot;</span>)<br>	<br>	; Ctrl+Alt+T 黄色<br>	^!t::addFontColor(<span class="hljs-string">&quot;tomato&quot;</span>)<br>&#125;<br> <br>; 快捷增加字体颜色<br>addFontColor(color)&#123;<br>    clipboard := <span class="hljs-string">&quot;&quot;</span> ; 清空剪切板<br>    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制<br>    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;<br>    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴<br>    If(clipboard = <span class="hljs-string">&quot;&quot;</span>)&#123;<br>        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充<br>    &#125;else&#123;<br>        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
-<p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
+<h3 id="Typora页内跳转"><a href="#Typora页内跳转" class="headerlink" title="Typora页内跳转"></a>Typora页内跳转</h3><p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
 <p><strong>未完待续</strong></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>

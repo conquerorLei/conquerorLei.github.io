@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
+  <link rel="icon" href="/img/logo.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -253,27 +253,20 @@
             <div class="markdown-body">
               <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210803001752.jpeg" srcset="/img/loading.gif" lazyload alt="emoji"></p>
 <span id="more"></span>
-<h1>Markdown表情总结</h1>
-<h2 id="如何在Markdown中使用表情"><a class="header-anchor" href="#如何在Markdown中使用表情">¶</a>如何在Markdown中使用表情</h2>
-<ol>
+<h1 id="Markdown表情总结"><a href="#Markdown表情总结" class="headerlink" title="Markdown表情总结"></a>Markdown表情总结</h1><h2 id="如何在Markdown中使用表情"><a href="#如何在Markdown中使用表情" class="headerlink" title="如何在Markdown中使用表情"></a>如何在Markdown中使用表情</h2><ol>
 <li>以下网站包含了大量的Emoji表情，可以在写Markdown时插入一些表情，使得文章更加有趣。</li>
 <li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.webfx.com/tools/emoji-cheat-sheet/">表情网站</a></li>
-<li>语法  （Markdown中插入的表情符号格式是由冒号开始，冒号结尾。<code>:white_check_mark:</code>✅</li>
+<li>语法  （Markdown中插入的表情符号格式是由冒号开始，冒号结尾。<code>:white_check_mark:</code>:white_check_mark:</li>
 </ol>
-<h2 id="如何在Hexo主题中使用Emoji表情"><a class="header-anchor" href="#如何在Hexo主题中使用Emoji表情">¶</a>如何在Hexo主题中使用Emoji表情</h2>
-<p>写博客的时候发现有些内容不能很好的通过文字表达出来，这时候就需要表情的支持了。所以就研究了一下怎么在博客中加入emoji表情。网上有很多支持emoji的插件，但是都需要在浏览器端进行处理，考虑到使用的JS库已经够多了，所以尽量还是让Hexo提前渲染为好。</p>
-<h3 id="修改Hexo渲染器"><a class="header-anchor" href="#修改Hexo渲染器">¶</a>修改Hexo渲染器</h3>
-<p>Hexo默认的markdown渲染插件是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hexojs/hexo-renderer-marked">hexo-renderer-marked</a>，也就是marked渲染器的Hexo版本，这个渲染器不支持插件扩展。在PR中也提到了要支持emoji，但是却迟迟没有marge进来。然后就是另外一个markdown渲染器<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/celsomiranda/hexo-renderer-markdown-it">hexo-renderer-markdown-it</a>，这个渲染器支持插件配置可以使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/markdown-it/markdown-it-emoji">markdown-it-emoji</a>插件来支持emoji。我们要将原来的markdown渲染器换成这个。</p>
+<h2 id="如何在Hexo主题中使用Emoji表情"><a href="#如何在Hexo主题中使用Emoji表情" class="headerlink" title="如何在Hexo主题中使用Emoji表情"></a>如何在Hexo主题中使用Emoji表情</h2><p>写博客的时候发现有些内容不能很好的通过文字表达出来，这时候就需要表情的支持了。所以就研究了一下怎么在博客中加入emoji表情。网上有很多支持emoji的插件，但是都需要在浏览器端进行处理，考虑到使用的JS库已经够多了，所以尽量还是让Hexo提前渲染为好。</p>
+<h3 id="修改Hexo渲染器"><a href="#修改Hexo渲染器" class="headerlink" title="修改Hexo渲染器"></a>修改Hexo渲染器</h3><p>Hexo默认的markdown渲染插件是<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/hexojs/hexo-renderer-marked">hexo-renderer-marked</a>，也就是marked渲染器的Hexo版本，这个渲染器不支持插件扩展。在PR中也提到了要支持emoji，但是却迟迟没有marge进来。然后就是另外一个markdown渲染器<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/celsomiranda/hexo-renderer-markdown-it">hexo-renderer-markdown-it</a>，这个渲染器支持插件配置可以使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/markdown-it/markdown-it-emoji">markdown-it-emoji</a>插件来支持emoji。我们要将原来的markdown渲染器换成这个。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm un hexo-renderer-marked --save<br>npm i hexo-renderer-markdown-it --save<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626002550.png" srcset="/img/loading.gif" lazyload alt="执行npm命令"></p>
-<h3 id="安装Emoji插件"><a class="header-anchor" href="#安装Emoji插件">¶</a>安装Emoji插件</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install markdown-it-emoji --save<br></code></pre></td></tr></table></figure>
+<h3 id="安装Emoji插件"><a href="#安装Emoji插件" class="headerlink" title="安装Emoji插件"></a>安装Emoji插件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install markdown-it-emoji --save<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210626002829.png" srcset="/img/loading.gif" lazyload alt="安装Emoji插件"></p>
-<h3 id="修改配置文件使Hexo兼容"><a class="header-anchor" href="#修改配置文件使Hexo兼容">¶</a>修改配置文件使Hexo兼容</h3>
-<p>修改的是Hexo的配置文件哦，也就是根目录下的配置文件</p>
+<h3 id="修改配置文件使Hexo兼容"><a href="#修改配置文件使Hexo兼容" class="headerlink" title="修改配置文件使Hexo兼容"></a>修改配置文件使Hexo兼容</h3><p>修改的是Hexo的配置文件哦，也就是根目录下的配置文件</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Markdown-it config</span><br><span class="hljs-comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span><br><span class="hljs-attr">markdown:</span><br>  <span class="hljs-attr">render:</span><br>    <span class="hljs-attr">html:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">xhtmlOut:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">breaks:</span> <span class="hljs-literal">false</span><br>    <span class="hljs-attr">linkify:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">typographer:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">quotes:</span> <span class="hljs-string">&#x27;“”‘’&#x27;</span><br>  <span class="hljs-attr">plugins:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">markdown-it-footnote</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">markdown-it-sup</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">markdown-it-sub</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">markdown-it-abbr</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">markdown-it-emoji</span><br>  <span class="hljs-attr">anchors:</span><br>    <span class="hljs-attr">level:</span> <span class="hljs-number">2</span><br>    <span class="hljs-attr">collisionSuffix:</span> <span class="hljs-string">&#x27;v&#x27;</span><br>    <span class="hljs-attr">permalink:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">permalinkClass:</span> <span class="hljs-string">header-anchor</span><br>    <span class="hljs-attr">permalinkSymbol:</span> <span class="hljs-string">¶</span><br></code></pre></td></tr></table></figure>
-<h2 id="表情列表"><a class="header-anchor" href="#表情列表">¶</a>表情列表</h2>
-<h3 id="人物"><a class="header-anchor" href="#人物">¶</a>人物</h3>
+<h2 id="表情列表"><a href="#表情列表" class="headerlink" title="表情列表"></a>表情列表</h2><h3 id="人物"><a href="#人物" class="headerlink" title="人物"></a>人物</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -640,9 +633,9 @@
 </tr>
 <tr>
 <td style="text-align:center"><code>:person_with_pouting_face:</code></td>
-<td style="text-align:center">🙎</td>
+<td style="text-align:center">:person_with_pouting_face:</td>
 <td style="text-align:center"><code>:person_frowning:</code></td>
-<td style="text-align:center">🙍</td>
+<td style="text-align:center">:person_frowning:</td>
 <td style="text-align:center"><code>:bow:</code></td>
 <td style="text-align:center">🙇</td>
 </tr>
@@ -680,7 +673,7 @@
 </tr>
 <tr>
 <td style="text-align:center"><code>:person_with_blond_hair:</code></td>
-<td style="text-align:center">👱</td>
+<td style="text-align:center">:person_with_blond_hair:</td>
 <td style="text-align:center"><code>:man_with_gua_pi_mao:</code></td>
 <td style="text-align:center">👲</td>
 <td style="text-align:center"><code>:man_with_turban:</code></td>
@@ -776,7 +769,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="自然"><a class="header-anchor" href="#自然">¶</a>自然</h3>
+</div>
+<h3 id="自然"><a href="#自然" class="headerlink" title="自然"></a>自然</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1107,11 +1101,11 @@
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
-<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
-<h3 id="物体"><a class="header-anchor" href="#物体">¶</a>物体</h3>
+</div>
+<h3 id="物体"><a href="#物体" class="headerlink" title="物体"></a>物体</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1826,11 +1820,11 @@
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
-<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
-<h3 id="地点"><a class="header-anchor" href="#地点">¶</a>地点</h3>
+</div>
+<h3 id="地点"><a href="#地点" class="headerlink" title="地点"></a>地点</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -2129,11 +2123,11 @@
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
-<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
-<h3 id="符号"><a class="header-anchor" href="#符号">¶</a>符号</h3>
+</div>
+<h3 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h3><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -2664,10 +2658,10 @@
 <td style="text-align:center"><code>:shipit:</code></td>
 <td style="text-align:center">:shipit:</td>
 <td style="text-align:center"></td>
-<td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
+</div>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
             </div>
             <hr>
