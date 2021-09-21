@@ -617,33 +617,6 @@
   
   
   <entry>
-    <title>MySQL delete</title>
-    <link href="/posts/5d234763/"/>
-    <url>/posts/5d234763/</url>
-    
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>Database</category>
-      
-      <category>MySQL</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>MySQL</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Java数组</title>
     <link href="/posts/e3345db4/"/>
     <url>/posts/e3345db4/</url>
@@ -682,9 +655,9 @@
       
       <category>Algorithm</category>
       
-      <category>递归</category>
-      
       <category>Data Structure</category>
+      
+      <category>递归</category>
       
     </categories>
     
