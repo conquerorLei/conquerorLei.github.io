@@ -253,26 +253,31 @@
             <div class="markdown-body">
               <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" srcset="/img/loading.gif" lazyload alt="x的平方根"></p>
 <span id="more"></span>
-<h4 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析与代码"><a href="#题目分析与代码" class="headerlink" title="题目分析与代码"></a>题目分析与代码</h4><p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
+<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
 <p>废话少说，直接说想法。</p>
-<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是</p>
-<script type="math/tex; mode=display">
-\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}</script><p>基于此，就有以下代码</p>
+<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
+$$
+\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
+$$
+基于此，就有以下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>结果</strong></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" srcset="/img/loading.gif" lazyload alt="力扣地址"></p>
 <p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
-<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​</p>
-<script type="math/tex; mode=display">
-\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}</script><p>这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
+<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
+$$
+\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
+$$
+这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>结果</strong></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" srcset="/img/loading.gif" lazyload alt="二分法力扣提交结果"></p>
 <hr>
 <p>未完待续，关于牛顿迭代法</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-
 
             </div>
             <hr>
