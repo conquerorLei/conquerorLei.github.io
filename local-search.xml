@@ -655,9 +655,9 @@
       
       <category>Algorithm</category>
       
-      <category>Data Structure</category>
-      
       <category>递归</category>
+      
+      <category>Data Structure</category>
       
     </categories>
     
@@ -1577,7 +1577,7 @@
     
     <tags>
       
-      <tag>sql</tag>
+      <tag>SQL</tag>
       
       <tag>MyBatis</tag>
       

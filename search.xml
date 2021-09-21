@@ -1,64 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo Fluid主题优化:关于blockquote的样式优化</title>
-    <url>/posts/57051417/</url>
-    <content><![CDATA[<p>最近更换了<font color='cornflowerblue'>Fluid</font>主题，关于<font color='cornflowerblue'>Fluid</font>对于<code>&lt;blockquote&gt;</code>的样式我不算特别满意。特此对<code>&lt;blockquote&gt;</code>做了一个样式的覆盖。</p>
-<span id="more"></span>
-<h3 id="效果图"><a class="header-anchor" href="#效果图">¶</a>效果图</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109192329461.png" alt="更改之后的blockquote样式"></p>
-<h3 id="创建和引入自定义CSS文件"><a class="header-anchor" href="#创建和引入自定义CSS文件">¶</a>创建和引入自定义CSS文件</h3>
-<p>秉持着不污染开源代码以及之后主题更新之后尽量减少维护的问题，这里使用的是<font color='cornflowerblue'>Fluid</font>的配置文件标签。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js</span><br><span class="hljs-comment"># Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`</span><br><span class="hljs-attr">custom_js:</span><br><br><span class="hljs-comment"># 指定自定义 .css 文件路径，用法和 custom_js 相同</span><br><span class="hljs-comment"># The usage is the same as custom_js</span><br><span class="hljs-attr">custom_css:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">/css/_custom/blockquote.css</span> <span class="hljs-comment"># 注意引用的格式</span><br></code></pre></td></tr></table></figure>
-<p>在<font color='lawngreen'>custom_css</font>之后就是我们引用的自定义样式文件的路径</p>
-<div class="note note-info">
-            <p>需要注意的是，这边一般选用的相对路径，这个相对路径是相对于source而言的。不同的安装方法对于source的寻址不同。</p><ul><li>对于npm安装方法，路径为<font color='red'>hexo安装路径/node_module/hexo-theme-fluid/source</font></li><li>对于release包下载解压的安装方法，路径为<font color='red'>hexo安装路径/themes/fluid/source</font></li></ul>
-          </div>
-<p>为了与原来文件做一个区分，在<font color='cornflowerblue'>source/css/</font>路径下创建了一个自定义文件夹<code>custom</code>。在这个文件中创建自定义的<a href="https://baike.baidu.com/item/CSS/5457">样式层叠文件</a>:<code>blockquote.css</code>。</p>
-<div class="note note-success">
-            <p>注意一点，可以不创建文件夹，如果创建文件夹的话，创建的文件夹尽量不要以下划线开头，算是一个铁的教训吧！<font color='red'>经过我的尝试，使用<code>_source</code>出现的问题就是系统检索不到css文件</font>，可能是下划线转义的问题，留个代办吧！</p>
-          </div>
-<h3 id="样式层叠文件的编写"><a class="header-anchor" href="#样式层叠文件的编写">¶</a>样式层叠文件的编写</h3>
-<p>在网上查了关于<code>&lt;blockquote&gt;</code>的相关信息，发现他的基本样式竟然和<code>note </code>的差不多，那我用<code>&lt;blockquote&gt;</code>的意义何在呢？想的就是与众不同些，在文章的末尾进行一个名人名言的引用，直接就是一个居中，多醒目，多有教育意义。</p>
-<p>好的，废话不多说，开搞。当然，你也可以直接跳过获取我的文件：<a href="https://gitee.com/QingShanxl/resource/blob/master/CSS/blockquote.css">CSS/blockquote.css · 青山/Resource - 码云 - 开源中国 (gitee.com)</a></p>
-<h4 id="搭一个框架"><a class="header-anchor" href="#搭一个框架">¶</a>搭一个框架</h4>
-<p>先对<code>&lt;blockquote&gt;</code>进行样式的定义，这是一个基础的样式，只有的<code>blockquote-center</code>会在此为基础上进行样式重叠等操作。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">blockquote</span> &#123;<br>	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">400</span>;<br>	<span class="hljs-attribute">font-style</span>: none;<br>	<span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Zilla Slab&quot;</span>, serif;<br>	<span class="hljs-attribute">border-left</span>: <span class="hljs-number">8px</span> solid <span class="hljs-number">#FFCD00</span>;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">1.875rem</span>;<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.4rem</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.7</span>;<br>	<span class="hljs-attribute">padding-top</span>: <span class="hljs-number">0.325rem</span>;<br>	<span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0.325rem</span>;<br>	<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1.875rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="blockquote-center作为blockquote的派生选择器"><a class="header-anchor" href="#blockquote-center作为blockquote的派生选择器">¶</a>blockquote-center作为blockquote的派生选择器</h4>
-<p>首先是对text文本的一个居中显示，其次就是在原来样式的基础上进行一个样式的重叠，主要是边框。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-class">.blockquote-center</span> &#123;<br>    <span class="hljs-attribute">text-align</span>: center;<br>    <span class="hljs-attribute">border</span>: none;<br>    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">2.5rem</span>;<br>    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">0.325rem</span>;<br>    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0.325rem</span>;<br>    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">0.325rem</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="字体颜色渐变"><a class="header-anchor" href="#字体颜色渐变">¶</a>字体颜色渐变</h4>
-<p>在blockquote中添加一下三行代码</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">-webkit-<span class="hljs-attribute">background-clip</span>: text;<br>-webkit-text-fill-<span class="hljs-attribute">color</span>: transparent;<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">90deg</span>, <span class="hljs-number">#e66465</span>, <span class="hljs-number">#9198e5</span> );<br></code></pre></td></tr></table></figure>
-<ul>
-<li>linear-gradient():线性渐变
-<ul>
-<li>90dep，0dep表示从下到上，90dep表示渐变轴顺时针旋转90度变为从左到右</li>
-<li><font color='lawngreen'>#e66465</font>是最左边的颜色，<font color='lawngreen'>#9198e5</font>是最右边的颜色</li>
-</ul>
-</li>
-<li><font color='cornflowerblue'>-webkit-background-clip: text;</font>表示以区块内的文字作为裁剪区域向外裁剪，文字的背景即为区块的背景，文字之外的区域都将被裁剪掉。</li>
-<li><font color='cornflowerblue'>-webkit-text-fill-color: transparent;</font>表示文字的填充颜色设置为透明</li>
-</ul>
-<div class="note note-primary">
-            <p>什么意思呢？就是说，我先生成了一张从左到右线性渐变的背景图片，然后背景图片上层叠了一些文字，以这些文字为边界进行裁剪，这时背景图片上的除了文字投影部分都被裁剪掉了，然后再对原本的文字做一个透明处理，就可以显示出来一个渐变文字啦</p>
-          </div>
-<p>其实本质上是两层的叠加，只不过原来的文字是透明的。所以依然可以被当成文字复制，但是你要知道的是，你看到的渐变其实是图片。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-        <category>前端</category>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Fluid</tag>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>http error</title>
     <url>/posts/39167/</url>
     <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jwkxrc4PXMB0RJnrhP67zgHaEK?pid=ImgDet&amp;rs=1" alt="Http"></p>
@@ -190,6 +132,64 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Fluid主题优化:关于blockquote的样式优化</title>
+    <url>/posts/57051417/</url>
+    <content><![CDATA[<p>最近更换了<font color='cornflowerblue'>Fluid</font>主题，关于<font color='cornflowerblue'>Fluid</font>对于<code>&lt;blockquote&gt;</code>的样式我不算特别满意。特此对<code>&lt;blockquote&gt;</code>做了一个样式的覆盖。</p>
+<span id="more"></span>
+<h3 id="效果图"><a class="header-anchor" href="#效果图">¶</a>效果图</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109192329461.png" alt="更改之后的blockquote样式"></p>
+<h3 id="创建和引入自定义CSS文件"><a class="header-anchor" href="#创建和引入自定义CSS文件">¶</a>创建和引入自定义CSS文件</h3>
+<p>秉持着不污染开源代码以及之后主题更新之后尽量减少维护的问题，这里使用的是<font color='cornflowerblue'>Fluid</font>的配置文件标签。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js</span><br><span class="hljs-comment"># Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`</span><br><span class="hljs-attr">custom_js:</span><br><br><span class="hljs-comment"># 指定自定义 .css 文件路径，用法和 custom_js 相同</span><br><span class="hljs-comment"># The usage is the same as custom_js</span><br><span class="hljs-attr">custom_css:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">/css/_custom/blockquote.css</span> <span class="hljs-comment"># 注意引用的格式</span><br></code></pre></td></tr></table></figure>
+<p>在<font color='lawngreen'>custom_css</font>之后就是我们引用的自定义样式文件的路径</p>
+<div class="note note-info">
+            <p>需要注意的是，这边一般选用的相对路径，这个相对路径是相对于source而言的。不同的安装方法对于source的寻址不同。</p><ul><li>对于npm安装方法，路径为<font color='red'>hexo安装路径/node_module/hexo-theme-fluid/source</font></li><li>对于release包下载解压的安装方法，路径为<font color='red'>hexo安装路径/themes/fluid/source</font></li></ul>
+          </div>
+<p>为了与原来文件做一个区分，在<font color='cornflowerblue'>source/css/</font>路径下创建了一个自定义文件夹<code>custom</code>。在这个文件中创建自定义的<a href="https://baike.baidu.com/item/CSS/5457">样式层叠文件</a>:<code>blockquote.css</code>。</p>
+<div class="note note-success">
+            <p>注意一点，可以不创建文件夹，如果创建文件夹的话，创建的文件夹尽量不要以下划线开头，算是一个铁的教训吧！<font color='red'>经过我的尝试，使用<code>_source</code>出现的问题就是系统检索不到css文件</font>，可能是下划线转义的问题，留个代办吧！</p>
+          </div>
+<h3 id="样式层叠文件的编写"><a class="header-anchor" href="#样式层叠文件的编写">¶</a>样式层叠文件的编写</h3>
+<p>在网上查了关于<code>&lt;blockquote&gt;</code>的相关信息，发现他的基本样式竟然和<code>note </code>的差不多，那我用<code>&lt;blockquote&gt;</code>的意义何在呢？想的就是与众不同些，在文章的末尾进行一个名人名言的引用，直接就是一个居中，多醒目，多有教育意义。</p>
+<p>好的，废话不多说，开搞。当然，你也可以直接跳过获取我的文件：<a href="https://gitee.com/QingShanxl/resource/blob/master/CSS/blockquote.css">CSS/blockquote.css · 青山/Resource - 码云 - 开源中国 (gitee.com)</a></p>
+<h4 id="搭一个框架"><a class="header-anchor" href="#搭一个框架">¶</a>搭一个框架</h4>
+<p>先对<code>&lt;blockquote&gt;</code>进行样式的定义，这是一个基础的样式，只有的<code>blockquote-center</code>会在此为基础上进行样式重叠等操作。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">blockquote</span> &#123;<br>	<span class="hljs-attribute">font-weight</span>: <span class="hljs-number">400</span>;<br>	<span class="hljs-attribute">font-style</span>: none;<br>	<span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Zilla Slab&quot;</span>, serif;<br>	<span class="hljs-attribute">border-left</span>: <span class="hljs-number">8px</span> solid <span class="hljs-number">#FFCD00</span>;<br>	<span class="hljs-attribute">padding</span>: <span class="hljs-number">1.875rem</span>;<br>	<span class="hljs-attribute">font-size</span>: <span class="hljs-number">1.4rem</span>;<br>	<span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.7</span>;<br>	<span class="hljs-attribute">padding-top</span>: <span class="hljs-number">0.325rem</span>;<br>	<span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0.325rem</span>;<br>	<span class="hljs-attribute">padding-left</span>: <span class="hljs-number">1.875rem</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="blockquote-center作为blockquote的派生选择器"><a class="header-anchor" href="#blockquote-center作为blockquote的派生选择器">¶</a>blockquote-center作为blockquote的派生选择器</h4>
+<p>首先是对text文本的一个居中显示，其次就是在原来样式的基础上进行一个样式的重叠，主要是边框。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">blockquote</span><span class="hljs-selector-class">.blockquote-center</span> &#123;<br>    <span class="hljs-attribute">text-align</span>: center;<br>    <span class="hljs-attribute">border</span>: none;<br>    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">2.5rem</span>;<br>    <span class="hljs-attribute">padding-right</span>: <span class="hljs-number">0.325rem</span>;<br>    <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">0.325rem</span>;<br>    <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">0.325rem</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="字体颜色渐变"><a class="header-anchor" href="#字体颜色渐变">¶</a>字体颜色渐变</h4>
+<p>在blockquote中添加一下三行代码</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><code class="hljs css">-webkit-<span class="hljs-attribute">background-clip</span>: text;<br>-webkit-text-fill-<span class="hljs-attribute">color</span>: transparent;<br><span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">90deg</span>, <span class="hljs-number">#e66465</span>, <span class="hljs-number">#9198e5</span> );<br></code></pre></td></tr></table></figure>
+<ul>
+<li>linear-gradient():线性渐变
+<ul>
+<li>90dep，0dep表示从下到上，90dep表示渐变轴顺时针旋转90度变为从左到右</li>
+<li><font color='lawngreen'>#e66465</font>是最左边的颜色，<font color='lawngreen'>#9198e5</font>是最右边的颜色</li>
+</ul>
+</li>
+<li><font color='cornflowerblue'>-webkit-background-clip: text;</font>表示以区块内的文字作为裁剪区域向外裁剪，文字的背景即为区块的背景，文字之外的区域都将被裁剪掉。</li>
+<li><font color='cornflowerblue'>-webkit-text-fill-color: transparent;</font>表示文字的填充颜色设置为透明</li>
+</ul>
+<div class="note note-primary">
+            <p>什么意思呢？就是说，我先生成了一张从左到右线性渐变的背景图片，然后背景图片上层叠了一些文字，以这些文字为边界进行裁剪，这时背景图片上的除了文字投影部分都被裁剪掉了，然后再对原本的文字做一个透明处理，就可以显示出来一个渐变文字啦</p>
+          </div>
+<p>其实本质上是两层的叠加，只不过原来的文字是透明的。所以依然可以被当成文字复制，但是你要知道的是，你看到的渐变其实是图片。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+        <category>前端</category>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Fluid</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -393,6 +393,31 @@
       </tags>
   </entry>
   <entry>
+    <title>Java实现LRU缓冲机制</title>
+    <url>/posts/caebe662/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051050092.png" alt="力扣刷题结果"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/lru-cache/">146. LRU 缓存机制 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
+<p>既然是实现LRU缓冲，那么就需要明白LRU的工作原理，最近经常使用的往前排，那么最近不经常使用的往后排。这种特性下，使用数据结构链表就可以进行LRU的工作状态描述。很显然，LRU缓冲的实现需要不断地移动元素到链头和链尾，这样的话使用双链表就可以进行描述，设置一个伪头结点，设置一个伪尾结点。</p>
+<p>另外需要注意到的是，给定一个键值Key，如何能够确定此链表中有没有此结点，如果有的话则返回。如果按照一般的做法，肯定就是遍历整个链表，这样的事，时间复杂度会被增大到O(n)，如何能将时间复杂度控制到O(1)呢？很简单，将键值和对应的双链表结点存储在一张表中，这里我选择的是HashMap也就是哈希映射。这样在进行判断链表中是否存在键值为key的结点是，就可以直接查看表，时间复杂度为O(1)。</p>
+<h4 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LRUCache</span> </span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DLinkedList</span></span>&#123;<br>        <span class="hljs-keyword">int</span> key;<br>        <span class="hljs-keyword">int</span> value;<br>        DLinkedList pre;<br>        DLinkedList next;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DLinkedList</span><span class="hljs-params">()</span></span>&#123;&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DLinkedList</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _key,<span class="hljs-keyword">int</span> _value)</span></span>&#123;<br>            key = _key;<br>            value = _value;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> size;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> capacity;<br>    <span class="hljs-keyword">private</span> DLinkedList head,tail;<br>    <span class="hljs-keyword">private</span> Map&lt;Integer,DLinkedList&gt; cache = <span class="hljs-keyword">new</span> HashMap&lt;Integer,DLinkedList&gt;();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LRUCache</span><span class="hljs-params">(<span class="hljs-keyword">int</span> capacity)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.capacity = capacity;<br>        <span class="hljs-keyword">this</span>.size = <span class="hljs-number">0</span>;<br>        head = <span class="hljs-keyword">new</span> DLinkedList();<br>        tail = <span class="hljs-keyword">new</span> DLinkedList();<br>        head.next = tail;<br>        tail.pre = head;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>&#123;<br>        DLinkedList node = cache.get(key);<br>        <span class="hljs-keyword">if</span>(node == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        moveToHead(node);<br>        <span class="hljs-keyword">return</span> node.value;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">put</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key, <span class="hljs-keyword">int</span> value)</span> </span>&#123;<br>        DLinkedList node = cache.get(key);<br>        <span class="hljs-keyword">if</span>(node == <span class="hljs-keyword">null</span>)&#123;<br>            DLinkedList temp = <span class="hljs-keyword">new</span> DLinkedList(key,value);<br>            cache.put(key,temp);<br>            addToHead(temp);<br>            size++;<br>            <span class="hljs-keyword">if</span>(size &gt; capacity)&#123;<br>                DLinkedList res = removeTail();<br>                cache.remove(res.key);<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            node.value = value;<br>            moveToHead(node);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addToHead</span><span class="hljs-params">(DLinkedList node)</span></span>&#123;<br>        node.pre = head;<br>        node.next = head.next;<br>        head.next.pre = node;<br>        head.next = node;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeNode</span><span class="hljs-params">(DLinkedList node)</span></span>&#123;<br>        node.pre.next = node.next;<br>        node.next.pre = node.pre;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveToHead</span><span class="hljs-params">(DLinkedList node)</span></span>&#123;<br>        removeNode(node);<br>        addToHead(node);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> DLinkedList <span class="hljs-title">removeTail</span><span class="hljs-params">()</span></span>&#123;<br>        DLinkedList s = tail.pre;<br>        removeNode(s);<br>        <span class="hljs-keyword">return</span> s;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your LRUCache object will be instantiated and called as such:</span><br><span class="hljs-comment"> * LRUCache obj = new LRUCache(capacity);</span><br><span class="hljs-comment"> * int param_1 = obj.get(key);</span><br><span class="hljs-comment"> * obj.put(key,value);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Apply</category>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除</title>
     <url>/posts/35421/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png" alt="warning: LF will be replaced by CRLF"></p>
@@ -436,31 +461,6 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java实现LRU缓冲机制</title>
-    <url>/posts/caebe662/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051050092.png" alt="力扣刷题结果"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/lru-cache/">146. LRU 缓存机制 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
-<p>既然是实现LRU缓冲，那么就需要明白LRU的工作原理，最近经常使用的往前排，那么最近不经常使用的往后排。这种特性下，使用数据结构链表就可以进行LRU的工作状态描述。很显然，LRU缓冲的实现需要不断地移动元素到链头和链尾，这样的话使用双链表就可以进行描述，设置一个伪头结点，设置一个伪尾结点。</p>
-<p>另外需要注意到的是，给定一个键值Key，如何能够确定此链表中有没有此结点，如果有的话则返回。如果按照一般的做法，肯定就是遍历整个链表，这样的事，时间复杂度会被增大到O(n)，如何能将时间复杂度控制到O(1)呢？很简单，将键值和对应的双链表结点存储在一张表中，这里我选择的是HashMap也就是哈希映射。这样在进行判断链表中是否存在键值为key的结点是，就可以直接查看表，时间复杂度为O(1)。</p>
-<h4 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LRUCache</span> </span>&#123;<br>    <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DLinkedList</span></span>&#123;<br>        <span class="hljs-keyword">int</span> key;<br>        <span class="hljs-keyword">int</span> value;<br>        DLinkedList pre;<br>        DLinkedList next;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DLinkedList</span><span class="hljs-params">()</span></span>&#123;&#125;<br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DLinkedList</span><span class="hljs-params">(<span class="hljs-keyword">int</span> _key,<span class="hljs-keyword">int</span> _value)</span></span>&#123;<br>            key = _key;<br>            value = _value;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> size;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> capacity;<br>    <span class="hljs-keyword">private</span> DLinkedList head,tail;<br>    <span class="hljs-keyword">private</span> Map&lt;Integer,DLinkedList&gt; cache = <span class="hljs-keyword">new</span> HashMap&lt;Integer,DLinkedList&gt;();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">LRUCache</span><span class="hljs-params">(<span class="hljs-keyword">int</span> capacity)</span> </span>&#123;<br>        <span class="hljs-keyword">this</span>.capacity = capacity;<br>        <span class="hljs-keyword">this</span>.size = <span class="hljs-number">0</span>;<br>        head = <span class="hljs-keyword">new</span> DLinkedList();<br>        tail = <span class="hljs-keyword">new</span> DLinkedList();<br>        head.next = tail;<br>        tail.pre = head;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">get</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key)</span> </span>&#123;<br>        DLinkedList node = cache.get(key);<br>        <span class="hljs-keyword">if</span>(node == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>        &#125;<br>        moveToHead(node);<br>        <span class="hljs-keyword">return</span> node.value;<br>    &#125;<br>    <br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">put</span><span class="hljs-params">(<span class="hljs-keyword">int</span> key, <span class="hljs-keyword">int</span> value)</span> </span>&#123;<br>        DLinkedList node = cache.get(key);<br>        <span class="hljs-keyword">if</span>(node == <span class="hljs-keyword">null</span>)&#123;<br>            DLinkedList temp = <span class="hljs-keyword">new</span> DLinkedList(key,value);<br>            cache.put(key,temp);<br>            addToHead(temp);<br>            size++;<br>            <span class="hljs-keyword">if</span>(size &gt; capacity)&#123;<br>                DLinkedList res = removeTail();<br>                cache.remove(res.key);<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span>&#123;<br>            node.value = value;<br>            moveToHead(node);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">addToHead</span><span class="hljs-params">(DLinkedList node)</span></span>&#123;<br>        node.pre = head;<br>        node.next = head.next;<br>        head.next.pre = node;<br>        head.next = node;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">removeNode</span><span class="hljs-params">(DLinkedList node)</span></span>&#123;<br>        node.pre.next = node.next;<br>        node.next.pre = node.pre;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">moveToHead</span><span class="hljs-params">(DLinkedList node)</span></span>&#123;<br>        removeNode(node);<br>        addToHead(node);<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> DLinkedList <span class="hljs-title">removeTail</span><span class="hljs-params">()</span></span>&#123;<br>        DLinkedList s = tail.pre;<br>        removeNode(s);<br>        <span class="hljs-keyword">return</span> s;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your LRUCache object will be instantiated and called as such:</span><br><span class="hljs-comment"> * LRUCache obj = new LRUCache(capacity);</span><br><span class="hljs-comment"> * int param_1 = obj.get(key);</span><br><span class="hljs-comment"> * obj.put(key,value);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Apply</category>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
       </tags>
   </entry>
   <entry>
@@ -1380,6 +1380,33 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>MySQL CRUD:Having和Where的区别</title>
+    <url>/posts/978101fb/</url>
+    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
+<span id="more"></span>
+<h3 id="综述"><a class="header-anchor" href="#综述">¶</a>综述</h3>
+<ol>
+<li>Where是约束声明，在结果返回之前起作用的，且Where中不能使用聚合函数。</li>
+<li>Having是过滤声明，在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。</li>
+</ol>
+<h3 id="区别"><a class="header-anchor" href="#区别">¶</a>区别</h3>
+<p>首先，需要说明的是，Having的使用是在Group之后的。</p>
+<ol>
+<li>Having子句可以让我们筛选成组后的各组数据而，Having子句在聚合后对组记录进行筛选。</li>
+<li>Where子句在聚合前先筛选记录．也就是说作用在Group By子句和Having子句前</li>
+</ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL CRUD:Group By的使用</title>
     <url>/posts/7b68b62c/</url>
     <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
@@ -1411,21 +1438,67 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL CRUD:Having和Where的区别</title>
-    <url>/posts/978101fb/</url>
+    <title>MySQL CRUD:Update(更新)</title>
+    <url>/posts/a54a76b0/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.KvdS1VFn8-gxlmTEWh_nPwHaFz?pid=ImgDet&amp;rs=1" alt="update"></p>
+<span id="more"></span>
+<h3 id="数据表和结构"><a class="header-anchor" href="#数据表和结构">¶</a>数据表和结构</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs mysql">mysql&gt; describe exam_result;<br>+---------+-------------+------+-----+---------+----------------+<br>| Field   | Type        | Null | Key | Default | Extra          |<br>+---------+-------------+------+-----+---------+----------------+<br>| id      | int         | NO   | PRI | NULL    | auto_increment |<br>| name    | varchar(20) | NO   |     | NULL    |                |<br>| chinese | float       | YES  |     | 0       |                |<br>| math    | float       | YES  |     | 0       |                |<br>| english | float       | YES  |     | 0       |                |<br>+---------+-------------+------+-----+---------+----------------+<br>5 rows in set (0.01 sec)<br><br>mysql&gt; select * from exam_result;<br>+----+--------+---------+------+---------+<br>| id | name   | chinese | math | english |<br>+----+--------+---------+------+---------+<br>|  1 | 唐三藏 |      67 |   98 |      56 |<br>|  2 | 孙悟空 |      87 |   78 |      77 |<br>|  3 | 猪悟能 |      88 |   98 |      90 |<br>|  4 | 曹孟德 |      82 |   84 |      67 |<br>|  5 | 刘玄德 |      55 |   85 |      45 |<br>|  6 | 孙策   |      70 |   73 |      78 |<br>+----+--------+---------+------+---------+<br>6 rows in set (0.01 sec)<br></code></pre></td></tr></table></figure>
+<h3 id="语法和作用"><a class="header-anchor" href="#语法和作用">¶</a>语法和作用</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">update table_name <span class="hljs-keyword">set</span> <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expr [, <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expe,...] [<span class="hljs-keyword">where</span> ...] [<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ...] [limit ...]<br></code></pre></td></tr></table></figure>
+<p>作用：对查询到的结果进行列植更新</p>
+<h3 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h3>
+<h4 id="将孙悟空同学的数学成绩变为80"><a class="header-anchor" href="#将孙悟空同学的数学成绩变为80">¶</a>将孙悟空同学的数学成绩变为80</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">80</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span>   <span class="hljs-number">80</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="将曹孟德的数学成绩变为50，语文成绩变为78"><a class="header-anchor" href="#将曹孟德的数学成绩变为50，语文成绩变为78">¶</a>将曹孟德的数学成绩变为50，语文成绩变为78</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">50</span>,chinese <span class="hljs-operator">=</span> <span class="hljs-number">78</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese,math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span>   <span class="hljs-number">50</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="将总成绩倒数前三的同学数学加上30分"><a class="header-anchor" href="#将总成绩倒数前三的同学数学加上30分">¶</a>将总成绩倒数前三的同学数学加上30分</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> math <span class="hljs-operator">+</span> <span class="hljs-number">30</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> chinese <span class="hljs-operator">+</span> math <span class="hljs-operator">+</span> english limit <span class="hljs-number">3</span>;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">3</span>  Changed: <span class="hljs-number">3</span>  Warnings: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p>需要注意的是，MySQL不支持<font color='red'>+=</font>语法</p>
+          </div>
+<h4 id="将所有同学的语文成绩乘2"><a class="header-anchor" href="#将所有同学的语文成绩乘2">¶</a>将所有同学的语文成绩乘2</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>      <span class="hljs-number">67</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>      <span class="hljs-number">87</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>      <span class="hljs-number">88</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>      <span class="hljs-number">55</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>      <span class="hljs-number">70</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> chinese <span class="hljs-operator">=</span> chinese <span class="hljs-operator">*</span> <span class="hljs-number">2</span>;<br>Query OK, <span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">6</span>  Changed: <span class="hljs-number">6</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>     <span class="hljs-number">134</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>     <span class="hljs-number">174</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>     <span class="hljs-number">176</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>     <span class="hljs-number">156</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>     <span class="hljs-number">110</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>     <span class="hljs-number">140</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<div class="note note-warning">
+            <p>对整个表更新的操作需要慎用</p>
+          </div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL CRUD:插入查询结果</title>
+    <url>/posts/823de3f/</url>
     <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
 <span id="more"></span>
-<h3 id="综述"><a class="header-anchor" href="#综述">¶</a>综述</h3>
+<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<p><strong>删除表中的重复记录</strong></p>
+<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
+<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
+<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
 <ol>
-<li>Where是约束声明，在结果返回之前起作用的，且Where中不能使用聚合函数。</li>
-<li>Having是过滤声明，在查询返回结果集以后对查询结果进行的过滤操作，在Having中可以使用聚合函数。</li>
+<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
 </ol>
-<h3 id="区别"><a class="header-anchor" href="#区别">¶</a>区别</h3>
-<p>首先，需要说明的是，Having的使用是在Group之后的。</p>
-<ol>
-<li>Having子句可以让我们筛选成组后的各组数据而，Having子句在聚合后对组记录进行筛选。</li>
-<li>Where子句在聚合前先筛选记录．也就是说作用在Group By子句和Having子句前</li>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
 </ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>重命名表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
@@ -1623,79 +1696,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL CRUD:Update(更新)</title>
-    <url>/posts/a54a76b0/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.KvdS1VFn8-gxlmTEWh_nPwHaFz?pid=ImgDet&amp;rs=1" alt="update"></p>
-<span id="more"></span>
-<h3 id="数据表和结构"><a class="header-anchor" href="#数据表和结构">¶</a>数据表和结构</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs mysql">mysql&gt; describe exam_result;<br>+---------+-------------+------+-----+---------+----------------+<br>| Field   | Type        | Null | Key | Default | Extra          |<br>+---------+-------------+------+-----+---------+----------------+<br>| id      | int         | NO   | PRI | NULL    | auto_increment |<br>| name    | varchar(20) | NO   |     | NULL    |                |<br>| chinese | float       | YES  |     | 0       |                |<br>| math    | float       | YES  |     | 0       |                |<br>| english | float       | YES  |     | 0       |                |<br>+---------+-------------+------+-----+---------+----------------+<br>5 rows in set (0.01 sec)<br><br>mysql&gt; select * from exam_result;<br>+----+--------+---------+------+---------+<br>| id | name   | chinese | math | english |<br>+----+--------+---------+------+---------+<br>|  1 | 唐三藏 |      67 |   98 |      56 |<br>|  2 | 孙悟空 |      87 |   78 |      77 |<br>|  3 | 猪悟能 |      88 |   98 |      90 |<br>|  4 | 曹孟德 |      82 |   84 |      67 |<br>|  5 | 刘玄德 |      55 |   85 |      45 |<br>|  6 | 孙策   |      70 |   73 |      78 |<br>+----+--------+---------+------+---------+<br>6 rows in set (0.01 sec)<br></code></pre></td></tr></table></figure>
-<h3 id="语法和作用"><a class="header-anchor" href="#语法和作用">¶</a>语法和作用</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">update table_name <span class="hljs-keyword">set</span> <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expr [, <span class="hljs-keyword">column</span> <span class="hljs-operator">=</span> expe,...] [<span class="hljs-keyword">where</span> ...] [<span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> ...] [limit ...]<br></code></pre></td></tr></table></figure>
-<p>作用：对查询到的结果进行列植更新</p>
-<h3 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h3>
-<h4 id="将孙悟空同学的数学成绩变为80"><a class="header-anchor" href="#将孙悟空同学的数学成绩变为80">¶</a>将孙悟空同学的数学成绩变为80</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">80</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;孙悟空&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-operator">|</span>   <span class="hljs-number">80</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="将曹孟德的数学成绩变为50，语文成绩变为78"><a class="header-anchor" href="#将曹孟德的数学成绩变为50，语文成绩变为78">¶</a>将曹孟德的数学成绩变为50，语文成绩变为78</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> <span class="hljs-number">50</span>,chinese <span class="hljs-operator">=</span> <span class="hljs-number">78</span> <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">1</span>  Changed: <span class="hljs-number">1</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese,math <span class="hljs-keyword">from</span> exam_result <span class="hljs-keyword">where</span> name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;曹孟德&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span> math <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span>   <span class="hljs-number">50</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="将总成绩倒数前三的同学数学加上30分"><a class="header-anchor" href="#将总成绩倒数前三的同学数学加上30分">¶</a>将总成绩倒数前三的同学数学加上30分</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> math <span class="hljs-operator">=</span> math <span class="hljs-operator">+</span> <span class="hljs-number">30</span> <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> chinese <span class="hljs-operator">+</span> math <span class="hljs-operator">+</span> english limit <span class="hljs-number">3</span>;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">3</span>  Changed: <span class="hljs-number">3</span>  Warnings: <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
-<div class="note note-info">
-            <p>需要注意的是，MySQL不支持<font color='red'>+=</font>语法</p>
-          </div>
-<h4 id="将所有同学的语文成绩乘2"><a class="header-anchor" href="#将所有同学的语文成绩乘2">¶</a>将所有同学的语文成绩乘2</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>      <span class="hljs-number">67</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>      <span class="hljs-number">87</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>      <span class="hljs-number">88</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>      <span class="hljs-number">78</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>      <span class="hljs-number">55</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>      <span class="hljs-number">70</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> update exam_result <span class="hljs-keyword">set</span> chinese <span class="hljs-operator">=</span> chinese <span class="hljs-operator">*</span> <span class="hljs-number">2</span>;<br>Query OK, <span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br><span class="hljs-keyword">Rows</span> matched: <span class="hljs-number">6</span>  Changed: <span class="hljs-number">6</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> name,chinese <span class="hljs-keyword">from</span> exam_result;<br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> name   <span class="hljs-operator">|</span> chinese <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-operator">|</span> 唐三藏 <span class="hljs-operator">|</span>     <span class="hljs-number">134</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙悟空 <span class="hljs-operator">|</span>     <span class="hljs-number">174</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 猪悟能 <span class="hljs-operator">|</span>     <span class="hljs-number">176</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 曹孟德 <span class="hljs-operator">|</span>     <span class="hljs-number">156</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 刘玄德 <span class="hljs-operator">|</span>     <span class="hljs-number">110</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> 孙策   <span class="hljs-operator">|</span>     <span class="hljs-number">140</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">--------+---------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<div class="note note-warning">
-            <p>对整个表更新的操作需要慎用</p>
-          </div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL CRUD:插入查询结果</title>
-    <url>/posts/823de3f/</url>
-    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
-<span id="more"></span>
-<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<p><strong>删除表中的重复记录</strong></p>
-<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
-<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
-<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
-<ol>
-<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<ol start="3">
-<li>重命名表</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL CRUD:聚合函数</title>
     <url>/posts/beb41dd5/</url>
     <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
@@ -1822,53 +1822,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL 子查询:in/exists,all/any/some的区别</title>
-    <url>/posts/9e2a31fe/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" alt="MySQL子查询"></p>
-<span id="more"></span>
-<h3 id="in-exists"><a class="header-anchor" href="#in-exists">¶</a>in/exists</h3>
-<p><font color='cornflowerblue'>in</font>和<font color='cornflowerblue'>exists</font>都可用于子查询。以下是他们两个的区别</p>
-<ul>
-<li><font color='cornflowerblue'>in</font>在使用的过程中，会缓存子查询的结果集，然后对主查询的每个记录进行查询</li>
-<li><font color='cornflowerblue'>exists</font>在使用的过程中，不会缓存子查询的结果集。先对主查询进行查询，然后根据子查询是否为真来进行确定结果集是否存入主查询的结果集。</li>
-</ul>
-<p>最大的区别有两个：</p>
-<ol>
-<li>有没有对子查询结果进行缓存</li>
-<li>先进行的是主查询还是子查询</li>
-</ol>
-<p><strong>常见问题</strong>：对于<font color='cornflowerblue'>exists</font>为什么主查询和子查询筛选的字段都不一样，还是能够返回结果？</p>
-<p>要解决这个问题，需要了解一下<font color='cornflowerblue'>exists</font>的执行流程</p>
-<div class="note note-info">
-            <p><font color='cornflowerblue'>exists</font>的执行流程就是，先进行主查询得到一个表，然后对这个临时表中的每个记录都进行<font color='cornflowerblue'>where</font>之后的条件判断，如果成立则返回<font color='lawngreen'>true</font>，不成立返回<font color='lawngreen'>false</font>。返回<font color='lawngreen'>true</font>则将此记录存入主查询的结果集，返回<font color='lawngreen'>false</font>则不存入。一种通俗的理解就是，将主查询的每一行带入子查询进行查询，如果子查询返回的结果与空进行判断，如果为空则返回<font color='lawngreen'>true</font>，如果返回<font color='lawngreen'>true</font>那么就将这条记录存到主查询的结果集；反之，如果子查询的结果为空，那么就不存。</p>
-          </div>
-<p>这样的话，其实字段一样或者不一样意义都不大，因为我只是看有没有返回的结果，而不是说具体看返回的结果是什么。</p>
-<h3 id="all-any-some"><a class="header-anchor" href="#all-any-some">¶</a>all/any/some</h3>
-<p><strong>区别</strong>：</p>
-<ul>
-<li><font color='cornflowerblue'>all</font>表示的是只有所有的数据都满足条件，条件才成立</li>
-<li><font color='cornflowerblue'>any</font>表示的是只要有一天数据满足条件，条件就成立</li>
-<li><font color='cornflowerblue'>some</font>表示的是只要有一些数据满足条件就成立。<font color='cornflowerblue'>some</font>可以说成是<font color='cornflowerblue'>any</font>的别称，一般很少用</li>
-</ul>
-<div class="note note-warning">
-            <p>all/any/some的使用都需要用到比较操作运算符，也就是<font color='lawngreen'>=</font>，<font color='lawngreen'>&gt;</font>，<font color='lawngreen'>&lt;</font>，<font color='lawngreen'>&lt;&gt;</font>这里一类的</p>
-          </div>
-<p><strong>some和any的区别</strong>：</p>
-<p><font color='cornflowerblue'>some</font>一般用于等式中，而<font color='cornflowerblue'>any</font>一般用于非等式中。</p>
-<p><strong>all和any的特殊情况</strong>：</p>
-<p>对于<font color='cornflowerblue'>all</font>如果表示空表，那么返回<font color='lawngreen'>true</font>；如果子查询含有<font color='lawngreen'>NULL</font>，那么结果就为空</p>
-<p>对于<font color='cornflowerblue'>any</font>，无论是空表还是子查询含有<font color='lawngreen'>NULL</font>，结果都是<font color='lawngreen'>NULL</font></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL 表的內连和外连</title>
     <url>/posts/1e2265e0/</url>
     <content><![CDATA[<p>表的连接分为內连和外连</p>
@@ -1909,6 +1862,53 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
 <p><a href="https://leetcode-cn.com/problems/combine-two-tables/">175. 组合两个表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a href="https://leetcode-cn.com/problems/rank-scores/">178. 分数排名 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p><a href="https://leetcode-cn.com/problems/exchange-seats/">626. 换座位 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL 子查询:in/exists,all/any/some的区别</title>
+    <url>/posts/9e2a31fe/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" alt="MySQL子查询"></p>
+<span id="more"></span>
+<h3 id="in-exists"><a class="header-anchor" href="#in-exists">¶</a>in/exists</h3>
+<p><font color='cornflowerblue'>in</font>和<font color='cornflowerblue'>exists</font>都可用于子查询。以下是他们两个的区别</p>
+<ul>
+<li><font color='cornflowerblue'>in</font>在使用的过程中，会缓存子查询的结果集，然后对主查询的每个记录进行查询</li>
+<li><font color='cornflowerblue'>exists</font>在使用的过程中，不会缓存子查询的结果集。先对主查询进行查询，然后根据子查询是否为真来进行确定结果集是否存入主查询的结果集。</li>
+</ul>
+<p>最大的区别有两个：</p>
+<ol>
+<li>有没有对子查询结果进行缓存</li>
+<li>先进行的是主查询还是子查询</li>
+</ol>
+<p><strong>常见问题</strong>：对于<font color='cornflowerblue'>exists</font>为什么主查询和子查询筛选的字段都不一样，还是能够返回结果？</p>
+<p>要解决这个问题，需要了解一下<font color='cornflowerblue'>exists</font>的执行流程</p>
+<div class="note note-info">
+            <p><font color='cornflowerblue'>exists</font>的执行流程就是，先进行主查询得到一个表，然后对这个临时表中的每个记录都进行<font color='cornflowerblue'>where</font>之后的条件判断，如果成立则返回<font color='lawngreen'>true</font>，不成立返回<font color='lawngreen'>false</font>。返回<font color='lawngreen'>true</font>则将此记录存入主查询的结果集，返回<font color='lawngreen'>false</font>则不存入。一种通俗的理解就是，将主查询的每一行带入子查询进行查询，如果子查询返回的结果与空进行判断，如果为空则返回<font color='lawngreen'>true</font>，如果返回<font color='lawngreen'>true</font>那么就将这条记录存到主查询的结果集；反之，如果子查询的结果为空，那么就不存。</p>
+          </div>
+<p>这样的话，其实字段一样或者不一样意义都不大，因为我只是看有没有返回的结果，而不是说具体看返回的结果是什么。</p>
+<h3 id="all-any-some"><a class="header-anchor" href="#all-any-some">¶</a>all/any/some</h3>
+<p><strong>区别</strong>：</p>
+<ul>
+<li><font color='cornflowerblue'>all</font>表示的是只有所有的数据都满足条件，条件才成立</li>
+<li><font color='cornflowerblue'>any</font>表示的是只要有一天数据满足条件，条件就成立</li>
+<li><font color='cornflowerblue'>some</font>表示的是只要有一些数据满足条件就成立。<font color='cornflowerblue'>some</font>可以说成是<font color='cornflowerblue'>any</font>的别称，一般很少用</li>
+</ul>
+<div class="note note-warning">
+            <p>all/any/some的使用都需要用到比较操作运算符，也就是<font color='lawngreen'>=</font>，<font color='lawngreen'>&gt;</font>，<font color='lawngreen'>&lt;</font>，<font color='lawngreen'>&lt;&gt;</font>这里一类的</p>
+          </div>
+<p><strong>some和any的区别</strong>：</p>
+<p><font color='cornflowerblue'>some</font>一般用于等式中，而<font color='cornflowerblue'>any</font>一般用于非等式中。</p>
+<p><strong>all和any的特殊情况</strong>：</p>
+<p>对于<font color='cornflowerblue'>all</font>如果表示空表，那么返回<font color='lawngreen'>true</font>；如果子查询含有<font color='lawngreen'>NULL</font>，那么结果就为空</p>
+<p>对于<font color='cornflowerblue'>any</font>，无论是空表还是子查询含有<font color='lawngreen'>NULL</font>，结果都是<font color='lawngreen'>NULL</font></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
@@ -2637,7 +2637,7 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
         <category>MySQL</category>
       </categories>
       <tags>
-        <tag>sql</tag>
+        <tag>SQL</tag>
         <tag>MyBatis</tag>
       </tags>
   </entry>
@@ -3214,39 +3214,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>k个一组反转链表</title>
-    <url>/posts/f63f9b79/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109132027464.png" alt="力扣刷题结果"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="分析"><a class="header-anchor" href="#分析">¶</a>分析</h4>
-<p>根据题目的要求，需要原地进行反转，这个和直接反转链表没有很大的区别，只不过在反转的过程中，需要对头指针和右指针进行位置的确认。</p>
-<ol>
-<li>若链表的长度小于k，直接返回head头结点。</li>
-<li>设置一个头指针指向head</li>
-<li>设置一个尾指针b指向head，从head开始遍历，直到第k个结点停止遍历</li>
-<li>对[a,b)之间的链表进行翻转</li>
-<li>后面的处理过程和前面四步相同直接就是递归。</li>
-</ol>
-<div class="note note-primary">
-            <p>需要注意的是，反转之后a就是尾结点，并且，需要注意的是，左闭右开区间，b不在反转区间内</p>
-          </div>
-<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseKGroup</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        ListNode a=head,b=head;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">if</span>(b==<span class="hljs-keyword">null</span>)&#123;<br>                <span class="hljs-keyword">return</span> head;<br>            &#125;<br>            b = b.next;<br>        &#125;<br>        ListNode newHead = reverse(a,b);<br>        a.next = reverseKGroup(b,k);<br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode a,ListNode b)</span></span>&#123;<br>        ListNode next = <span class="hljs-keyword">null</span>;<br>        ListNode pre = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span>(a!=b)&#123;<br>            next = a.next;<br>            a.next = pre;<br>            pre = a;<br>            a = next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pre;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-        <category>递归</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>markdown语法以及Typora使用(基础)</title>
     <url>/posts/22355/</url>
     <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.1c814dc097c6b9e8f01e0723e3f174c5?rik=tFfEkQqbMMCs%2bA&amp;riu=http%3a%2f%2fd2.alternativeto.net%2fdist%2fs%2ftypora_263651_full.png%3fformat%3djpg%26width%3d1600%26height%3d1600%26mode%3dmin%26upscale%3dfalse&amp;ehk=mhloWvxal7paKjZK81sY%2bRjo6i2HcYWh59RoDiZItZ4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="Typora"></p>
@@ -3565,6 +3532,39 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>k个一组反转链表</title>
+    <url>/posts/f63f9b79/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109132027464.png" alt="力扣刷题结果"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/reverse-nodes-in-k-group/">25. K 个一组翻转链表 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="分析"><a class="header-anchor" href="#分析">¶</a>分析</h4>
+<p>根据题目的要求，需要原地进行反转，这个和直接反转链表没有很大的区别，只不过在反转的过程中，需要对头指针和右指针进行位置的确认。</p>
+<ol>
+<li>若链表的长度小于k，直接返回head头结点。</li>
+<li>设置一个头指针指向head</li>
+<li>设置一个尾指针b指向head，从head开始遍历，直到第k个结点停止遍历</li>
+<li>对[a,b)之间的链表进行翻转</li>
+<li>后面的处理过程和前面四步相同直接就是递归。</li>
+</ol>
+<div class="note note-primary">
+            <p>需要注意的是，反转之后a就是尾结点，并且，需要注意的是，左闭右开区间，b不在反转区间内</p>
+          </div>
+<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for singly-linked list.</span><br><span class="hljs-comment"> * public class ListNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     ListNode next;</span><br><span class="hljs-comment"> *     ListNode() &#123;&#125;</span><br><span class="hljs-comment"> *     ListNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     ListNode(int val, ListNode next) &#123; this.val = val; this.next = next; &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverseKGroup</span><span class="hljs-params">(ListNode head, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        ListNode a=head,b=head;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">if</span>(b==<span class="hljs-keyword">null</span>)&#123;<br>                <span class="hljs-keyword">return</span> head;<br>            &#125;<br>            b = b.next;<br>        &#125;<br>        ListNode newHead = reverse(a,b);<br>        a.next = reverseKGroup(b,k);<br>        <span class="hljs-keyword">return</span> newHead;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ListNode <span class="hljs-title">reverse</span><span class="hljs-params">(ListNode a,ListNode b)</span></span>&#123;<br>        ListNode next = <span class="hljs-keyword">null</span>;<br>        ListNode pre = <span class="hljs-keyword">null</span>;<br>        <span class="hljs-keyword">while</span>(a!=b)&#123;<br>            next = a.next;<br>            a.next = pre;<br>            pre = a;<br>            a = next;<br>        &#125;<br>        <span class="hljs-keyword">return</span> pre;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Algorithm</category>
+        <category>递归</category>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>markdown语法以及Typora使用(高级)</title>
     <url>/posts/54024/</url>
     <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1" alt="Markdwon"></p>
@@ -3766,110 +3766,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>vscode C/C++头文件问题</title>
-    <url>/posts/55983/</url>
-    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
-<span id="more"></span>
-<h1>头文件问题</h1>
-<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
-<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
-<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
-<div class="note note-primary">
-            <p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
-          </div>
-<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
-<div class="note note-primary">
-            <p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
-          </div>
-<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
-<p>我想这个便不需要多加说明，这边只给定一个格式</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> __ABC_H__ <span class="hljs-comment">//包拯不重复</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __ABC_H__ <span class="hljs-comment">//定义</span></span><br>	...<br>    ...<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">//和ifndef配套使用</span></span><br></code></pre></td></tr></table></figure>
-<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
-<div class="note note-primary">
-            <p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
-          </div>
-<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
-<p>框内一共有三个内容</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-string">&quot;args&quot;</span>: [<br>	<span class="hljs-string">&quot;-g&quot;</span>,<br>	<span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,<br>    <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="hljs-comment">// 头文件的实现文件所在路径</span><br>    <span class="hljs-string">&quot;-I&quot;</span>,<br>    <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="hljs-comment">// 头文件所在路径</span><br>    <span class="hljs-string">&quot;-o&quot;</span>,<br>    <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><br>],<br></code></pre></td></tr></table></figure>
-<div class="note note-info">
-            <p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p><p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
-          </div>
-<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
-<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>;<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
-<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;linear_list_test_impl.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;I&#x27;m best!%d\n&quot;</span>, x);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;We&#x27;re best!%d\n&quot;</span>, x);<br>&#125;<br></code></pre></td></tr></table></figure>
-<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;linear_list_test_impl.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    x = <span class="hljs-number">1024</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;test函数内部 x=%d\n&quot;</span>, x);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> x = <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;调用test前 x=%d\n&quot;</span>, x);<br>    test(x);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;调用test后 x=%d\n&quot;</span>, x);<br>    test_1(x);<br>    test_2(x);<br>    system(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h1>vscode配置文件</h1>
-<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;configurations&quot;</span>: [&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;MinGW64&quot;</span>,<br>        <span class="hljs-attr">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span>,<br>        <span class="hljs-attr">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;cStandard&quot;</span>: <span class="hljs-string">&quot;c11&quot;</span>,<br>        <span class="hljs-attr">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++17&quot;</span>,<br>        <span class="hljs-attr">&quot;includePath&quot;</span>: [<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span><br>        ]<br>    &#125;,&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;MinGW86&quot;</span>,<br>        <span class="hljs-attr">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span>,<br>        <span class="hljs-attr">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;cStandard&quot;</span>: <span class="hljs-string">&quot;c11&quot;</span>,<br>        <span class="hljs-attr">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++17&quot;</span>,<br>        <span class="hljs-attr">&quot;includePath&quot;</span>: [<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span><br>        ]<br>    &#125;],<br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-number">4</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-comment">// 使用 IntelliSense 了解相关属性。 </span><br>    <span class="hljs-comment">// 悬停以查看现有属性的描述。</span><br>    <span class="hljs-comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span><br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,<br>    <span class="hljs-attr">&quot;configurations&quot;</span>: [&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>,<br>        <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>        <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [],<br>        <span class="hljs-attr">&quot;stopAtEntry&quot;</span>: <span class="hljs-literal">false</span>,<br>        <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>        <span class="hljs-attr">&quot;environment&quot;</span>: [],<br>        <span class="hljs-attr">&quot;externalConsole&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,<br>        <span class="hljs-attr">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;setupCommands&quot;</span>: [&#123;<br>            <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;为 gdb 启用整齐打印&quot;</span>,<br>            <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,<br>            <span class="hljs-attr">&quot;ignoreFailures&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;],<br>        <span class="hljs-attr">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;gcc&quot;</span><br>    &#125;,&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>,<br>        <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>        <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [],<br>        <span class="hljs-attr">&quot;stopAtEntry&quot;</span>: <span class="hljs-literal">false</span>,<br>        <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>        <span class="hljs-attr">&quot;environment&quot;</span>: [],<br>        <span class="hljs-attr">&quot;externalConsole&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,<br>        <span class="hljs-attr">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;setupCommands&quot;</span>: [&#123;<br>            <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;为 gdb 启用整齐打印&quot;</span>,<br>            <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,<br>            <span class="hljs-attr">&quot;ignoreFailures&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;],<br>        <span class="hljs-attr">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span><br>    &#125;]<br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;files.associations&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;ostream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;iomanip&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;iostream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;array&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;atomic&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;*.tcc&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cctype&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;clocale&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cmath&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdarg&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstddef&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdint&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdio&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdlib&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstring&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;ctime&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cwchar&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cwctype&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;deque&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;unordered_map&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;vector&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;exception&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;algorithm&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;memory&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;memory_resource&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;optional&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;string&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;string_view&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;system_error&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;tuple&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;type_traits&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;utility&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;fstream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;initializer_list&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;iosfwd&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;istream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;limits&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;new&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;sstream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;stdexcept&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;streambuf&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;typeinfo&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;tidl_alg_int.h&quot;</span>: <span class="hljs-string">&quot;c&quot;</span>,<br>        <span class="hljs-attr">&quot;test.h&quot;</span>: <span class="hljs-string">&quot;c&quot;</span>,<br>        <span class="hljs-attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="hljs-string">&quot;c&quot;</span><br>    &#125;,<br>    <span class="hljs-attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="hljs-string">&quot;Disabled&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;tasks&quot;</span>: [&#123;<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>        <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;gcc&quot;</span>,<br>        <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [<br>            <span class="hljs-string">&quot;-g&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,<br>            <span class="hljs-string">&quot;-I&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,<br>            <span class="hljs-string">&quot;-o&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;options&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin&quot;</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;problemMatcher&quot;</span>: [<br>            <span class="hljs-string">&quot;$gcc&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>            <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;presentation&quot;</span>:&#123;<br>            <span class="hljs-attr">&quot;echo&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>            <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;shared&quot;</span>,<br>            <span class="hljs-attr">&quot;showReuseMessage&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;clear&quot;</span>: <span class="hljs-literal">false</span><br>        &#125;<br>    &#125;,&#123;<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>        <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,<br>        <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [<br>            <span class="hljs-string">&quot;-g&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,<br>            <span class="hljs-string">&quot;-I&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,<br>            <span class="hljs-string">&quot;-o&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;options&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin&quot;</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;problemMatcher&quot;</span>: [<br>            <span class="hljs-string">&quot;$gcc&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>            <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;presentation&quot;</span>:&#123;<br>            <span class="hljs-attr">&quot;echo&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>            <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;shared&quot;</span>,<br>            <span class="hljs-attr">&quot;showReuseMessage&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;clear&quot;</span>: <span class="hljs-literal">false</span><br>        &#125;<br>    &#125;],<br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
-<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Error</category>
-        <category>Software</category>
-        <category>Cpp</category>
-        <category>Vscode</category>
-      </categories>
-      <tags>
-        <tag>Sundry</tag>
-        <tag>Vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>x的平方根</title>
-    <url>/posts/e0a96f5e/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" alt="x的平方根"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
-<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
-<p>废话少说，直接说想法。</p>
-<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
-$$
-\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
-$$
-基于此，就有以下代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>结果</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
-<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
-<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
-$$
-\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
-$$
-这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>结果</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
-<hr>
-<p>未完待续，关于牛顿迭代法</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Algorithm</category>
-        <category>二分法</category>
-        <category>暴力法</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>上楼梯</title>
     <url>/posts/f0ef69bc/</url>
     <content><![CDATA[<p><img src="https://ss0.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2588865287,1293565697&amp;fm=26&amp;gp=0.jpg" alt="上楼梯"></p>
@@ -3934,6 +3830,110 @@ $$
       </categories>
       <tags>
         <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>x的平方根</title>
+    <url>/posts/e0a96f5e/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" alt="x的平方根"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
+<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
+<p>废话少说，直接说想法。</p>
+<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
+$$
+\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
+$$
+基于此，就有以下代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
+<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
+<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
+$$
+\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
+$$
+这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
+<hr>
+<p>未完待续，关于牛顿迭代法</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>二分法</category>
+        <category>暴力法</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vscode C/C++头文件问题</title>
+    <url>/posts/55983/</url>
+    <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
+<span id="more"></span>
+<h1>头文件问题</h1>
+<p>vscode本质上只是一个文本编辑器，但是由于其插件的丰富性及其轻量化的特性，我更偏向使vscode写算法和学习c/c++语言，今天关于vscode引入自定义头文件出现了很多的问题，在此对正确的完整的做法进行一次记录</p>
+<h2 id="关于C-C-配置问题"><a class="header-anchor" href="#关于C-C-配置问题">¶</a>关于C/C++配置问题</h2>
+<p>网络上有很多的阐述，这里不多解释，也可以直接根据vscode官网文档进行编写配置文件。</p>
+<div class="note note-primary">
+            <p>不愿意麻烦的小伙伴文末有相关的文件以及网盘下载地址，直接过去下载即可</p>
+          </div>
+<h2 id="添加可编译的头文件配置"><a class="header-anchor" href="#添加可编译的头文件配置">¶</a>添加可编译的头文件配置</h2>
+<div class="note note-primary">
+            <p>我是用的是头文件只负责声明，声明的函数由实现文件进行实现</p>
+          </div>
+<h3 id="头文件的写法"><a class="header-anchor" href="#头文件的写法">¶</a>头文件的写法</h3>
+<p>我想这个便不需要多加说明，这边只给定一个格式</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> __ABC_H__ <span class="hljs-comment">//包拯不重复</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __ABC_H__ <span class="hljs-comment">//定义</span></span><br>	...<br>    ...<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span> <span class="hljs-comment">//和ifndef配套使用</span></span><br></code></pre></td></tr></table></figure>
+<h3 id="vscode-c-cpp-properties-json的更改"><a class="header-anchor" href="#vscode-c-cpp-properties-json的更改">¶</a>.vscode\c_cpp_properties.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181608431.png" alt="添加自定义includePath"></p>
+<div class="note note-primary">
+            <p>右侧方框内部的路径可以是绝对路径可以是相对路径。值得一提的是，<font color='red'>${workspaceFolder}</font>表示的是工作区文件夹，即为目前vscode中目前打开的文件夹。</p>
+          </div>
+<h3 id="vscode-tasks-json的更改"><a class="header-anchor" href="#vscode-tasks-json的更改">¶</a>.vscode\tasks.json的更改</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181629799.png" alt="添加args配置"></p>
+<p>框内一共有三个内容</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json"><span class="hljs-string">&quot;args&quot;</span>: [<br>	<span class="hljs-string">&quot;-g&quot;</span>,<br>	<span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,<br>    <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>, <span class="hljs-comment">// 头文件的实现文件所在路径</span><br>    <span class="hljs-string">&quot;-I&quot;</span>,<br>    <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>, <span class="hljs-comment">// 头文件所在路径</span><br>    <span class="hljs-string">&quot;-o&quot;</span>,<br>    <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><br>],<br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p><font color='red'>${fileDirname}</font>表示的是当前打开的文件所在的目录</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108181638044.png" alt="项目结构"></p><p>仍然存在的问题在于，当调用的头文件增加时，可能会有其他的未使用的头文件被编译，但是者相比写一个头文件的实现文件添加到编译路径显然要简便许多</p>
+          </div>
+<h2 id="头文件、实现文件、调用文件"><a class="header-anchor" href="#头文件、实现文件、调用文件">¶</a>头文件、实现文件、调用文件</h2>
+<h3 id="头文件"><a class="header-anchor" href="#头文件">¶</a>头文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">ifndef</span> __LINEAR_LIST_TEST_H__</span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> __LINEAR_LIST_TEST_H__</span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span>;<br><br><span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+<h3 id="实现文件"><a class="header-anchor" href="#实现文件">¶</a>实现文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;linear_list_test_impl.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;I&#x27;m best!%d\n&quot;</span>, x);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_2</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;We&#x27;re best!%d\n&quot;</span>, x);<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="调用文件"><a class="header-anchor" href="#调用文件">¶</a>调用文件</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&quot;linear_list_test_impl.h&quot;</span></span><br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span></span><br><span class="hljs-function"></span>&#123;<br>    x = <span class="hljs-number">1024</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;test函数内部 x=%d\n&quot;</span>, x);<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-keyword">int</span> x = <span class="hljs-number">1</span>;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;调用test前 x=%d\n&quot;</span>, x);<br>    test(x);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;调用test后 x=%d\n&quot;</span>, x);<br>    test_1(x);<br>    test_2(x);<br>    system(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h1>vscode配置文件</h1>
+<h2 id="vscode-c-cpp-properties-json"><a class="header-anchor" href="#vscode-c-cpp-properties-json">¶</a>.vscode\c_cpp_properties.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;configurations&quot;</span>: [&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;MinGW64&quot;</span>,<br>        <span class="hljs-attr">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span>,<br>        <span class="hljs-attr">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;cStandard&quot;</span>: <span class="hljs-string">&quot;c11&quot;</span>,<br>        <span class="hljs-attr">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++17&quot;</span>,<br>        <span class="hljs-attr">&quot;includePath&quot;</span>: [<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span><br>        ]<br>    &#125;,&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;MinGW86&quot;</span>,<br>        <span class="hljs-attr">&quot;intelliSenseMode&quot;</span>: <span class="hljs-string">&quot;gcc-x64&quot;</span>,<br>        <span class="hljs-attr">&quot;compilerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;cStandard&quot;</span>: <span class="hljs-string">&quot;c11&quot;</span>,<br>        <span class="hljs-attr">&quot;cppStandard&quot;</span>: <span class="hljs-string">&quot;c++17&quot;</span>,<br>        <span class="hljs-attr">&quot;includePath&quot;</span>: [<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;/include&quot;</span><br>        ]<br>    &#125;],<br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-number">4</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="vscode-launch-json"><a class="header-anchor" href="#vscode-launch-json">¶</a>.vscode\launch.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-comment">// 使用 IntelliSense 了解相关属性。 </span><br>    <span class="hljs-comment">// 悬停以查看现有属性的描述。</span><br>    <span class="hljs-comment">// 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387</span><br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;0.2.0&quot;</span>,<br>    <span class="hljs-attr">&quot;configurations&quot;</span>: [&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;gcc.exe - 生成和调试活动文件&quot;</span>,<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>,<br>        <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>        <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [],<br>        <span class="hljs-attr">&quot;stopAtEntry&quot;</span>: <span class="hljs-literal">false</span>,<br>        <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>        <span class="hljs-attr">&quot;environment&quot;</span>: [],<br>        <span class="hljs-attr">&quot;externalConsole&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,<br>        <span class="hljs-attr">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;setupCommands&quot;</span>: [&#123;<br>            <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;为 gdb 启用整齐打印&quot;</span>,<br>            <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,<br>            <span class="hljs-attr">&quot;ignoreFailures&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;],<br>        <span class="hljs-attr">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;gcc&quot;</span><br>    &#125;,&#123;<br>        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;g++.exe - 生成和调试活动文件&quot;</span>,<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;cppdbg&quot;</span>,<br>        <span class="hljs-attr">&quot;request&quot;</span>: <span class="hljs-string">&quot;launch&quot;</span>,<br>        <span class="hljs-attr">&quot;program&quot;</span>: <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [],<br>        <span class="hljs-attr">&quot;stopAtEntry&quot;</span>: <span class="hljs-literal">false</span>,<br>        <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;&quot;</span>,<br>        <span class="hljs-attr">&quot;environment&quot;</span>: [],<br>        <span class="hljs-attr">&quot;externalConsole&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;MIMode&quot;</span>: <span class="hljs-string">&quot;gdb&quot;</span>,<br>        <span class="hljs-attr">&quot;miDebuggerPath&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gdb.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;setupCommands&quot;</span>: [&#123;<br>            <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;为 gdb 启用整齐打印&quot;</span>,<br>            <span class="hljs-attr">&quot;text&quot;</span>: <span class="hljs-string">&quot;-enable-pretty-printing&quot;</span>,<br>            <span class="hljs-attr">&quot;ignoreFailures&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;],<br>        <span class="hljs-attr">&quot;preLaunchTask&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span><br>    &#125;]<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="vscode-settings-json"><a class="header-anchor" href="#vscode-settings-json">¶</a>.vscode\settings.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;files.associations&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;ostream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;iomanip&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;iostream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;array&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;atomic&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;*.tcc&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cctype&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;clocale&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cmath&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdarg&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstddef&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdint&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdio&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstdlib&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cstring&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;ctime&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cwchar&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;cwctype&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;deque&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;unordered_map&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;vector&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;exception&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;algorithm&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;memory&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;memory_resource&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;optional&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;string&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;string_view&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;system_error&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;tuple&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;type_traits&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;utility&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;fstream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;initializer_list&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;iosfwd&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;istream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;limits&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;new&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;sstream&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;stdexcept&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;streambuf&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;typeinfo&quot;</span>: <span class="hljs-string">&quot;cpp&quot;</span>,<br>        <span class="hljs-attr">&quot;tidl_alg_int.h&quot;</span>: <span class="hljs-string">&quot;c&quot;</span>,<br>        <span class="hljs-attr">&quot;test.h&quot;</span>: <span class="hljs-string">&quot;c&quot;</span>,<br>        <span class="hljs-attr">&quot;linear_list_test_impl.h&quot;</span>: <span class="hljs-string">&quot;c&quot;</span><br>    &#125;,<br>    <span class="hljs-attr">&quot;C_Cpp.errorSquiggles&quot;</span>: <span class="hljs-string">&quot;Disabled&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="vscode-tasks-json"><a class="header-anchor" href="#vscode-tasks-json">¶</a>.vscode\tasks.json</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;tasks&quot;</span>: [&#123;<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>        <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;gcc&quot;</span>,<br>        <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\gcc.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [<br>            <span class="hljs-string">&quot;-g&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\lib\\*.c&quot;</span>,<br>            <span class="hljs-string">&quot;-I&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,<br>            <span class="hljs-string">&quot;-o&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;options&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin&quot;</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;problemMatcher&quot;</span>: [<br>            <span class="hljs-string">&quot;$gcc&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>            <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;presentation&quot;</span>:&#123;<br>            <span class="hljs-attr">&quot;echo&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>            <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;shared&quot;</span>,<br>            <span class="hljs-attr">&quot;showReuseMessage&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;clear&quot;</span>: <span class="hljs-literal">false</span><br>        &#125;<br>    &#125;,&#123;<br>        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;shell&quot;</span>,<br>        <span class="hljs-attr">&quot;label&quot;</span>: <span class="hljs-string">&quot;g++&quot;</span>,<br>        <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin\\g++.exe&quot;</span>,<br>        <span class="hljs-attr">&quot;args&quot;</span>: [<br>            <span class="hljs-string">&quot;-g&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;file&#125;&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\lib\\*.cpp&quot;</span>,<br>            <span class="hljs-string">&quot;-I&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;workspaceFolder&#125;\\include&quot;</span>,<br>            <span class="hljs-string">&quot;-o&quot;</span>,<br>            <span class="hljs-string">&quot;$&#123;fileDirname&#125;\\build\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;options&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;cwd&quot;</span>: <span class="hljs-string">&quot;D:\\mingw64\\bin&quot;</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;problemMatcher&quot;</span>: [<br>            <span class="hljs-string">&quot;$gcc&quot;</span><br>        ],<br>        <span class="hljs-attr">&quot;group&quot;</span>: &#123;<br>            <span class="hljs-attr">&quot;kind&quot;</span>: <span class="hljs-string">&quot;build&quot;</span>,<br>            <span class="hljs-attr">&quot;isDefault&quot;</span>: <span class="hljs-literal">true</span><br>        &#125;,<br>        <span class="hljs-attr">&quot;presentation&quot;</span>:&#123;<br>            <span class="hljs-attr">&quot;echo&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;reveal&quot;</span>: <span class="hljs-string">&quot;always&quot;</span>,<br>            <span class="hljs-attr">&quot;focus&quot;</span>: <span class="hljs-literal">false</span>,<br>            <span class="hljs-attr">&quot;panel&quot;</span>: <span class="hljs-string">&quot;shared&quot;</span>,<br>            <span class="hljs-attr">&quot;showReuseMessage&quot;</span>: <span class="hljs-literal">true</span>,<br>            <span class="hljs-attr">&quot;clear&quot;</span>: <span class="hljs-literal">false</span><br>        &#125;<br>    &#125;],<br>    <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;2.0.0&quot;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="相关配置文件网盘下载地址"><a class="header-anchor" href="#相关配置文件网盘下载地址">¶</a>相关配置文件网盘下载地址</h2>
+<p><a href="https://pan.baidu.com/s/1BmGztNbEsKCRobqebeop1w"><font color='cornflowerblue'>网盘链接</font></a>：提取码：scil</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Error</category>
+        <category>Software</category>
+        <category>Cpp</category>
+        <category>Vscode</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>Vscode</tag>
       </tags>
   </entry>
   <entry>
@@ -4069,6 +4069,46 @@ $$
       </tags>
   </entry>
   <entry>
+    <title>数组中第k个最大元素</title>
+    <url>/posts/32261d40/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" alt="结果"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目初始分析"><a class="header-anchor" href="#题目初始分析">¶</a>题目初始分析</h4>
+<p>寻找第k个最大元素，我第一时间想到的就是对数组进行排序，递增则为nums[nums.length-k]，递减则为nums[k-1]。</p>
+<p>这样的话，其实根本不需要对数组进行全排序，按照冒泡排序的基本思想，每次冒牌排序(假设我按照增序排列)，都可以选出来最大的数排在数组的最后一个位置。而且下一次冒泡排序就不用遍历整个数组，因为没有必要对最大的数和前面的数，因为这种比较是无效的，相当于我们的比较范围是在伴随着冒泡排序的进行不断缩小的。</p>
+<div class="note note-primary">
+            <p>需要注意的是，题目当中并没有要求你排除重复项，例如[4,5,5,6]，k=4，那么第k大的数就是4</p><p>如果需要排除重复项，那么上述的算法就需要更改了</p>
+          </div>
+<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;nums.length-<span class="hljs-number">1</span>-i;j++)&#123;<br>                <span class="hljs-keyword">if</span>(nums[j]&gt;nums[j+<span class="hljs-number">1</span>])&#123;<br>                    nums[j] +=nums[j+<span class="hljs-number">1</span>];<br>                    nums[j+<span class="hljs-number">1</span>] = nums[j]-nums[j+<span class="hljs-number">1</span>];<br>                    nums[j] -= nums[j+<span class="hljs-number">1</span>];<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[nums.length-k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="时空复杂度"><a class="header-anchor" href="#时空复杂度">¶</a>时空复杂度</h4>
+<p>时间复杂度：考虑到最坏情况下的算法，时间复杂度应该为O(n(n+1)/2)=O(n<sup>2</sup>)</p>
+<p>空间复杂度：O(1)，直接对数组进行的原地排序</p>
+<h4 id="力扣结果"><a class="header-anchor" href="#力扣结果">¶</a>力扣结果</h4>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051253595.png" alt="力扣通过结果"></p>
+<p>这样的话，按照我个人的分析，时间消耗会很大，空间消耗由于我没有引入太多的其他变量，直接使用加法处理的两数交换。执行时间太长了。我还在想一个时间消耗比较小的方法。</p>
+<h4 id="第二种解法"><a class="header-anchor" href="#第二种解法">¶</a>第二种解法</h4>
+<p>对于Java编程语言来说，其Array类中封装了sort方法，而且此sort方法采用了快速排序的方法，时间复杂度比冒泡排序小的多。</p>
+<p>时间复杂度：O(nlogn)</p>
+<p>空间复杂度：O(logn)</p>
+<p>空间消耗主要是因为sort方法使用了栈，栈的最大高度是logn</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        Arrays.sort(nums);<br>        <span class="hljs-keyword">return</span> nums[nums.length - k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" alt="结果"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>Data Structure</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
+        <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多版本java安装与更换</title>
     <url>/posts/26428/</url>
     <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.57RW8_Q_6IjmGeqg2ss8OgHaEo?pid=ImgDet&amp;rs=1" alt="Java"></p>
@@ -4139,46 +4179,6 @@ $$
       </categories>
       <tags>
         <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数组中第k个最大元素</title>
-    <url>/posts/32261d40/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" alt="结果"></p>
-<span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目初始分析"><a class="header-anchor" href="#题目初始分析">¶</a>题目初始分析</h4>
-<p>寻找第k个最大元素，我第一时间想到的就是对数组进行排序，递增则为nums[nums.length-k]，递减则为nums[k-1]。</p>
-<p>这样的话，其实根本不需要对数组进行全排序，按照冒泡排序的基本思想，每次冒牌排序(假设我按照增序排列)，都可以选出来最大的数排在数组的最后一个位置。而且下一次冒泡排序就不用遍历整个数组，因为没有必要对最大的数和前面的数，因为这种比较是无效的，相当于我们的比较范围是在伴随着冒泡排序的进行不断缩小的。</p>
-<div class="note note-primary">
-            <p>需要注意的是，题目当中并没有要求你排除重复项，例如[4,5,5,6]，k=4，那么第k大的数就是4</p><p>如果需要排除重复项，那么上述的算法就需要更改了</p>
-          </div>
-<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;nums.length-<span class="hljs-number">1</span>-i;j++)&#123;<br>                <span class="hljs-keyword">if</span>(nums[j]&gt;nums[j+<span class="hljs-number">1</span>])&#123;<br>                    nums[j] +=nums[j+<span class="hljs-number">1</span>];<br>                    nums[j+<span class="hljs-number">1</span>] = nums[j]-nums[j+<span class="hljs-number">1</span>];<br>                    nums[j] -= nums[j+<span class="hljs-number">1</span>];<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[nums.length-k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="时空复杂度"><a class="header-anchor" href="#时空复杂度">¶</a>时空复杂度</h4>
-<p>时间复杂度：考虑到最坏情况下的算法，时间复杂度应该为O(n(n+1)/2)=O(n<sup>2</sup>)</p>
-<p>空间复杂度：O(1)，直接对数组进行的原地排序</p>
-<h4 id="力扣结果"><a class="header-anchor" href="#力扣结果">¶</a>力扣结果</h4>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051253595.png" alt="力扣通过结果"></p>
-<p>这样的话，按照我个人的分析，时间消耗会很大，空间消耗由于我没有引入太多的其他变量，直接使用加法处理的两数交换。执行时间太长了。我还在想一个时间消耗比较小的方法。</p>
-<h4 id="第二种解法"><a class="header-anchor" href="#第二种解法">¶</a>第二种解法</h4>
-<p>对于Java编程语言来说，其Array类中封装了sort方法，而且此sort方法采用了快速排序的方法，时间复杂度比冒泡排序小的多。</p>
-<p>时间复杂度：O(nlogn)</p>
-<p>空间复杂度：O(logn)</p>
-<p>空间消耗主要是因为sort方法使用了栈，栈的最大高度是logn</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        Arrays.sort(nums);<br>        <span class="hljs-keyword">return</span> nums[nums.length - k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" alt="结果"></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Java</category>
-        <category>Algorithm</category>
-        <category>Data Structure</category>
-      </categories>
-      <tags>
-        <tag>Daily</tag>
-        <tag>Data Structure</tag>
       </tags>
   </entry>
   <entry>
