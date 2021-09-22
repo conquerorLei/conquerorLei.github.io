@@ -40,6 +40,8 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
       <category>Base</category>
@@ -68,6 +70,8 @@
     
     
     <categories>
+      
+      <category>Programming Language</category>
       
       <category>Java</category>
       
@@ -417,9 +421,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>二分法</category>
       
@@ -477,9 +485,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>递归</category>
       
@@ -626,6 +638,8 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
       <category>Base</category>
@@ -653,7 +667,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
+      <category>Java</category>
+      
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>递归</category>
       
@@ -684,6 +704,8 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
       <category>Base</category>
@@ -711,9 +733,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>Data Structure</category>
       
@@ -742,11 +768,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
-      <category>Apply</category>
-      
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>Data Structure</category>
       
@@ -775,7 +803,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
+      <category>Java</category>
+      
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>Data Structure</category>
       
@@ -804,7 +838,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
+      <category>Java</category>
+      
       <category>Algorithm</category>
+      
+      <category>Apply</category>
       
       <category>Data Structure</category>
       
@@ -864,6 +904,8 @@
       
       <category>Error</category>
       
+      <category>Programming Language</category>
+      
       <category>Cpp</category>
       
     </categories>
@@ -871,7 +913,7 @@
     
     <tags>
       
-      <tag>Cpp</tag>
+      <tag>CPP</tag>
       
     </tags>
     
@@ -889,7 +931,11 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Algorithm</category>
+      
+      <category>Cpp</category>
       
       <category>Data Structure</category>
       
@@ -901,6 +947,8 @@
       <tag>Daily</tag>
       
       <tag>Data Structure</tag>
+      
+      <tag>CPP</tag>
       
     </tags>
     
@@ -922,7 +970,11 @@
       
       <category>Error</category>
       
+      <category>Programming Language</category>
+      
       <category>Software</category>
+      
+      <category>CPP</category>
       
       <category>Cpp</category>
       
@@ -959,6 +1011,8 @@
       
       <category>Hexo</category>
       
+      <category>Software</category>
+      
       <category>Git</category>
       
     </categories>
@@ -985,6 +1039,12 @@
     
     
     <categories>
+      
+      <category>Programming Language</category>
+      
+      <category>Java</category>
+      
+      <category>Apply</category>
       
       <category>FrameWork</category>
       
@@ -1019,7 +1079,11 @@
       
       <category>Error</category>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
+      
+      <category>Base</category>
       
     </categories>
     
@@ -1048,9 +1112,19 @@
       
       <category>Error</category>
       
+      <category>Programming Language</category>
+      
       <category>Linux</category>
       
+      <category>Java</category>
+      
       <category>运维</category>
+      
+      <category>Apply</category>
+      
+      <category>FrameWork</category>
+      
+      <category>SpringBoot</category>
       
     </categories>
     
@@ -1076,6 +1150,8 @@
     
     
     <categories>
+      
+      <category>Software</category>
       
       <category>Git</category>
       
@@ -1251,18 +1327,20 @@
       
       <category>Error</category>
       
+      <category>Programming Language</category>
+      
       <category>Python</category>
       
-      <category>pip</category>
+      <category>PIP</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>pip</tag>
+      <tag>PIP</tag>
       
-      <tag>python</tag>
+      <tag>Python</tag>
       
     </tags>
     
@@ -1280,11 +1358,13 @@
     
     <categories>
       
+      <category>Programming Language</category>
+      
       <category>Java</category>
       
-      <category>FrameWork</category>
-      
       <category>Servlet</category>
+      
+      <category>FrameWork</category>
       
       <category>JQuery</category>
       
@@ -1316,6 +1396,8 @@
     <categories>
       
       <category>Error</category>
+      
+      <category>Software</category>
       
       <category>Git</category>
       
@@ -1366,7 +1448,7 @@
     <link href="/posts/63081/"/>
     <url>/posts/63081/</url>
     
-    <content type="html"><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p><span id="more"></span><h1>前言</h1><p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p><p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p><div class="note note-success">            <blockquote><p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p></blockquote>          </div><h1>同级分类</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">注意方括号</span><br><span class="hljs-attr">categories:</span><br><span class="hljs-bullet">-</span> [<span class="hljs-string">Java</span>]<br><span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>]<br></code></pre></td></tr></table></figure><h1>多级分类</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">默认情况</span><br><span class="hljs-attr">categories:</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">框架</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">Spring</span><br><br><span class="hljs-string">//</span> <span class="hljs-string">另一种写法</span><br><span class="hljs-attr">categories:</span><br><span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>,<span class="hljs-string">Spring</span>]<br></code></pre></td></tr></table></figure><h1>总结</h1><p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    <content type="html"><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p><span id="more"></span><h1>前言</h1><p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p><p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p><div class="note note-success">            <blockquote><p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p></blockquote>          </div><h1>同级分类</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">注意方括号</span><br><span class="hljs-attr">categories:</span><br><span class="hljs-bullet">-</span> [<span class="hljs-string">Java</span>]<br><span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>]<br></code></pre></td></tr></table></figure><h1>多级分类</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">默认情况</span><br><span class="hljs-attr">categories:</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">框架</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">Spring</span><br><br><span class="hljs-string">//</span> <span class="hljs-string">另一种写法</span><br><span class="hljs-attr">categories:</span><br><span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>,<span class="hljs-string">Spring</span>]<br></code></pre></td></tr></table></figure><h1>更多级目录</h1><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">categories:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Programming</span> <span class="hljs-string">Language</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">Java</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">Base</span><br></code></pre></td></tr></table></figure><h1>总结</h1><p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
     
     
     <categories>
