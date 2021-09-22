@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      524 字
+      630 字
     </span>
   
 
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -246,7 +246,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-22 10:35
+                  本文最后更新于：2021-09-22 11:10
                 
               </p>
             
@@ -289,6 +289,13 @@
 <ol start="3">
 <li>直接修改就可以了，记得保存</li>
 </ol>
+<p>记得清理以下之前的重复文件夹，删除一下GitHub的远程文件夹，防止会出现无用界面的情况，就比如，这种情况</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221058824.png" srcset="/img/loading.gif" lazyload alt="文件夹重复，且Ajax是无效文件夹"></p>
+<p>来，又是一顿猛如虎的操作😎</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd .deploy_git<br>git pull<br>ls<br>git rm -rf --cached categories<br>git rm -rf --cached tags<br>git commit -m &#x27;delete the categories and tags&#x27;<br>git push<br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <p>不要怂，本地的categories和tags都不会删除，只会删除远程仓库里面的两个文件夹。</p>
+          </div>
 <p>修改之后重新部署，就没有问题啦😉</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
