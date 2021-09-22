@@ -253,18 +253,23 @@
             <div class="markdown-body">
               <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708233232.png" srcset="/img/loading.gif" lazyload alt="Gvim"></p>
 <span id="more"></span>
-<h1 id="简单描述"><a href="#简单描述" class="headerlink" title="简单描述"></a>简单描述</h1><p>描述就算了，直接看我目前的gvim界面</p>
+<h1>简单描述</h1>
+<p>描述就算了，直接看我目前的gvim界面</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210709005447.png" srcset="/img/loading.gif" lazyload alt="当前gvim界面"></p>
-<h1 id="vim使用说明"><a href="#vim使用说明" class="headerlink" title="vim使用说明"></a>vim使用说明</h1><h2 id="使用Vim打开文件"><a href="#使用Vim打开文件" class="headerlink" title="使用Vim打开文件"></a>使用Vim打开文件</h2><p>win+R打开运行，在运行中输入cmd打开命令提示符，在命令提示符中输入一下代码</p>
+<h1>vim使用说明</h1>
+<h2 id="使用Vim打开文件"><a class="header-anchor" href="#使用Vim打开文件">¶</a>使用Vim打开文件</h2>
+<p>win+R打开运行，在运行中输入cmd打开命令提示符，在命令提示符中输入一下代码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim $&#123;FilePath&#125;<br></code></pre></td></tr></table></figure>
 <div class="note note-success">
-            <blockquote><p>这边需要主要的时候，以下代码是有<font color='red'>错误</font>的:open_mouth:（直呼好家伙）</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210630145458519.png" srcset="/img/loading.gif" lazyload alt="cmd-Vim打开文件"></p><p>原因是路径内部有<font color='cornflowerblue'>空格</font>，无法正确地寻址<code>IDEA workstation</code></p></blockquote>
+            <blockquote><p>这边需要主要的时候，以下代码是有<font color='red'>错误</font>的😮（直呼好家伙）</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210630145458519.png" srcset="/img/loading.gif" lazyload alt="cmd-Vim打开文件"></p><p>原因是路径内部有<font color='cornflowerblue'>空格</font>，无法正确地寻址<code>IDEA workstation</code></p></blockquote>
           </div>
 <p><strong>正确实例</strong></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/%E6%AD%A3%E7%A1%AE%E7%A4%BA%E4%BE%8B.png" srcset="/img/loading.gif" lazyload alt="正确示例"></p>
-<h2 id="四种模式"><a href="#四种模式" class="headerlink" title="四种模式"></a>四种模式</h2><p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）</p>
-<h3 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a>普通模式</h3><p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
-<h4 id="光标移动命令"><a href="#光标移动命令" class="headerlink" title="光标移动命令"></a>光标移动命令</h4><div class="table-container">
+<h2 id="四种模式"><a class="header-anchor" href="#四种模式">¶</a>四种模式</h2>
+<p>vim 共分为四种模式，分别是普通模式（Normal mode）、底行模式(Last line mode)、输入模式（Insert mode）和可视化模式（Visual mode）</p>
+<h3 id="普通模式"><a class="header-anchor" href="#普通模式">¶</a>普通模式</h3>
+<p>这个模式一般用于浏览代码与进入底行模式输入命令，使用快捷键修改文章</p>
+<h4 id="光标移动命令"><a class="header-anchor" href="#光标移动命令">¶</a>光标移动命令</h4>
 <table>
 <thead>
 <tr>
@@ -291,11 +296,9 @@
 </tr>
 </tbody>
 </table>
-</div>
 <div class="note note-primary">
             <blockquote><p>很平常使用的编辑器光标移动规则差不多</p></blockquote>
           </div>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -358,8 +361,7 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="文档查询与替换命令"><a href="#文档查询与替换命令" class="headerlink" title="文档查询与替换命令"></a>文档查询与替换命令</h4><div class="table-container">
+<h4 id="文档查询与替换命令"><a class="header-anchor" href="#文档查询与替换命令">¶</a>文档查询与替换命令</h4>
 <table>
 <thead>
 <tr>
@@ -398,8 +400,7 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h4 id="增删改命令"><a href="#增删改命令" class="headerlink" title="增删改命令"></a>增删改命令</h4><div class="table-container">
+<h4 id="增删改命令"><a class="header-anchor" href="#增删改命令">¶</a>增删改命令</h4>
 <table>
 <thead>
 <tr>
@@ -490,10 +491,10 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="底行模式"><a href="#底行模式" class="headerlink" title="底行模式"></a>底行模式</h3><p>在Vim下面有一行，这一行是让你输入命令的，想要输入命令必须使用<code>\</code>或者<code>:</code>触发，<code>\</code>是用来查找内容的，严格说属于Normal模式，所以其实只有<code>:</code>开头的命令</p>
+<h3 id="底行模式"><a class="header-anchor" href="#底行模式">¶</a>底行模式</h3>
+<p>在Vim下面有一行，这一行是让你输入命令的，想要输入命令必须使用<code>\</code>或者<code>:</code>触发，<code>\</code>是用来查找内容的，严格说属于Normal模式，所以其实只有<code>:</code>开头的命令</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210701234633933.png" srcset="/img/loading.gif" lazyload alt="Vim Gui结构1"></p>
-<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><div class="table-container">
+<h4 id="常用命令"><a class="header-anchor" href="#常用命令">¶</a>常用命令</h4>
 <table>
 <thead>
 <tr>
@@ -540,12 +541,11 @@
 </tr>
 </tbody>
 </table>
-</div>
 <div class="note note-primary">
             <p>命令后加感叹号<font color='red'>！</font>一般情况下都表示强制执行</p>
           </div>
-<h2 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h2><p>insert模式就是输入模式，通过i，a，r，o触发，在普通模式下点击上述按键就可以触发，不同的字母表示的含义不同</p>
-<div class="table-container">
+<h2 id="输入模式"><a class="header-anchor" href="#输入模式">¶</a>输入模式</h2>
+<p>insert模式就是输入模式，通过i，a，r，o触发，在普通模式下点击上述按键就可以触发，不同的字母表示的含义不同</p>
 <table>
 <thead>
 <tr>
@@ -572,74 +572,115 @@
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="可视化模式"><a href="#可视化模式" class="headerlink" title="可视化模式"></a>可视化模式</h2><p>ctrl+v可进入可视化模式</p>
+<h2 id="可视化模式"><a class="header-anchor" href="#可视化模式">¶</a>可视化模式</h2>
+<p>ctrl+v可进入可视化模式</p>
 <p>visual模式下的最有用的是批量注释和取消注释</p>
-<h3 id="批量注释"><a href="#批量注释" class="headerlink" title="批量注释"></a>批量注释</h3><ol>
-<li><p>在普通模式下使用Ctrl+V快捷键进入可视化模式</p>
+<h3 id="批量注释"><a class="header-anchor" href="#批量注释">¶</a>批量注释</h3>
+<ol>
+<li>
+<p>在普通模式下使用Ctrl+V快捷键进入可视化模式</p>
 </li>
-<li><p>使用上下方向键选择要进行注释的行</p>
+<li>
+<p>使用上下方向键选择要进行注释的行</p>
 </li>
-<li><p>使用快捷键Shift+I进入行首插入模式</p>
+<li>
+<p>使用快捷键Shift+I进入行首插入模式</p>
 </li>
-<li><p>在光标所在行行首插入该语言的注释符号例如<code>//</code>或者<code>#</code>或者<code>;</code></p>
+<li>
+<p>在光标所在行行首插入该语言的注释符号例如<code>//</code>或者<code>#</code>或者<code>;</code></p>
 </li>
-<li><p>点击两次esc，结束了</p>
+<li>
+<p>点击两次esc，结束了</p>
 </li>
 </ol>
-<h3 id="取消注释"><a href="#取消注释" class="headerlink" title="取消注释"></a>取消注释</h3><ol>
+<h3 id="取消注释"><a class="header-anchor" href="#取消注释">¶</a>取消注释</h3>
+<ol>
 <li>在普通模式下使用Ctrl+V快捷键进入可视化模式</li>
 <li>选择注释符号，<font color='red'>注意<code>//</code>选择两个</font></li>
 <li>按<code>d</code>删除</li>
 <li><code>esc</code>保存退出</li>
 </ol>
-<h1 id="vim配置"><a href="#vim配置" class="headerlink" title="vim配置"></a>vim配置</h1><p>vim配置一般都存储在用户根目录下的<code>_vimrc</code>，我们做的很多配置都是在这个文件里面编写</p>
-<h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><h3 id="设置快捷键打开-vimrc"><a href="#设置快捷键打开-vimrc" class="headerlink" title="设置快捷键打开_vimrc"></a>设置快捷键打开_vimrc</h3><p>由于经常需要打开<code>_vimrc</code>，所以这里为<code>_vimrc</code>设置快捷键，在普通模式下直接输入rc即可打开文件<code>_vimrc</code></p>
+<h1>vim配置</h1>
+<p>vim配置一般都存储在用户根目录下的<code>_vimrc</code>，我们做的很多配置都是在这个文件里面编写</p>
+<h2 id="基础配置"><a class="header-anchor" href="#基础配置">¶</a>基础配置</h2>
+<h3 id="设置快捷键打开-vimrc"><a class="header-anchor" href="#设置快捷键打开-vimrc">¶</a>设置快捷键打开_vimrc</h3>
+<p>由于经常需要打开<code>_vimrc</code>，所以这里为<code>_vimrc</code>设置快捷键，在普通模式下直接输入rc即可打开文件<code>_vimrc</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">map rc : e $HOME\_vimrc<br></code></pre></td></tr></table></figure>
-<h3 id="为Vim配置默认编码"><a href="#为Vim配置默认编码" class="headerlink" title="为Vim配置默认编码"></a>为Vim配置默认编码</h3><p>将编码设置为UTF-8，方便以后我们中文注释的Coding</p>
+<h3 id="为Vim配置默认编码"><a class="header-anchor" href="#为Vim配置默认编码">¶</a>为Vim配置默认编码</h3>
+<p>将编码设置为UTF-8，方便以后我们中文注释的Coding</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set encoding=utf-8<br></code></pre></td></tr></table></figure>
-<h3 id="为Vim配置代码高亮"><a href="#为Vim配置代码高亮" class="headerlink" title="为Vim配置代码高亮"></a>为Vim配置代码高亮</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">syntax on <br></code></pre></td></tr></table></figure>
-<h3 id="将gVim的语言修改为英文方便使用"><a href="#将gVim的语言修改为英文方便使用" class="headerlink" title="将gVim的语言修改为英文方便使用"></a>将gVim的语言修改为英文方便使用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">language C <br></code></pre></td></tr></table></figure>
-<h3 id="向下兼容vi"><a href="#向下兼容vi" class="headerlink" title="向下兼容vi"></a>向下兼容vi</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">set nocompatible<br>filetype on<br>filetype indent on<br>filetype plugin on<br></code></pre></td></tr></table></figure>
-<h3 id="在可视化下兼容鼠标"><a href="#在可视化下兼容鼠标" class="headerlink" title="在可视化下兼容鼠标"></a>在可视化下兼容鼠标</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set mouse=a<br></code></pre></td></tr></table></figure>
-<h3 id="将缩进设置为空格"><a href="#将缩进设置为空格" class="headerlink" title="将缩进设置为空格"></a>将缩进设置为空格</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">let &amp;t_ut=&#x27;&#x27;<br>set expandtab <br></code></pre></td></tr></table></figure>
-<h3 id="缩进配置为4空格"><a href="#缩进配置为4空格" class="headerlink" title="缩进配置为4空格"></a>缩进配置为4空格</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">set tabstop=4				<br>set shiftwidth=4<br>set softtabstop=4<br></code></pre></td></tr></table></figure>
-<h3 id="渲染Tab和空格"><a href="#渲染Tab和空格" class="headerlink" title="渲染Tab和空格"></a>渲染Tab和空格</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set listchars=tab:▸\ ,trail:▫	<br></code></pre></td></tr></table></figure>
-<h3 id="设置光标滚动停止行"><a href="#设置光标滚动停止行" class="headerlink" title="设置光标滚动停止行"></a>设置光标滚动停止行</h3><p>就是往下滚的时候除非到行尾，保证当前选中行至少是倒数第五行，向上同理</p>
+<h3 id="为Vim配置代码高亮"><a class="header-anchor" href="#为Vim配置代码高亮">¶</a>为Vim配置代码高亮</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">syntax on <br></code></pre></td></tr></table></figure>
+<h3 id="将gVim的语言修改为英文方便使用"><a class="header-anchor" href="#将gVim的语言修改为英文方便使用">¶</a>将gVim的语言修改为英文方便使用</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">language C <br></code></pre></td></tr></table></figure>
+<h3 id="向下兼容vi"><a class="header-anchor" href="#向下兼容vi">¶</a>向下兼容vi</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">set nocompatible<br>filetype on<br>filetype indent on<br>filetype plugin on<br></code></pre></td></tr></table></figure>
+<h3 id="在可视化下兼容鼠标"><a class="header-anchor" href="#在可视化下兼容鼠标">¶</a>在可视化下兼容鼠标</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set mouse=a<br></code></pre></td></tr></table></figure>
+<h3 id="将缩进设置为空格"><a class="header-anchor" href="#将缩进设置为空格">¶</a>将缩进设置为空格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">let &amp;t_ut=&#x27;&#x27;<br>set expandtab <br></code></pre></td></tr></table></figure>
+<h3 id="缩进配置为4空格"><a class="header-anchor" href="#缩进配置为4空格">¶</a>缩进配置为4空格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">set tabstop=4				<br>set shiftwidth=4<br>set softtabstop=4<br></code></pre></td></tr></table></figure>
+<h3 id="渲染Tab和空格"><a class="header-anchor" href="#渲染Tab和空格">¶</a>渲染Tab和空格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set listchars=tab:▸\ ,trail:▫	<br></code></pre></td></tr></table></figure>
+<h3 id="设置光标滚动停止行"><a class="header-anchor" href="#设置光标滚动停止行">¶</a>设置光标滚动停止行</h3>
+<p>就是往下滚的时候除非到行尾，保证当前选中行至少是倒数第五行，向上同理</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set scrolloff=5<br></code></pre></td></tr></table></figure>
-<h3 id="开启退格跨行退格"><a href="#开启退格跨行退格" class="headerlink" title="开启退格跨行退格"></a>开启退格跨行退格</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set backspace=indent,eol,start	<br></code></pre></td></tr></table></figure>
-<h3 id="开启代码折叠"><a href="#开启代码折叠" class="headerlink" title="开启代码折叠"></a>开启代码折叠</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set foldmethod=indent<br>set foldlevel=99<br></code></pre></td></tr></table></figure>
-<h3 id="在三种模式下采用三种光标-仅gVim"><a href="#在三种模式下采用三种光标-仅gVim" class="headerlink" title="在三种模式下采用三种光标[仅gVim]"></a>在三种模式下采用三种光标[仅gVim]</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">let &amp;t_SI = &quot;\&lt;Esc&gt;]50;CursorShape=1\x7&quot;<br>let &amp;t_SR = &quot;\&lt;Esc&gt;]50;CursorShape=2\x7&quot;<br>let &amp;t_EI = &quot;\&lt;Esc&gt;]50;CursorShape=0\x7&quot;<br></code></pre></td></tr></table></figure>
-<h3 id="永远保留命令行"><a href="#永远保留命令行" class="headerlink" title="永远保留命令行"></a>永远保留命令行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set laststatus=2<br></code></pre></td></tr></table></figure>
-<h3 id="自动缩进"><a href="#自动缩进" class="headerlink" title="自动缩进"></a>自动缩进</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set autoindent	<br></code></pre></td></tr></table></figure>
-<h3 id="设置字体-仅gVim"><a href="#设置字体-仅gVim" class="headerlink" title="设置字体[仅gVim]"></a>设置字体[仅gVim]</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set guifont=Powerline_Consolas:h12:cANSI:qDRAFT<br></code></pre></td></tr></table></figure>
-<h3 id="隐藏gVim的四个滚动条"><a href="#隐藏gVim的四个滚动条" class="headerlink" title="隐藏gVim的四个滚动条"></a>隐藏gVim的四个滚动条</h3><p>隐藏gVim的四个滚动条如果被激活了F2再次关闭</p>
+<h3 id="开启退格跨行退格"><a class="header-anchor" href="#开启退格跨行退格">¶</a>开启退格跨行退格</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set backspace=indent,eol,start	<br></code></pre></td></tr></table></figure>
+<h3 id="开启代码折叠"><a class="header-anchor" href="#开启代码折叠">¶</a>开启代码折叠</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set foldmethod=indent<br>set foldlevel=99<br></code></pre></td></tr></table></figure>
+<h3 id="在三种模式下采用三种光标-仅gVim"><a class="header-anchor" href="#在三种模式下采用三种光标-仅gVim">¶</a>在三种模式下采用三种光标[仅gVim]</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">let &amp;t_SI = &quot;\&lt;Esc&gt;]50;CursorShape=1\x7&quot;<br>let &amp;t_SR = &quot;\&lt;Esc&gt;]50;CursorShape=2\x7&quot;<br>let &amp;t_EI = &quot;\&lt;Esc&gt;]50;CursorShape=0\x7&quot;<br></code></pre></td></tr></table></figure>
+<h3 id="永远保留命令行"><a class="header-anchor" href="#永远保留命令行">¶</a>永远保留命令行</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set laststatus=2<br></code></pre></td></tr></table></figure>
+<h3 id="自动缩进"><a class="header-anchor" href="#自动缩进">¶</a>自动缩进</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set autoindent	<br></code></pre></td></tr></table></figure>
+<h3 id="设置字体-仅gVim"><a class="header-anchor" href="#设置字体-仅gVim">¶</a>设置字体[仅gVim]</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set guifont=Powerline_Consolas:h12:cANSI:qDRAFT<br></code></pre></td></tr></table></figure>
+<h3 id="隐藏gVim的四个滚动条"><a class="header-anchor" href="#隐藏gVim的四个滚动条">¶</a>隐藏gVim的四个滚动条</h3>
+<p>隐藏gVim的四个滚动条如果被激活了F2再次关闭</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">map &lt;silent&gt; &lt;F2&gt; :if &amp;guioptions =~# &#x27;T&#x27; &lt;Bar&gt;<br>		\set guioptions-=T &lt;Bar&gt;<br>		\set guioptions-=m &lt;bar&gt;<br>	\else &lt;Bar&gt;<br>		\set guioptions =T &lt;Bar&gt;<br>		\set guioptions =m &lt;Bar&gt;<br>	\endif&lt;CR&gt;<br>set guioptions-=m   &quot;Hide Menu<br>set guioptions-=T   &quot;Hide Tool-Bar<br>set guioptions-=r   &quot;hide right scroll<br>set guioptions-=b   &quot;hide buttom scoll<br>set guioptions-=L   &quot;hide left scroll<br></code></pre></td></tr></table></figure>
-<h3 id="设置相对行号"><a href="#设置相对行号" class="headerlink" title="设置相对行号"></a>设置相对行号</h3><p>尽管我觉得这个很不好用</p>
+<h3 id="设置相对行号"><a class="header-anchor" href="#设置相对行号">¶</a>设置相对行号</h3>
+<p>尽管我觉得这个很不好用</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set number			<br>set relativenumber<br></code></pre></td></tr></table></figure>
-<h3 id="突出显示选中的字符所在行列"><a href="#突出显示选中的字符所在行列" class="headerlink" title="突出显示选中的字符所在行列"></a>突出显示选中的字符所在行列</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set cursorline<br>set cursorcolumn<br></code></pre></td></tr></table></figure>
-<h3 id="自动换行"><a href="#自动换行" class="headerlink" title="自动换行"></a>自动换行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set wrap<br></code></pre></td></tr></table></figure>
-<h3 id="显示输入的命令-右下角"><a href="#显示输入的命令-右下角" class="headerlink" title="显示输入的命令(右下角)"></a>显示输入的命令(右下角)</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set showcmd<br></code></pre></td></tr></table></figure>
-<h3 id="输入命令的时候Tab显示提示"><a href="#输入命令的时候Tab显示提示" class="headerlink" title="输入命令的时候Tab显示提示"></a>输入命令的时候Tab显示提示</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set wildmenu<br></code></pre></td></tr></table></figure>
-<h3 id="智能查找-高亮显示结果"><a href="#智能查找-高亮显示结果" class="headerlink" title="智能查找 高亮显示结果"></a>智能查找 高亮显示结果</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">set hlsearch	<br>exec &quot;nohlsearch&quot;	<br>set incsearch	<br>set ignorecase		<br>set smartcase<br></code></pre></td></tr></table></figure>
-<h3 id="设置前缀建"><a href="#设置前缀建" class="headerlink" title="设置前缀建"></a>设置前缀建</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">let mapleader = &quot;\&lt;space&gt;&quot;<br></code></pre></td></tr></table></figure>
-<h3 id="复制粘贴到系统剪贴板"><a href="#复制粘贴到系统剪贴板" class="headerlink" title="复制粘贴到系统剪贴板"></a>复制粘贴到系统剪贴板</h3><p>注意的是我们的y和p只能在vim内部复制粘贴，想要复制粘贴到系统剪贴板需要用另一个命令，我把他换为<leader>+y,然后与y使用无异</p>
+<h3 id="突出显示选中的字符所在行列"><a class="header-anchor" href="#突出显示选中的字符所在行列">¶</a>突出显示选中的字符所在行列</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set cursorline<br>set cursorcolumn<br></code></pre></td></tr></table></figure>
+<h3 id="自动换行"><a class="header-anchor" href="#自动换行">¶</a>自动换行</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set wrap<br></code></pre></td></tr></table></figure>
+<h3 id="显示输入的命令-右下角"><a class="header-anchor" href="#显示输入的命令-右下角">¶</a>显示输入的命令(右下角)</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set showcmd<br></code></pre></td></tr></table></figure>
+<h3 id="输入命令的时候Tab显示提示"><a class="header-anchor" href="#输入命令的时候Tab显示提示">¶</a>输入命令的时候Tab显示提示</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set wildmenu<br></code></pre></td></tr></table></figure>
+<h3 id="智能查找-高亮显示结果"><a class="header-anchor" href="#智能查找-高亮显示结果">¶</a>智能查找 高亮显示结果</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">set hlsearch	<br>exec &quot;nohlsearch&quot;	<br>set incsearch	<br>set ignorecase		<br>set smartcase<br></code></pre></td></tr></table></figure>
+<h3 id="设置前缀建"><a class="header-anchor" href="#设置前缀建">¶</a>设置前缀建</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">let mapleader = &quot;\&lt;space&gt;&quot;<br></code></pre></td></tr></table></figure>
+<h3 id="复制粘贴到系统剪贴板"><a class="header-anchor" href="#复制粘贴到系统剪贴板">¶</a>复制粘贴到系统剪贴板</h3>
+<p>注意的是我们的y和p只能在vim内部复制粘贴，想要复制粘贴到系统剪贴板需要用另一个命令，我把他换为<leader>+y,然后与y使用无异</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">vnoremap &lt;Leader&gt;y &quot;+y<br>nmap &lt;Leader&gt;p &quot;+p<br></code></pre></td></tr></table></figure>
 <p>也就是说这边的应该为<code>空格+y</code>组合成复制粘贴到系统剪切板</p>
-<h3 id="快捷保存-刷新"><a href="#快捷保存-刷新" class="headerlink" title="快捷保存 刷新"></a>快捷保存 刷新</h3><p>这里用S保存但是要声明不适用于s</p>
+<h3 id="快捷保存-刷新"><a class="header-anchor" href="#快捷保存-刷新">¶</a>快捷保存 刷新</h3>
+<p>这里用S保存但是要声明不适用于s</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">map S : w&lt;CR&gt;<br>map s &lt;nop&gt;<br>map Q :q&lt;CR&gt;<br>map R :source $MYVIMRC&lt;CR&gt;<br>noremap &lt;LEADER&gt;&lt;CR&gt;  :nohlsearch&lt;CR&gt;<br></code></pre></td></tr></table></figure>
-<h3 id="设置分屏"><a href="#设置分屏" class="headerlink" title="设置分屏"></a>设置分屏</h3><p>Vim下可以将窗口分为很多部分方便多代码同时调试，可以向上左下右扩展，但是命令有点长，我们直接写快捷键,sp+h/j/k/l就是分别向四个方向扩展</p>
+<h3 id="设置分屏"><a class="header-anchor" href="#设置分屏">¶</a>设置分屏</h3>
+<p>Vim下可以将窗口分为很多部分方便多代码同时调试，可以向上左下右扩展，但是命令有点长，我们直接写快捷键,sp+h/j/k/l就是分别向四个方向扩展</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">map spl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;<br>map sph :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;<br>map spj :set splitbelow&lt;CR&gt;:split&lt;CR&gt;<br>map spk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;<br></code></pre></td></tr></table></figure>
 <p>然后我们需要将光标在多个窗口间移动，设置快捷键，Alt+h/j/k/l是向四个方向移动光标</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">map &lt;A-h&gt; &lt;C-w&gt;h<br>map &lt;A-j&gt; &lt;C-w&gt;j<br>map &lt;A-k&gt; &lt;C-w&gt;k<br>map &lt;A-l&gt; &lt;C-w&gt;l<br></code></pre></td></tr></table></figure>
-<p>调整所在窗口的大小,Alt++/_是水平+/-,Alt+-/=是垂直的,自己看下在键盘上的位置就知道了</p>
+<p>调整所在窗口的大小,Alt++/_是水平+/-,Alt±/=是垂直的,自己看下在键盘上的位置就知道了</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">map &lt;A-=&gt; :vertical resize+5 &lt;CR&gt; <br>map &lt;A--&gt; :vertical resize-5 &lt;CR&gt; <br>map &lt;A-+&gt; :resize+5 &lt;CR&gt; <br>map &lt;A-_&gt; :resize-5 &lt;CR&gt; <br></code></pre></td></tr></table></figure>
 <p>转置窗口，左右边上下，上下变左右</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">map sv &lt;C-w&gt;t&lt;c-W&gt;H<br>map sv &lt;C-w&gt;t&lt;c-W&gt;K<br></code></pre></td></tr></table></figure>
-<h3 id="增加删除tabe标签"><a href="#增加删除tabe标签" class="headerlink" title="增加删除tabe标签"></a>增加删除tabe标签</h3><p>Tabe是Vim中相当于浏览器的tab一样的东西<br>分别是增加2，切换2，移动*2</p>
+<h3 id="增加删除tabe标签"><a class="header-anchor" href="#增加删除tabe标签">¶</a>增加删除tabe标签</h3>
+<p>Tabe是Vim中相当于浏览器的tab一样的东西
+分别是增加2，切换2，移动*2</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">map tu :tabe&lt;CR&gt;<br>map tc :tabc&lt;CR&gt;<br>map tp :-tabnext&lt;CR&gt;<br>map tn :+tabnext&lt;CR&gt;<br>map tmn :-tabmove&lt;CR&gt;<br>map tmi :+tabmove&lt;CR&gt;<br></code></pre></td></tr></table></figure>
-<h3 id="插入模式移动光标"><a href="#插入模式移动光标" class="headerlink" title="插入模式移动光标"></a>插入模式移动光标</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">inoremap &lt;C-l&gt; &lt;Right&gt;<br></code></pre></td></tr></table></figure>
-<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><h3 id="插件管理器"><a href="#插件管理器" class="headerlink" title="插件管理器"></a>插件管理器</h3><p>我选择的是vim-plugin，使用git克隆插件管理器github仓库，仓库主页：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug">junegunn/vim-plug: Minimalist Vim Plugin Manager (github.com)</a>，克隆地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug.git">https://github.com/junegunn/vim-plug.git</a></p>
+<h3 id="插入模式移动光标"><a class="header-anchor" href="#插入模式移动光标">¶</a>插入模式移动光标</h3>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">inoremap &lt;C-l&gt; &lt;Right&gt;<br></code></pre></td></tr></table></figure>
+<h2 id="插件安装"><a class="header-anchor" href="#插件安装">¶</a>插件安装</h2>
+<h3 id="插件管理器"><a class="header-anchor" href="#插件管理器">¶</a>插件管理器</h3>
+<p>我选择的是vim-plugin，使用git克隆插件管理器github仓库，仓库主页：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug">junegunn/vim-plug: Minimalist Vim Plugin Manager (github.com)</a>，克隆地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug.git">https://github.com/junegunn/vim-plug.git</a></p>
 <p>下载好之后在里面找到以下文件(<code>plug.vim</code>)并放到vim安装目录下</p>
 <p>路径格式如下：[<font color='cornflowerblue'>vim安装根目录/vim82/autoload/</font>]</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708234718.png" srcset="/img/loading.gif" lazyload alt="我的plug.vim所在目录"></p>
