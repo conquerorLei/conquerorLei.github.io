@@ -1734,6 +1734,43 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>MySQL CRUD:插入查询结果</title>
+    <url>/posts/823de3f/</url>
+    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
+<span id="more"></span>
+<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<p><strong>删除表中的重复记录</strong></p>
+<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
+<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
+<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
+<ol>
+<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>重命名表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL CRUD:聚合函数</title>
     <url>/posts/beb41dd5/</url>
     <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
@@ -1860,43 +1897,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL CRUD:插入查询结果</title>
-    <url>/posts/823de3f/</url>
-    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
-<span id="more"></span>
-<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<p><strong>删除表中的重复记录</strong></p>
-<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
-<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
-<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
-<ol>
-<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<ol start="3">
-<li>重命名表</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL 子查询:in/exists,all/any/some的区别</title>
     <url>/posts/9e2a31fe/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" alt="MySQL子查询"></p>
@@ -1946,7 +1946,129 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
   <entry>
     <title>MySQL 索引特性</title>
     <url>/posts/1e97cd8b/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.91b99a70357665f48971c796e599157a?rik=IDRh0cLeH6DxPQ&amp;riu=http%3a%2f%2fpic.j9p.com%2fup%2f2019-12%2f15768396982262021.png&amp;ehk=nOgjvYkIPKo3pnXVFkXmUWOAW0g85KtbDRtne4Ax4sw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="MySQL"></p>
+<span id="more"></span>
+<p>索引：索引是一个<font color='orange'>单独</font>的、<font color='orange'>存储在磁盘上</font>的数据库结构，它们包含着对数据表里<font color='red'>所有记录</font>的<font color='orange'>引用指针</font>。使用索引用于快速找出在某个或多个列中有一特定值的行，<font color='cornflowerblue'>所有MySQL列类型都可以被索引</font>，对相关列使用索引是提高查询操作速度的最佳途径。</p>
+<p>显然，索引能够提高查询速度，但是，天底下没有免费的午餐，查询速度的提高是以插入、更新、删除的速度为代价的，这些写的操作，增加了大量的IO</p>
+<h3 id="基本原理"><a class="header-anchor" href="#基本原理">¶</a>基本原理</h3>
+<p>在没有添加索引时，使用select查询需要对整表进行扫描，时间复杂度为O(n)；添加索引后，索引会形成一棵二叉排序树，二叉排序树的查找时间复杂度为O(log<sub>2</sub>n)。</p>
+<p><strong>说明</strong>：</p>
+<ul>
+<li>索引会占用磁盘空间，索引以空间换时间</li>
+<li>当添加一条记录时，除了添加到表中，还要维护二叉树，速度有影响，但是不大</li>
+<li>当我们添加一个索引，不能解决所有查询问题，需要分别给字段建立索引</li>
+</ul>
+<h3 id="创建索引"><a class="header-anchor" href="#创建索引">¶</a>创建索引</h3>
+<h4 id="创建主键索引"><a class="header-anchor" href="#创建主键索引">¶</a>创建主键索引</h4>
+<p>其实很简单，你添加了主键，就创建了一个主键索引，所以有三种方式添加主键索引</p>
+<ul>
+<li>
+<p>第一种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 在字段名后面直接指定primary key</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第二种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为主键索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), <span class="hljs-keyword">primary</span> key(id));<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第三种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 下面两种写法都可以</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 modify id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key;<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> key(id);<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>主键索引的特点</p>
+<ul>
+<li>一个表中，最多只能有一个主键索引，但是可以使用复合主键</li>
+<li>主键索引的效率高，逐渐确保了<font color='red'>唯一性</font></li>
+<li>创建主键索引的列，他的值不能为null，也能不能重复</li>
+<li>主键索引的列基本上都是int</li>
+</ul>
+<h4 id="唯一索引的创建"><a class="header-anchor" href="#唯一索引的创建">¶</a>唯一索引的创建</h4>
+<p>和主键索引类似，有三种创建方法</p>
+<ul>
+<li>
+<p>第一种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 在字段名后面直接指定unique</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">unique</span>,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第二种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为唯一索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), <span class="hljs-keyword">unique</span>(id));<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第三种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 下面两种写法都可以</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 modify id <span class="hljs-type">int</span> <span class="hljs-keyword">unique</span>;<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> <span class="hljs-keyword">unique</span>(id);<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>唯一索引的特点：</p>
+<ul>
+<li>一个表中可以有多个唯一索引</li>
+<li>查询效率高</li>
+<li>如果在一个唯一索引上指定<font color='red'>not null</font>，等价于主键索引</li>
+</ul>
+<h4 id="普通索引的创建"><a class="header-anchor" href="#普通索引的创建">¶</a>普通索引的创建</h4>
+<p>与上同</p>
+<ul>
+<li>
+<p>第一种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为普通索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), index(id));<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第二种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> index(id);<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>第三种</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 使用create index指定索引名称</span><br><span class="hljs-keyword">create</span> index idx_name <span class="hljs-keyword">on</span> user1(name);<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>唯一索引的说明：</p>
+<ul>
+<li>一个表可以是有多个普通索引，普通索引在实际开发中用的比较多</li>
+<li>如果某列需要创建索引，但是该列有重复的值，，那么就应该使用普通索引</li>
+</ul>
+<h4 id="全文索引的创建"><a class="header-anchor" href="#全文索引的创建">¶</a>全文索引的创建</h4>
+<p>当对文章字段或有大量文字的字段进行检索时，会使用到全文索引。MySQL提供全文索引机制，但是只能使用MyISAM存储引擎，而且默认的全索引只支持英文，不支持中文。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> articles(<br>    id <span class="hljs-type">int</span> unsigned <span class="hljs-keyword">primary</span> key <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> auto_increment,<br>    title <span class="hljs-type">varchar</span>(<span class="hljs-number">200</span>),<br>    body text,<br>    fulltext (title,body)<br>)engine <span class="hljs-operator">=</span> MyISAM;<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> articles (title,body) <span class="hljs-keyword">values</span><br>    (<span class="hljs-string">&#x27;MySQL Tutoeial&#x27;</span>,<span class="hljs-string">&#x27;DBMS stands for DataBase ... &#x27;</span>),<br>    (<span class="hljs-string">&#x27;How To Use MySQL Well&#x27;</span>,<span class="hljs-string">&#x27;Adter you went through a ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;Optimizing MySQL&#x27;</span>,<span class="hljs-string">&#x27;In this tutorial we will show ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;1001 MySQL Tricks&#x27;</span>,<span class="hljs-string">&#x27;1. Nerver run mysqld as root. 2. ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;MySQL vs. YourSQL&#x27;</span>,<span class="hljs-string">&#x27;In the follpwing database comparison ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;Mysql Security&#x27;</span>,<span class="hljs-string">&#x27;when configured properly,MySQL ...&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<h5 id="查询有没有database数据"><a class="header-anchor" href="#查询有没有database数据">¶</a>查询有没有database数据</h5>
+<h6 id="没有使用全文索引"><a class="header-anchor" href="#没有使用全文索引">¶</a>没有使用全文索引</h6>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> body <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%database%&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> title             <span class="hljs-operator">|</span> body                                     <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> MySQL Tutoeial    <span class="hljs-operator">|</span> DBMS stands <span class="hljs-keyword">for</span> DataBase ...             <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">5</span> <span class="hljs-operator">|</span> MySQL vs. YourSQL <span class="hljs-operator">|</span> <span class="hljs-keyword">In</span> the follpwing database comparison ... <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br><span class="hljs-comment">-- 使用explain解释一下</span><br>mysql<span class="hljs-operator">&gt;</span> explain  <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles <span class="hljs-keyword">where</span> body <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%database%&#x27;</span> \G;<br><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span> <span class="hljs-number">1.</span> <span class="hljs-type">row</span> <span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><br>           id: <span class="hljs-number">1</span><br>  select_type: SIMPLE<br>        <span class="hljs-keyword">table</span>: articles<br>   partitions: <span class="hljs-keyword">NULL</span><br>         type: <span class="hljs-keyword">ALL</span><br>possible_keys: <span class="hljs-keyword">NULL</span><br>          key: <span class="hljs-keyword">NULL</span><br>      key_len: <span class="hljs-keyword">NULL</span><br>          <span class="hljs-keyword">ref</span>: <span class="hljs-keyword">NULL</span><br>         <span class="hljs-keyword">rows</span>: <span class="hljs-number">6</span><br>     filtered: <span class="hljs-number">16.67</span><br>        Extra: <span class="hljs-keyword">Using</span> <span class="hljs-keyword">where</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.01</span> sec)<br></code></pre></td></tr></table></figure>
+<div class="note note-info">
+            <p>key为null表示没有使用索引</p>
+          </div>
+<h6 id="使用全文索引"><a class="header-anchor" href="#使用全文索引">¶</a>使用全文索引</h6>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">match</span>(title,body) against (<span class="hljs-string">&#x27;database&#x27;</span>);<br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> title             <span class="hljs-operator">|</span> body                                     <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> MySQL Tutoeial    <span class="hljs-operator">|</span> DBMS stands <span class="hljs-keyword">for</span> DataBase ...             <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">5</span> <span class="hljs-operator">|</span> MySQL vs. YourSQL <span class="hljs-operator">|</span> <span class="hljs-keyword">In</span> the follpwing database comparison ... <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles <span class="hljs-keyword">where</span> <span class="hljs-keyword">match</span>(title,body) against (<span class="hljs-string">&#x27;database&#x27;</span>) \G;<br><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span> <span class="hljs-number">1.</span> <span class="hljs-type">row</span> <span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><br>           id: <span class="hljs-number">1</span><br>  select_type: SIMPLE<br>        <span class="hljs-keyword">table</span>: articles<br>   partitions: <span class="hljs-keyword">NULL</span><br>         type: fulltext<br>possible_keys: title<br>          key: title<br>      key_len: <span class="hljs-number">0</span><br>          <span class="hljs-keyword">ref</span>: const<br>         <span class="hljs-keyword">rows</span>: <span class="hljs-number">1</span><br>     filtered: <span class="hljs-number">100.00</span><br>        Extra: <span class="hljs-keyword">Using</span> <span class="hljs-keyword">where</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h3 id="查询索引"><a class="header-anchor" href="#查询索引">¶</a>查询索引</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> keys <span class="hljs-keyword">from</span> tablename;<br><span class="hljs-keyword">show</span> index <span class="hljs-keyword">from</span> tablename;<br><span class="hljs-keyword">desc</span> tablename;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221255574.png" alt="结果图"></p>
+<div class="note note-primary">
+            <p>desc命令得到的索引信息有点简陋</p>
+          </div>
+<h3 id="删除索引"><a class="header-anchor" href="#删除索引">¶</a>删除索引</h3>
+<ul>
+<li>
+<p>删除主键索引：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tablename <span class="hljs-keyword">drop</span> <span class="hljs-keyword">primary</span> key;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>删除其他索引：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tablename <span class="hljs-keyword">drop</span> index indexname;<br></code></pre></td></tr></table></figure>
+<div class="note note-primary">
+            <p>indexname就是<code>show keys from tablename</code>得到的<code>key_name</code></p>
+          </div>
+</li>
+<li>
+<pre><code class="language-sql">drop index indexName on tableName;
+</code></pre>
+</li>
+</ul>
+<h3 id="索引创建原则"><a class="header-anchor" href="#索引创建原则">¶</a>索引创建原则</h3>
+<ul>
+<li>比较频繁作为查询条件应该创建索引</li>
+<li>唯一性太差的字段不适合单独创建索引，即使频繁作为查询条件</li>
+<li>更新非常频繁的字段不适合创建索引</li>
+<li>不会作为查询条件的没必要创建索引</li>
+</ul>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
       <categories>
         <category>Database</category>
         <category>MySQL</category>
@@ -2705,6 +2827,33 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>项目中数据库问题</title>
+    <url>/posts/44965/</url>
+    <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
+<span id="more"></span>
+<h1>防止SQL注入</h1>
+<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+<h1>对JDBC连接进行统一管理</h1>
+<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1>索引异常</h1>
+<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">check</span>(sex<span class="hljs-operator">=</span><span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-keyword">or</span> sex<span class="hljs-operator">=</span><span class="hljs-string">&#x27;女&#x27;</span>) <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;男&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
+<h1>Data too lang</h1>
+<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>git 使用报错以及解决办法</title>
     <url>/posts/34931/</url>
     <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.5ZVnEHdqMkr0oPHWFA0RzAHaD3?pid=ImgDet&amp;rs=1" alt="git github"></p>
@@ -3150,33 +3299,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </categories>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>项目中数据库问题</title>
-    <url>/posts/44965/</url>
-    <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
-<span id="more"></span>
-<h1>防止SQL注入</h1>
-<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
-<h1>对JDBC连接进行统一管理</h1>
-<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1>索引异常</h1>
-<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">check</span>(sex<span class="hljs-operator">=</span><span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-keyword">or</span> sex<span class="hljs-operator">=</span><span class="hljs-string">&#x27;女&#x27;</span>) <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;男&#x27;</span><br></code></pre></td></tr></table></figure>
-<p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1>Data too lang</h1>
-<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>MyBatis</tag>
       </tags>
   </entry>
   <entry>
@@ -3784,46 +3906,82 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>x的平方根</title>
-    <url>/posts/e0a96f5e/</url>
-    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" alt="x的平方根"></p>
+    <title>picgo+gitee实现markdown图片上传自动化</title>
+    <url>/posts/12356/</url>
+    <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
 <span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
-<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
-<p>废话少说，直接说想法。</p>
-<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
-$$
-\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
-$$
-基于此，就有以下代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>结果</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
-<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
-<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
-$$
-\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
-$$
-这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>结果</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
-<hr>
-<p>未完待续，关于牛顿迭代法</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
+<h1>picgo+gitee实现markdown图片上传自动化</h1>
+<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
+<p>markdown编辑工具：typora</p>
+<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
+<p>图床仓库：gitee</p>
+<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
+<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
+<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
+<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
+<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
+<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
+<ul>
+<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
+<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
+<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
+<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
+<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
+</ul>
+<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
+<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
+<p>和平常新建仓库没有什么区别，有几点注意事项</p>
+<ul>
+<li>需要设置为开源</li>
+<li>需要使用Readme文件初始化仓库</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
+<p>图中标注的地方需要注意一下</p>
+<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
+<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
+<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
+<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
+<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
+<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
+<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
+<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
+<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
+<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
+<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
+<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
+<p>至此结束。</p>
+<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
+<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
+<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
+<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;success&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-attr">&quot;message&quot;</span>:<span class="hljs-string">&quot;upload error&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>更改方案</strong></p>
+<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
+<ol>
+<li>打开PicGo软件</li>
+<li>打开相册</li>
+<li>删除Typora相关图标</li>
+<li>重新配置Server</li>
+<li><font color='red'>重启PicGo</font></li>
+</ol>
+<p>或许可能是私人令牌的问题，重新获取下令牌</p>
+<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
+<p><font color='red'>终极办法：</font></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" alt="打开时间戳重命名"></p>
+<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
+<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
       <categories>
-        <category>Programming Language</category>
-        <category>Java</category>
-        <category>Algorithm</category>
-        <category>Apply</category>
-        <category>二分法</category>
-        <category>暴力法</category>
+        <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>Daily</tag>
+        <tag>Sundry</tag>
       </tags>
   </entry>
   <entry>
@@ -3890,6 +4048,49 @@ $$
         <tag>Sundry</tag>
         <tag>Vscode</tag>
         <tag>CPP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>x的平方根</title>
+    <url>/posts/e0a96f5e/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172200620.png" alt="x的平方根"></p>
+<span id="more"></span>
+<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+<p><a href="https://leetcode-cn.com/problems/sqrtx/">69. x 的平方根 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析与代码"><a class="header-anchor" href="#题目分析与代码">¶</a>题目分析与代码</h4>
+<p>我的想法是在最开始，直接调用Math.sqrt()岂不是省时省力，为什么有这种题目？后来才想到这个题目考察的是你独立解决底层数据运算的能力。最开始，计算机不知道怎么开方，编程语言也不知道，写代码教电脑怎么开方呗</p>
+<p>废话少说，直接说想法。</p>
+<p>后面的想法就是，暴力，反正<font color='red'>一个非负整数的根永远不可能大于他的一半</font>$\eqref{eq1}$​​​​，也就是
+$$
+\begin{equation} \tag{1}\label{eq1} \sqrt{x} \leqslant \frac {x}{2}\end{equation}
+$$
+基于此，就有以下代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> i;<br>        <span class="hljs-keyword">for</span>(i = <span class="hljs-number">1</span>;i&lt;=x/<span class="hljs-number">2</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>((x == i*i)||(x&gt;i*i &amp;&amp; x&lt;Math.pow((i+<span class="hljs-number">1</span>),<span class="hljs-number">2</span>)))&#123;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> i;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162013400.png" alt="力扣地址"></p>
+<p>但是这样时间复杂度为O(n)，执行用时比较长，所以不得不选择一个时间复杂度比较低的算法进行运算。</p>
+<p>我们对整个算法的过程进行复盘，不难发现，其实我们就是在寻找一个数k，使得以下关系成立$\eqref{eq2}$​
+$$
+\begin{equation}\tag{2}\label{eq2}k = max\left\lbrace k_i|k_i^2 \leqslant x \right\rbrace, i \geqslant 1\end{equation}
+$$
+这样的话，其实我们就可以对k进行二分查找，二分查找的时间复杂度比较低，只有O(logn)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>,right = x,ans = -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(left &lt;= right)&#123;<br>            <span class="hljs-keyword">int</span> mid = left + (right - left)/<span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span>((<span class="hljs-keyword">long</span>)mid*mid &lt;= x)&#123;<br>                ans = mid;<br>                left = mid + <span class="hljs-number">1</span>;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                right = mid - <span class="hljs-number">1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>结果</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109162157798.png" alt="二分法力扣提交结果"></p>
+<hr>
+<p>未完待续，关于牛顿迭代法</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>Apply</category>
+        <category>二分法</category>
+        <category>暴力法</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
@@ -4003,8 +4204,8 @@ $$
       <categories>
         <category>Programming Language</category>
         <category>Algorithm</category>
-        <category>Data Structure</category>
         <category>CPP</category>
+        <category>Data Structure</category>
       </categories>
       <tags>
         <tag>Daily</tag>
@@ -4013,82 +4214,44 @@ $$
       </tags>
   </entry>
   <entry>
-    <title>picgo+gitee实现markdown图片上传自动化</title>
-    <url>/posts/12356/</url>
-    <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
+    <title>关于new和delete的问题</title>
+    <url>/posts/36390/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
 <span id="more"></span>
-<h1>picgo+gitee实现markdown图片上传自动化</h1>
-<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
-<p>markdown编辑工具：typora</p>
-<p>图片上传工具：picgo 2.3.0      <a href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
-<p>图床仓库：gitee</p>
-<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
-<p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
-<p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" alt="PicGo下载Gitee插件"></p>
-<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" alt="PicGo设置Gitee图床"></p>
-<p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
-<ul>
-<li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
-<li><font color='cornflowerblue'>repo</font>：仓库名，专门用作图床的仓库（没有的需要新建，新建仓库在步骤三中）</li>
-<li><font color='cornflowerblue'>path</font>：可填可不填，就是仓库中用于存放picgo上传图片的路径</li>
-<li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
-<li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
-</ul>
-<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
-<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
-<p>和平常新建仓库没有什么区别，有几点注意事项</p>
-<ul>
-<li>需要设置为开源</li>
-<li>需要使用Readme文件初始化仓库</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" alt="创建仓库"></p>
-<p>图中标注的地方需要注意一下</p>
-<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" alt="获取私人令牌"></p>
-<p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
-<p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
-<p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
-<p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
-<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
-<p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
-<p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" alt="PicGo设置Server"></p>
-<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
-<p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" alt="Typora设置上传"></p>
-<p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" alt="验证成功提示"></p>
-<p>至此结束。</p>
-<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
-<p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
-<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
-<p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;success&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-attr">&quot;message&quot;</span>:<span class="hljs-string">&quot;upload error&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>更改方案</strong></p>
-<p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
-<ol>
-<li>打开PicGo软件</li>
-<li>打开相册</li>
-<li>删除Typora相关图标</li>
-<li>重新配置Server</li>
-<li><font color='red'>重启PicGo</font></li>
-</ol>
-<p>或许可能是私人令牌的问题，重新获取下令牌</p>
-<p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
-<p><font color='red'>终极办法：</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" alt="打开时间戳重命名"></p>
-<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
-<p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+<h1>问题描述</h1>
+<p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p>
+<div class="note note-success">
+            <p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
+          </div>
+<p>发生问题的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">initList</span><span class="hljs-params">(LinkedList &amp;l)</span></span><br><span class="hljs-function"></span>&#123;<br>    l = <span class="hljs-keyword">new</span> LinkedList; <span class="hljs-comment">//问题所在行</span><br>    <span class="hljs-keyword">if</span> (l == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    l-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>结构体定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">int</span> data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span><br>&#125; LNode, *LinkedList;<br></code></pre></td></tr></table></figure>
+<h1>分析</h1>
+<p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
+<p>等等！</p>
+<p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> *intp;<br><span class="hljs-keyword">int</span> *s = <span class="hljs-keyword">new</span> intp*;<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>对不起，我刚刚好像就做了😥</p>
+</blockquote>
+<div class="note note-primary">
+            <p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
+          </div>
+<p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
+<h1>改动</h1>
+<p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">l = <span class="hljs-keyword">new</span> LNode;<br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
       <categories>
-        <category>环境搭建</category>
+        <category>Error</category>
+        <category>Programming Language</category>
+        <category>CPP</category>
       </categories>
       <tags>
-        <tag>Sundry</tag>
+        <tag>CPP</tag>
       </tags>
   </entry>
   <entry>
@@ -4211,47 +4374,6 @@ $$
       </categories>
       <tags>
         <tag>Sundry</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于new和delete的问题</title>
-    <url>/posts/36390/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="new and delete"></p>
-<span id="more"></span>
-<h1>问题描述</h1>
-<p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" alt="cannot convert"></p>
-<div class="note note-success">
-            <p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
-          </div>
-<p>发生问题的代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">initList</span><span class="hljs-params">(LinkedList &amp;l)</span></span><br><span class="hljs-function"></span>&#123;<br>    l = <span class="hljs-keyword">new</span> LinkedList; <span class="hljs-comment">//问题所在行</span><br>    <span class="hljs-keyword">if</span> (l == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    l-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>结构体定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">int</span> data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span><br>&#125; LNode, *LinkedList;<br></code></pre></td></tr></table></figure>
-<h1>分析</h1>
-<p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
-<p>等等！</p>
-<p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> *intp;<br><span class="hljs-keyword">int</span> *s = <span class="hljs-keyword">new</span> intp*;<br></code></pre></td></tr></table></figure>
-<blockquote>
-<p>对不起，我刚刚好像就做了😥</p>
-</blockquote>
-<div class="note note-primary">
-            <p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
-          </div>
-<p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
-<h1>改动</h1>
-<p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><code class="hljs cpp">l = <span class="hljs-keyword">new</span> LNode;<br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-        <category>Programming Language</category>
-        <category>CPP</category>
-      </categories>
-      <tags>
-        <tag>CPP</tag>
       </tags>
   </entry>
   <entry>
