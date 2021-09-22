@@ -14,14 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="方阵描述：广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。
-方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。
-例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。
-现在我">
+  <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
   
-  <title>算法·方阵 - conquerorLei</title>
+  <title>Hexo部署异常:部署后访问页面404 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -175,7 +172,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="算法·方阵">
+            <span class="h2" id="subtitle" title="Hexo部署异常:部署后访问页面404">
               
             </span>
 
@@ -185,8 +182,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-05-22 16:19" pubdate>
-        2021-05-22 16:19
+      <time datetime="2021-09-22 09:49" pubdate>
+        2021-09-22 09:49
       </time>
     </span>
   
@@ -197,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      403 字
+      525 字
     </span>
   
 
@@ -207,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      5
        分钟
     </span>
   
@@ -245,26 +242,50 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">算法·方阵</h1>
+            <h1 style="display: none">Hexo部署异常:部署后访问页面404</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-19 21:51
+                  本文最后更新于：2021-09-22 10:35
                 
               </p>
             
             <div class="markdown-body">
-              <h1 id="方阵"><a href="#方阵" class="headerlink" title="方阵"></a>方阵</h1><h2 id="描述："><a href="#描述：" class="headerlink" title="描述："></a>描述：</h2><p>广场上的小朋友们排成了整齐的方阵。具体来说，我们可以把每个小朋友看做是一个点，那么小朋友们就形成了n×n的点阵。</p>
-<p>方阵中，小朋友A和小朋友B互相可以看见，当且仅当二人之间的连线不经过别的小朋友，且他们之间的距离不超过k。我们想知道有多少对小朋友互相可以看见。(A,B)与 (B,A)算同一对。</p>
-<p>例如，n=2,k=1时答案为4，n=2,k=2 时答案为6，n=3,k=2时答案为20。</p>
-<p>现在我们想要知道，当n=1000,k=500时的答案是多少。由于答案过大，请回答对10^9+7取模后的结果。</p>
-<span id="more"></span>
-<h2 id="理解："><a href="#理解：" class="headerlink" title="理解："></a>理解：</h2><p>两人对视时没有人遮拦视线，即表示两人之间连线没有任何人。而放在方阵中的直线我们可以分为两种，一种是“横平竖直”的直线，另一种是“斜线”。因此我们可以分为两种情况去讨论。</p>
-<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>由上面的理解可知，分两种情况讨论：</p>
-<ol>
-<li>对于“横平竖直”情况，即边框线上的情况。对于一行，只有两两相邻的两点才可以互相看见，故而一行有<code>(n-1)</code>对，一共n行，故而行方向上一共有<code>n*(n-1)</code>对点；同样在列方向上，也有<code>n*(n-1)</code>对，故而一共有<code>2*n*(n-1)</code>对</li>
-<li>对于“斜线”的情况<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210522161027.png" srcset="/img/loading.gif" lazyload alt="Alt text" title="方阵斜线算法"></li>
+              <p>最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。</p>
+<p>我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png" srcset="/img/loading.gif" lazyload alt="不知道你喜不喜欢"></p>
+<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>这个时候百思不得其解，怎么办，本地<code>hexo s</code>就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，<font color='orange'>他直接没有对我的tags内部的文件夹进行更新</font>，什么意思？</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220959175.png" srcset="/img/loading.gif" lazyload alt="本地渲染后的tags文件夹"></p>
+<p>但是我的<code>.deploy_git</code>文件夹下面的文件名却没有被更改，这个文件夹下面的文件夹才会被<font color='orange'>Push</font>到<font color='orange'>GitHub</font>仓库。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221018516.png" srcset="/img/loading.gif" lazyload alt=".deploy_git文件夹"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221000543.png" srcset="/img/loading.gif" lazyload alt="部署到GitHub的文件夹"></p>
+<p>好家伙，这是个什么意思？专门搞我心态？</p>
+<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.751e5f9f342de01f8463b01112edb128?rik=2gqn0%2bf4McaYxg&amp;riu=http%3a%2f%2fi-1.onegreen.net%2f2021%2f0120%2ffdf56f562fd846e48a96b306c8855245.jpg&amp;ehk=ZECJ1Js2nGmsXOpdKEXlnAcRWOh0gRrVUkGGPBa6U54%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="烦死了"></p>
+<p>后来，经过查阅资料才知道，<font color='orange'>Git</font>对大小写是不敏感的，这样的话，我改动了tags的大小写，是没有用的，因为他会默认，两个是一样的。所以部署之后页面没有更改。</p>
+<p>既然知道原因了，那就改呗</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="使用git-bash进行更改"><a href="#使用git-bash进行更改" class="headerlink" title="使用git bash进行更改"></a>使用<code>git bash</code>进行更改</h4><ol>
+<li>在hexo安装目录下右键<code>git bash</code></li>
+<li>输入 <code>cd .deploy_git</code>，一定要有这一步，因为<font color='orange'>Hexo</font>文件夹本身不是一个<font color='orange'>Git</font>文件夹</li>
+<li>输入以下命令查看当前Git文件夹的配置信息</li>
 </ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --local -l<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221021841.png" srcset="/img/loading.gif" lazyload alt="查看配置信息结果"></p>
+<div class="note note-warning">
+            <p>core.ignorecase=<font color='red'>true</font>表示忽略大小写，也就是说，他认为<font color='orange'>Ajax</font>和<font color='orange'>AJAX</font>是一样的</p>
+          </div>
+<ol>
+<li>关闭core.ignorecase</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --local core.ignorecase false<br></code></pre></td></tr></table></figure>
+<h4 id="使用本地文件编辑器"><a href="#使用本地文件编辑器" class="headerlink" title="使用本地文件编辑器"></a>使用本地文件编辑器</h4><ol>
+<li>进入<code>.deploy_git/.git</code>文件夹，需要注意的是，这边的<code>.git</code>是隐藏的，需要查看隐藏文件。都是老司机，这个我就不教了奥</li>
+<li>右键<code>config</code>文件，使用你的文本编辑器打开，我使用的是notepad++：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://notepad-plus-plus.org/">notepad-plus-plus.org</a></li>
+</ol>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221033156.png" srcset="/img/loading.gif" lazyload alt="被打开的config文件"></p>
+<ol>
+<li>直接修改就可以了，记得保存</li>
+</ol>
+<p>修改之后重新部署，就没有问题啦:wink:</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
 
@@ -276,7 +297,15 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
+                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Error/">Error</a>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Software/">Software</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Software/Git/">Git</a>
                     
                   </div>
                 
@@ -284,7 +313,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Daily/">Daily</a>
+                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
                     
                   </div>
                 
@@ -301,15 +332,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/12356/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">picgo+gitee实现markdown图片上传自动化</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/posts/1e97cd8b/">
+                        <span class="hidden-mobile">MySQL 索引特性</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

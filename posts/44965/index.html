@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      263 字
+      261 字
     </span>
   
 
@@ -253,17 +253,14 @@
             <div class="markdown-body">
               <p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" srcset="/img/loading.gif" lazyload alt="database"></p>
 <span id="more"></span>
-<h1>防止SQL注入</h1>
-<p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
-<h1>对JDBC连接进行统一管理</h1>
-<p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
-<h1>索引异常</h1>
-<p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
+<h1 id="防止SQL注入"><a href="#防止SQL注入" class="headerlink" title="防止SQL注入"></a>防止SQL注入</h1><p>采用MyBatis防止SQL注入的问题，降低关系耦合</p>
+<h1 id="对JDBC连接进行统一管理"><a href="#对JDBC连接进行统一管理" class="headerlink" title="对JDBC连接进行统一管理"></a>对JDBC连接进行统一管理</h1><p>使用jdbc.properties对JDBC进行统一管理，在多人协作过程中，由于个人数据库的基本配置信息不同，会出现很多数据库连接更换的过程，使用jdbc.properties进行统一管理的目的就是能够很快的更改jdbc配置</p>
+<h1 id="索引异常"><a href="#索引异常" class="headerlink" title="索引异常"></a>索引异常</h1><p>在进行数据库接口测试的过程中，前端发送过来的信息可能不满足建表时的约束，例如唯一性约束，例如</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">check</span>(sex<span class="hljs-operator">=</span><span class="hljs-string">&#x27;男&#x27;</span> <span class="hljs-keyword">or</span> sex<span class="hljs-operator">=</span><span class="hljs-string">&#x27;女&#x27;</span>) <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;男&#x27;</span><br></code></pre></td></tr></table></figure>
 <p>如果此时前端发送过来的是空字符串，就会出现约束异常</p>
-<h1>Data too lang</h1>
-<p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
+<h1 id="Data-too-lang"><a href="#Data-too-lang" class="headerlink" title="Data too lang"></a>Data too lang</h1><p>对于某一些基础信息，很容易出现输入的字符串长度和数据库预设表列长度不符的情况，这样就会出现Data too lang异常</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>
