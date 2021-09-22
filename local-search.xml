@@ -171,9 +171,9 @@
     
     <tags>
       
-      <tag>Daily</tag>
-      
       <tag>Sundry</tag>
+      
+      <tag>Daily</tag>
       
     </tags>
     
@@ -935,9 +935,9 @@
       
       <category>Algorithm</category>
       
-      <category>Data Structure</category>
-      
       <category>Cpp</category>
+      
+      <category>Data Structure</category>
       
     </categories>
     
@@ -976,9 +976,9 @@
       
       <category>CPP</category>
       
-      <category>Vscode</category>
-      
       <category>Cpp</category>
+      
+      <category>Vscode</category>
       
     </categories>
     
