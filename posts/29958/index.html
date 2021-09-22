@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      370 字
+      367 字
     </span>
   
 
@@ -253,45 +253,38 @@
             <div class="markdown-body">
               <p><img src="https://ucarecdn.com/df898380-25a5-4296-9633-0ed47a9c717d/-/autorotate/yes/" srcset="/img/loading.gif" lazyload alt="SpringBoot"></p>
 <span id="more"></span>
-<h1>前言</h1>
-<p>前段时间使用了解和学习SpringBoot的过程中，后端业务逻辑有一些问题，但是使用本地debug根本无法进入断点，后来经过网络学习获得远程debug的方法，特于此记录</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>前段时间使用了解和学习SpringBoot的过程中，后端业务逻辑有一些问题，但是使用本地debug根本无法进入断点，后来经过网络学习获得远程debug的方法，特于此记录</p>
 <p><strong>工具</strong></p>
 <ul>
 <li>IDEA</li>
 <li>JDK14</li>
 </ul>
-<h1>过程</h1>
-<h2 id="新建Remote-Jvm-Debug"><a class="header-anchor" href="#新建Remote-Jvm-Debug">¶</a>新建Remote Jvm Debug</h2>
-<ol>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><h2 id="新建Remote-Jvm-Debug"><a href="#新建Remote-Jvm-Debug" class="headerlink" title="新建Remote Jvm Debug"></a>新建Remote Jvm Debug</h2><ol>
 <li>点击Edit configuration</li>
 <li>点击+</li>
 <li>找到Remote Jvm Debug</li>
 </ol>
-<h2 id="添加参数"><a class="header-anchor" href="#添加参数">¶</a>添加参数</h2>
-<p>基本上只需要修改一下名称、命令参数以及监听端口就可以啦，这边给个截图</p>
+<h2 id="添加参数"><a href="#添加参数" class="headerlink" title="添加参数"></a>添加参数</h2><p>基本上只需要修改一下名称、命令参数以及监听端口就可以啦，这边给个截图</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802121222.png" srcset="/img/loading.gif" lazyload alt="Debug Configuration"></p>
 <p>Jvm Command如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:<span class="hljs-number">5005</span><br></code></pre></td></tr></table></figure>
 <p>点击应用，点击ok，这样就配置好了</p>
-<h2 id="运行Remote-Debug"><a class="header-anchor" href="#运行Remote-Debug">¶</a>运行Remote Debug</h2>
-<p>这边和本地Debug有些不同的是，远程Debug需要先使用Maven将项目打包为Jar，然后指定端口运行Jar。</p>
-<h3 id="Jar包"><a class="header-anchor" href="#Jar包">¶</a>Jar包</h3>
-<p>使用Maven的clean和package将项目打包为jar</p>
+<h2 id="运行Remote-Debug"><a href="#运行Remote-Debug" class="headerlink" title="运行Remote Debug"></a>运行Remote Debug</h2><p>这边和本地Debug有些不同的是，远程Debug需要先使用Maven将项目打包为Jar，然后指定端口运行Jar。</p>
+<h3 id="Jar包"><a href="#Jar包" class="headerlink" title="Jar包"></a>Jar包</h3><p>使用Maven的clean和package将项目打包为jar</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802234952.png" srcset="/img/loading.gif" lazyload alt="使用Maven生成Jar"></p>
 <p>在控制台中输入一下命令</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=<span class="hljs-number">5005</span>,suspend=n -jar demo.jar<br></code></pre></td></tr></table></figure>
 <div class="note note-primary">
             <blockquote><p>其中<font color='red'>demo.jar</font>为你打包之后的jar包名称，自行更改即可</p><p>需要注意一下几点：</p><ol><li>5005端口被占用：参考此<a href="https://conquerorlei.github.io/2021/05/22/tomcatError/">博客</a></li></ol></blockquote>
           </div>
-<h3 id="运行Debug"><a class="header-anchor" href="#运行Debug">¶</a>运行Debug</h3>
-<p>运行完Jar包之后记得点击Debug那个按钮</p>
+<h3 id="运行Debug"><a href="#运行Debug" class="headerlink" title="运行Debug"></a>运行Debug</h3><p>运行完Jar包之后记得点击Debug那个按钮</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210803000307.png" srcset="/img/loading.gif" lazyload alt="Debug"></p>
-<h3 id="断点"><a class="header-anchor" href="#断点">¶</a>断点</h3>
-<p>这个就不用说了吧，本地断点就好啦，在浏览器中输入项目网址，运行的过程中会自动进入断点的</p>
+<h3 id="断点"><a href="#断点" class="headerlink" title="断点"></a>断点</h3><p>这个就不用说了吧，本地断点就好啦，在浏览器中输入项目网址，运行的过程中会自动进入断点的</p>
 <div class="note note-primary">
             <p>需要注意的是，此时监听端口为<font color='cornflowerblue'>5005</font>，记得更改8080为5005</p>
           </div>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>

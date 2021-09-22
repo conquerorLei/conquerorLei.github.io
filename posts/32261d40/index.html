@@ -253,30 +253,25 @@
             <div class="markdown-body">
               <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" srcset="/img/loading.gif" lazyload alt="结果"></p>
 <span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目初始分析"><a class="header-anchor" href="#题目初始分析">¶</a>题目初始分析</h4>
-<p>寻找第k个最大元素，我第一时间想到的就是对数组进行排序，递增则为nums[nums.length-k]，递减则为nums[k-1]。</p>
+<h4 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">215. 数组中的第K个最大元素 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目初始分析"><a href="#题目初始分析" class="headerlink" title="题目初始分析"></a>题目初始分析</h4><p>寻找第k个最大元素，我第一时间想到的就是对数组进行排序，递增则为nums[nums.length-k]，递减则为nums[k-1]。</p>
 <p>这样的话，其实根本不需要对数组进行全排序，按照冒泡排序的基本思想，每次冒牌排序(假设我按照增序排列)，都可以选出来最大的数排在数组的最后一个位置。而且下一次冒泡排序就不用遍历整个数组，因为没有必要对最大的数和前面的数，因为这种比较是无效的，相当于我们的比较范围是在伴随着冒泡排序的进行不断缩小的。</p>
 <div class="note note-primary">
             <p>需要注意的是，题目当中并没有要求你排除重复项，例如[4,5,5,6]，k=4，那么第k大的数就是4</p><p>如果需要排除重复项，那么上述的算法就需要更改了</p>
           </div>
-<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;nums.length-<span class="hljs-number">1</span>-i;j++)&#123;<br>                <span class="hljs-keyword">if</span>(nums[j]&gt;nums[j+<span class="hljs-number">1</span>])&#123;<br>                    nums[j] +=nums[j+<span class="hljs-number">1</span>];<br>                    nums[j+<span class="hljs-number">1</span>] = nums[j]-nums[j+<span class="hljs-number">1</span>];<br>                    nums[j] -= nums[j+<span class="hljs-number">1</span>];<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[nums.length-k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<h4 id="时空复杂度"><a class="header-anchor" href="#时空复杂度">¶</a>时空复杂度</h4>
-<p>时间复杂度：考虑到最坏情况下的算法，时间复杂度应该为O(n(n+1)/2)=O(n<sup>2</sup>)</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;k;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;nums.length-<span class="hljs-number">1</span>-i;j++)&#123;<br>                <span class="hljs-keyword">if</span>(nums[j]&gt;nums[j+<span class="hljs-number">1</span>])&#123;<br>                    nums[j] +=nums[j+<span class="hljs-number">1</span>];<br>                    nums[j+<span class="hljs-number">1</span>] = nums[j]-nums[j+<span class="hljs-number">1</span>];<br>                    nums[j] -= nums[j+<span class="hljs-number">1</span>];<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[nums.length-k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="时空复杂度"><a href="#时空复杂度" class="headerlink" title="时空复杂度"></a>时空复杂度</h4><p>时间复杂度：考虑到最坏情况下的算法，时间复杂度应该为O(n(n+1)/2)=O(n<sup>2</sup>)</p>
 <p>空间复杂度：O(1)，直接对数组进行的原地排序</p>
-<h4 id="力扣结果"><a class="header-anchor" href="#力扣结果">¶</a>力扣结果</h4>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051253595.png" srcset="/img/loading.gif" lazyload alt="力扣通过结果"></p>
+<h4 id="力扣结果"><a href="#力扣结果" class="headerlink" title="力扣结果"></a>力扣结果</h4><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051253595.png" srcset="/img/loading.gif" lazyload alt="力扣通过结果"></p>
 <p>这样的话，按照我个人的分析，时间消耗会很大，空间消耗由于我没有引入太多的其他变量，直接使用加法处理的两数交换。执行时间太长了。我还在想一个时间消耗比较小的方法。</p>
-<h4 id="第二种解法"><a class="header-anchor" href="#第二种解法">¶</a>第二种解法</h4>
-<p>对于Java编程语言来说，其Array类中封装了sort方法，而且此sort方法采用了快速排序的方法，时间复杂度比冒泡排序小的多。</p>
+<h4 id="第二种解法"><a href="#第二种解法" class="headerlink" title="第二种解法"></a>第二种解法</h4><p>对于Java编程语言来说，其Array类中封装了sort方法，而且此sort方法采用了快速排序的方法，时间复杂度比冒泡排序小的多。</p>
 <p>时间复杂度：O(nlogn)</p>
 <p>空间复杂度：O(logn)</p>
 <p>空间消耗主要是因为sort方法使用了栈，栈的最大高度是logn</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">findKthLargest</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        Arrays.sort(nums);<br>        <span class="hljs-keyword">return</span> nums[nums.length - k];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109051312352.png" srcset="/img/loading.gif" lazyload alt="结果"></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>
@@ -290,9 +285,9 @@
                     
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
-                    
                       <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
                     
                       <a class="hover-with-bg" href="/categories/Data-Structure/">Data Structure</a>
                     

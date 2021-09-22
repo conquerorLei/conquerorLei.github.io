@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      399 字
+      398 字
     </span>
   
 
@@ -253,20 +253,14 @@
             <div class="markdown-body">
               <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png" srcset="/img/loading.gif" lazyload alt="warning: LF will be replaced by CRLF"></p>
 <span id="more"></span>
-<h1>问题描述</h1>
-<p>在Windows环境下使用Hexo d 进行部署时，在命令提示符中会出现以下警告信息，一般情况下，都会弹出一大串</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>在Windows环境下使用Hexo d 进行部署时，在命令提示符中会出现以下警告信息，一般情况下，都会弹出一大串</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">The file will have its original line endings in your working directory<br>warning: LF will be replaced by CRLF in tags/ECS/index.html.<br></code></pre></td></tr></table></figure>
-<h1>问题分析</h1>
-<p>其实警告意思很简单，就是Git会将CRLF将被替换为LF，因为每次部署他都会弹出一大堆，让我很恼火。所以我就想把它们关掉。最开始，因为我的Markdown文档是我本地编辑的，没有仔细看问题描述的情况下我直接使用了Notepad++进行了CRLF替换为LF，但是全部替换完了才发现hexo本身的很多网站配置文件例如.js文件里面采用的行尾也是CRLF，最终还是决定将此功能禁用。</p>
-<h1>问题解决策略</h1>
-<h2 id="notepad-修改CRLF为LF"><a class="header-anchor" href="#notepad-修改CRLF为LF">¶</a>notepad++修改CRLF为LF</h2>
-<h3 id="打开视图显示行尾符"><a class="header-anchor" href="#打开视图显示行尾符">¶</a>打开视图显示行尾符</h3>
-<p>按照以下路径寻址：视图-&gt;显示符号-&gt;显示行尾符</p>
+<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>其实警告意思很简单，就是Git会将CRLF将被替换为LF，因为每次部署他都会弹出一大堆，让我很恼火。所以我就想把它们关掉。最开始，因为我的Markdown文档是我本地编辑的，没有仔细看问题描述的情况下我直接使用了Notepad++进行了CRLF替换为LF，但是全部替换完了才发现hexo本身的很多网站配置文件例如.js文件里面采用的行尾也是CRLF，最终还是决定将此功能禁用。</p>
+<h1 id="问题解决策略"><a href="#问题解决策略" class="headerlink" title="问题解决策略"></a>问题解决策略</h1><h2 id="notepad-修改CRLF为LF"><a href="#notepad-修改CRLF为LF" class="headerlink" title="notepad++修改CRLF为LF"></a>notepad++修改CRLF为LF</h2><h3 id="打开视图显示行尾符"><a href="#打开视图显示行尾符" class="headerlink" title="打开视图显示行尾符"></a>打开视图显示行尾符</h3><p>按照以下路径寻址：视图-&gt;显示符号-&gt;显示行尾符</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802111831.png" srcset="/img/loading.gif" lazyload alt="显示行尾符"></p>
 <p>这样就可以查看行尾符是CRLF还是LF</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112135.png" srcset="/img/loading.gif" lazyload alt="查看行尾符"></p>
-<h3 id="使用替换修改"><a class="header-anchor" href="#使用替换修改">¶</a>使用替换修改</h3>
-<ul>
+<h3 id="使用替换修改"><a href="#使用替换修改" class="headerlink" title="使用替换修改"></a>使用替换修改</h3><ul>
 <li>使用Ctrl+H打开替换面板</li>
 <li>在查找目标中输入\r\n</li>
 <li>在替换内容中输入\n</li>
@@ -276,11 +270,9 @@
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112646.png" srcset="/img/loading.gif" lazyload alt="替换面板"></p>
 <p>结果如下：</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112804.png" srcset="/img/loading.gif" lazyload alt="替换结果"></p>
-<h2 id="MinGW64面板直接禁用Git配置"><a class="header-anchor" href="#MinGW64面板直接禁用Git配置">¶</a>MinGW64面板直接禁用Git配置</h2>
-<p>直接在MinGW64面板输入一下命令即可</p>
+<h2 id="MinGW64面板直接禁用Git配置"><a href="#MinGW64面板直接禁用Git配置" class="headerlink" title="MinGW64面板直接禁用Git配置"></a>MinGW64面板直接禁用Git配置</h2><p>直接在MinGW64面板输入一下命令即可</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --global core.autocrlf false<br></code></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>其实就从根本上解决问题而言，第二种方法是最好的。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>其实就从根本上解决问题而言，第二种方法是最好的。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
