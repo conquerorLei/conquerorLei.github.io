@@ -171,9 +171,9 @@
     
     <tags>
       
-      <tag>Sundry</tag>
-      
       <tag>Daily</tag>
+      
+      <tag>Sundry</tag>
       
     </tags>
     
@@ -425,9 +425,9 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
+      
+      <category>Algorithm</category>
       
       <category>二分法</category>
       
@@ -489,9 +489,9 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
+      
+      <category>Algorithm</category>
       
       <category>递归</category>
       
@@ -671,13 +671,13 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
       
-      <category>递归</category>
+      <category>Algorithm</category>
       
       <category>Data Structure</category>
+      
+      <category>递归</category>
       
     </categories>
     
@@ -737,9 +737,9 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
+      
+      <category>Algorithm</category>
       
       <category>Data Structure</category>
       
@@ -772,9 +772,9 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
+      
+      <category>Algorithm</category>
       
       <category>Data Structure</category>
       
@@ -807,9 +807,9 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
+      
+      <category>Algorithm</category>
       
       <category>Data Structure</category>
       
@@ -842,9 +842,9 @@
       
       <category>Java</category>
       
-      <category>Algorithm</category>
-      
       <category>Apply</category>
+      
+      <category>Algorithm</category>
       
       <category>Data Structure</category>
       
@@ -935,9 +935,9 @@
       
       <category>Algorithm</category>
       
-      <category>Cpp</category>
-      
       <category>Data Structure</category>
+      
+      <category>Cpp</category>
       
     </categories>
     
@@ -1276,11 +1276,11 @@
       
       <tag>CSS</tag>
       
-      <tag>Markdown</tag>
-      
       <tag>Ahk</tag>
       
       <tag>HTML</tag>
+      
+      <tag>Markdown</tag>
       
     </tags>
     
