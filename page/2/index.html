@@ -191,18 +191,26 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/posts/9e2a31fe/" target="_self">
-          MySQL 子查询:in/exists,all/any/some的区别
+        <a href="/posts/a1b11bfa/" target="_self">
+          Java JavaBean相关
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/posts/9e2a31fe/" target="_self">
+        <a href="/posts/a1b11bfa/" target="_self">
           
           
             
           
-          
+          JavaBase是什么？
+JavaBean是一种Java语言写成的可重用组件
+指的是符合以下标准的Java类
+
+类是公共的，使用public权限修饰符修饰
+有一个无参的公共的构造器
+有属性，且有对应的get、set方法
+
+123456789101112131415161718192021222324252627package com.conquerorLei.java;public class C
         </a>
       </p>
 
@@ -210,8 +218,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-20 13:37" pubdate>
-              2021-09-20
+            <time datetime="2021-09-24 21:40" pubdate>
+              2021-09-24
             </time>
           </div>
         
@@ -219,119 +227,11 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Database/">Database</a>
+              <a href="/categories/Programming-Language/">Programming Language</a>
             
-              <a href="/categories/Database/MySQL/">MySQL</a>
+              <a href="/categories/Programming-Language/Java/">Java</a>
             
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/SQL/">SQL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/posts/57051417/" target="_self">
-          Hexo Fluid主题优化:关于blockquote的样式优化
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/posts/57051417/" target="_self">
-          
-          
-            
-          
-          最近更换了Fluid主题，关于Fluid对于&lt;blockquote&gt;的样式我不算特别满意。特此对&lt;blockquote&gt;做了一个样式的覆盖。
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-19 23:25" pubdate>
-              2021-09-19
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
-            
-              <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-            
-              <a href="/categories/%E5%89%8D%E7%AB%AF/CSS/">CSS</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Hexo/">Hexo</a>
-            
-              <a href="/tags/Fluid/">Fluid</a>
-            
-              <a href="/tags/CSS/">CSS</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/posts/36727525/" target="_self">
-          关于算法
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/posts/36727525/" target="_self">
-          
-          
-            
-          
-          
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 23:33" pubdate>
-              2021-09-18
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Algorithm/">Algorithm</a>
+              <a href="/categories/Programming-Language/Java/Base/">Base</a>
             
           </div>
         
@@ -341,7 +241,9 @@
             
               <a href="/tags/Sundry/">Sundry</a>
             
-              <a href="/tags/Daily/">Daily</a>
+              <a href="/tags/OOP/">OOP</a>
+            
+              <a href="/tags/JavaBean/">JavaBean</a>
             
           </div>
         
@@ -355,18 +257,29 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/posts/1c07fddd/" target="_self">
-          MySQL 复合查询
+        <a href="/posts/20ff7cfb/" target="_self">
+          Java 属性赋值的先后顺序
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/posts/1c07fddd/" target="_self">
+        <a href="/posts/20ff7cfb/" target="_self">
           
           
             
           
-          
+          以下均可以对属性进行赋值
+
+默认初始化
+显式初始化
+构造器中初始化
+通过&quot;对象.方法&quot;或者&quot;对象.属性&quot;的方式，赋值
+
+以上操作的先后顺序：1-&gt;2-&gt;3-&gt;4
+
+其实还有更多的属性赋值方法，在属性声明时直接对属性进行赋值操作，使用块结构，使用static块结构。
+人的一切痛苦，本质上是对自己的无能的愤怒王小波
+
         </a>
       </p>
 
@@ -374,8 +287,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 14:34" pubdate>
-              2021-09-18
+            <time datetime="2021-09-24 21:28" pubdate>
+              2021-09-24
             </time>
           </div>
         
@@ -383,9 +296,11 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Database/">Database</a>
+              <a href="/categories/Programming-Language/">Programming Language</a>
             
-              <a href="/categories/Database/MySQL/">MySQL</a>
+              <a href="/categories/Programming-Language/Java/">Java</a>
+            
+              <a href="/categories/Programming-Language/Java/Base/">Base</a>
             
           </div>
         
@@ -393,7 +308,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/SQL/">SQL</a>
+              <a href="/tags/Sundry/">Sundry</a>
+            
+              <a href="/tags/OOP/">OOP</a>
             
           </div>
         
@@ -407,18 +324,25 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/posts/978101fb/" target="_self">
-          MySQL CRUD:Having和Where的区别
+        <a href="/posts/3ae29dee/" target="_self">
+          Java类的成员:构造器(constructor)
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/posts/978101fb/" target="_self">
+        <a href="/posts/3ae29dee/" target="_self">
           
           
             
           
+          构造器也叫构造方法
+
+            construct:建设、建造construction:建造，建筑；创立，构建；构造，结构；建筑物；语法结构；解释，理解constructor:建设者
           
+构造器和类重名
+¶构造器的使用
+
+            如果没有显式地定义类的构造器，则系统默认提供一个无参构造函数。定义构造器的格式：权限修饰符 类名(参数列表){}一个类中可
         </a>
       </p>
 
@@ -426,8 +350,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-09-18 14:09" pubdate>
-              2021-09-18
+            <time datetime="2021-09-23 22:57" pubdate>
+              2021-09-23
             </time>
           </div>
         
@@ -435,9 +359,11 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Database/">Database</a>
+              <a href="/categories/Programming-Language/">Programming Language</a>
             
-              <a href="/categories/Database/MySQL/">MySQL</a>
+              <a href="/categories/Programming-Language/Java/">Java</a>
+            
+              <a href="/categories/Programming-Language/Java/Base/">Base</a>
             
           </div>
         
@@ -445,9 +371,133 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/SQL/">SQL</a>
+              <a href="/tags/Sundry/">Sundry</a>
             
-              <a href="/tags/CRUD/">CRUD</a>
+              <a href="/tags/OOP/">OOP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/e407191c/" target="_self">
+          Java 面向对象特征:封装与隐藏
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/e407191c/" target="_self">
+          
+          
+            
+          
+          为什么要封装？封装的作用和含义是什么？
+隐藏对象内部的复杂性，只对外公开简单的接口。便于外接调用，从而提高系统的可扩展性，可维护性。
+通俗地说，就是把该隐藏的隐藏，该暴露的暴露。这就是封装性的设计思想。
+
+当我们创建一个对象之后，我们可以通过&quot;对象.属性&quot;的方式对对象的属性进行赋值，但是赋值操作要受属性的数据类型和存储范围的制约。但是，在实际问题中，我们往往需要给属性赋值加上额
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-23 21:52" pubdate>
+              2021-09-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Programming-Language/">Programming Language</a>
+            
+              <a href="/categories/Programming-Language/Java/">Java</a>
+            
+              <a href="/categories/Programming-Language/Java/Base/">Base</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Sundry/">Sundry</a>
+            
+              <a href="/tags/OOP/">OOP</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/posts/15c96483/" target="_self">
+          Hexo部署异常:部署后访问页面404
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/15c96483/" target="_self">
+          
+          
+            
+          
+          最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。
+我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404
+
+¶问题分析
+这个时候百思不得其解，怎么办，本地hexo s就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，他直接
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-09-22 09:49" pubdate>
+              2021-09-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Software/">Software</a>
+            
+              <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+            
+              <a href="/categories/Error/">Error</a>
+            
+              <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
+            
+              <a href="/categories/Software/Git/">Git</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Hexo/">Hexo</a>
+            
+              <a href="/tags/Git/">Git</a>
             
           </div>
         
@@ -459,7 +509,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/#board">12</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#board">14</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

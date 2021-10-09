@@ -1,6 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Eclipse常用快捷键</title>
+    <url>/posts/4281c41c/</url>
+    <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109292029586.png" alt="Eclipse"></p>
+<span id="more"></span>
+<p>Eclipse中的快捷键</p>
+<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ctrl+/</td>
+<td>代码补全</td>
+</tr>
+<tr>
+<td>Ctrl+1</td>
+<td>代码修复</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+O</td>
+<td>批量导包</td>
+</tr>
+<tr>
+<td>Ctrl+/</td>
+<td>单行注释</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+/</td>
+<td>多行注释</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+\</td>
+<td>取消多行注释</td>
+</tr>
+<tr>
+<td>Alt+UP</td>
+<td>代码上移</td>
+</tr>
+<tr>
+<td>Alt+Down</td>
+<td>代码下移</td>
+</tr>
+<tr>
+<td>Shift+Enter</td>
+<td>切换到上一行代码空位</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+Enter</td>
+<td>切换到上一行代码空位</td>
+</tr>
+<tr>
+<td>Ctrl+点击选中部分，Ctrl+Shift+t</td>
+<td>查看源码，搜索指定的结构</td>
+</tr>
+<tr>
+<td>Alt+Left</td>
+<td>进入到上一个页面</td>
+</tr>
+<tr>
+<td>Alt+Right</td>
+<td>进入到下一个页面</td>
+</tr>
+<tr>
+<td>Ctrl+t</td>
+<td>查看继承树结构</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+f</td>
+<td>格式化代码</td>
+</tr>
+<tr>
+<td>Ctrl+O</td>
+<td>显示当前类结构，并支持搜索指定的方法和属性</td>
+</tr>
+<tr>
+<td>ALt+Shift+R</td>
+<td>批量修改指定的变量名、方法名、类名</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+x</td>
+<td>选中的结构大小写的切换：变成大写</td>
+</tr>
+<tr>
+<td>Ctrl+Shift+y</td>
+<td>选中的结构大小写的切换：变成小写</td>
+</tr>
+<tr>
+<td>Alt+Shift+s</td>
+<td>调出getter和setter构造器</td>
+</tr>
+<tr>
+<td>Alt+enter</td>
+<td>调出当前工程或者文件夹得属性</td>
+</tr>
+<tr>
+<td>Ctrl+f</td>
+<td>查询替换</td>
+</tr>
+<tr>
+<td>Ctrl+k</td>
+<td>快速查找</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>Software</category>
+        <category>Eclipse</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>Daily</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>http error</title>
     <url>/posts/39167/</url>
     <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jwkxrc4PXMB0RJnrhP67zgHaEK?pid=ImgDet&amp;rs=1" alt="Http"></p>
@@ -372,10 +490,10 @@
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
+        <category>Software</category>
         <category>环境搭建</category>
         <category>Error</category>
         <category>Hexo</category>
-        <category>Software</category>
         <category>Git</category>
       </categories>
       <tags>
@@ -419,15 +537,175 @@
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
+        <category>Software</category>
         <category>环境搭建</category>
         <category>Error</category>
         <category>Hexo</category>
-        <category>Software</category>
         <category>Git</category>
       </categories>
       <tags>
         <tag>Hexo</tag>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 关键字的使用</title>
+    <url>/posts/6152a1b5/</url>
+    <content><![CDATA[<h3 id="this关键字的使用"><a class="header-anchor" href="#this关键字的使用">¶</a>this关键字的使用</h3>
+<ol>
+<li>
+<p><font color='cornflowerblue'>this</font>可以用来修饰：属性、方法、构造器</p>
+</li>
+<li>
+<p><font color='cornflowerblue'>this</font>修饰属性和方法：<font color='cornflowerblue'>this</font>表示的是当前的对象</p>
+<ol>
+<li>可以使用&quot;<font color='orange'>this.属性</font>“、”<font color='orange'>this.方法</font>&quot;的方式调用当前对象或者当前正在创建属性的方法。但是通常情况下，我们都选择省略<font color='cornflowerblue'>this</font>.，特殊情况也就是重名问题时，必须显式使用</li>
+<li>可以在构造器中使用<font color='cornflowerblue'>this</font>，也是重名问题</li>
+</ol>
+</li>
+<li>
+<p><font color='cornflowerblue'>this</font>调用构造器</p>
+<ol>
+<li>
+<p>在类的构造器中，可以显式地使用&quot;<font color='orange'>this(形参列表)</font>&quot;的方式，调用本类的指定的其它构造器</p>
+</li>
+<li>
+<p><font color='red'>不能调用自己</font></p>
+</li>
+<li>
+<p>如果一个类中有n个构造器，则最多有n - 1个使用了&quot;<font color='orange'>this(形参列表)</font>&quot;的方式调用构造器</p>
+<p>防止闭环情况的发生，也就是自己调用自己</p>
+</li>
+<li>
+<p>构造器的调用必须声明在当前构造器的首行</p>
+</li>
+<li>
+<p>构造内部，最多只能声明一个&quot;<font color='orange'>this(形参列表)</font>&quot;，用来调用其他的构造器</p>
+</li>
+</ol>
+</li>
+</ol>
+<p><font color='cornflowerblue'>this</font>指针的使用是为了解决重名问题，为什么要解决这个问题，首先考虑以下代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorlei.java;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>	<span class="hljs-keyword">private</span> String name;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id,String name)</span> </span>&#123;<br>		id = id;<br>		name = name;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>那么在构造一个对象的过程中，调用有参构造器的时候，我就分不清那个id是哪个id，那我为什么不可以使用首字母呢，答案是可以的。但是一个资深程序员不会这样写，为什么？因为直接使用全称有利于理解代码。这样的话，<font color='cornflowerblue'>this</font>关键字的使用就很重要了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorlei.java;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>	<span class="hljs-keyword">private</span> String name;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id,String name)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.id = id;<br>		<span class="hljs-keyword">this</span>.name = name;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-primary">
+            <blockquote><p>上述部分描述引自《Java核心技术：卷一》</p></blockquote>
+          </div>
+<h3 id="package关键字的使用"><a class="header-anchor" href="#package关键字的使用">¶</a>package关键字的使用</h3>
+<ol>
+<li>为了更好的实现项目中类的管理，提供包的概念</li>
+<li>使用<font color='orange'>package</font>font&gt;声明类或者接口所属的包，声明在源文件的首行</li>
+<li>包，属于标识符，遵循标识符的命名规则</li>
+<li>每一个<font color='cornflowerblue'>“.”</font>，表示一层文件目录</li>
+</ol>
+<div class="note note-warning">
+            <p>同一个包下，不能命名同名的接口、类</p><p>不同的包下，可以命名同行的接口、类</p>
+          </div>
+<h4 id="JDK常见的包名"><a class="header-anchor" href="#JDK常见的包名">¶</a>JDK常见的包名</h4>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.lang</td>
+<td>包含一些Java语言的核心类， 如String、 Math、 <br/>Integer、 System和Thread， 提供常用功能</td>
+</tr>
+<tr>
+<td><a href="http://java.net">java.net</a></td>
+<td>包含执行与网络相关的操作的类和接口。</td>
+</tr>
+<tr>
+<td><a href="http://java.io">java.io</a></td>
+<td>包含能提供多种输入/输出功能的类。</td>
+</tr>
+<tr>
+<td>java.util</td>
+<td>包含一些实用工具类， 如定义系统特性、<br/> 接口的集合框架类、 使用与日期日历相关的函数。</td>
+</tr>
+<tr>
+<td>java.text</td>
+<td>包含了一些java格式化相关的类</td>
+</tr>
+<tr>
+<td>java.sql</td>
+<td>包含了java进行JDBC数据库编程的相关类/接口</td>
+</tr>
+<tr>
+<td>java.awt</td>
+<td>包含了构成抽象窗口工具集（abstract window toolkits）<br/> 的多个类， 这些类被用来构建和管理应用程序的图形用<br/>户界面(GUI)。 B/S C/S</td>
+</tr>
+</tbody>
+</table>
+<h4 id="MVC设计模式"><a class="header-anchor" href="#MVC设计模式">¶</a>MVC设计模式</h4>
+<p>MVC是常用的设计模式，将整个程序分为三个层次：视图模型层，控制器层，数据模型层</p>
+<h5 id="模型层-font-color-red-model-font-主要处理数据"><a class="header-anchor" href="#模型层-font-color-red-model-font-主要处理数据">¶</a>模型层 <font color='red'>model</font>主要处理数据</h5>
+<p>数据对象封装 <font color='orange'>model.bean/demain</font></p>
+<p>数据库操作类 <font color='orange'>model.dao</font></p>
+<p>数据库 <font color='orange'>model.dao</font></p>
+<h5 id="控制层-font-color-red-controller-font-处理业务逻辑"><a class="header-anchor" href="#控制层-font-color-red-controller-font-处理业务逻辑">¶</a>控制层 <font color='red'>controller</font>处理业务逻辑</h5>
+<p>应用界面相关<font color='orange'> controller.activity</font></p>
+<p>存放fragment <font color='orange'>controller.fragment</font></p>
+<p>显示列表的适配器 <font color='orange'>controller.adapter</font></p>
+<p>服务相关的 <font color='orange'>controller.service</font></p>
+<p>抽取的基类 <font color='orange'>controller.base</font></p>
+<h5 id="视图层-font-color-red-view-font-显示数据"><a class="header-anchor" href="#视图层-font-color-red-view-font-显示数据">¶</a>视图层 <font color='red'>view</font>显示数据</h5>
+<p>相关工具类 <font color='orange'>view.utils</font></p>
+<p>自定义<font color='red'>view</font> <font color='orange'>view.ui</font></p>
+<h3 id="import关键字的使用"><a class="header-anchor" href="#import关键字的使用">¶</a>import关键字的使用</h3>
+<ol>
+<li>在源文件中现实的使用<font color='orange'>import</font>结构导入指定包下的类、接口</li>
+<li>声明在包的声明和类的声明之间</li>
+<li>如果需要导入多个结构，则并列写出即可</li>
+<li>可以使用<font color='red'>“xxx.*”</font>的方式，表示可以导入xxx包下的所有结构</li>
+<li>如果使用的类或者接口是<font color='red'>java.lang</font>包下定义的，可以直接省略<font color='orange'>import</font></li>
+<li>如果是用的类或者接口是本包下定义的，可以省略<font color='orange'>import</font></li>
+<li>如果在源文件中，使用了不同包下的同名的类，则至少有一个类需要使用全类名的方式显示</li>
+<li>如果要调用<font color='red'>xxx</font>子包下的类，那么仍需要显示，不能使用<font color='red'>“* . *”</font></li>
+<li><font color='orange'>import static</font> ：表示的导入指定类或者接口中的静态结构：静态域或者静态方法</li>
+</ol>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>OOP</tag>
+        <tag>Keywords</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java JavaBean相关</title>
+    <url>/posts/a1b11bfa/</url>
+    <content><![CDATA[<p>JavaBase是什么？</p>
+<p>JavaBean是一种Java语言写成的可重用组件</p>
+<p>指的是符合以下标准的Java类</p>
+<ul>
+<li>类是公共的，使用<font color='cornflowerblue'>public</font>权限修饰符修饰</li>
+<li>有一个<font color='orange'>无参的公共的构造器</font></li>
+<li>有属性，且有对应的get、set方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorLei.java;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>	<span class="hljs-keyword">private</span> String name;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">()</span> </span>&#123;<br>		<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.id = id;<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-keyword">return</span> id;<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.name = name;<br>	&#125;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br>		<span class="hljs-keyword">return</span> name;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<hr>
+<p>JavaBean相关的知识还有很多，特别是Java Web，JavaBean和数据库中表是有一定关系的。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>OOP</tag>
+        <tag>JavaBean</tag>
       </tags>
   </entry>
   <entry>
@@ -491,6 +769,114 @@
 <p><a href="https://conquerorlei.github.io/posts/f63f9b79/">k个一组反转链表 - conquerorLei</a></p>
 <p><a href="https://conquerorlei.github.io/posts/f0ef69bc/">上楼梯 - conquerorLei</a></p>
 <p>递归是需要递归边界的，不能无穷调用，否则就会抛出异常StackOverflowError<font color='orange'>，堆栈溢出</font></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>OOP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 属性赋值的先后顺序</title>
+    <url>/posts/20ff7cfb/</url>
+    <content><![CDATA[<p>以下均可以对属性进行赋值</p>
+<ol>
+<li>默认初始化</li>
+<li>显式初始化</li>
+<li>构造器中初始化</li>
+<li>通过&quot;对象.方法&quot;或者&quot;对象.属性&quot;的方式，赋值</li>
+</ol>
+<p>以上操作的先后顺序：1-&gt;2-&gt;3-&gt;4</p>
+<hr>
+<p>其实还有更多的属性赋值方法，在属性声明时直接对属性进行赋值操作，使用块结构，使用static块结构。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>OOP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 面向对象特征:封装与隐藏</title>
+    <url>/posts/e407191c/</url>
+    <content><![CDATA[<p>为什么要封装？封装的作用和含义是什么？</p>
+<p>隐藏对象内部的复杂性，只对外公开简单的接口。便于外接调用，从而提高系统的可扩展性，可维护性。</p>
+<p>通俗地说，<font color='orange'>就是把该隐藏的隐藏，该暴露的暴露</font>。这就是封装性的设计思想。</p>
+<ol>
+<li>当我们创建一个对象之后，我们可以通过&quot;对象.属性&quot;的方式对对象的属性进行赋值，但是赋值操作要受属性的数据类型和存储范围的制约。但是，在实际问题中，我们往往需要给属性赋值加上额外的限制条件。这个条件不能在域的声明时体现，我们只能通过方法的调用来实现。同时，我们要避免用户在使用&quot;对象.属性&quot;进行赋值—&gt;属性的封装</li>
+<li></li>
+</ol>
+<p>程序设计追求<font color='red'>高内聚低耦合</font></p>
+<p>高内聚：类的内部数据操作细节自己完成，不允许外部干涉</p>
+<p>低耦合：仅对外暴露少量的方法用于使用</p>
+<h3 id="封装性的体现"><a class="header-anchor" href="#封装性的体现">¶</a>封装性的体现</h3>
+<ul>
+<li>我们将属性私有化，只能通过公共的(<font color='cornflowerblue'>public</font>)<font color='orange'>get</font>和<font color='orange'>set</font>方法获取和修改属性</li>
+<li>将方法私有化，不对外暴露，只能通过内部方法调用</li>
+<li>单例模式</li>
+</ul>
+<h3 id="权限修饰符"><a class="header-anchor" href="#权限修饰符">¶</a>权限修饰符</h3>
+<p>封装性的体现，需要权限修饰符的配合</p>
+<h4 id="Java规定四种权限"><a class="header-anchor" href="#Java规定四种权限">¶</a>Java规定四种权限</h4>
+<p>从小到大排列：<font color='red'>private &lt; 缺省 &lt; protected &lt; public</font></p>
+<p>这些权限修饰符置于类的成员的定义之前，用来限定对象对该类成员的访问权限。总结来说，它体现了类以及类的内部结构在被调用是的可见性的大小。</p>
+<table>
+<thead>
+<tr>
+<th>修饰符</th>
+<th>类内部</th>
+<th>同一个包</th>
+<th>不同包的子类</th>
+<th>同一个工程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private</td>
+<td>$\checkmark$</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>(缺省)</td>
+<td>$\checkmark$</td>
+<td>$\checkmark$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>protected</td>
+<td>$\checkmark$</td>
+<td>$\checkmark$</td>
+<td>$\checkmark$</td>
+<td></td>
+</tr>
+<tr>
+<td>public</td>
+<td>$\checkmark$</td>
+<td>$\checkmark$</td>
+<td>$\checkmark$</td>
+<td>$\checkmark$</td>
+</tr>
+</tbody>
+</table>
+<p>四种权限可以修饰类的内部结构：属性、方法、构造器、<font color='orange'>内部类</font></p>
+<div class="note note-warning">
+            <p><font color='red'>对于class，只能使用public或者缺省</font></p><ul><li>public类可以在任意地方被访问</li><li>缺省类只可以在同一个包内部的类访问</li></ul>
+          </div>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/23 22:48</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || a &gt; <span class="hljs-number">130</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;数据非法&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">this</span>.age = a;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.age;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/23 22:52</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Person p1 = <span class="hljs-keyword">new</span> Person();<br>        p1.setAge(<span class="hljs-number">25</span>);<br>        System.out.println(p1.getAge());<br>        p1.setAge(<span class="hljs-number">145</span>);<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
@@ -678,6 +1064,41 @@
       </categories>
       <tags>
         <tag>Sundry</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java类的成员:构造器(constructor)</title>
+    <url>/posts/3ae29dee/</url>
+    <content><![CDATA[<p>构造器也叫构造方法</p>
+<div class="note note-primary">
+            <p>construct:建设、建造</p><p>construction:建造，建筑；创立，构建；构造，结构；建筑物；语法结构；解释，理解</p><p><font color='red'>constructor:建设者</font></p>
+          </div>
+<p>构造器和类重名</p>
+<h3 id="构造器的使用"><a class="header-anchor" href="#构造器的使用">¶</a>构造器的使用</h3>
+<div class="note note-primary">
+            <ol><li>如果没有显式地定义类的构造器，则系统默认提供一个无参构造函数。</li><li>定义构造器的格式：<font color='red'>权限修饰符</font> <font color='orange'>类名</font>(<font color='cornflowerblue'>参数列表</font>){}</li><li>一个类中可以出现多个构造器，原理是<font color='lawngreen'>方法的重载</font></li><li>一旦显式定义构造器，则系统不会在提供无参构造函数；如果想要使用无参构造函数，那么必须显式构造无参构造函数</li></ol>
+          </div>
+<ol>
+<li>创建对象</li>
+</ol>
+<p>语法格式：new + 构造器</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">class_name instance = <span class="hljs-keyword">new</span> class_name(parameter_list);<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>
+<p>对域进行初始化</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-comment">// 自定义无参构造方法，或者说成是无参构造器</span><br>    <span class="hljs-comment">// 定义了有参构造方法，必须显示构造无参构造器</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = <span class="hljs-number">18</span>;<br>        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 定义有参构造函数，利用的原理是重载</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age,String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || a &gt; <span class="hljs-number">130</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;数据非法&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">this</span>.age = a;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(name.equals(<span class="hljs-string">&quot;&quot;</span>))<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Base</category>
+      </categories>
+      <tags>
+        <tag>Sundry</tag>
+        <tag>OOP</tag>
       </tags>
   </entry>
   <entry>
@@ -933,198 +1354,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux云服务器部署springboot项目</title>
-    <url>/posts/28022/</url>
-    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Gy9LurVhf8pLsRhWLsl7TwHaEh?pid=ImgDet&amp;rs=1" alt="SpringBoot"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>本次需要进行云服务器部署的是一个java Springboot项目，使用的是阿里云的<code>ecs</code>云服务器，具体配置如下一个标题所示。云服务器部署环节是项目发布的很重要一步，所以这里简单写一下Linux云服务器部署Springboot项目</p>
-<h1>云服务器配置</h1>
-<h2 id="购买云服务器"><a class="header-anchor" href="#购买云服务器">¶</a>购买云服务器</h2>
-<p>二话不说，购买什么的就不提了奥，这里我选择的云服务器配置如下</p>
-<table>
-<thead>
-<tr>
-<th>描述</th>
-<th>配置</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CPU&amp;内存</td>
-<td>1核 2 GiB</td>
-</tr>
-<tr>
-<td>操作系统</td>
-<td>Ubuntu  18.04 64位</td>
-</tr>
-<tr>
-<td>当前使用带宽</td>
-<td>1Mbps</td>
-</tr>
-<tr>
-<td>网络类型</td>
-<td>专用网络</td>
-</tr>
-<tr>
-<td>磁盘容量</td>
-<td>40GB</td>
-</tr>
-<tr>
-<td>服务器类型</td>
-<td>ecs</td>
-</tr>
-</tbody>
-</table>
-<h2 id="xshell的使用"><a class="header-anchor" href="#xshell的使用">¶</a>xshell的使用</h2>
-<h3 id="xshell简介"><a class="header-anchor" href="#xshell简介">¶</a>xshell简介</h3>
-<p><code>XShell</code>是一个强大的安全终端模拟软件，它支持<code>SSH1</code>，<code>SSH2</code>，以及Microsoft Windows平台的TELNET协议。</p>
-<p><code>XShell</code>可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
-<p>当然亦可以访问虚拟接中的<code>Linux</code>系统。由于在虚拟机中操作<code>Linux</code>系统需要频繁切换鼠标，缺乏个性化设置，不支持中文显示，所以我们将使用<code>XShell</code>来连接并使用安装好Linux系统的虚拟机。</p>
-<h3 id="xshell下载"><a class="header-anchor" href="#xshell下载">¶</a>xshell下载</h3>
-<p><a href="https://www.netsarang.com/zh/xshell-download/">下载地址</a>:<a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></p>
-<p>下载过程中可能会出现一些问题，由于它的企业版需要付款，但是我们只是个人使用，所以，我们需要注意以下我们的选项</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143748.png" alt="xshell下载主页选择免费授权界面"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143906.png" alt="填写选项"></p>
-<p>这样点击下载后<code>netsarang</code>官网就会将xshell下载地址发送到您的邮箱，点击下载地址并开始下载，下载后安装就好。</p>
-<h3 id="xshell安装"><a class="header-anchor" href="#xshell安装">¶</a>xshell安装</h3>
-<p>安装过程中没有什么好说的，按照他给你的提示安装就好，我个人建议在选择安装位置时，尽量不要选择系统盘。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708151105.png" alt="xshell安装位置选择"></p>
-<p>这个算是老生常谈，我也就提一句。以下内容就是xhsell的使用了。</p>
-<h3 id="xshell连接阿里云"><a class="header-anchor" href="#xshell连接阿里云">¶</a>xshell连接阿里云</h3>
-<p>打开xshell，新建会话</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153012.png" alt="xshell新建会话"></p>
-<p>属性值：</p>
-<ul>
-<li>名称：随便填写，表示的当前会话的名称</li>
-<li>主机：填写购买的云服务器上面的公网ip</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153121.png" alt="xshell用户身份验证"></p>
-<ul>
-<li>用户名：root</li>
-<li>密码：你在云服务器上面创建的实例的密码</li>
-</ul>
-<p>设置完成之后直接连接</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708181405.png" alt="连接成功之后的界面"></p>
-<h2 id="云服务器软件安装"><a class="header-anchor" href="#云服务器软件安装">¶</a>云服务器软件安装</h2>
-<p>以下的内容都是在<code>xshell</code>打开的会话中执行的。</p>
-<h3 id="安装mysql"><a class="header-anchor" href="#安装mysql">¶</a>安装mysql</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 更新apt-get软件源</span><br>apt-get update<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 安装mysql-server</span><br>apt-get install mysql-server<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 安装mysql-client</span><br>apt-get install mysql-client<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 安装mysql library</span><br>apt-get install libmysqlclient-dev<br></code></pre></td></tr></table></figure>
-<div class="note note-success">
-            <blockquote><p>一般而言，云服务器中是直接以root登录的，并且直接给定的root权限，没有sudo命令，所以不用sudo安装</p><p>安装过程中一般不会提醒设置密码，默认情况下是没有密码的</p></blockquote>
-          </div>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看是否成功安装//一般安装成功后就会自行启动</span><br>netstat -tap | grep mysql<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200204.png" alt="执行结果"></p>
-<p>剩余的就是mysql的常用指令了，这里不再赘述，不了解mysql常用指令的同学请移步到<a href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a></p>
-<h3 id="安装java11"><a class="header-anchor" href="#安装java11">¶</a>安装java11</h3>
-<p>在xshell中执行以下指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">apt-get install openjdk-11-jdk<br></code></pre></td></tr></table></figure>
-<p>安装过程中会让你输入一个Y或n的，输入Y就可以</p>
-<p>下载完成之后，输入以下命令查看java版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">java -version<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200015.png" alt="查看java版本"></p>
-<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz">¶</a>安装lrzsz</h3>
-<h4 id="lrzsz简介"><a class="header-anchor" href="#lrzsz简介">¶</a>lrzsz简介</h4>
-<p>lrzsz是一个unix通信套件提供的X，Y，和ZModem文件传输协议。</p>
-<h4 id="lrzsz安装"><a class="header-anchor" href="#lrzsz安装">¶</a>lrzsz安装</h4>
-<p>在shell中写入以下代码</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">apt-get install lrzsz<br></code></pre></td></tr></table></figure>
-<p>安装过程中需要输入的看一下提示，输入Y或者n就可以，Y就代表yes，n就代表no</p>
-<h4 id="lrzsz使用"><a class="header-anchor" href="#lrzsz使用">¶</a>lrzsz使用</h4>
-<p>常用的有两个命令，rz和sz</p>
-<p>其中rz是上传，sz是下载</p>
-<p>没什么好说的，例如上传，直接输入rz然后回车就好</p>
-<h5 id="上传命令rz"><a class="header-anchor" href="#上传命令rz">¶</a>上传命令rz</h5>
-<p>一般而言，使用rz从本地上传到云服务器，可能会存在编码的问题，我们尽可能较少这么意外因素产生的影响，直接使用<code>-be</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">rz -be<br></code></pre></td></tr></table></figure>
-<p>解释：</p>
-<ul>
-<li>
-<p>-b：binary 用binary的方式上传下载，不解释字符为ASCII</p>
-</li>
-<li>
-<p>-e ：强制escape 所有控制字符</p>
-</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708201921.png" alt="输入rz -be之后选择文件传输"></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202436.png" alt="上传过程"></p>
-<p>等他上传好即可，进入root下输入ls即可查看上传的文件</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202713.png" alt="上传成功"></p>
-<h5 id="下载命令sz"><a class="header-anchor" href="#下载命令sz">¶</a>下载命令sz</h5>
-<p>下载命令不经常使用，但是依旧可以将云服务器上面的日志文件下载到本地</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213519.png" alt="下载文件"></p>
-<p>需要注意的是，需要输入文件的名称，然后选择文件的步骤和上传相同</p>
-<p>下载到本地的日志文件</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213654.png" alt="下载到本地的日志文件"></p>
-<h1>springboot部署</h1>
-<h2 id="生成jar包"><a class="header-anchor" href="#生成jar包">¶</a>生成jar包</h2>
-<p>现在大多数springboot项目都在使用maven进行包管理，使用maven能够很简单地打包jar，我使用的是IDEA，按照下图顺序执行</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203453.png" alt="maven打包"></p>
-<p><strong>生成的jar路径</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203704.png" alt="jar path"></p>
-<h2 id="上传"><a class="header-anchor" href="#上传">¶</a>上传</h2>
-<p>不需要多说，直接按照上面提到的rz指令上传</p>
-<h2 id="运行"><a class="header-anchor" href="#运行">¶</a>运行</h2>
-<p>进入root，运行一下jar包</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">java -jar &lt;package-name&gt;<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205713.png" alt="熟悉的spring项目启动界面"></p>
-<h2 id="访问"><a class="header-anchor" href="#访问">¶</a>访问</h2>
-<p>使用的公网IP访问你的项目，第一次都会很慢，遇见这个的时候不要慌张哦</p>
-<h1>错误汇总</h1>
-<h2 id="port-8080-are-already-in-use"><a class="header-anchor" href="#port-8080-are-already-in-use">¶</a>port 8080 are already in use</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708204536.png" alt="port 8080 are already in use"></p>
-<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
-<p>输入一下命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看端口8080占用情况</span><br>netstat -tln | grep 8080<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">查看端口属于哪个程序,端口被哪个进程占用</span><br>lsof -i :8080<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 杀掉这个进程</span><br>kill -9 878<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 再次查看端口8080占用情况，没有任何输出则表示端口没有被占用</span><br>netstat -tln | grep 8080<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205128.png" alt="解决截图"></p>
-<h2 id="公网IP无法访问"><a class="header-anchor" href="#公网IP无法访问">¶</a>公网IP无法访问</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210109.png" alt="公网IP无法访问"></p>
-<h3 id="解决办法-v2"><a class="header-anchor" href="#解决办法-v2">¶</a>解决办法</h3>
-<p>登录你的云服务器，我的是阿里云，进入控制台之后找到你出案件的实例，点击<code>安全组</code>，然后点击<code>配置规则</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210343.png" alt="设置安全组规则1"></p>
-<p><strong>添加安全组</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210822.png" alt="添加安全组1"></p>
-<p>然后！！！</p>
-<p>这里是很需要很重要很重要的，重要的事情说三遍</p>
-<p><font color='red'>重启云服务器</font></p>
-<p><font color='red'>重启云服务器</font></p>
-<p><font color='red'>重启云服务器</font></p>
-<p>不然上面做的是不生效的</p>
-<h2 id="关闭xshell后无法访问项目"><a class="header-anchor" href="#关闭xshell后无法访问项目">¶</a>关闭xshell后无法访问项目</h2>
-<p>其实这个不算错误，也算啦</p>
-<p>其实也没什么，要想在后台运行，需要借助<code>nohup</code></p>
-<h3 id="nohup简介"><a class="header-anchor" href="#nohup简介">¶</a>nohup简介</h3>
-<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
-<p>在缺省情况下该作业的所有输出都被重定向到同级文件夹下一个名为nohup.out的文件中。</p>
-<h3 id="命令格式"><a class="header-anchor" href="#命令格式">¶</a>命令格式</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">nohup Command [ Arg … ] [　&amp; ]<br></code></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">nohup command &gt; myout.file 2&gt;&amp;1 &amp;<br></code></pre></td></tr></table></figure>
-<h3 id="nohup运行java-jar"><a class="header-anchor" href="#nohup运行java-jar">¶</a>nohup运行java -jar</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">nohup java -jar association-0.0.1-SNAPSHOT.jar &gt; /root/output/association.log &amp;<br></code></pre></td></tr></table></figure>
-<p>输出到<code>/root/output/association.log</code></p>
-<h3 id="命令使用错误"><a class="header-anchor" href="#命令使用错误">¶</a>命令使用错误</h3>
-<p>唉，这个说多了都是泪</p>
-<p><font color='red'>没有加&amp;</font>，记得把<font color='red'>&amp;</font>补上，当时查这个错误查了半天，命令没问题就可以理所当然地退出<code>xshell</code>了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213228.png" alt="正确截图"></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Error</category>
-        <category>Programming Language</category>
-        <category>Linux</category>
-        <category>Java</category>
-        <category>运维</category>
-        <category>Apply</category>
-        <category>FrameWork</category>
-        <category>SpringBoot</category>
-      </categories>
-      <tags>
-        <tag>SpringBoot</tag>
-        <tag>ECS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux常用命令</title>
     <url>/posts/48230/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" alt="ubuntu系统"></p>
@@ -1337,6 +1566,198 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>Linux</tag>
         <tag>Terminal</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux云服务器部署springboot项目</title>
+    <url>/posts/28022/</url>
+    <content><![CDATA[<p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.Gy9LurVhf8pLsRhWLsl7TwHaEh?pid=ImgDet&amp;rs=1" alt="SpringBoot"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>本次需要进行云服务器部署的是一个java Springboot项目，使用的是阿里云的<code>ecs</code>云服务器，具体配置如下一个标题所示。云服务器部署环节是项目发布的很重要一步，所以这里简单写一下Linux云服务器部署Springboot项目</p>
+<h1>云服务器配置</h1>
+<h2 id="购买云服务器"><a class="header-anchor" href="#购买云服务器">¶</a>购买云服务器</h2>
+<p>二话不说，购买什么的就不提了奥，这里我选择的云服务器配置如下</p>
+<table>
+<thead>
+<tr>
+<th>描述</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU&amp;内存</td>
+<td>1核 2 GiB</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>Ubuntu  18.04 64位</td>
+</tr>
+<tr>
+<td>当前使用带宽</td>
+<td>1Mbps</td>
+</tr>
+<tr>
+<td>网络类型</td>
+<td>专用网络</td>
+</tr>
+<tr>
+<td>磁盘容量</td>
+<td>40GB</td>
+</tr>
+<tr>
+<td>服务器类型</td>
+<td>ecs</td>
+</tr>
+</tbody>
+</table>
+<h2 id="xshell的使用"><a class="header-anchor" href="#xshell的使用">¶</a>xshell的使用</h2>
+<h3 id="xshell简介"><a class="header-anchor" href="#xshell简介">¶</a>xshell简介</h3>
+<p><code>XShell</code>是一个强大的安全终端模拟软件，它支持<code>SSH1</code>，<code>SSH2</code>，以及Microsoft Windows平台的TELNET协议。</p>
+<p><code>XShell</code>可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
+<p>当然亦可以访问虚拟接中的<code>Linux</code>系统。由于在虚拟机中操作<code>Linux</code>系统需要频繁切换鼠标，缺乏个性化设置，不支持中文显示，所以我们将使用<code>XShell</code>来连接并使用安装好Linux系统的虚拟机。</p>
+<h3 id="xshell下载"><a class="header-anchor" href="#xshell下载">¶</a>xshell下载</h3>
+<p><a href="https://www.netsarang.com/zh/xshell-download/">下载地址</a>:<a href="https://www.netsarang.com/zh/xshell-download/">https://www.netsarang.com/zh/xshell-download/</a></p>
+<p>下载过程中可能会出现一些问题，由于它的企业版需要付款，但是我们只是个人使用，所以，我们需要注意以下我们的选项</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143748.png" alt="xshell下载主页选择免费授权界面"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708143906.png" alt="填写选项"></p>
+<p>这样点击下载后<code>netsarang</code>官网就会将xshell下载地址发送到您的邮箱，点击下载地址并开始下载，下载后安装就好。</p>
+<h3 id="xshell安装"><a class="header-anchor" href="#xshell安装">¶</a>xshell安装</h3>
+<p>安装过程中没有什么好说的，按照他给你的提示安装就好，我个人建议在选择安装位置时，尽量不要选择系统盘。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708151105.png" alt="xshell安装位置选择"></p>
+<p>这个算是老生常谈，我也就提一句。以下内容就是xhsell的使用了。</p>
+<h3 id="xshell连接阿里云"><a class="header-anchor" href="#xshell连接阿里云">¶</a>xshell连接阿里云</h3>
+<p>打开xshell，新建会话</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153012.png" alt="xshell新建会话"></p>
+<p>属性值：</p>
+<ul>
+<li>名称：随便填写，表示的当前会话的名称</li>
+<li>主机：填写购买的云服务器上面的公网ip</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708153121.png" alt="xshell用户身份验证"></p>
+<ul>
+<li>用户名：root</li>
+<li>密码：你在云服务器上面创建的实例的密码</li>
+</ul>
+<p>设置完成之后直接连接</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708181405.png" alt="连接成功之后的界面"></p>
+<h2 id="云服务器软件安装"><a class="header-anchor" href="#云服务器软件安装">¶</a>云服务器软件安装</h2>
+<p>以下的内容都是在<code>xshell</code>打开的会话中执行的。</p>
+<h3 id="安装mysql"><a class="header-anchor" href="#安装mysql">¶</a>安装mysql</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 更新apt-get软件源</span><br>apt-get update<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 安装mysql-server</span><br>apt-get install mysql-server<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 安装mysql-client</span><br>apt-get install mysql-client<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 安装mysql library</span><br>apt-get install libmysqlclient-dev<br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <blockquote><p>一般而言，云服务器中是直接以root登录的，并且直接给定的root权限，没有sudo命令，所以不用sudo安装</p><p>安装过程中一般不会提醒设置密码，默认情况下是没有密码的</p></blockquote>
+          </div>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看是否成功安装//一般安装成功后就会自行启动</span><br>netstat -tap | grep mysql<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200204.png" alt="执行结果"></p>
+<p>剩余的就是mysql的常用指令了，这里不再赘述，不了解mysql常用指令的同学请移步到<a href="https://conquerorlei.github.io/2021/05/25/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">这里</a></p>
+<h3 id="安装java11"><a class="header-anchor" href="#安装java11">¶</a>安装java11</h3>
+<p>在xshell中执行以下指令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">apt-get install openjdk-11-jdk<br></code></pre></td></tr></table></figure>
+<p>安装过程中会让你输入一个Y或n的，输入Y就可以</p>
+<p>下载完成之后，输入以下命令查看java版本</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">java -version<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708200015.png" alt="查看java版本"></p>
+<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz">¶</a>安装lrzsz</h3>
+<h4 id="lrzsz简介"><a class="header-anchor" href="#lrzsz简介">¶</a>lrzsz简介</h4>
+<p>lrzsz是一个unix通信套件提供的X，Y，和ZModem文件传输协议。</p>
+<h4 id="lrzsz安装"><a class="header-anchor" href="#lrzsz安装">¶</a>lrzsz安装</h4>
+<p>在shell中写入以下代码</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">apt-get install lrzsz<br></code></pre></td></tr></table></figure>
+<p>安装过程中需要输入的看一下提示，输入Y或者n就可以，Y就代表yes，n就代表no</p>
+<h4 id="lrzsz使用"><a class="header-anchor" href="#lrzsz使用">¶</a>lrzsz使用</h4>
+<p>常用的有两个命令，rz和sz</p>
+<p>其中rz是上传，sz是下载</p>
+<p>没什么好说的，例如上传，直接输入rz然后回车就好</p>
+<h5 id="上传命令rz"><a class="header-anchor" href="#上传命令rz">¶</a>上传命令rz</h5>
+<p>一般而言，使用rz从本地上传到云服务器，可能会存在编码的问题，我们尽可能较少这么意外因素产生的影响，直接使用<code>-be</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">rz -be<br></code></pre></td></tr></table></figure>
+<p>解释：</p>
+<ul>
+<li>
+<p>-b：binary 用binary的方式上传下载，不解释字符为ASCII</p>
+</li>
+<li>
+<p>-e ：强制escape 所有控制字符</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708201921.png" alt="输入rz -be之后选择文件传输"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202436.png" alt="上传过程"></p>
+<p>等他上传好即可，进入root下输入ls即可查看上传的文件</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708202713.png" alt="上传成功"></p>
+<h5 id="下载命令sz"><a class="header-anchor" href="#下载命令sz">¶</a>下载命令sz</h5>
+<p>下载命令不经常使用，但是依旧可以将云服务器上面的日志文件下载到本地</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213519.png" alt="下载文件"></p>
+<p>需要注意的是，需要输入文件的名称，然后选择文件的步骤和上传相同</p>
+<p>下载到本地的日志文件</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213654.png" alt="下载到本地的日志文件"></p>
+<h1>springboot部署</h1>
+<h2 id="生成jar包"><a class="header-anchor" href="#生成jar包">¶</a>生成jar包</h2>
+<p>现在大多数springboot项目都在使用maven进行包管理，使用maven能够很简单地打包jar，我使用的是IDEA，按照下图顺序执行</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203453.png" alt="maven打包"></p>
+<p><strong>生成的jar路径</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708203704.png" alt="jar path"></p>
+<h2 id="上传"><a class="header-anchor" href="#上传">¶</a>上传</h2>
+<p>不需要多说，直接按照上面提到的rz指令上传</p>
+<h2 id="运行"><a class="header-anchor" href="#运行">¶</a>运行</h2>
+<p>进入root，运行一下jar包</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">java -jar &lt;package-name&gt;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205713.png" alt="熟悉的spring项目启动界面"></p>
+<h2 id="访问"><a class="header-anchor" href="#访问">¶</a>访问</h2>
+<p>使用的公网IP访问你的项目，第一次都会很慢，遇见这个的时候不要慌张哦</p>
+<h1>错误汇总</h1>
+<h2 id="port-8080-are-already-in-use"><a class="header-anchor" href="#port-8080-are-already-in-use">¶</a>port 8080 are already in use</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708204536.png" alt="port 8080 are already in use"></p>
+<h3 id="解决办法"><a class="header-anchor" href="#解决办法">¶</a>解决办法</h3>
+<p>输入一下命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 查看端口8080占用情况</span><br>netstat -tln | grep 8080<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash">查看端口属于哪个程序,端口被哪个进程占用</span><br>lsof -i :8080<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 杀掉这个进程</span><br>kill -9 878<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 再次查看端口8080占用情况，没有任何输出则表示端口没有被占用</span><br>netstat -tln | grep 8080<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708205128.png" alt="解决截图"></p>
+<h2 id="公网IP无法访问"><a class="header-anchor" href="#公网IP无法访问">¶</a>公网IP无法访问</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210109.png" alt="公网IP无法访问"></p>
+<h3 id="解决办法-v2"><a class="header-anchor" href="#解决办法-v2">¶</a>解决办法</h3>
+<p>登录你的云服务器，我的是阿里云，进入控制台之后找到你出案件的实例，点击<code>安全组</code>，然后点击<code>配置规则</code></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210343.png" alt="设置安全组规则1"></p>
+<p><strong>添加安全组</strong></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708210822.png" alt="添加安全组1"></p>
+<p>然后！！！</p>
+<p>这里是很需要很重要很重要的，重要的事情说三遍</p>
+<p><font color='red'>重启云服务器</font></p>
+<p><font color='red'>重启云服务器</font></p>
+<p><font color='red'>重启云服务器</font></p>
+<p>不然上面做的是不生效的</p>
+<h2 id="关闭xshell后无法访问项目"><a class="header-anchor" href="#关闭xshell后无法访问项目">¶</a>关闭xshell后无法访问项目</h2>
+<p>其实这个不算错误，也算啦</p>
+<p>其实也没什么，要想在后台运行，需要借助<code>nohup</code></p>
+<h3 id="nohup简介"><a class="header-anchor" href="#nohup简介">¶</a>nohup简介</h3>
+<p>如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用nohup命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。</p>
+<p>在缺省情况下该作业的所有输出都被重定向到同级文件夹下一个名为nohup.out的文件中。</p>
+<h3 id="命令格式"><a class="header-anchor" href="#命令格式">¶</a>命令格式</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">nohup Command [ Arg … ] [　&amp; ]<br></code></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">nohup command &gt; myout.file 2&gt;&amp;1 &amp;<br></code></pre></td></tr></table></figure>
+<h3 id="nohup运行java-jar"><a class="header-anchor" href="#nohup运行java-jar">¶</a>nohup运行java -jar</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><code class="hljs shell">nohup java -jar association-0.0.1-SNAPSHOT.jar &gt; /root/output/association.log &amp;<br></code></pre></td></tr></table></figure>
+<p>输出到<code>/root/output/association.log</code></p>
+<h3 id="命令使用错误"><a class="header-anchor" href="#命令使用错误">¶</a>命令使用错误</h3>
+<p>唉，这个说多了都是泪</p>
+<p><font color='red'>没有加&amp;</font>，记得把<font color='red'>&amp;</font>补上，当时查这个错误查了半天，命令没问题就可以理所当然地退出<code>xshell</code>了</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708213228.png" alt="正确截图"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Error</category>
+        <category>Programming Language</category>
+        <category>Linux</category>
+        <category>Java</category>
+        <category>运维</category>
+        <category>Apply</category>
+        <category>FrameWork</category>
+        <category>SpringBoot</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+        <tag>ECS</tag>
       </tags>
   </entry>
   <entry>
@@ -1734,43 +2155,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>MySQL CRUD:插入查询结果</title>
-    <url>/posts/823de3f/</url>
-    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
-<span id="more"></span>
-<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
-<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
-<p><strong>删除表中的重复记录</strong></p>
-<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
-<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
-<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
-<ol>
-<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<ol start="3">
-<li>重命名表</li>
-</ol>
-<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Database</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-        <tag>CRUD</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL CRUD:聚合函数</title>
     <url>/posts/beb41dd5/</url>
     <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
@@ -1843,6 +2227,43 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>MySQL CRUD:插入查询结果</title>
+    <url>/posts/823de3f/</url>
+    <content><![CDATA[<p><img src="https://pedropablomoral.com/wp-content/uploads/2017/07/crud-con-node-js.jpg" alt="CRUD"></p>
+<span id="more"></span>
+<h3 id="语法"><a class="header-anchor" href="#语法">¶</a>语法</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> table_name [(<span class="hljs-keyword">column</span>[,<span class="hljs-keyword">column</span> ...]])] <span class="hljs-keyword">select</span> ...<br></code></pre></td></tr></table></figure>
+<h3 id="案例"><a class="header-anchor" href="#案例">¶</a>案例</h3>
+<p><strong>删除表中的重复记录</strong></p>
+<h4 id="数据以及表结构"><a class="header-anchor" href="#数据以及表结构">¶</a>数据以及表结构</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">desc</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> Field <span class="hljs-operator">|</span> Type        <span class="hljs-operator">|</span> <span class="hljs-keyword">Null</span> <span class="hljs-operator">|</span> Key <span class="hljs-operator">|</span> <span class="hljs-keyword">Default</span> <span class="hljs-operator">|</span> Extra <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-operator">|</span> id    <span class="hljs-operator">|</span> <span class="hljs-type">int</span>         <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> name  <span class="hljs-operator">|</span> <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-operator">|</span> YES  <span class="hljs-operator">|</span>     <span class="hljs-operator">|</span> <span class="hljs-keyword">NULL</span>    <span class="hljs-operator">|</span>       <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">-------+-------------+------+-----+---------+-------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">6</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="思路"><a class="header-anchor" href="#思路">¶</a>思路</h4>
+<p>大致思路就是，创建副本，副本中插入不重复的数据，副本重命名。结束👏</p>
+<h4 id="具体操作"><a class="header-anchor" href="#具体操作">¶</a>具体操作</h4>
+<ol>
+<li>创建空表no_duplicate_table和duplicate_table结果一样</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> no_duplicate_table <span class="hljs-keyword">like</span> duplicate_table;<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>从duplicate_table筛选不重复的数据插入到no_duplicate_table中</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> no_duplicate_table <span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br>Query OK, <span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.01</span> sec)<br>Records: <span class="hljs-number">3</span>  Duplicates: <span class="hljs-number">0</span>  Warnings: <span class="hljs-number">0</span><br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> no_duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>重命名表</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> rename <span class="hljs-keyword">table</span> duplicate_table <span class="hljs-keyword">to</span> old_duplicate_table,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> no_duplicate_table <span class="hljs-keyword">to</span> duplicate_table;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.08</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">show</span> tables;<br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> Tables_in_test_0906 <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-operator">|</span> duplicate_table     <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> exam_result         <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_delete          <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_null            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> for_truncate        <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> old_duplicate_table <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> students            <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span> table1              <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">---------------------+</span><br><span class="hljs-number">8</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> duplicate_table;<br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span> id   <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">100</span> <span class="hljs-operator">|</span> aaa  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">200</span> <span class="hljs-operator">|</span> bbb  <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">300</span> <span class="hljs-operator">|</span> ccc  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">------+------+</span><br><span class="hljs-number">3</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+        <tag>CRUD</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL: NULL与NULL的比较(=,&lt;=&gt;)</title>
     <url>/posts/58b080ef/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109171626761.jpeg" alt="MySQL"></p>
@@ -1897,6 +2318,115 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>MySQL 事务管理</title>
+    <url>/posts/769c2380/</url>
+    <content><![CDATA[<p>事务就是一组DML语句组成，这些语句在逻辑上存在相关性，要么全部成功执行，要么全部失败执行，是一个整体。</p>
+<p>MySQL提供一种机制，保证我们达到这样的效果。</p>
+<p>事务还规定，不同的客户端看到的数据是不一样的。</p>
+<h3 id="事务基本操作"><a class="header-anchor" href="#事务基本操作">¶</a>事务基本操作</h3>
+<h4 id="测试表"><a class="header-anchor" href="#测试表">¶</a>测试表</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> account(<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;&#x27;</span>,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> balance <span class="hljs-type">decimal</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-number">0.0</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> );<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.07</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="开始一个事务"><a class="header-anchor" href="#开始一个事务">¶</a>开始一个事务</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">start</span> transaction;<br></code></pre></td></tr></table></figure>
+<h4 id="创建一个保存点"><a class="header-anchor" href="#创建一个保存点">¶</a>创建一个保存点</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">savepoint</span> point_name;<br></code></pre></td></tr></table></figure>
+<h4 id="回到保存点"><a class="header-anchor" href="#回到保存点">¶</a>回到保存点</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> point_name;<br></code></pre></td></tr></table></figure>
+<h4 id="代码演示"><a class="header-anchor" href="#代码演示">¶</a>代码演示</h4>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">start</span> transaction;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">savepoint</span> aa;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> account <span class="hljs-keyword">values</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> (<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;张三&#x27;</span>,<span class="hljs-number">10</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">savepoint</span> bb;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> account <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;李四&#x27;</span>,<span class="hljs-number">10000</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> account;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> balance  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三 <span class="hljs-operator">|</span>    <span class="hljs-number">10.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> 李四 <span class="hljs-operator">|</span> <span class="hljs-number">10000.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br><span class="hljs-comment">-- 发现第二次插入是误操作，回滚到bb状态</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> bb;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> account;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> balance <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三 <span class="hljs-operator">|</span>   <span class="hljs-number">10.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h3 id="事务操作注意事项"><a class="header-anchor" href="#事务操作注意事项">¶</a>事务操作注意事项</h3>
+<ul>
+<li>没有设置保存点，也可以进行回滚，只能回滚到事务的开始，<font color='red'>直接使用roolback</font></li>
+<li>如果一个事务被提交(commit)了，则不可以回滚</li>
+<li>可以选择回退到那个保存点</li>
+<li>InnoDB支持事务，MyISAM不支持事务</li>
+<li>开始事务使用<code>start transaction</code></li>
+</ul>
+<h3 id="事务的隔离级别"><a class="header-anchor" href="#事务的隔离级别">¶</a>事务的隔离级别</h3>
+<p>当我们有多个客户端同时操作数据库的某张表的时候，如何就行隔离操作？MySQL提供了机制。</p>
+<p>当MySQL表被多个线程或者客户端开启各自事务操作数据库中的数据时，MySQL提供了一种机制，可以让不同的事务在操作数据师，具有隔离性，从而保证数据的一致性。</p>
+<h4 id="无隔离性的问题"><a class="header-anchor" href="#无隔离性的问题">¶</a>无隔离性的问题</h4>
+<h5 id="脏读"><a class="header-anchor" href="#脏读">¶</a>脏读</h5>
+<p>是指一个事务对数据库中的数据进行了修改，但是这种修改并没有被提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据；</p>
+<h5 id="不可重复读"><a class="header-anchor" href="#不可重复读">¶</a>不可重复读</h5>
+<p>是指在一个事务中，多次重复读同一个数据。这样在事务对同一个事务的两次读之间，第二个事务可能对数据进行修改，这样的话就可能出现两次读取数据不一样的情况。也就是说发生了在一个事务内两次读到的数据是不一样的，也能为此称为不可重复读</p>
+<p><strong>解决方法</strong>：另外一个事务完全提交之后，才可以读取数据，则可以避免该问题</p>
+<h5 id="幻读"><a class="header-anchor" href="#幻读">¶</a>幻读</h5>
+<p>事务不是独立执行时的一种现象。</p>
+<p><strong>案例</strong>：一个事务对表中的数据进行了修改，涉及到了数据表的全部行。此时第二个事务向表中插入了一行数据，这样像是第一个事务没有修改全部的数据行一样，就像是发生了幻觉。</p>
+<p><strong>解决方案</strong>：如果在操作事务完成数据处理之前，任何其他事务都不可以添加新数据，则可以避免这种问题</p>
+<div class="note note-warning">
+            <p>不可重复读的重点是修改：同样的条件，读取的数据再次读取发现值不一样了。</p><p>幻读的重点在于新增或者删除：同样的条件，第一次和第二次读出来的记录数不一样。</p>
+          </div>
+<h4 id="隔离级别"><a class="header-anchor" href="#隔离级别">¶</a>隔离级别</h4>
+<table>
+<thead>
+<tr>
+<th>隔离界别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+<th>加锁读</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>读未提交(read uncommitted)</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>不加锁</td>
+</tr>
+<tr>
+<td>读已提交(read committed)</td>
+<td>❎</td>
+<td>✅</td>
+<td>✅</td>
+<td>不加锁​</td>
+</tr>
+<tr>
+<td>可重复读(repeatable read)</td>
+<td>❎</td>
+<td>❎</td>
+<td>❎</td>
+<td>不加锁​</td>
+</tr>
+<tr>
+<td>可串行化(serializable)</td>
+<td>❎</td>
+<td>❎</td>
+<td>❎</td>
+<td>加锁​</td>
+</tr>
+</tbody>
+</table>
+<p>说明：</p>
+<p>❎表示不会发生</p>
+<p>✅表示会发生</p>
+<h5 id="设置隔离级别"><a class="header-anchor" href="#设置隔离级别">¶</a>设置隔离级别</h5>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> session transaction isolation level read uncommitted;<br></code></pre></td></tr></table></figure>
+<h5 id="查看隔离级别"><a class="header-anchor" href="#查看隔离级别">¶</a>查看隔离级别</h5>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> @<span class="hljs-variable">@transaction</span>_isolation;<br></code></pre></td></tr></table></figure>
+<h3 id="事务的ACID特性"><a class="header-anchor" href="#事务的ACID特性">¶</a>事务的ACID特性</h3>
+<h4 id="原子性-Atomicity"><a class="header-anchor" href="#原子性-Atomicity">¶</a>原子性(Atomicity)</h4>
+<p>事务是应用中最小的执行单位，具有不可再分的特征。事务是应用中不可再分的最小逻辑执行体</p>
+<h4 id="一致性-Consistency"><a class="header-anchor" href="#一致性-Consistency">¶</a>一致性(Consistency)</h4>
+<p>事务执行的结果，必须从一个一致性状态变成另外一个一致性状态。当数据库中只包含事务成功提交的结果时，数据库处于一致性状态。如果系统运行发生中断，某个事物尚未完成而被迫中断，而该未完成的事务对数据库的修改已经写入数据库，此时数据库就处于一种不确定不一致的状态。因此一致性是通过原子性来保证的。</p>
+<h4 id="隔离性-Isolation"><a class="header-anchor" href="#隔离性-Isolation">¶</a>隔离性(Isolation)</h4>
+<p>各个事务的执行互不干扰，任意一个事物的内部操作对其他并发事物都是隔离的。也就是说，并发执行的事物之间不能看到对方的状态，并发执行的事务之间不能相互影响。</p>
+<h4 id="持久性-Durability"><a class="header-anchor" href="#持久性-Durability">¶</a>持久性(Durability)</h4>
+<p>持久性是指一个事务一旦被提交，它对数据库的修改要记录到永久存储器中。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL 子查询:in/exists,all/any/some的区别</title>
     <url>/posts/9e2a31fe/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" alt="MySQL子查询"></p>
@@ -1933,6 +2463,37 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
 <p><strong>all和any的特殊情况</strong>：</p>
 <p>对于<font color='cornflowerblue'>all</font>如果表示空表，那么返回<font color='lawngreen'>true</font>；如果子查询含有<font color='lawngreen'>NULL</font>，那么结果就为空</p>
 <p>对于<font color='cornflowerblue'>any</font>，无论是空表还是子查询含有<font color='lawngreen'>NULL</font>，结果都是<font color='lawngreen'>NULL</font></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Database</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL insert into和select into</title>
+    <url>/posts/8e41bd02/</url>
+    <content><![CDATA[<p>绝了，学了这么久还是只会<code>insert into</code>，像是个废人</p>
+<p>ok，废话不多说，淦！</p>
+<span id="more"></span>
+<p>今天在牛客上刷了一道题：<font color='red'>某打车公司要将驾驶里程（drivedistanced）超过5000里的司机信息转存到一张称为seniordrivers 的表中，他们的详细情况被记录在表drivers 中</font></p>
+<p>我惊醒，这不就是insert into嘛，小菜一碟，后来想起来真的是，我是fw</p>
+<h3 id="insert-into"><a class="header-anchor" href="#insert-into">¶</a>insert into</h3>
+<p>isnert into 常用于<strong>向表中插入新行</strong></p>
+<div class="note note-primary">
+            <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> table_name <span class="hljs-keyword">VALUES</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>,....)<br><span class="hljs-comment">-- 指定所要插入数据的列：</span><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> table_name (列<span class="hljs-number">1</span>, 列<span class="hljs-number">2</span>,...) <span class="hljs-keyword">VALUES</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>,....)<br></code></pre></td></tr></table></figure>
+          </div>
+<h3 id="select-into"><a class="header-anchor" href="#select-into">¶</a>select into</h3>
+<p>SELECT INTO 语句<strong>从一个表中选取数据，然后把数据插入另一个表中</strong>。常用于创建表的备份复件或者用于对记录进行存档。</p>
+<div class="note note-primary">
+            <figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs SQL"><span class="hljs-comment">-- 把所有的列插入新表 </span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">INTO</span> new_table_name [<span class="hljs-keyword">IN</span> externaldatabase] <br><span class="hljs-keyword">FROM</span> old_tablename<br></code></pre></td></tr></table></figure>
+          </div>
+<h3 id="题目答案"><a class="header-anchor" href="#题目答案">¶</a>题目答案</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">into</span> seniordrivers<br><span class="hljs-keyword">where</span> drivedistanced <span class="hljs-operator">&gt;</span> <span class="hljs-number">5000</span><br><span class="hljs-keyword">from</span> drivers;<br></code></pre></td></tr></table></figure>
+<p>这是什么数据库的写法，Get</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
@@ -2812,21 +3373,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>binary not found</title>
-    <url>/posts/18281/</url>
-    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75a32aba13161e7315b964bcae238040?rik=jSFCMWvsL4%2fI3Q&amp;riu=http%3a%2f%2fi2.hdslb.com%2fbfs%2farchive%2f6faaf195d512f35b98d62d112be3607a0cd65991.jpg&amp;ehk=9ZOxq2FO5wRa3NhrfcALS25moCAwv9R8CGz41dTjgU4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="嵌入式"></p>
-<span id="more"></span>
-<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>项目中数据库问题</title>
     <url>/posts/44965/</url>
     <content><![CDATA[<p><img src="https://it.badykov.com/assets/img/blog/automated-testing/database-management.jpg" alt="database"></p>
@@ -2851,6 +3397,21 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>SQL</tag>
         <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>binary not found</title>
+    <url>/posts/18281/</url>
+    <content><![CDATA[<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75a32aba13161e7315b964bcae238040?rik=jSFCMWvsL4%2fI3Q&amp;riu=http%3a%2f%2fi2.hdslb.com%2fbfs%2farchive%2f6faaf195d512f35b98d62d112be3607a0cd65991.jpg&amp;ehk=9ZOxq2FO5wRa3NhrfcALS25moCAwv9R8CGz41dTjgU4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="嵌入式"></p>
+<span id="more"></span>
+<p><code>binary not found</code>问题，由于环境配置的各种问题，无数次debug项目出现了<code>binary not found</code>问题。解决办法就是找到debug视图，杀掉其他的正在运行的此项目。Linux环境下，相同项目的不同线程用的都是同一个bin文件，当你修改了程序（重新编译了程序），<code>bin</code>文件就会变化，这样再进行debug的时候就会引起不同线程对bin文件的竞争。一劳永逸的方法就是杀冗余线程。进入debug视图，右键其中一个线程，点击<code>Terminate/Disconnect All</code>和<code>Terminate and Remove</code>，这样多余的线程就杀掉了，再进行debug就不会出现<code>binary not found</code>的问题了。</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -2895,8 +3456,8 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
-        <category>Error</category>
         <category>Software</category>
+        <category>Error</category>
         <category>Git</category>
       </categories>
       <tags>
@@ -3401,35 +3962,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>hexo同级多级分类配置</title>
-    <url>/posts/63081/</url>
-    <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
-<span id="more"></span>
-<h1>前言</h1>
-<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
-<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
-<div class="note note-success">
-            <blockquote><p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p></blockquote>
-          </div>
-<h1>同级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">注意方括号</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">Java</span>]<br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>]<br></code></pre></td></tr></table></figure>
-<h1>多级分类</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">默认情况</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">框架</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">Spring</span><br>	<br><span class="hljs-string">//</span> <span class="hljs-string">另一种写法</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>,<span class="hljs-string">Spring</span>]<br></code></pre></td></tr></table></figure>
-<h1>更多级目录</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">categories:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Programming</span> <span class="hljs-string">Language</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">Java</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">Base</span><br></code></pre></td></tr></table></figure>
-<h1>总结</h1>
-<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-      <categories>
-        <category>环境搭建</category>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Next</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>k个一组反转链表</title>
     <url>/posts/f63f9b79/</url>
     <content><![CDATA[<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109132027464.png" alt="力扣刷题结果"></p>
@@ -3463,6 +3995,35 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo同级多级分类配置</title>
+    <url>/posts/63081/</url>
+    <content><![CDATA[<p><img src="https://polyamorousliving.com/wp-content/uploads/2020/01/Categories.jpg" alt="categories"></p>
+<span id="more"></span>
+<h1>前言</h1>
+<p>很多情况下，我们都希望一篇文章属于多个分类，分类之间又有上下级管理，例如一篇文章是写java后端框架的，他就可以归类为java也可以归类为框架–这就是同级分类；而这一篇文章又是属于Spring框架的，他就可以归类为框架下的Spring–这就是多级分类</p>
+<p>根据官方文档，实现同级和多级分类按照以下方式进行，这里做一次搬运工</p>
+<div class="note note-success">
+            <blockquote><p>说明：无论是同级分类还是多级分类，都是写在markdown文档头部的yml中的，相信写过分类的小伙伴都知道，这里就不多说啦</p></blockquote>
+          </div>
+<h1>同级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">注意方括号</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">Java</span>]<br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>]<br></code></pre></td></tr></table></figure>
+<h1>多级分类</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">//</span> <span class="hljs-string">默认情况</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">框架</span><br>	<span class="hljs-bullet">-</span> <span class="hljs-string">Spring</span><br>	<br><span class="hljs-string">//</span> <span class="hljs-string">另一种写法</span><br><span class="hljs-attr">categories:</span><br>	<span class="hljs-bullet">-</span> [<span class="hljs-string">框架</span>,<span class="hljs-string">Spring</span>]<br></code></pre></td></tr></table></figure>
+<h1>更多级目录</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">categories:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-bullet">-</span> <span class="hljs-string">Programming</span> <span class="hljs-string">Language</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">Java</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">Base</span><br></code></pre></td></tr></table></figure>
+<h1>总结</h1>
+<p>综合上面陈列的同级分类和多级分类的实现，最好就使用方括号，这样不容易模糊</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+      <categories>
+        <category>环境搭建</category>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Next</tag>
       </tags>
   </entry>
   <entry>
@@ -3878,34 +4439,6 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
-    <title>Tomcat error</title>
-    <url>/posts/37247/</url>
-    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
-<span id="more"></span>
-<h1>1099端口已经被占用</h1>
-<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
-<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
-<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
-<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
-<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
-<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
-<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
-<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-]]></content>
-      <categories>
-        <category>Program</category>
-        <category>Error</category>
-      </categories>
-      <tags>
-        <tag>Tomcat</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>picgo+gitee实现markdown图片上传自动化</title>
     <url>/posts/12356/</url>
     <content><![CDATA[<p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" alt="Picgo"></p>
@@ -3985,6 +4518,34 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
       </tags>
   </entry>
   <entry>
+    <title>Tomcat error</title>
+    <url>/posts/37247/</url>
+    <content><![CDATA[<p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" alt="Tomcat"></p>
+<span id="more"></span>
+<h1>1099端口已经被占用</h1>
+<p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
+<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
+<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
+<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" alt="1099-1"></p>
+<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
+<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" alt="1099-2"></p>
+<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
+<p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" alt=""></p>
+<p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Program</category>
+        <category>Error</category>
+      </categories>
+      <tags>
+        <tag>Tomcat</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vscode C/C++头文件问题</title>
     <url>/posts/55983/</url>
     <content><![CDATA[<p><img src="https://code.visualstudio.com/opengraphimg/opengraph-home.png" alt="VS code"></p>
@@ -4036,10 +4597,10 @@ chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 ]]></content>
       <categories>
+        <category>Software</category>
         <category>环境搭建</category>
         <category>Error</category>
         <category>Programming Language</category>
-        <category>Software</category>
         <category>CPP</category>
         <category>CPP</category>
         <category>Vscode</category>
@@ -4416,6 +4977,41 @@ $$
       <tags>
         <tag>Daily</tag>
         <tag>Data Structure</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>换酒问题</title>
+    <url>/posts/3b3e846/</url>
+    <content><![CDATA[<h3 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h3>
+<p><a href="https://leetcode-cn.com/problems/water-bottles/">1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h3 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h3>
+<p>基本思路不是很简单？</p>
+<p>既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(<font color='red'>模拟算法</font>)</p>
+<p>但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(<font color='cornflowerblue'>后面这句才符合我</font>)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为止(<font color='red'>贪心递归</font>)</p>
+<h3 id="代码展示"><a class="header-anchor" href="#代码展示">¶</a>代码展示</h3>
+<p>好了，不贫了，直接上才艺</p>
+<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.e35e7bd5dbfe5abc91f025fb7147a43c?rik=B4PiIjvT%2bflRGg&amp;riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180907%2f635c9726470449c1a65c688516a3c4b7.gif&amp;ehk=7yMeyB3x3m43kx%2bGBAzD%2fw9YL52yoiDclnkQ6M95msU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" alt="上才艺"></p>
+<p><strong>模拟</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numExchange;<br>            numBottles -= numExchange;<br>            numBottles++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> numBottles + sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>递归</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">return</span> numBottles - numBottles%numExchange + numWaterBottles(numBottles/numExchange + numBottles%numExchange,numExchange);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><strong>贪心算法</strong>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numBottles - numBottles%numExchange;<br>            numBottles = numBottles/numExchange + numBottles%numExchange;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum + numBottles;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="note note-success">
+            <p>有没有感觉其实贪心算法其实只是展开了递归，减少了递归的栈容量消耗。</p><p>其实内存相差无几。</p>
+          </div>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+]]></content>
+      <categories>
+        <category>Programming Language</category>
+        <category>Java</category>
+        <category>Algorithm</category>
+        <category>Apply</category>
+        <category>递归</category>
+        <category>贪心算法</category>
+      </categories>
+      <tags>
+        <tag>Daily</tag>
       </tags>
   </entry>
   <entry>
