@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      732 字
+      734 字
     </span>
   
 
@@ -253,23 +253,19 @@
             <div class="markdown-body">
               <p><img src="https://ss0.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2588865287,1293565697&amp;fm=26&amp;gp=0.jpg" srcset="/img/loading.gif" lazyload alt="上楼梯"></p>
 <span id="more"></span>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
-<p>其实我的思路最开始很简单，一共有n节台阶，假设上n节有f(n)种上法</p>
+<h4 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h4><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<h4 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h4><p>其实我的思路最开始很简单，一共有n节台阶，假设上n节有f(n)种上法</p>
 <ul>
 <li>迈1节，一种迈法，就是上一节，即n==1时，f(1) = 1</li>
 <li>迈2节，两种迈法，一种是两次一节，一种是一次两节，即n==2时，f(2)==2</li>
 </ul>
-<p>而且很容易得出递推公式
-$$
-f(n) = f(n-1) + f(n-2)
-$$
-这样的话，直接就是一个递归啊</p>
+<p>而且很容易得出递推公式</p>
+<script type="math/tex; mode=display">
+f(n) = f(n-1) + f(n-2)</script><p>这样的话，直接就是一个递归啊</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">return</span> climbStairs(n-<span class="hljs-number">1</span>)+climbStairs(n-<span class="hljs-number">2</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>但是，这样的话，时间复杂度是O(2^n)。由于算法是受时间限制的，当n=45的时候，代码直接被卡了<font color='red'>N/A</font>，我简直恨死这个东西了</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161852878.png" srcset="/img/loading.gif" lazyload alt="你喜欢这个嘛？"></p>
-<p>但是，肯定还是自己的算法不可以啊，不行？？？那就换😕</p>
+<p>但是，肯定还是自己的算法不可以啊，不行？？？那就换:confused:</p>
 <p>那换个啥方法，不知道？那就先来个数学归纳吧</p>
 <ul>
 <li>n==1   f(1) = 1</li>
@@ -279,30 +275,25 @@ $$
 <li>n==5   f(5) = 8</li>
 <li>…</li>
 </ul>
-<p>有没发现，从第三项开始，每一项都是前两项的和，你想到了什么，斐波那契数列啊😲</p>
+<p>有没发现，从第三项开始，每一项都是前两项的和，你想到了什么，斐波那契数列啊:astonished:</p>
 <p>想一想，斐波那契数列怎么实现？</p>
-<p>（1）公式实现
-$$
-f(n) = \frac {1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right]
-$$
-至于具体怎么实现的，中间涉及了高等数学齐次线性和特征方程的概念，想要了解得同学，移步。</p>
+<p>（1）公式实现</p>
+<script type="math/tex; mode=display">
+f(n) = \frac {1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right]</script><p>至于具体怎么实现的，中间涉及了高等数学齐次线性和特征方程的概念，想要了解得同学，移步。</p>
 <p>（2）动态规划</p>
 <p>根据递推公式，我只需要记录三项的值，第三项的值由前两项得出，O(n)的时间复杂度就可以得出结果</p>
-<h4 id="代码实现"><a class="header-anchor" href="#代码实现">¶</a>代码实现</h4>
-<h5 id="公式法"><a class="header-anchor" href="#公式法">¶</a>公式法</h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">double</span> sqrt5 = Math.sqrt(<span class="hljs-number">5</span>);<br>        <span class="hljs-keyword">double</span> fib = Math.pow((<span class="hljs-number">1</span>+sqrt5)/<span class="hljs-number">2</span>,n+<span class="hljs-number">1</span>) - Math.pow((<span class="hljs-number">1</span>-sqrt5)/<span class="hljs-number">2</span>, n+<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)(fib/sqrt5);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><h5 id="公式法"><a href="#公式法" class="headerlink" title="公式法"></a>公式法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">double</span> sqrt5 = Math.sqrt(<span class="hljs-number">5</span>);<br>        <span class="hljs-keyword">double</span> fib = Math.pow((<span class="hljs-number">1</span>+sqrt5)/<span class="hljs-number">2</span>,n+<span class="hljs-number">1</span>) - Math.pow((<span class="hljs-number">1</span>-sqrt5)/<span class="hljs-number">2</span>, n+<span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">int</span>)(fib/sqrt5);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <div class="note note-info">
-            <p>很多同学对第四行为什么是<font color='red'>n+1</font>而不是<font color='red'>n</font>有疑问，其实这个就在于对斐波那契数列的了解程度了，其实对于斐波那契数列，最开始的两项应该是0和1，但是0+1=1，这样的话，最开始那一项对我们的结果没有什么影响，所以，我们的斐波那契数列，应该是这个样子的$$1,1,2,3,5,8,13,21,34,\cdots$$但是我们的算法第一项是1，第二项就是2，故而此时第n项就应该是第<font color='red'>n+1</font>项斐波那契数列的值，ok，分析结束😉</p>
+            <p>很多同学对第四行为什么是<font color='red'>n+1</font>而不是<font color='red'>n</font>有疑问，其实这个就在于对斐波那契数列的了解程度了，其实对于斐波那契数列，最开始的两项应该是0和1，但是0+1=1，这样的话，最开始那一项对我们的结果没有什么影响，所以，我们的斐波那契数列，应该是这个样子的</p><script type="math/tex; mode=display">1,1,2,3,5,8,13,21,34,\cdots</script><p>但是我们的算法第一项是1，第二项就是2，故而此时第n项就应该是第<font color='red'>n+1</font>项斐波那契数列的值，ok，分析结束:wink:</p>
           </div>
 <p><strong>结果</strong></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161943774.png" srcset="/img/loading.gif" lazyload alt="公式法结果"></p>
-<h5 id="动态规划"><a class="header-anchor" href="#动态规划">¶</a>动态规划</h5>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> p = <span class="hljs-number">1</span>,q = <span class="hljs-number">2</span>,r = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">2</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">3</span>;i&lt;=n;i++)&#123;<br>            r = p + q;<br>            p = q;<br>            q = r;<br>        &#125;<br>        <span class="hljs-keyword">return</span> r;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h5 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">climbStairs</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> p = <span class="hljs-number">1</span>,q = <span class="hljs-number">2</span>,r = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">2</span>)<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">3</span>;i&lt;=n;i++)&#123;<br>            r = p + q;<br>            p = q;<br>            q = r;<br>        &#125;<br>        <span class="hljs-keyword">return</span> r;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>结果</strong></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109161956443.png" srcset="/img/loading.gif" lazyload alt="动态规划力扣结果"></p>
-<h4 id="结语"><a class="header-anchor" href="#结语">¶</a>结语</h4>
-<p>这个深刻的解释了，<font color='cornflowerblue'>算法的本质是数学</font>。加油！！！</p>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>这个深刻的解释了，<font color='cornflowerblue'>算法的本质是数学</font>。加油！！！</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 
             </div>
             <hr>

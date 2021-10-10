@@ -246,30 +246,29 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-24 21:26
+                  本文最后更新于：2021-10-09 22:55
                 
               </p>
             
             <div class="markdown-body">
               <p>构造器也叫构造方法</p>
 <div class="note note-primary">
-            <p>construct:建设、建造</p><p>construction:建造，建筑；创立，构建；构造，结构；建筑物；语法结构；解释，理解</p><p><font color='red'>constructor:建设者</font></p>
+            <p>construct:建设、建造</p><p>construction:建造，建筑；创立，构建；构造，结构；建筑物；语法结构；解释，理解</p><font color='red'>constructor:建设者</font>
           </div>
 <p>构造器和类重名</p>
-<h3 id="构造器的使用"><a class="header-anchor" href="#构造器的使用">¶</a>构造器的使用</h3>
-<div class="note note-primary">
-            <ol><li>如果没有显式地定义类的构造器，则系统默认提供一个无参构造函数。</li><li>定义构造器的格式：<font color='red'>权限修饰符</font> <font color='orange'>类名</font>(<font color='cornflowerblue'>参数列表</font>){}</li><li>一个类中可以出现多个构造器，原理是<font color='lawngreen'>方法的重载</font></li><li>一旦显式定义构造器，则系统不会在提供无参构造函数；如果想要使用无参构造函数，那么必须显式构造无参构造函数</li></ol>
+<h3 id="构造器的使用"><a href="#构造器的使用" class="headerlink" title="构造器的使用"></a>构造器的使用</h3><div class="note note-primary">
+            <ol><li>如果没有显式地定义类的构造器，则系统默认提供一个无参构造函数。</li><li>定义构造器的格式：<font color='red'>权限修饰符</font> <font color='orange'>类名</font>(<font color='cornflowerblue'>参数列表</font>){} </li><li>一个类中可以出现多个构造器，原理是<font color='lawngreen'>方法的重载</font></li><li>一旦显式定义构造器，则系统不会在提供无参构造函数；如果想要使用无参构造函数，那么必须显式构造无参构造函数</li></ol>
           </div>
 <ol>
 <li>创建对象</li>
 </ol>
 <p>语法格式：new + 构造器</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">class_name instance = <span class="hljs-keyword">new</span> class_name(parameter_list);<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li>
-<p>对域进行初始化</p>
+<ol>
+<li><p>对域进行初始化</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-comment">// 自定义无参构造方法，或者说成是无参构造器</span><br>    <span class="hljs-comment">// 定义了有参构造方法，必须显示构造无参构造器</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = <span class="hljs-number">18</span>;<br>        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 定义有参构造函数，利用的原理是重载</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age,String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || a &gt; <span class="hljs-number">130</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;数据非法&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">this</span>.age = a;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(name.equals(<span class="hljs-string">&quot;&quot;</span>))<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+
 </li>
 </ol>
 
