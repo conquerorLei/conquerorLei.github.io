@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      632 字
+      630 字
     </span>
   
 
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      6
        分钟
     </span>
   
@@ -254,7 +254,8 @@
               <p>最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。</p>
 <p>我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png" srcset="/img/loading.gif" lazyload alt="不知道你喜不喜欢"></p>
-<h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>这个时候百思不得其解，怎么办，本地<code>hexo s</code>就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，<font color='orange'>他直接没有对我的tags内部的文件夹进行更新</font>，什么意思？</p>
+<h3 id="问题分析"><a class="header-anchor" href="#问题分析">¶</a>问题分析</h3>
+<p>这个时候百思不得其解，怎么办，本地<code>hexo s</code>就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，<font color='orange'>他直接没有对我的tags内部的文件夹进行更新</font>，什么意思？</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220959175.png" srcset="/img/loading.gif" lazyload alt="本地渲染后的tags文件夹"></p>
 <p>但是我的<code>.deploy_git</code>文件夹下面的文件名却没有被更改，这个文件夹下面的文件夹才会被<font color='orange'>Push</font>到<font color='orange'>GitHub</font>仓库。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221018516.png" srcset="/img/loading.gif" lazyload alt=".deploy_git文件夹"></p>
@@ -263,7 +264,9 @@
 <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.751e5f9f342de01f8463b01112edb128?rik=2gqn0%2bf4McaYxg&amp;riu=http%3a%2f%2fi-1.onegreen.net%2f2021%2f0120%2ffdf56f562fd846e48a96b306c8855245.jpg&amp;ehk=ZECJ1Js2nGmsXOpdKEXlnAcRWOh0gRrVUkGGPBa6U54%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="烦死了"></p>
 <p>后来，经过查阅资料才知道，<font color='orange'>Git</font>对大小写是不敏感的，这样的话，我改动了tags的大小写，是没有用的，因为他会默认，两个是一样的。所以部署之后页面没有更改。</p>
 <p>既然知道原因了，那就改呗</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="使用git-bash进行更改"><a href="#使用git-bash进行更改" class="headerlink" title="使用git bash进行更改"></a>使用<code>git bash</code>进行更改</h4><ol>
+<h3 id="解决方案"><a class="header-anchor" href="#解决方案">¶</a>解决方案</h3>
+<h4 id="使用git-bash进行更改"><a class="header-anchor" href="#使用git-bash进行更改">¶</a>使用<code>git bash</code>进行更改</h4>
+<ol>
 <li>在hexo安装目录下右键<code>git bash</code></li>
 <li>输入 <code>cd .deploy_git</code>，一定要有这一步，因为<font color='orange'>Hexo</font>文件夹本身不是一个<font color='orange'>Git</font>文件夹</li>
 <li>输入以下命令查看当前Git文件夹的配置信息</li>
@@ -273,28 +276,28 @@
 <div class="note note-warning">
             <p>core.ignorecase=<font color='red'>true</font>表示忽略大小写，也就是说，他认为<font color='orange'>Ajax</font>和<font color='orange'>AJAX</font>是一样的</p>
           </div>
-<ol>
+<ol start="4">
 <li>关闭core.ignorecase</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --local core.ignorecase false<br></code></pre></td></tr></table></figure>
-<h4 id="使用本地文件编辑器"><a href="#使用本地文件编辑器" class="headerlink" title="使用本地文件编辑器"></a>使用本地文件编辑器</h4><ol>
+<h4 id="使用本地文件编辑器"><a class="header-anchor" href="#使用本地文件编辑器">¶</a>使用本地文件编辑器</h4>
+<ol>
 <li>进入<code>.deploy_git/.git</code>文件夹，需要注意的是，这边的<code>.git</code>是隐藏的，需要查看隐藏文件。都是老司机，这个我就不教了奥</li>
 <li>右键<code>config</code>文件，使用你的文本编辑器打开，我使用的是notepad++：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://notepad-plus-plus.org/">notepad-plus-plus.org</a></li>
 </ol>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221033156.png" srcset="/img/loading.gif" lazyload alt="被打开的config文件"></p>
-<ol>
+<ol start="3">
 <li>直接修改就可以了，记得保存</li>
 </ol>
 <p>记得清理以下之前的重复文件夹，删除一下GitHub的远程文件夹，防止会出现无用界面的情况，就比如，这种情况</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221058824.png" srcset="/img/loading.gif" lazyload alt="文件夹重复，且Ajax是无效文件夹"></p>
-<p>来，又是一顿猛如虎的操作:sunglasses:</p>
+<p>来，又是一顿猛如虎的操作😎</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd .deploy_git<br>git pull<br>ls<br>git rm -rf --cached categories<br>git rm -rf --cached tags<br>git commit -m &#x27;delete the categories and tags&#x27;<br>git push<br></code></pre></td></tr></table></figure>
 <div class="note note-success">
             <p>不要怂，本地的categories和tags都不会删除，只会删除远程仓库里面的两个文件夹。</p>
           </div>
-<p>修改之后重新部署，就没有问题啦:wink:</p>
+<p>修改之后重新部署，就没有问题啦😉</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-
 
             </div>
             <hr>

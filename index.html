@@ -191,6 +191,68 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/posts/c774a81f/" target="_self">
+          有效括号
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/c774a81f/" target="_self">
+          
+          
+            
+          
+          ¶题目地址
+20. 有效的括号 - 力扣（LeetCode） (leetcode-cn.com)
+¶题目分析
+这个分析其实很简单不是嘛，但凡是牵扯到符号匹配的，考虑栈的特性先入后出，然后根据右边括号与栈顶元素的匹配情况考虑是都继续匹配
+时间复杂度为O(n)，空间复杂度为O(1)
+¶代码
+1234567891011121314151617181920212223242526272829303132c
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-10-11 21:33" pubdate>
+              2021-10-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Programming-Language/">Programming Language</a>
+            
+              <a href="/categories/Programming-Language/Java/">Java</a>
+            
+              <a href="/categories/Algorithm/">Algorithm</a>
+            
+              <a href="/categories/Programming-Language/Java/Apply/">Apply</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Daily/">Daily</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/posts/c9868b51/" target="_self">
           MySQL 开窗函数
         </a>
@@ -202,13 +264,15 @@
           
             
           
-          开窗函数开窗函数/分析函数：over()
+          ¶开窗函数
+开窗函数/分析函数：over()
 开窗函数是要对数据库数据进行实时分析处理，别称OLAP函数(分析函数)。
 窗口函数的引入是为了解决想要既显示聚集前的数据,又要显示聚集后的数据。开窗函数对一组值进行操作，不需要使用GROUP BY子句对数据进行分组，能够在同一行中同时返回基础行的列和聚合列。
 
             MySQL8.0之后可用
           
-语法1&lt;开窗函数&
+¶语法
+1&lt;开
         </a>
       </p>
 
@@ -260,10 +324,12 @@
           
             
           
-          题目地址1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com)
-题目分析最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢
+          ¶题目地址
+1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com)
+¶题目分析
+最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢
 
-想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的分数呢？然后指
+想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的分数呢
         </a>
       </p>
 
@@ -322,12 +388,13 @@
             
           
           交代一下，这道题是某厂笔试题，当时直接做崩，最后一道题没写出来，通过了14%的测试用例，OJ：牛客
-题目地址394. 字符串解码 - 力扣（LeetCode） (leetcode-cn.com)
-题目分析当时可能时间比较紧一些，没有进行详细的分析。事后分析一下，其实也就那样
+¶题目地址
+394. 字符串解码 - 力扣（LeetCode） (leetcode-cn.com)
+¶题目分析
+当时可能时间比较紧一些，没有进行详细的分析。事后分析一下，其实也就那样
 由于题目当中允许嵌套，并且有数字之类的，所以使用栈的特性进行符号判断挺好的
 
-如果字符串当前字符是数字，获取数字并压入栈
-如
+如果字符串当前字符是数字，获取数字并压
         </a>
       </p>
 
@@ -385,10 +452,13 @@
           
             
           
-          第二高的薪水题目地址176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com)
-题目分析第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。
+          ¶第二高的薪水
+¶题目地址
+176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com)
+¶题目分析
+第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。
 问题1：如果很多人并列第一高的薪水呢
-使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输出全部的排名第二的
+使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输出全部
         </a>
       </p>
 
@@ -416,69 +486,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/SQL/">SQL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/posts/3b3e846/" target="_self">
-          换酒问题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/posts/3b3e846/" target="_self">
-          
-          
-            
-          
-          题目地址1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com)
-题目分析基本思路不是很简单？
-既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(模拟算法)
-但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(后面这句才符合我)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为止(贪心
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-09 21:50" pubdate>
-              2021-10-09
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Programming-Language/">Programming Language</a>
-            
-              <a href="/categories/Programming-Language/Java/">Java</a>
-            
-              <a href="/categories/Algorithm/">Algorithm</a>
-            
-              <a href="/categories/Programming-Language/Java/Apply/">Apply</a>
-            
-              <a href="/categories/Algorithm/%E9%80%92%E5%BD%92/">递归</a>
-            
-              <a href="/categories/Algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Daily/">Daily</a>
             
           </div>
         

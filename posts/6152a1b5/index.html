@@ -251,85 +251,113 @@
               </p>
             
             <div class="markdown-body">
-              <h3 id="this关键字的使用"><a href="#this关键字的使用" class="headerlink" title="this关键字的使用"></a>this关键字的使用</h3><ol>
-<li><p><font color='cornflowerblue'>this</font>可以用来修饰：属性、方法、构造器</p>
-</li>
-<li><p><font color='cornflowerblue'>this</font>修饰属性和方法：<font color='cornflowerblue'>this</font>表示的是当前的对象</p>
+              <h3 id="this关键字的使用"><a class="header-anchor" href="#this关键字的使用">¶</a>this关键字的使用</h3>
 <ol>
-<li>可以使用”<font color='orange'>this.属性</font>“、”<font color='orange'>this.方法</font>“的方式调用当前对象或者当前正在创建属性的方法。但是通常情况下，我们都选择省略<font color='cornflowerblue'>this</font>.，特殊情况也就是重名问题时，必须显式使用</li>
+<li>
+<p><font color='cornflowerblue'>this</font>可以用来修饰：属性、方法、构造器</p>
+</li>
+<li>
+<p><font color='cornflowerblue'>this</font>修饰属性和方法：<font color='cornflowerblue'>this</font>表示的是当前的对象</p>
+<ol>
+<li>可以使用&quot;<font color='orange'>this.属性</font>“、”<font color='orange'>this.方法</font>&quot;的方式调用当前对象或者当前正在创建属性的方法。但是通常情况下，我们都选择省略<font color='cornflowerblue'>this</font>.，特殊情况也就是重名问题时，必须显式使用</li>
 <li>可以在构造器中使用<font color='cornflowerblue'>this</font>，也是重名问题</li>
 </ol>
 </li>
-<li><font color='cornflowerblue'>this</font>调用构造器
-
-1. 在类的构造器中，可以显式地使用"<font color='orange'>this(形参列表)</font>"的方式，调用本类的指定的其它构造器
-
-2. <font color='red'>不能调用自己</font>
-
+<li>
+<p><font color='cornflowerblue'>this</font>调用构造器</p>
 <ol>
-<li><p>如果一个类中有n个构造器，则最多有n - 1个使用了”<font color='orange'>this(形参列表)</font>“的方式调用构造器</p>
+<li>
+<p>在类的构造器中，可以显式地使用&quot;<font color='orange'>this(形参列表)</font>&quot;的方式，调用本类的指定的其它构造器</p>
+</li>
+<li>
+<p><font color='red'>不能调用自己</font></p>
+</li>
+<li>
+<p>如果一个类中有n个构造器，则最多有n - 1个使用了&quot;<font color='orange'>this(形参列表)</font>&quot;的方式调用构造器</p>
 <p>防止闭环情况的发生，也就是自己调用自己</p>
 </li>
-<li><p>构造器的调用必须声明在当前构造器的首行</p>
+<li>
+<p>构造器的调用必须声明在当前构造器的首行</p>
 </li>
-<li><p>构造内部，最多只能声明一个”<font color='orange'>this(形参列表)</font>“，用来调用其他的构造器</p>
+<li>
+<p>构造内部，最多只能声明一个&quot;<font color='orange'>this(形参列表)</font>&quot;，用来调用其他的构造器</p>
 </li>
 </ol>
 </li>
 </ol>
-<font color='cornflowerblue'>this</font>指针的使用是为了解决重名问题，为什么要解决这个问题，首先考虑以下代码
-
+<p><font color='cornflowerblue'>this</font>指针的使用是为了解决重名问题，为什么要解决这个问题，首先考虑以下代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorlei.java;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>	<span class="hljs-keyword">private</span> String name;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id,String name)</span> </span>&#123;<br>		id = id;<br>		name = name;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
-那么在构造一个对象的过程中，调用有参构造器的时候，我就分不清那个id是哪个id，那我为什么不可以使用首字母呢，答案是可以的。但是一个资深程序员不会这样写，为什么？因为直接使用全称有利于理解代码。这样的话，<font color='cornflowerblue'>this</font>关键字的使用就很重要了。
-
+<p>那么在构造一个对象的过程中，调用有参构造器的时候，我就分不清那个id是哪个id，那我为什么不可以使用首字母呢，答案是可以的。但是一个资深程序员不会这样写，为什么？因为直接使用全称有利于理解代码。这样的话，<font color='cornflowerblue'>this</font>关键字的使用就很重要了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorlei.java;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br>	<span class="hljs-keyword">private</span> String name;<br>	<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id,String name)</span> </span>&#123;<br>		<span class="hljs-keyword">this</span>.id = id;<br>		<span class="hljs-keyword">this</span>.name = name;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <div class="note note-primary">
-            <blockquote><p> 上述部分描述引自《Java核心技术：卷一》</p></blockquote>
+            <blockquote><p>上述部分描述引自《Java核心技术：卷一》</p></blockquote>
           </div>
-
-### package关键字的使用
-
-1. 为了更好的实现项目中类的管理，提供包的概念
-2. 使用<font color='orange'>package</font>font>声明类或者接口所属的包，声明在源文件的首行
-3. 包，属于标识符，遵循标识符的命名规则
-4. 每一个<font color='cornflowerblue'>“.”</font>，表示一层文件目录
-
+<h3 id="package关键字的使用"><a class="header-anchor" href="#package关键字的使用">¶</a>package关键字的使用</h3>
+<ol>
+<li>为了更好的实现项目中类的管理，提供包的概念</li>
+<li>使用<font color='orange'>package</font>font&gt;声明类或者接口所属的包，声明在源文件的首行</li>
+<li>包，属于标识符，遵循标识符的命名规则</li>
+<li>每一个<font color='cornflowerblue'>“.”</font>，表示一层文件目录</li>
+</ol>
 <div class="note note-warning">
             <p>同一个包下，不能命名同名的接口、类</p><p>不同的包下，可以命名同行的接口、类</p>
           </div>
-
-#### JDK常见的包名
-
-| 包名      | 介绍                                                         |
-| --------- | ------------------------------------------------------------ |
-| java.lang | 包含一些Java语言的核心类， 如String、 Math、 <br/>Integer、 System和Thread， 提供常用功能 |
-| java.net  | 包含执行与网络相关的操作的类和接口。                         |
-| java.io   | 包含能提供多种输入/输出功能的类。                            |
-| java.util | 包含一些实用工具类， 如定义系统特性、<br/> 接口的集合框架类、 使用与日期日历相关的函数。 |
-| java.text | 包含了一些java格式化相关的类                                 |
-| java.sql  | 包含了java进行JDBC数据库编程的相关类/接口                    |
-| java.awt  | 包含了构成抽象窗口工具集（abstract window toolkits）<br/> 的多个类， 这些类被用来构建和管理应用程序的图形用<br/>户界面(GUI)。 B/S C/S |
-
-#### MVC设计模式
-
-MVC是常用的设计模式，将整个程序分为三个层次：视图模型层，控制器层，数据模型层
-
-##### 模型层 <font color='red'>model</font>主要处理数据
-
-数据对象封装 <font color='orange'>model.bean/demain</font>
-
+<h4 id="JDK常见的包名"><a class="header-anchor" href="#JDK常见的包名">¶</a>JDK常见的包名</h4>
+<table>
+<thead>
+<tr>
+<th>包名</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.lang</td>
+<td>包含一些Java语言的核心类， 如String、 Math、 <br/>Integer、 System和Thread， 提供常用功能</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener external nofollow noreferrer" href="http://java.net">java.net</a></td>
+<td>包含执行与网络相关的操作的类和接口。</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener external nofollow noreferrer" href="http://java.io">java.io</a></td>
+<td>包含能提供多种输入/输出功能的类。</td>
+</tr>
+<tr>
+<td>java.util</td>
+<td>包含一些实用工具类， 如定义系统特性、<br/> 接口的集合框架类、 使用与日期日历相关的函数。</td>
+</tr>
+<tr>
+<td>java.text</td>
+<td>包含了一些java格式化相关的类</td>
+</tr>
+<tr>
+<td>java.sql</td>
+<td>包含了java进行JDBC数据库编程的相关类/接口</td>
+</tr>
+<tr>
+<td>java.awt</td>
+<td>包含了构成抽象窗口工具集（abstract window toolkits）<br/> 的多个类， 这些类被用来构建和管理应用程序的图形用<br/>户界面(GUI)。 B/S C/S</td>
+</tr>
+</tbody>
+</table>
+<h4 id="MVC设计模式"><a class="header-anchor" href="#MVC设计模式">¶</a>MVC设计模式</h4>
+<p>MVC是常用的设计模式，将整个程序分为三个层次：视图模型层，控制器层，数据模型层</p>
+<h5 id="模型层-font-color-red-model-font-主要处理数据"><a class="header-anchor" href="#模型层-font-color-red-model-font-主要处理数据">¶</a>模型层 <font color='red'>model</font>主要处理数据</h5>
+<p>数据对象封装 <font color='orange'>model.bean/demain</font></p>
 <p>数据库操作类 <font color='orange'>model.dao</font></p>
 <p>数据库 <font color='orange'>model.dao</font></p>
-<h5 id="控制层-controller处理业务逻辑"><a href="#控制层-controller处理业务逻辑" class="headerlink" title="控制层 controller处理业务逻辑"></a>控制层 <font color='red'>controller</font>处理业务逻辑</h5><p>应用界面相关<font color='orange'> controller.activity</font></p>
+<h5 id="控制层-font-color-red-controller-font-处理业务逻辑"><a class="header-anchor" href="#控制层-font-color-red-controller-font-处理业务逻辑">¶</a>控制层 <font color='red'>controller</font>处理业务逻辑</h5>
+<p>应用界面相关<font color='orange'> controller.activity</font></p>
 <p>存放fragment <font color='orange'>controller.fragment</font></p>
 <p>显示列表的适配器 <font color='orange'>controller.adapter</font></p>
 <p>服务相关的 <font color='orange'>controller.service</font></p>
 <p>抽取的基类 <font color='orange'>controller.base</font></p>
-<h5 id="视图层-view显示数据"><a href="#视图层-view显示数据" class="headerlink" title="视图层 view显示数据"></a>视图层 <font color='red'>view</font>显示数据</h5><p>相关工具类 <font color='orange'>view.utils</font></p>
+<h5 id="视图层-font-color-red-view-font-显示数据"><a class="header-anchor" href="#视图层-font-color-red-view-font-显示数据">¶</a>视图层 <font color='red'>view</font>显示数据</h5>
+<p>相关工具类 <font color='orange'>view.utils</font></p>
 <p>自定义<font color='red'>view</font> <font color='orange'>view.ui</font></p>
-<h3 id="import关键字的使用"><a href="#import关键字的使用" class="headerlink" title="import关键字的使用"></a>import关键字的使用</h3><ol>
+<h3 id="import关键字的使用"><a class="header-anchor" href="#import关键字的使用">¶</a>import关键字的使用</h3>
+<ol>
 <li>在源文件中现实的使用<font color='orange'>import</font>结构导入指定包下的类、接口</li>
 <li>声明在包的声明和类的声明之间</li>
 <li>如果需要导入多个结构，则并列写出即可</li>
@@ -337,7 +365,7 @@ MVC是常用的设计模式，将整个程序分为三个层次：视图模型�
 <li>如果使用的类或者接口是<font color='red'>java.lang</font>包下定义的，可以直接省略<font color='orange'>import</font></li>
 <li>如果是用的类或者接口是本包下定义的，可以省略<font color='orange'>import</font></li>
 <li>如果在源文件中，使用了不同包下的同名的类，则至少有一个类需要使用全类名的方式显示</li>
-<li>如果要调用<font color='red'>xxx</font>子包下的类，那么仍需要显示，不能使用<font color='red'>“<em> . </em>“</font></li>
+<li>如果要调用<font color='red'>xxx</font>子包下的类，那么仍需要显示，不能使用<font color='red'>“* . *”</font></li>
 <li><font color='orange'>import static</font> ：表示的导入指定类或者接口中的静态结构：静态域或者静态方法</li>
 </ol>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>

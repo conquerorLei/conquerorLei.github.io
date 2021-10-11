@@ -254,30 +254,42 @@
               <p>事务就是一组DML语句组成，这些语句在逻辑上存在相关性，要么全部成功执行，要么全部失败执行，是一个整体。</p>
 <p>MySQL提供一种机制，保证我们达到这样的效果。</p>
 <p>事务还规定，不同的客户端看到的数据是不一样的。</p>
-<h3 id="事务基本操作"><a href="#事务基本操作" class="headerlink" title="事务基本操作"></a>事务基本操作</h3><h4 id="测试表"><a href="#测试表" class="headerlink" title="测试表"></a>测试表</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> account(<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;&#x27;</span>,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> balance <span class="hljs-type">decimal</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-number">0.0</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> );<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.07</span> sec)<br></code></pre></td></tr></table></figure>
-<h4 id="开始一个事务"><a href="#开始一个事务" class="headerlink" title="开始一个事务"></a>开始一个事务</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">start</span> transaction;<br></code></pre></td></tr></table></figure>
-<h4 id="创建一个保存点"><a href="#创建一个保存点" class="headerlink" title="创建一个保存点"></a>创建一个保存点</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">savepoint</span> point_name;<br></code></pre></td></tr></table></figure>
-<h4 id="回到保存点"><a href="#回到保存点" class="headerlink" title="回到保存点"></a>回到保存点</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> point_name;<br></code></pre></td></tr></table></figure>
-<h4 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">start</span> transaction;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">savepoint</span> aa;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> account <span class="hljs-keyword">values</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> (<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;张三&#x27;</span>,<span class="hljs-number">10</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">savepoint</span> bb;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> account <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;李四&#x27;</span>,<span class="hljs-number">10000</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> account;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> balance  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三 <span class="hljs-operator">|</span>    <span class="hljs-number">10.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> 李四 <span class="hljs-operator">|</span> <span class="hljs-number">10000.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br><span class="hljs-comment">-- 发现第二次插入是误操作，回滚到bb状态</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> bb;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> account;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> balance <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三 <span class="hljs-operator">|</span>   <span class="hljs-number">10.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
-<h3 id="事务操作注意事项"><a href="#事务操作注意事项" class="headerlink" title="事务操作注意事项"></a>事务操作注意事项</h3><ul>
+<h3 id="事务基本操作"><a class="header-anchor" href="#事务基本操作">¶</a>事务基本操作</h3>
+<h4 id="测试表"><a class="header-anchor" href="#测试表">¶</a>测试表</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> account(<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> name <span class="hljs-type">varchar</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-string">&#x27;&#x27;</span>,<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> balance <span class="hljs-type">decimal</span>(<span class="hljs-number">10</span>,<span class="hljs-number">2</span>) <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">default</span> <span class="hljs-number">0.0</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> );<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.07</span> sec)<br></code></pre></td></tr></table></figure>
+<h4 id="开始一个事务"><a class="header-anchor" href="#开始一个事务">¶</a>开始一个事务</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">start</span> transaction;<br></code></pre></td></tr></table></figure>
+<h4 id="创建一个保存点"><a class="header-anchor" href="#创建一个保存点">¶</a>创建一个保存点</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">savepoint</span> point_name;<br></code></pre></td></tr></table></figure>
+<h4 id="回到保存点"><a class="header-anchor" href="#回到保存点">¶</a>回到保存点</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> point_name;<br></code></pre></td></tr></table></figure>
+<h4 id="代码演示"><a class="header-anchor" href="#代码演示">¶</a>代码演示</h4>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">start</span> transaction;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">savepoint</span> aa;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> account <span class="hljs-keyword">values</span><br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> (<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;张三&#x27;</span>,<span class="hljs-number">10</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">savepoint</span> bb;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> account <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;李四&#x27;</span>,<span class="hljs-number">10000</span>);<br>Query OK, <span class="hljs-number">1</span> <span class="hljs-type">row</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> account;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> balance  <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三 <span class="hljs-operator">|</span>    <span class="hljs-number">10.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">2</span> <span class="hljs-operator">|</span> 李四 <span class="hljs-operator">|</span> <span class="hljs-number">10000.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+----------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br><span class="hljs-comment">-- 发现第二次插入是误操作，回滚到bb状态</span><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">rollback</span> <span class="hljs-keyword">to</span> bb;<br>Query OK, <span class="hljs-number">0</span> <span class="hljs-keyword">rows</span> affected (<span class="hljs-number">0.00</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> account;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> name <span class="hljs-operator">|</span> balance <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> 张三 <span class="hljs-operator">|</span>   <span class="hljs-number">10.00</span> <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+------+---------+</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.00</span> sec)<br></code></pre></td></tr></table></figure>
+<h3 id="事务操作注意事项"><a class="header-anchor" href="#事务操作注意事项">¶</a>事务操作注意事项</h3>
+<ul>
 <li>没有设置保存点，也可以进行回滚，只能回滚到事务的开始，<font color='red'>直接使用roolback</font></li>
 <li>如果一个事务被提交(commit)了，则不可以回滚</li>
 <li>可以选择回退到那个保存点</li>
 <li>InnoDB支持事务，MyISAM不支持事务</li>
 <li>开始事务使用<code>start transaction</code></li>
 </ul>
-<h3 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h3><p>当我们有多个客户端同时操作数据库的某张表的时候，如何就行隔离操作？MySQL提供了机制。</p>
+<h3 id="事务的隔离级别"><a class="header-anchor" href="#事务的隔离级别">¶</a>事务的隔离级别</h3>
+<p>当我们有多个客户端同时操作数据库的某张表的时候，如何就行隔离操作？MySQL提供了机制。</p>
 <p>当MySQL表被多个线程或者客户端开启各自事务操作数据库中的数据时，MySQL提供了一种机制，可以让不同的事务在操作数据师，具有隔离性，从而保证数据的一致性。</p>
-<h4 id="无隔离性的问题"><a href="#无隔离性的问题" class="headerlink" title="无隔离性的问题"></a>无隔离性的问题</h4><h5 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h5><p>是指一个事务对数据库中的数据进行了修改，但是这种修改并没有被提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据；</p>
-<h5 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h5><p>是指在一个事务中，多次重复读同一个数据。这样在事务对同一个事务的两次读之间，第二个事务可能对数据进行修改，这样的话就可能出现两次读取数据不一样的情况。也就是说发生了在一个事务内两次读到的数据是不一样的，也能为此称为不可重复读</p>
+<h4 id="无隔离性的问题"><a class="header-anchor" href="#无隔离性的问题">¶</a>无隔离性的问题</h4>
+<h5 id="脏读"><a class="header-anchor" href="#脏读">¶</a>脏读</h5>
+<p>是指一个事务对数据库中的数据进行了修改，但是这种修改并没有被提交到数据库中，这时，另外一个事务也访问这个数据，然后使用了这个数据；</p>
+<h5 id="不可重复读"><a class="header-anchor" href="#不可重复读">¶</a>不可重复读</h5>
+<p>是指在一个事务中，多次重复读同一个数据。这样在事务对同一个事务的两次读之间，第二个事务可能对数据进行修改，这样的话就可能出现两次读取数据不一样的情况。也就是说发生了在一个事务内两次读到的数据是不一样的，也能为此称为不可重复读</p>
 <p><strong>解决方法</strong>：另外一个事务完全提交之后，才可以读取数据，则可以避免该问题</p>
-<h5 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h5><p>事务不是独立执行时的一种现象。</p>
+<h5 id="幻读"><a class="header-anchor" href="#幻读">¶</a>幻读</h5>
+<p>事务不是独立执行时的一种现象。</p>
 <p><strong>案例</strong>：一个事务对表中的数据进行了修改，涉及到了数据表的全部行。此时第二个事务向表中插入了一行数据，这样像是第一个事务没有修改全部的数据行一样，就像是发生了幻觉。</p>
 <p><strong>解决方案</strong>：如果在操作事务完成数据处理之前，任何其他事务都不可以添加新数据，则可以避免这种问题</p>
 <div class="note note-warning">
             <p>不可重复读的重点是修改：同样的条件，读取的数据再次读取发现值不一样了。</p><p>幻读的重点在于新增或者删除：同样的条件，第一次和第二次读出来的记录数不一样。</p>
           </div>
-<h4 id="隔离级别"><a href="#隔离级别" class="headerlink" title="隔离级别"></a>隔离级别</h4><div class="table-container">
+<h4 id="隔离级别"><a class="header-anchor" href="#隔离级别">¶</a>隔离级别</h4>
 <table>
 <thead>
 <tr>
@@ -291,46 +303,51 @@
 <tbody>
 <tr>
 <td>读未提交(read uncommitted)</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
 <td>不加锁</td>
 </tr>
 <tr>
 <td>读已提交(read committed)</td>
-<td>:negative_squared_cross_mark:</td>
-<td>:white_check_mark:</td>
-<td>:white_check_mark:</td>
+<td>❎</td>
+<td>✅</td>
+<td>✅</td>
 <td>不加锁​</td>
 </tr>
 <tr>
 <td>可重复读(repeatable read)</td>
-<td>:negative_squared_cross_mark:</td>
-<td>:negative_squared_cross_mark:</td>
-<td>:negative_squared_cross_mark:</td>
+<td>❎</td>
+<td>❎</td>
+<td>❎</td>
 <td>不加锁​</td>
 </tr>
 <tr>
 <td>可串行化(serializable)</td>
-<td>:negative_squared_cross_mark:</td>
-<td>:negative_squared_cross_mark:</td>
-<td>:negative_squared_cross_mark:</td>
+<td>❎</td>
+<td>❎</td>
+<td>❎</td>
 <td>加锁​</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>说明：</p>
-<p>:negative_squared_cross_mark:表示不会发生</p>
-<p>:white_check_mark:表示会发生</p>
-<h5 id="设置隔离级别"><a href="#设置隔离级别" class="headerlink" title="设置隔离级别"></a>设置隔离级别</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> session transaction isolation level read uncommitted;<br></code></pre></td></tr></table></figure>
-<h5 id="查看隔离级别"><a href="#查看隔离级别" class="headerlink" title="查看隔离级别"></a>查看隔离级别</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> @<span class="hljs-variable">@transaction</span>_isolation;<br></code></pre></td></tr></table></figure>
-<h3 id="事务的ACID特性"><a href="#事务的ACID特性" class="headerlink" title="事务的ACID特性"></a>事务的ACID特性</h3><h4 id="原子性-Atomicity"><a href="#原子性-Atomicity" class="headerlink" title="原子性(Atomicity)"></a>原子性(Atomicity)</h4><p>事务是应用中最小的执行单位，具有不可再分的特征。事务是应用中不可再分的最小逻辑执行体</p>
-<h4 id="一致性-Consistency"><a href="#一致性-Consistency" class="headerlink" title="一致性(Consistency)"></a>一致性(Consistency)</h4><p>事务执行的结果，必须从一个一致性状态变成另外一个一致性状态。当数据库中只包含事务成功提交的结果时，数据库处于一致性状态。如果系统运行发生中断，某个事物尚未完成而被迫中断，而该未完成的事务对数据库的修改已经写入数据库，此时数据库就处于一种不确定不一致的状态。因此一致性是通过原子性来保证的。</p>
-<h4 id="隔离性-Isolation"><a href="#隔离性-Isolation" class="headerlink" title="隔离性(Isolation)"></a>隔离性(Isolation)</h4><p>各个事务的执行互不干扰，任意一个事物的内部操作对其他并发事物都是隔离的。也就是说，并发执行的事物之间不能看到对方的状态，并发执行的事务之间不能相互影响。</p>
-<h4 id="持久性-Durability"><a href="#持久性-Durability" class="headerlink" title="持久性(Durability)"></a>持久性(Durability)</h4><p>持久性是指一个事务一旦被提交，它对数据库的修改要记录到永久存储器中。</p>
+<p>❎表示不会发生</p>
+<p>✅表示会发生</p>
+<h5 id="设置隔离级别"><a class="header-anchor" href="#设置隔离级别">¶</a>设置隔离级别</h5>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">set</span> session transaction isolation level read uncommitted;<br></code></pre></td></tr></table></figure>
+<h5 id="查看隔离级别"><a class="header-anchor" href="#查看隔离级别">¶</a>查看隔离级别</h5>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> @<span class="hljs-variable">@transaction</span>_isolation;<br></code></pre></td></tr></table></figure>
+<h3 id="事务的ACID特性"><a class="header-anchor" href="#事务的ACID特性">¶</a>事务的ACID特性</h3>
+<h4 id="原子性-Atomicity"><a class="header-anchor" href="#原子性-Atomicity">¶</a>原子性(Atomicity)</h4>
+<p>事务是应用中最小的执行单位，具有不可再分的特征。事务是应用中不可再分的最小逻辑执行体</p>
+<h4 id="一致性-Consistency"><a class="header-anchor" href="#一致性-Consistency">¶</a>一致性(Consistency)</h4>
+<p>事务执行的结果，必须从一个一致性状态变成另外一个一致性状态。当数据库中只包含事务成功提交的结果时，数据库处于一致性状态。如果系统运行发生中断，某个事物尚未完成而被迫中断，而该未完成的事务对数据库的修改已经写入数据库，此时数据库就处于一种不确定不一致的状态。因此一致性是通过原子性来保证的。</p>
+<h4 id="隔离性-Isolation"><a class="header-anchor" href="#隔离性-Isolation">¶</a>隔离性(Isolation)</h4>
+<p>各个事务的执行互不干扰，任意一个事物的内部操作对其他并发事物都是隔离的。也就是说，并发执行的事物之间不能看到对方的状态，并发执行的事务之间不能相互影响。</p>
+<h4 id="持久性-Durability"><a class="header-anchor" href="#持久性-Durability">¶</a>持久性(Durability)</h4>
+<p>持久性是指一个事务一旦被提交，它对数据库的修改要记录到永久存储器中。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
-
 
             </div>
             <hr>
