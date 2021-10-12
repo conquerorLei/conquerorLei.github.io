@@ -18,7 +18,7 @@
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
   
-  <title>换酒问题 - conquerorLei</title>
+  <title>非负整数字符串相加 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -172,7 +172,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="换酒问题">
+            <span class="h2" id="subtitle" title="非负整数字符串相加">
               
             </span>
 
@@ -182,8 +182,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-09 21:50" pubdate>
-        2021-10-09 21:50
+      <time datetime="2021-10-12 08:37" pubdate>
+        2021-10-12 08:37
       </time>
     </span>
   
@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      342 字
+      360 字
     </span>
   
 
@@ -242,33 +242,36 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">换酒问题</h1>
+            <h1 style="display: none">非负整数字符串相加</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-10-12 09:03
+                  本文最后更新于：2021-10-12 09:33
                 
               </p>
             
             <div class="markdown-body">
               <h3 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h3>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/water-bottles/">1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/add-strings/">415. 字符串相加 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h3 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h3>
-<p>基本思路不是很简单？</p>
-<p>既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(<font color='red'>模拟算法</font>)</p>
-<p>但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(<font color='cornflowerblue'>后面这句才符合我</font>)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为止(<font color='red'>贪心递归</font>)</p>
-<h3 id="代码展示"><a class="header-anchor" href="#代码展示">¶</a>代码展示</h3>
-<p>好了，不贫了，直接上才艺</p>
-<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.e35e7bd5dbfe5abc91f025fb7147a43c?rik=B4PiIjvT%2bflRGg&amp;riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180907%2f635c9726470449c1a65c688516a3c4b7.gif&amp;ehk=7yMeyB3x3m43kx%2bGBAzD%2fw9YL52yoiDclnkQ6M95msU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="上才艺"></p>
-<p><strong>模拟</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numExchange;<br>            numBottles -= numExchange;<br>            numBottles++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> numBottles + sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>递归</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">return</span> numBottles - numBottles%numExchange + numWaterBottles(numBottles/numExchange + numBottles%numExchange,numExchange);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>贪心算法</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numBottles - numBottles%numExchange;<br>            numBottles = numBottles/numExchange + numBottles%numExchange;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum + numBottles;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<div class="note note-success">
-            <p>有没有感觉其实贪心算法其实只是展开了递归，减少了递归的栈容量消耗。</p><p>其实内存相差无几。</p>
+<p>题目中给定了要求，<font color='red'>不允许调用内库中的关于大整数运算的库</font></p>
+<p>那也行，直接使用小学使用的竖式进行加法运算不就可以了吗？ok，理论存在，实践开始。</p>
+<p>两数加法，我们都知道加法原则，直接就是对位相加，超10进位，对10取余拖下来</p>
+<p><strong>不带进位加法</strong>
+$$
+\begin{array}{r}1\ 1\+1\ 2\ 3\\hline1\ 3\ 4\end{array}
+$$
+<strong>带进位加法</strong>
+$$
+\begin{array}{r}4\ 5\ 6\+\quad_17_17\\hline5\ 3\ 3\end{array}
+$$</p>
+<p>这样的话，直接定义两个尾指针，从后依次向前遍历(每次遍历尾指针自减)，每次遍历都会对位相加，对加法结果除10作为进位，对10取余作为剩下位。</p>
+<div class="note note-warning">
+            <p><font color='red'>不建议采用String s = “”;然后对s用+进行拼接的形式</font>，这样的效率实在是太低。建议直接使用<code>StringBuffer</code>或者<code>StringBuilder</code></p>
           </div>
+<h3 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">addStrings</span><span class="hljs-params">(String num1, String num2)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> p1 = num1.length() - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> p2 = num2.length() - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;<span class="hljs-comment">//进位</span><br>        StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();<br>        <span class="hljs-keyword">while</span>(p1 &gt;= <span class="hljs-number">0</span> || p2 &gt;= <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">int</span> a = p1 &gt;= <span class="hljs-number">0</span> ? num1.charAt(p1) - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">int</span> b = p2 &gt;= <span class="hljs-number">0</span> ? num2.charAt(p2) - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">int</span> sum = a + b + carry;<br>            sb.append(sum % <span class="hljs-number">10</span>);<br>            carry = sum / <span class="hljs-number">10</span>;<br>            p1--;<br>            p2--;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(carry != <span class="hljs-number">0</span>) sb.append(carry);<br>        <span class="hljs-keyword">return</span> sb.reverse().toString();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110120921361.png" srcset="/img/loading.gif" lazyload alt="力扣结果"></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
@@ -286,10 +289,6 @@
                       <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
                     
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Algorithm/%E9%80%92%E5%BD%92/">递归</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a>
                     
                       <a class="hover-with-bg" href="/categories/Algorithm/%E6%A8%A1%E6%8B%9F%E6%B3%95/">模拟法</a>
                     
@@ -316,9 +315,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/e98f383e/">
+                      <a href="/posts/13c31df7/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL 刷题:第二高的薪水</span>
+                        <span class="hidden-mobile">最长回文子串</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -326,8 +325,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/8e41bd02/">
-                        <span class="hidden-mobile">MySQL insert into和select into</span>
+                      <a href="/posts/c774a81f/">
+                        <span class="hidden-mobile">有效括号</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

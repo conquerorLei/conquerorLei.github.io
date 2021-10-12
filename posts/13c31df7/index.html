@@ -18,7 +18,7 @@
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
   
-  <title>换酒问题 - conquerorLei</title>
+  <title>最长回文子串 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -172,7 +172,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="换酒问题">
+            <span class="h2" id="subtitle" title="最长回文子串">
               
             </span>
 
@@ -182,8 +182,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-10-09 21:50" pubdate>
-        2021-10-09 21:50
+      <time datetime="2021-10-12 16:25" pubdate>
+        2021-10-12 16:25
       </time>
     </span>
   
@@ -194,7 +194,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      342 字
+      806 字
     </span>
   
 
@@ -204,7 +204,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      10
        分钟
     </span>
   
@@ -242,33 +242,39 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">换酒问题</h1>
+            <h1 style="display: none">最长回文子串</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-10-12 09:03
+                  本文最后更新于：2021-10-12 18:06
                 
               </p>
             
             <div class="markdown-body">
               <h3 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h3>
-<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/water-bottles/">1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/longest-palindromic-substring/">5. 最长回文子串 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <h3 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h3>
-<p>基本思路不是很简单？</p>
-<p>既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(<font color='red'>模拟算法</font>)</p>
-<p>但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(<font color='cornflowerblue'>后面这句才符合我</font>)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为止(<font color='red'>贪心递归</font>)</p>
-<h3 id="代码展示"><a class="header-anchor" href="#代码展示">¶</a>代码展示</h3>
-<p>好了，不贫了，直接上才艺</p>
-<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.e35e7bd5dbfe5abc91f025fb7147a43c?rik=B4PiIjvT%2bflRGg&amp;riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180907%2f635c9726470449c1a65c688516a3c4b7.gif&amp;ehk=7yMeyB3x3m43kx%2bGBAzD%2fw9YL52yoiDclnkQ6M95msU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="上才艺"></p>
-<p><strong>模拟</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numExchange;<br>            numBottles -= numExchange;<br>            numBottles++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> numBottles + sum;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>递归</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">return</span> numBottles - numBottles%numExchange + numWaterBottles(numBottles/numExchange + numBottles%numExchange,numExchange);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p><strong>贪心算法</strong>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numBottles - numBottles%numExchange;<br>            numBottles = numBottles/numExchange + numBottles%numExchange;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum + numBottles;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<div class="note note-success">
-            <p>有没有感觉其实贪心算法其实只是展开了递归，减少了递归的栈容量消耗。</p><p>其实内存相差无几。</p>
+<p><strong>暴力法</strong></p>
+<p>最长回文子串，听着名字就知道不好惹，首先，如果采用我最开始的思路，就是获取所有的子串然后对每一个子串进行回文判断，首先就应该是两个循环嵌套确定子串边界，然后在循环内部进行回文串判定，这样的话时间复杂度直接飙升O(n<sup>3</sup>)，判题可能不会通过。</p>
+<p>如何较少一层循环呢？</p>
+<p><strong>中心扩散</strong></p>
+<p>后来想了想，既然第二层循环是确定右边界的，第一层循环是确定左边界的，那为什么不可以不确定边界，只设置一层循环确定中心位置，由中心位置向两侧扩散，获取以此为中心位置最长的回文字符串，记录中心位置并计算出开始位置，这样的话就减少了一层循环，由于中心位置不需要检测最左边界以及最后边界，所以最多只有2(n-1)个中心位置。这样的话，直接就降低了一个数量级的时间复杂度，直接变为O(n<sup>2</sup>)</p>
+<p>为什么是2(n-1)?</p>
+<p>因为在进行扩散的时候，不能单单进行中心位置那一个点的判断，还需要以两个相邻的点作为中心位置进行扩散，为什么？</p>
+<div class="note note-info">
+            <p>考虑以下字符串：<font color='red'>baab</font></p><p>按照上述算法，如果考虑单个点作为中心位置，那么输出的结果就是<font color='orange'>aa</font>而正确答案却是<font color='lawngreen'>baab</font></p>
           </div>
+<p>其实，单个点作为中心位置对长度为奇数的字符串很友好，两个点为中心位置对长度为偶数的字符串很友好。出于全面考虑，必须按照这样做才能覆盖全部情况</p>
+<h3 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h3>
+<h4 id="暴力法"><a class="header-anchor" href="#暴力法">¶</a>暴力法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(s == <span class="hljs-keyword">null</span> || s.length() &lt; <span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-keyword">return</span> s;<br>        &#125;<br>        <span class="hljs-keyword">int</span> maxLenth = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> begin = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">char</span>[] c = s.toCharArray();<br>        <span class="hljs-keyword">int</span> len = c.length;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; len - <span class="hljs-number">1</span>;i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>;j &lt; len;j++)&#123;<br>                <span class="hljs-keyword">if</span>(isPlalindrome(c,i,j) &amp;&amp; maxLenth &lt; j - i + <span class="hljs-number">1</span>)&#123;<br>                    begin = i;<br>                    maxLenth = j - i + <span class="hljs-number">1</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> s.substring(begin, begin + maxLenth);<br>    &#125;<br><br>    <span class="hljs-comment">// 判断回文串charArray[left...right]是不是回文字符串</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isPlalindrome</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[] charArray,<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right)</span></span>&#123;<br>        <span class="hljs-keyword">while</span>(left &lt; right)&#123;<br>            <span class="hljs-keyword">if</span>(charArray[left] != charArray[right])&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            &#125;<br>            left++;<br>            right--;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110121708273.png" srcset="/img/loading.gif" lazyload alt="暴力刷题结果"></p>
+<div class="note note-info">
+            <p>令我没有想到的是暴力法刷题竟然通过了，有点不太leetcode啊，有木有？</p>
+          </div>
+<h4 id="中心扩散法"><a class="header-anchor" href="#中心扩散法">¶</a>中心扩散法</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(s == <span class="hljs-keyword">null</span> || s.length() &lt; <span class="hljs-number">2</span>)&#123;<br>            <span class="hljs-keyword">return</span> s;<br>        &#125;<br>        <span class="hljs-keyword">int</span> begin = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> maxLen = <span class="hljs-number">1</span>;<br><br>        <span class="hljs-keyword">char</span>[] c = s.toCharArray();<br>        <span class="hljs-keyword">int</span> len = c.length;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; len - <span class="hljs-number">1</span>;i++)&#123;<br>            <span class="hljs-keyword">int</span> len1 = exapndFromCenter(c,i,i);<br>            <span class="hljs-keyword">int</span> len2 = exapndFromCenter(c,i,i + <span class="hljs-number">1</span>);<br>            <span class="hljs-keyword">int</span> max = Math.max(len1,len2);<br>            <span class="hljs-keyword">if</span>(max &gt; maxLen)&#123;<br>                begin = i - (max + <span class="hljs-number">1</span>)/<span class="hljs-number">2</span> + <span class="hljs-number">1</span>;<br>                maxLen = max;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> s.substring(begin,begin + maxLen);<br>    &#125;<br><br>    <span class="hljs-comment">//中心扩散求中心最大子串</span><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">exapndFromCenter</span><span class="hljs-params">(<span class="hljs-keyword">char</span>[] c,<span class="hljs-keyword">int</span> left,<span class="hljs-keyword">int</span> right)</span></span>&#123;<br>        <span class="hljs-keyword">while</span>(left &gt;= <span class="hljs-number">0</span> &amp;&amp; right &lt; c.length)&#123;<br>            <span class="hljs-keyword">if</span>(c[left] == c[right])&#123;<br>                left--;<br>                right++;<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> right - left - <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110121805265.png" srcset="/img/loading.gif" lazyload alt="中心扩散法力扣提交结果"></p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
@@ -276,30 +282,15 @@
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/Programming-Language/">Programming Language</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Algorithm/%E9%80%92%E5%BD%92/">递归</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Algorithm/%E6%A8%A1%E6%8B%9F%E6%B3%95/">模拟法</a>
-                    
-                  </div>
-                
                 
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Daily/">Daily</a>
+                      <a class="hover-with-bg" href="/tags/Programming-Language-Java-Apply/">Programming Language,Java,Apply</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Algorithm-%E4%B8%AD%E5%BF%83%E6%89%A9%E6%95%A3%E6%B3%95/">Algorithm,中心扩散法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Algorithm-%E6%9A%B4%E5%8A%9B%E6%B3%95/">Algorithm,暴力法</a>
                     
                   </div>
                 
@@ -316,18 +307,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/e98f383e/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL 刷题:第二高的薪水</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/8e41bd02/">
-                        <span class="hidden-mobile">MySQL insert into和select into</span>
+                      <a href="/posts/b75c4dbd/">
+                        <span class="hidden-mobile">非负整数字符串相加</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
