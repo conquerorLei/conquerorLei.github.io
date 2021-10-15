@@ -206,7 +206,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.2k 字
+      4.1k 字
     </span>
   
 
@@ -261,11 +261,11 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.91b99a70357665f48971c796e599157a?rik=IDRh0cLeH6DxPQ&amp;riu=http%3a%2f%2fpic.j9p.com%2fup%2f2019-12%2f15768396982262021.png&amp;ehk=nOgjvYkIPKo3pnXVFkXmUWOAW0g85KtbDRtne4Ax4sw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="MySQL"></p>
+              <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.91b99a70357665f48971c796e599157a?rik=IDRh0cLeH6DxPQ&amp;riu=http%3a%2f%2fpic.j9p.com%2fup%2f2019-12%2f15768396982262021.png&amp;ehk=nOgjvYkIPKo3pnXVFkXmUWOAW0g85KtbDRtne4Ax4sw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="MySQL" /></p>
 <span id="more"></span>
 <p>索引：索引是一个<font color='orange'>单独</font>的、<font color='orange'>存储在磁盘上</font>的数据库结构，它们包含着对数据表里<font color='red'>所有记录</font>的<font color='orange'>引用指针</font>。使用索引用于快速找出在某个或多个列中有一特定值的行，<font color='cornflowerblue'>所有MySQL列类型都可以被索引</font>，对相关列使用索引是提高查询操作速度的最佳途径。</p>
 <p>显然，索引能够提高查询速度，但是，天底下没有免费的午餐，查询速度的提高是以插入、更新、删除的速度为代价的，这些写的操作，增加了大量的IO</p>
-<h3 id="基本原理"><a class="header-anchor" href="#基本原理">¶</a>基本原理</h3>
+<h3 id="基本原理">基本原理</h3>
 <p>在没有添加索引时，使用select查询需要对整表进行扫描，时间复杂度为O(n)；添加索引后，索引会形成一棵二叉排序树，二叉排序树的查找时间复杂度为O(log<sub>2</sub>n)。</p>
 <p><strong>说明</strong>：</p>
 <ul>
@@ -273,22 +273,16 @@
 <li>当添加一条记录时，除了添加到表中，还要维护二叉树，速度有影响，但是不大</li>
 <li>当我们添加一个索引，不能解决所有查询问题，需要分别给字段建立索引</li>
 </ul>
-<h3 id="创建索引"><a class="header-anchor" href="#创建索引">¶</a>创建索引</h3>
-<h4 id="创建主键索引"><a class="header-anchor" href="#创建主键索引">¶</a>创建主键索引</h4>
+<h3 id="创建索引">创建索引</h3>
+<h4 id="创建主键索引">创建主键索引</h4>
 <p>其实很简单，你添加了主键，就创建了一个主键索引，所以有三种方式添加主键索引</p>
 <ul>
-<li>
-<p>第一种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 在字段名后面直接指定primary key</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>第二种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为主键索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), <span class="hljs-keyword">primary</span> key(id));<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>第三种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 下面两种写法都可以</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 modify id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key;<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> key(id);<br></code></pre></div></td></tr></table></figure>
-</li>
+<li><p>第一种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 在字段名后面直接指定primary key</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br></code></pre></div></td></tr></table></figure></li>
+<li><p>第二种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为主键索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), <span class="hljs-keyword">primary</span> key(id));<br></code></pre></div></td></tr></table></figure></li>
+<li><p>第三种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 下面两种写法都可以</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 modify id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key;<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> key(id);<br></code></pre></div></td></tr></table></figure></li>
 </ul>
 <p>主键索引的特点</p>
 <ul>
@@ -297,21 +291,15 @@
 <li>创建主键索引的列，他的值不能为null，也能不能重复</li>
 <li>主键索引的列基本上都是int</li>
 </ul>
-<h4 id="唯一索引的创建"><a class="header-anchor" href="#唯一索引的创建">¶</a>唯一索引的创建</h4>
+<h4 id="唯一索引的创建">唯一索引的创建</h4>
 <p>和主键索引类似，有三种创建方法</p>
 <ul>
-<li>
-<p>第一种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 在字段名后面直接指定unique</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">unique</span>,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>第二种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为唯一索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), <span class="hljs-keyword">unique</span>(id));<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>第三种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 下面两种写法都可以</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 modify id <span class="hljs-type">int</span> <span class="hljs-keyword">unique</span>;<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> <span class="hljs-keyword">unique</span>(id);<br></code></pre></div></td></tr></table></figure>
-</li>
+<li><p>第一种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 在字段名后面直接指定unique</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">unique</span>,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br></code></pre></div></td></tr></table></figure></li>
+<li><p>第二种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为唯一索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), <span class="hljs-keyword">unique</span>(id));<br></code></pre></div></td></tr></table></figure></li>
+<li><p>第三种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span>, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 下面两种写法都可以</span><br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 modify id <span class="hljs-type">int</span> <span class="hljs-keyword">unique</span>;<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> <span class="hljs-keyword">unique</span>(id);<br></code></pre></div></td></tr></table></figure></li>
 </ul>
 <p>唯一索引的特点：</p>
 <ul>
@@ -319,70 +307,59 @@
 <li>查询效率高</li>
 <li>如果在一个唯一索引上指定<font color='red'>not null</font>，等价于主键索引</li>
 </ul>
-<h4 id="普通索引的创建"><a class="header-anchor" href="#普通索引的创建">¶</a>普通索引的创建</h4>
+<h4 id="普通索引的创建">普通索引的创建</h4>
 <p>与上同</p>
 <ul>
-<li>
-<p>第一种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为普通索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), index(id));<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>第二种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> index(id);<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>第三种</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 使用create index指定索引名称</span><br><span class="hljs-keyword">create</span> index idx_name <span class="hljs-keyword">on</span> user1(name);<br></code></pre></div></td></tr></table></figure>
-</li>
+<li><p>第一种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">-- 创建表的最后，指定某列或者某几列为普通索引</span><br><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>), index(id));<br></code></pre></div></td></tr></table></figure></li>
+<li><p>第二种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key, name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> user1 <span class="hljs-keyword">add</span> <span class="hljs-keyword">primary</span> index(id);<br></code></pre></div></td></tr></table></figure></li>
+<li><p>第三种</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> user1(id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key,name <span class="hljs-type">varchar</span>(<span class="hljs-number">30</span>));<br><span class="hljs-comment">-- 使用create index指定索引名称</span><br><span class="hljs-keyword">create</span> index idx_name <span class="hljs-keyword">on</span> user1(name);<br></code></pre></div></td></tr></table></figure></li>
 </ul>
 <p>唯一索引的说明：</p>
 <ul>
 <li>一个表可以是有多个普通索引，普通索引在实际开发中用的比较多</li>
 <li>如果某列需要创建索引，但是该列有重复的值，，那么就应该使用普通索引</li>
 </ul>
-<h4 id="全文索引的创建"><a class="header-anchor" href="#全文索引的创建">¶</a>全文索引的创建</h4>
+<h4 id="全文索引的创建">全文索引的创建</h4>
 <p>当对文章字段或有大量文字的字段进行检索时，会使用到全文索引。MySQL提供全文索引机制，但是只能使用MyISAM存储引擎，而且默认的全索引只支持英文，不支持中文。</p>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> articles(<br>    id <span class="hljs-type">int</span> unsigned <span class="hljs-keyword">primary</span> key <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span> auto_increment,<br>    title <span class="hljs-type">varchar</span>(<span class="hljs-number">200</span>),<br>    body text,<br>    fulltext (title,body)<br>)engine <span class="hljs-operator">=</span> MyISAM;<br><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> articles (title,body) <span class="hljs-keyword">values</span><br>    (<span class="hljs-string">&#x27;MySQL Tutoeial&#x27;</span>,<span class="hljs-string">&#x27;DBMS stands for DataBase ... &#x27;</span>),<br>    (<span class="hljs-string">&#x27;How To Use MySQL Well&#x27;</span>,<span class="hljs-string">&#x27;Adter you went through a ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;Optimizing MySQL&#x27;</span>,<span class="hljs-string">&#x27;In this tutorial we will show ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;1001 MySQL Tricks&#x27;</span>,<span class="hljs-string">&#x27;1. Nerver run mysqld as root. 2. ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;MySQL vs. YourSQL&#x27;</span>,<span class="hljs-string">&#x27;In the follpwing database comparison ...&#x27;</span>),<br>    (<span class="hljs-string">&#x27;Mysql Security&#x27;</span>,<span class="hljs-string">&#x27;when configured properly,MySQL ...&#x27;</span>);<br></code></pre></div></td></tr></table></figure>
-<h5 id="查询有没有database数据"><a class="header-anchor" href="#查询有没有database数据">¶</a>查询有没有database数据</h5>
-<h6 id="没有使用全文索引"><a class="header-anchor" href="#没有使用全文索引">¶</a>没有使用全文索引</h6>
+<h5 id="查询有没有database数据">查询有没有database数据</h5>
+<h6 id="没有使用全文索引">没有使用全文索引</h6>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> body <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%database%&#x27;</span>;<br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> title             <span class="hljs-operator">|</span> body                                     <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> MySQL Tutoeial    <span class="hljs-operator">|</span> DBMS stands <span class="hljs-keyword">for</span> DataBase ...             <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">5</span> <span class="hljs-operator">|</span> MySQL vs. YourSQL <span class="hljs-operator">|</span> <span class="hljs-keyword">In</span> the follpwing database comparison ... <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br><span class="hljs-comment">-- 使用explain解释一下</span><br>mysql<span class="hljs-operator">&gt;</span> explain  <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles <span class="hljs-keyword">where</span> body <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;%database%&#x27;</span> \G;<br><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span> <span class="hljs-number">1.</span> <span class="hljs-type">row</span> <span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><br>           id: <span class="hljs-number">1</span><br>  select_type: SIMPLE<br>        <span class="hljs-keyword">table</span>: articles<br>   partitions: <span class="hljs-keyword">NULL</span><br>         type: <span class="hljs-keyword">ALL</span><br>possible_keys: <span class="hljs-keyword">NULL</span><br>          key: <span class="hljs-keyword">NULL</span><br>      key_len: <span class="hljs-keyword">NULL</span><br>          <span class="hljs-keyword">ref</span>: <span class="hljs-keyword">NULL</span><br>         <span class="hljs-keyword">rows</span>: <span class="hljs-number">6</span><br>     filtered: <span class="hljs-number">16.67</span><br>        Extra: <span class="hljs-keyword">Using</span> <span class="hljs-keyword">where</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.01</span> sec)<br></code></pre></div></td></tr></table></figure>
 <div class="note note-info">
             <p>key为null表示没有使用索引</p>
           </div>
-<h6 id="使用全文索引"><a class="header-anchor" href="#使用全文索引">¶</a>使用全文索引</h6>
+<h6 id="使用全文索引">使用全文索引</h6>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql">mysql<span class="hljs-operator">&gt;</span> <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles<br>    <span class="hljs-operator">-</span><span class="hljs-operator">&gt;</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">match</span>(title,body) against (<span class="hljs-string">&#x27;database&#x27;</span>);<br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span> id <span class="hljs-operator">|</span> title             <span class="hljs-operator">|</span> body                                     <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">1</span> <span class="hljs-operator">|</span> MySQL Tutoeial    <span class="hljs-operator">|</span> DBMS stands <span class="hljs-keyword">for</span> DataBase ...             <span class="hljs-operator">|</span><br><span class="hljs-operator">|</span>  <span class="hljs-number">5</span> <span class="hljs-operator">|</span> MySQL vs. YourSQL <span class="hljs-operator">|</span> <span class="hljs-keyword">In</span> the follpwing database comparison ... <span class="hljs-operator">|</span><br><span class="hljs-operator">+</span><span class="hljs-comment">----+-------------------+------------------------------------------+</span><br><span class="hljs-number">2</span> <span class="hljs-keyword">rows</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span> (<span class="hljs-number">0.01</span> sec)<br><br>mysql<span class="hljs-operator">&gt;</span> explain <span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> articles <span class="hljs-keyword">where</span> <span class="hljs-keyword">match</span>(title,body) against (<span class="hljs-string">&#x27;database&#x27;</span>) \G;<br><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span> <span class="hljs-number">1.</span> <span class="hljs-type">row</span> <span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><span class="hljs-operator">*</span><br>           id: <span class="hljs-number">1</span><br>  select_type: SIMPLE<br>        <span class="hljs-keyword">table</span>: articles<br>   partitions: <span class="hljs-keyword">NULL</span><br>         type: fulltext<br>possible_keys: title<br>          key: title<br>      key_len: <span class="hljs-number">0</span><br>          <span class="hljs-keyword">ref</span>: const<br>         <span class="hljs-keyword">rows</span>: <span class="hljs-number">1</span><br>     filtered: <span class="hljs-number">100.00</span><br>        Extra: <span class="hljs-keyword">Using</span> <span class="hljs-keyword">where</span><br><span class="hljs-number">1</span> <span class="hljs-type">row</span> <span class="hljs-keyword">in</span> <span class="hljs-keyword">set</span>, <span class="hljs-number">1</span> warning (<span class="hljs-number">0.00</span> sec)<br></code></pre></div></td></tr></table></figure>
-<h3 id="查询索引"><a class="header-anchor" href="#查询索引">¶</a>查询索引</h3>
+<h3 id="查询索引">查询索引</h3>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> keys <span class="hljs-keyword">from</span> tablename;<br><span class="hljs-keyword">show</span> index <span class="hljs-keyword">from</span> tablename;<br><span class="hljs-keyword">desc</span> tablename;<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221255574.png" srcset="/img/loading.gif" lazyload alt="结果图"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221255574.png" srcset="/img/loading.gif" lazyload alt="结果图" /></p>
 <div class="note note-primary">
             <p>desc命令得到的索引信息有点简陋</p>
           </div>
-<h3 id="删除索引"><a class="header-anchor" href="#删除索引">¶</a>删除索引</h3>
+<h3 id="删除索引">删除索引</h3>
 <ul>
-<li>
-<p>删除主键索引：</p>
-<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tablename <span class="hljs-keyword">drop</span> <span class="hljs-keyword">primary</span> key;<br></code></pre></div></td></tr></table></figure>
-</li>
-<li>
-<p>删除其他索引：</p>
+<li><p>删除主键索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tablename <span class="hljs-keyword">drop</span> <span class="hljs-keyword">primary</span> key;<br></code></pre></div></td></tr></table></figure></li>
+<li><p>删除其他索引：</p>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">alter</span> <span class="hljs-keyword">table</span> tablename <span class="hljs-keyword">drop</span> index indexname;<br></code></pre></div></td></tr></table></figure>
 <div class="note note-primary">
             <p>indexname就是<code>show keys from tablename</code>得到的<code>key_name</code></p>
-          </div>
-</li>
-<li>
-<div class="hljs code-wrapper"><pre><code class="language-sql">drop index indexName on tableName;
-</code></pre></div>
-</li>
+          </div></li>
+<li><div class="sourceCode" id="cb1"><div class="hljs code-wrapper"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">drop</span> <span class="kw">index</span> indexName <span class="kw">on</span> tableName;</span></code></pre></div></div></li>
 </ul>
-<h3 id="索引创建原则"><a class="header-anchor" href="#索引创建原则">¶</a>索引创建原则</h3>
+<h3 id="索引创建原则">索引创建原则</h3>
 <ul>
 <li>比较频繁作为查询条件应该创建索引</li>
 <li>唯一性太差的字段不适合单独创建索引，即使频繁作为查询条件</li>
 <li>更新非常频繁的字段不适合创建索引</li>
 <li>不会作为查询条件的没必要创建索引</li>
 </ul>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

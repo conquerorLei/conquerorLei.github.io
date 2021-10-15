@@ -265,209 +265,191 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" srcset="/img/loading.gif" lazyload alt="ubuntu系统"></p>
+              <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629160414.png" srcset="/img/loading.gif" lazyload alt="ubuntu系统" /></p>
 <span id="more"></span>
-<h1>Linux系统指令以及快捷键</h1>
-<h2 id="前言"><a class="header-anchor" href="#前言">¶</a>前言</h2>
+<h1 id="linux系统指令以及快捷键">Linux系统指令以及快捷键</h1>
+<h2 id="前言">前言</h2>
 <p>程序员职业生涯中少不了使用Linux系统，掌握一部分常用的Linux快捷键以及了解Linux命令行常用指令将会使你的工作事半功倍。以下为个人对经常使用的指令的总结，持续更新。</p>
 <p>本文以ubuntu20.04作为操作版本进行操作，获取的截图都是ubuntu20.04系统下的。</p>
-<h2 id="Linux文件系统目录结构"><a class="header-anchor" href="#Linux文件系统目录结构">¶</a>Linux文件系统目录结构</h2>
+<h2 id="linux文件系统目录结构">Linux文件系统目录结构</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>目录</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>/bin</td>
 <td>可执行程序</td>
 </tr>
-<tr>
+<tr class="even">
 <td>/dev</td>
 <td>块、字符设备结点文件</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>/etc</td>
 <td>主要配置文件和初始化配置文件</td>
 </tr>
-<tr>
+<tr class="even">
 <td>/lib</td>
 <td>基本的库文件，如：C库，内核模块(modules)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>/mnt</td>
 <td>挂载点，临时挂载文件系统用</td>
 </tr>
-<tr>
+<tr class="even">
 <td>/opt</td>
 <td>附加的软件包</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>/proc</td>
 <td>虚拟文件系统，用于内核与进程通信</td>
 </tr>
-<tr>
+<tr class="even">
 <td>/sbin</td>
 <td>基本的系统管理程序</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>/tmp</td>
 <td>临时文件目录</td>
 </tr>
-<tr>
+<tr class="even">
 <td>/usr</td>
 <td>更多的用户程序，包括“X Server”</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>/sys</td>
 <td>虚拟文件系统sysfs挂载点</td>
 </tr>
-<tr>
+<tr class="even">
 <td>/var</td>
 <td>可变信息存储，如log等</td>
 </tr>
 </tbody>
 </table>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629154641.png" srcset="/img/loading.gif" lazyload alt="Ubuntus20.04目录结构"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629154641.png" srcset="/img/loading.gif" lazyload alt="Ubuntus20.04目录结构" /></p>
 <div class="note note-primary">
-            <blockquote><p>大致上，ubuntu的文件目录结构基本是没有什么大的变化的，但是不同版本之间可能会有一些不同，例如，ubuntu20.04将lib文件夹分割为32和64的库文件以及公用部分lib。</p></blockquote>
+            <blockquote><p>大致上，ubuntu的文件目录结构基本是没有什么大的变化的，但是不同版本之间可能会有一些不同，例如，ubuntu20.04将lib文件夹分割为32和64的库文件以及公用部分lib。</p></blockquote>
           </div>
-<h2 id="Linux操作"><a class="header-anchor" href="#Linux操作">¶</a>Linux操作</h2>
-<h3 id="bash快捷键"><a class="header-anchor" href="#bash快捷键">¶</a>bash快捷键</h3>
+<h2 id="linux操作">Linux操作</h2>
+<h3 id="bash快捷键">bash快捷键</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>快捷键</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Ctrl+Alt+T</td>
 <td>打开Terminal</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Ctrl+‘+’</td>
 <td>字体放大</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Ctrl+‘-’</td>
 <td>字体缩小</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Ctrl+L</td>
 <td>清屏</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>TAB</td>
 <td>双击TAB将列出包含当前指令的命令</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Ctrl+C</td>
 <td>终端当前正在执行的指令(经常在进入到root之后)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="Bash内部命令"><a class="header-anchor" href="#Bash内部命令">¶</a>Bash内部命令</h3>
+<h3 id="bash内部命令">Bash内部命令</h3>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">History #显示历史命令<br>history -c #清除历史命令<br>History -w #保存历史命令道HISTFILE<br><span class="hljs-meta"></span><br><span class="hljs-meta">Alias#</span><span class="bash">显示全部命令别名</span><br>alias l=“ls -la”#赋予l ls -la含义<br>unalias l #删除别名l<br><br>echo ”I love u“ #屏幕输出，，，，<br>export HELLO = &quot;HELLO WORLD&quot; #定义当前用户环境变量<br>env #显示环境变量<br>source #执行环境变量<br>pwd #显示当前所在目录<br></code></pre></div></td></tr></table></figure>
-<h3 id="部分系统命令"><a class="header-anchor" href="#部分系统命令">¶</a>部分系统命令</h3>
+<h3 id="部分系统命令">部分系统命令</h3>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">dmesg   	#启动日志<br>uptime 		#用户登录信息，系统使用时间<br>uname -a 	#显示系统信息<br>df -T      	#挂载分区使用情况<br></code></pre></div></td></tr></table></figure>
-<h3 id="网络命令"><a class="header-anchor" href="#网络命令">¶</a>网络命令</h3>
+<h3 id="网络命令">网络命令</h3>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">netstat -tnlp 	#显示处于坚挺状态的TCP端口<br>netstat -unlp 	#显示处于坚挺状态的UDP端口<br>ifconfig 		#显示网卡参数<br>ethtool eth0<br>ifconfig eth1 add 192.168.0.1 up 	#配置eth1的Ip地址并使用<br>ifup eht0 		#启用<br>ifdown	 		#禁用	<br>ping 192.168.0.111 	#向另一条计算机监测网络是否通信正常<br>ping www.baidu.com<br>route 				#显示路由表<br>route add -net 192.168.1.0 netmask 225.225.225.0 gw 10.2.11<br>					#添加一条达到192.168.1.0网段的路由<br>traceroute www.baidu.com #追综达到baidu的路由地址<br></code></pre></div></td></tr></table></figure>
-<h3 id="安装包管理"><a class="header-anchor" href="#安装包管理">¶</a>安装包管理</h3>
+<h3 id="安装包管理">安装包管理</h3>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">dpkg -l 		#列出已经安装的全部软件包<br>dpkg -l *vim* 	#列出包含vim字符的所有安装了的软件包<br>dpkg -L vim 	#列出vim的文件<br>dpkg -S file 	#查看文件夹中安装的软件包<br>dpkg -i xxx.deb #安装软件包<br>apt-cache search open 		#搜寻包含名字含有open的软件宝<br>apt-file search file 		#搜寻file中包含的软件包<br>apt-cache show openssh 		#展示软件openssh的发行信息<br>apt-get install vim zip 	#安装vim，Zip两个软件<br>apt-get --reinstall     	#重新安装<br>apt-get remove   			#卸载但是保留配置信息<br>apt-get purge 				#卸载并删除配置信息<br>apt-get update 				#更新或者更改源信息后必须执行：同步源索引文件到本地（root权限）<br>apt-get upgrade 			#全面升级（root权限）<br>apt-get source vim 			#查看vim源代码<br>apt-get build-dep  vim 		#构建编译vim所需环境<br>apkg -buildpackage -rfakeroot 	#编译并生成软件<br></code></pre></div></td></tr></table></figure>
-<h3 id="常用命令"><a class="header-anchor" href="#常用命令">¶</a>常用命令</h3>
-<h4 id="关机和重启"><a class="header-anchor" href="#关机和重启">¶</a>关机和重启</h4>
+<h3 id="常用命令">常用命令</h3>
+<h4 id="关机和重启">关机和重启</h4>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> shutdown</span><br>shutdown -h now 	#立即关机<br>shutdown -h 10  	#&quot;10分钟后关机&quot; <br>shutdown -c 		#取消<br>Shutdown -r 16:30 #指定时间重启<br>shutdown -h 16:30 #指定时间关机<br><br>reboot 			#立即重启<br><br>halt poweroff #暴力关机<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> sync和shutdown同时使用可能会好一些</span><br>sync 				#磁盘高速缓存内容同步到磁盘<br>Systemctl hibernate #进入睡眠<br></code></pre></div></td></tr></table></figure>
-<h4 id="查看系统信息和历史命令"><a class="header-anchor" href="#查看系统信息和历史命令">¶</a>查看系统信息和历史命令</h4>
+<h4 id="查看系统信息和历史命令">查看系统信息和历史命令</h4>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">uname<br>uname -r<br>uname -a<br></code></pre></div></td></tr></table></figure>
 <p><strong>历史命令查看与管理</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">history<br>history -c<br>history -s<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629170332.png" srcset="/img/loading.gif" lazyload alt="系统信息和历史命令"></p>
-<h4 id="查看当前用户"><a class="header-anchor" href="#查看当前用户">¶</a>查看当前用户</h4>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629170332.png" srcset="/img/loading.gif" lazyload alt="系统信息和历史命令" /></p>
+<h4 id="查看当前用户">查看当前用户</h4>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">whoami		#who am i 我是谁<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172431.png" srcset="/img/loading.gif" lazyload alt="查看当前用户"></p>
-<h4 id="查看目录下的内容"><a class="header-anchor" href="#查看目录下的内容">¶</a>查看目录下的内容</h4>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172431.png" srcset="/img/loading.gif" lazyload alt="查看当前用户" /></p>
+<h4 id="查看目录下的内容">查看目录下的内容</h4>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">ls #查看简略信息<br>ls -l #查看详细信息<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172726.png" srcset="/img/loading.gif" lazyload alt="ls命令"></p>
-<h4 id="路径命令"><a class="header-anchor" href="#路径命令">¶</a>路径命令</h4>
-<h5 id="改变路径"><a class="header-anchor" href="#改变路径">¶</a>改变路径</h5>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210629172726.png" srcset="/img/loading.gif" lazyload alt="ls命令" /></p>
+<h4 id="路径命令">路径命令</h4>
+<h5 id="改变路径">改变路径</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd 指定路径			#跳转到指定路径<br>cd 回车 			#跳转到根目录<br>cd .. 				#回到上一层<br></code></pre></div></td></tr></table></figure>
 <div class="note note-primary">
-            <blockquote><p>cd全称change directory，表示更改路径</p></blockquote>
+            <blockquote><p>cd全称change directory，表示更改路径</p></blockquote>
           </div>
-<h5 id="查看当前路径"><a class="header-anchor" href="#查看当前路径">¶</a>查看当前路径</h5>
+<h5 id="查看当前路径">查看当前路径</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">pwd		#查看当前路径<br></code></pre></div></td></tr></table></figure>
-<h4 id="文件相关命令"><a class="header-anchor" href="#文件相关命令">¶</a>文件相关命令</h4>
-<h5 id="文件夹命令"><a class="header-anchor" href="#文件夹命令">¶</a>文件夹命令</h5>
+<h4 id="文件相关命令">文件相关命令</h4>
+<h5 id="文件夹命令">文件夹命令</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">创建文件夹</span><br>mkdir &#123;文件夹名称&#125;<br><span class="hljs-meta">#</span><span class="bash">删除文件夹</span><br>rmdir &#123;文件夹名称&#125;<br></code></pre></div></td></tr></table></figure>
-<h5 id="创建文件命令"><a class="header-anchor" href="#创建文件命令">¶</a>创建文件命令</h5>
+<h5 id="创建文件命令">创建文件命令</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">touch 1.c   #新建一个空文件1.c<br>touch 1.c   #该文件夹已有1.c ， 改变1.c的时间戳<br></code></pre></div></td></tr></table></figure>
-<h5 id="拷贝文件命令"><a class="header-anchor" href="#拷贝文件命令">¶</a>拷贝文件命令</h5>
+<h5 id="拷贝文件命令">拷贝文件命令</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cp /mnt/hgfs/arm-test/stack.c  .     #拷贝其他目录下的stack.c 到当前目录 <br></code></pre></div></td></tr></table></figure>
-<h5 id="移动文件命令"><a class="header-anchor" href="#移动文件命令">¶</a>移动文件命令</h5>
+<h5 id="移动文件命令">移动文件命令</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">mkdir testdir		#创建文件夹testdir<br>					# 格式 mv &#123;文件名&#125; &#123;文件夹名称&#125;<br>mv   1.c  testdir   #移动1.c 到文件夹 testdir<br>cd   testdir<br>					# 格式 mv &#123;文件名称&#125; &#123;更改后的文件名称&#125;<br>mv  1.c  2.c  		#改名1.c  为 2.c<br></code></pre></div></td></tr></table></figure>
-<h5 id="移除文件或者目录"><a class="header-anchor" href="#移除文件或者目录">¶</a>移除文件或者目录</h5>
+<h5 id="移除文件或者目录">移除文件或者目录</h5>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">rm  1.c   		#删除1.c<br>cd .. <br>rm -rf testdir  #删除一个文件夹 <br></code></pre></div></td></tr></table></figure>
-<h5 id="更改文件权限命令"><a class="header-anchor" href="#更改文件权限命令">¶</a>更改文件权限命令</h5>
+<h5 id="更改文件权限命令">更改文件权限命令</h5>
 <p>Chmod命令主要用于修改、设置文件权限</p>
 <p>chmod 修改文件权限主要有两种方式： 字母法与数字法</p>
 <p>虽然数字法相对字母法简单，但是数字法是基于字母法，所以这里先介绍字母法。</p>
-<h6 id="字母法：chmod-u-g-o-a-r-w-x-文件名"><a class="header-anchor" href="#字母法：chmod-u-g-o-a-r-w-x-文件名">¶</a>字母法：chmod  (u g o a)   (+ - =)   (r w x)   (文件名)</h6>
+<h6 id="字母法chmod-u-g-o-a---r-w-x-文件名">字母法：chmod (u g o a) (+ - =) (r w x) (文件名)</h6>
 <p>以上是chmod的用法，每个括号是一个参数， 前三个括号主要放在一起使用即 chmod + 设置模式 + 文件名；下面先介绍这些参数的意义：</p>
-<p>[u g o a]	含义
-u	user 表示该文件的所有者
-g	group 表示与该文件的所有者属于同一组( group )者，即用户组
-o	other 表示其它用户组
-a	all 表示这三者皆是</p>
-<p>[+  -  =]	含义</p>
-<ul>
-<li>[-] 增加权限</li>
-</ul>
-<ul>
-<li>[+] 撤销权限</li>
-<li>[=] 设定权限</li>
-</ul>
-<p>[r   w   x]	含义
-r	read 表示可读取，对于一个目录，如果没有r权限，那么就意味着不能通过ls查看这个目录的内容。
-w	write 表示可写入，对于一个目录，如果没有w权限，那么就意味着不能在目录下创建新的文件。
-x	excute 表示可执行，对于一个目录，如果没有x权限，那么就意味着不能通过cd进入这个目录。</p>
-<p>**用法：**chmod + 设置模式 + 文件名
-中间的设置模式，要分别对u(user), g(group), o(other)设置权限。</p>
-<p>chmod u+rwx, g+rwx, o+rwx filename 改命令说明对filename文件， 赋予user、group、other均有read、write、excute的权限
-所以设置模式中应该包含对三种用户类型的权限设置，各自独立，互不影响。</p>
+<p>[u g o a] 含义 u user 表示该文件的所有者 g group 表示与该文件的所有者属于同一组( group )者，即用户组 o other 表示其它用户组 a all 表示这三者皆是</p>
+<p>[+ - =] 含义 + [-] 增加权限 - [+] 撤销权限 - [=] 设定权限</p>
+<p>[r w x] 含义 r read 表示可读取，对于一个目录，如果没有r权限，那么就意味着不能通过ls查看这个目录的内容。 w write 表示可写入，对于一个目录，如果没有w权限，那么就意味着不能在目录下创建新的文件。 x excute 表示可执行，对于一个目录，如果没有x权限，那么就意味着不能通过cd进入这个目录。</p>
+<p><strong>用法：</strong>chmod + 设置模式 + 文件名 中间的设置模式，要分别对u(user), g(group), o(other)设置权限。</p>
+<p>chmod u+rwx, g+rwx, o+rwx filename 改命令说明对filename文件， 赋予user、group、other均有read、write、excute的权限 所以设置模式中应该包含对三种用户类型的权限设置，各自独立，互不影响。</p>
 <p><strong>举例说明：</strong></p>
-<p>chmod u+rw filename   说明对于filname, 只赋予user用户, read、write权限
-chmod u+rwx, g+rw  filename  说明对filename，赋予user用户read、write、excute权限；赋予group用户read、write权限</p>
+<p>chmod u+rw filename 说明对于filname, 只赋予user用户, read、write权限 chmod u+rwx, g+rw filename 说明对filename，赋予user用户read、write、excute权限；赋予group用户read、write权限</p>
 <blockquote>
-<p>（chmod + 设置模式 + 文件名）    设置模式中包含对三种类型用户（u、g、o）的权限设置，这三者各自独立，互不干扰。</p>
+<p>（chmod + 设置模式 + 文件名） 设置模式中包含对三种类型用户（u、g、o）的权限设置，这三者各自独立，互不干扰。</p>
 </blockquote>
-<h6 id="数字法"><a class="header-anchor" href="#数字法">¶</a>数字法</h6>
+<h6 id="数字法">数字法</h6>
 <p>数字法是基于字母法的表示，如果字母法懂了，数字法就好懂，并且易于使用。</p>
-<p>**用法：**chmod + 数字组合 + 文件名
-数字组合一般包含三个数字：</p>
+<p><strong>用法：</strong>chmod + 数字组合 + 文件名 数字组合一般包含三个数字：</p>
 <p>第一个数字对应字母法的用户u（user）</p>
 <p>第二个数字对应字母法的用户g（group）</p>
 <p>第三个数字对应字母法的用户o（other）</p>
 <p><strong>另外：</strong></p>
-<p>r  (read)     ----------------&gt;   4</p>
-<p>w (write)    ----------------&gt;   2</p>
-<p>x (excute)  ----------------&gt;   1</p>
+<p>r (read) ----------------&gt; 4</p>
+<p>w (write) ----------------&gt; 2</p>
+<p>x (excute) ----------------&gt; 1</p>
 <p><strong>示例详解：</strong></p>
-<p>数字法：chmod  777   文件名   &lt;-----------对应--------------&gt;    字母法： chmod u+rwx, g+rwx, o+rwx  文件名</p>
-<p>第一个数字7：代表用户 u 的权限 rwx， 4 ® + 2 (w) + 1 (x) =  7</p>
-<p>第二个数字7：代表用户 g 的权限 rwx,    4 ® + 2 (w) + 1 (x) =  7</p>
-<p>第三个数字7：代表用户 o 的权限 rwx,    4 ® + 2 (w) + 1 (x) =  7</p>
+<p>数字法：chmod 777 文件名 &lt;-----------对应--------------&gt; 字母法： chmod u+rwx, g+rwx, o+rwx 文件名</p>
+<p>第一个数字7：代表用户 u 的权限 rwx， 4 (r) + 2 (w) + 1 (x) = 7</p>
+<p>第二个数字7：代表用户 g 的权限 rwx, 4 (r) + 2 (w) + 1 (x) = 7</p>
+<p>第三个数字7：代表用户 o 的权限 rwx, 4 (r) + 2 (w) + 1 (x) = 7</p>
 <p><strong>举例说明：</strong></p>
-<p>数字法：chmod  755 filename    对应    字母法： chmod u+rwx, g+rx, o+rx filename
-数字法：chmod  751 filename    对应    字母法： chmod u+rwx, g+rx, o+x  filename
-数字法：chmod  765 filename    对应    字母法： chmod u+rwx, g+rw, o+rx filename</p>
-<h4 id="打包命令"><a class="header-anchor" href="#打包命令">¶</a>打包命令</h4>
+<p>数字法：chmod 755 filename 对应 字母法： chmod u+rwx, g+rx, o+rx filename 数字法：chmod 751 filename 对应 字母法： chmod u+rwx, g+rx, o+x filename 数字法：chmod 765 filename 对应 字母法： chmod u+rwx, g+rw, o+rx filename</p>
+<h4 id="打包命令">打包命令</h4>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">tar zcvf ../test.gz ./*  #打包当前目录所有文件， 生成包 ， 包是上级目录下的test.gz <br>tar zxvf ../test.gz .    #解包上级目录下的test.gz ， 解包到当前目录 <br><br><br>z ----------- 有压缩功能<br>c ----------- create 产生文件包<br>x ----------- extract 解包文件 <br>v ----------- 打包或解包， 可以看到过程 <br></code></pre></div></td></tr></table></figure>
 <p>到目前为止，常用的Linux快捷键以及命令行命令已经总结结束啦！</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

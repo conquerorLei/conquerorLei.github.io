@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.6k 字
+      3.5k 字
     </span>
   
 
@@ -260,10 +260,10 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ABjebgItCCVwn7kiCdItzAHaDF?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="git"></p>
+              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.ABjebgItCCVwn7kiCdItzAHaDF?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="git" /></p>
 <span id="more"></span>
-<h1>git学习笔记</h1>
-<h2 id="1-分布式基本结构"><a class="header-anchor" href="#1-分布式基本结构">¶</a>1 分布式基本结构</h2>
+<h1 id="git学习笔记">git学习笔记</h1>
+<h2 id="分布式基本结构">1 分布式基本结构</h2>
 <p>工作区-暂存区-本地仓库-远程仓库</p>
 <ul>
 <li>工作区就是电脑本地就能看见的文件目录</li>
@@ -274,341 +274,335 @@
 <li><code>git fetch</code> 和 <code>git clone</code> 命令可以将远程版本库克隆到本地，从远程获得代码库</li>
 <li><code>git pull</code> 命令下载远程代码并合并</li>
 </ul>
-<h2 id="2-基本操作"><a class="header-anchor" href="#2-基本操作">¶</a>2 基本操作</h2>
+<h2 id="基本操作">2 基本操作</h2>
 <table>
 <thead>
-<tr>
-<th style="text-align:left">命令</th>
-<th style="text-align:left">命令解释</th>
+<tr class="header">
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left">git init</td>
-<td style="text-align:left">仓库初始化</td>
+<tr class="odd">
+<td style="text-align: left;">git init</td>
+<td style="text-align: left;">仓库初始化</td>
 </tr>
-<tr>
-<td style="text-align:left">git add</td>
-<td style="text-align:left">添加文件到暂存区</td>
+<tr class="even">
+<td style="text-align: left;">git add</td>
+<td style="text-align: left;">添加文件到暂存区</td>
 </tr>
-<tr>
-<td style="text-align:left">git commit</td>
-<td style="text-align:left">提交代码到本地仓库</td>
+<tr class="odd">
+<td style="text-align: left;">git commit</td>
+<td style="text-align: left;">提交代码到本地仓库</td>
 </tr>
-<tr>
-<td style="text-align:left">git push</td>
-<td style="text-align:left">将暂存区文件提交到远程仓库并和并</td>
+<tr class="even">
+<td style="text-align: left;">git push</td>
+<td style="text-align: left;">将暂存区文件提交到远程仓库并和并</td>
 </tr>
-<tr>
-<td style="text-align:left">git clone</td>
-<td style="text-align:left">克隆一个版本库</td>
+<tr class="odd">
+<td style="text-align: left;">git clone</td>
+<td style="text-align: left;">克隆一个版本库</td>
 </tr>
-<tr>
-<td style="text-align:left">git log</td>
-<td style="text-align:left">获取日志</td>
+<tr class="even">
+<td style="text-align: left;">git log</td>
+<td style="text-align: left;">获取日志</td>
 </tr>
-<tr>
-<td style="text-align:left">git status</td>
-<td style="text-align:left">获取仓库当前的状态</td>
+<tr class="odd">
+<td style="text-align: left;">git status</td>
+<td style="text-align: left;">获取仓库当前的状态</td>
 </tr>
-<tr>
-<td style="text-align:left">git diff</td>
-<td style="text-align:left">比较工作区和暂存区的差异</td>
+<tr class="even">
+<td style="text-align: left;">git diff</td>
+<td style="text-align: left;">比较工作区和暂存区的差异</td>
 </tr>
-<tr>
-<td style="text-align:left">git config</td>
-<td style="text-align:left">配置git</td>
+<tr class="odd">
+<td style="text-align: left;">git config</td>
+<td style="text-align: left;">配置git</td>
 </tr>
-<tr>
-<td style="text-align:left">git rm</td>
-<td style="text-align:left">删除工作区文件</td>
+<tr class="even">
+<td style="text-align: left;">git rm</td>
+<td style="text-align: left;">删除工作区文件</td>
 </tr>
-<tr>
-<td style="text-align:left">git mv</td>
-<td style="text-align:left">移动工作区文件</td>
+<tr class="odd">
+<td style="text-align: left;">git mv</td>
+<td style="text-align: left;">移动工作区文件</td>
 </tr>
-<tr>
-<td style="text-align:left">git remote</td>
-<td style="text-align:left">远程仓库操作</td>
+<tr class="even">
+<td style="text-align: left;">git remote</td>
+<td style="text-align: left;">远程仓库操作</td>
 </tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
-<p>除上述命令之外的其他命令行命令，<strong>注意空格以及在使用命令时不能有&quot;&lt;&gt;&quot;</strong></p>
+<p>除上述命令之外的其他命令行命令，<strong>注意空格以及在使用命令时不能有"&lt;&gt;"</strong></p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>mkdir <foldername></td>
 <td>创建文件夹</td>
 </tr>
-<tr>
+<tr class="even">
 <td>touch <filename></td>
 <td>创建文件</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>cd <path></td>
 <td>进入路径</td>
 </tr>
-<tr>
+<tr class="even">
 <td>ls</td>
 <td>查看当前目录下的文件</td>
 </tr>
 </tbody>
 </table>
-<h3 id="1-add-命令"><a class="header-anchor" href="#1-add-命令">¶</a>1 add 命令</h3>
+<h3 id="add-命令">1 add 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>git add <file1> <file2> &lt;…&gt;</td>
+<tr class="odd">
+<td>git add <file1> <file2> &lt;...&gt;</td>
 <td>添加多个文件到暂存区(注意文件之间以空格隔开)</td>
-</tr>
-<tr>
-<td>git add <dir></td>
-<td>添加指令目录到暂存区，包括暂存区所有文件</td>
-</tr>
-<tr>
-<td>git add .</td>
-<td>添加当前目录下所有文件到暂存区</td>
 </tr>
 </tbody>
 </table>
-<h3 id="2-commit-命令"><a class="header-anchor" href="#2-commit-命令">¶</a>2 commit 命令</h3>
+| git add
+<dir>
+<div class="line-block">添加指令目录到暂存区，包括暂存区所有文件 |<br />
+git add . | 添加当前目录下所有文件到暂存区 |</div>
+<h3 id="commit-命令">2 commit 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释(message 是一些备注信息)</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>git commit -m “message”</td>
+<tr class="odd">
+<td>git commit -m "message"</td>
 <td>提交暂存区内容到本地仓库</td>
 </tr>
-<tr>
-<td>git commit <file1> <file2> -m “message”</td>
+<tr class="even">
+<td>git commit <file1> <file2> -m "message"</td>
 <td>提交指定文件到本地仓库</td>
 </tr>
-<tr>
-<td>git commit -am “message”</td>
+<tr class="odd">
+<td>git commit -am "message"</td>
 <td>跳过git add 直接提交</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git commit -amend</td>
 <td>重新提交(主要是小错误，例如忘记提交某一文件，或者提交信息小错误)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="3-status-命令"><a class="header-anchor" href="#3-status-命令">¶</a>3 status 命令</h3>
+<h3 id="status-命令">3 status 命令</h3>
 <p>git status 命令主要查看上次提交后有没有再次修改</p>
 <p>git commit -s 简短显示状态信息</p>
-<h3 id="4-diff-命令"><a class="header-anchor" href="#4-diff-命令">¶</a>4 diff 命令</h3>
+<h3 id="diff-命令">4 diff 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>git diff <file></td>
 <td>显示暂存区和工作区之间差异</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git diff --cached <file></td>
 <td>显示暂存区和上一次提交之间的差异(其中cached可以被stored代替)</td>
 </tr>
-<tr>
-<td>git diff  <first-branch> <second-branch></td>
+<tr class="odd">
+<td>git diff <first-branch> <second-branch></td>
 <td>显示两次提交之间的差异</td>
 </tr>
 </tbody>
 </table>
-<h3 id="5-reset-命令"><a class="header-anchor" href="#5-reset-命令">¶</a>5 reset 命令</h3>
+<h3 id="reset-命令">5 reset 命令</h3>
 <p>版本回退命令</p>
 <p>基本格式如下</p>
 <ul>
-<li>git reset &lt;–soft|–mixed|–hard&gt; <HEAD> <file>
+<li>git reset &lt;--soft|--mixed|--hard&gt;
+<HEAD>
+<file>
 <ul>
-<li>–mixed 为默认参数一般不需要说明，用于保持暂存区文件与上次提交的一致，工作区文件不变
+<li>--mixed 为默认参数一般不需要说明，用于保持暂存区文件与上次提交的一致，工作区文件不变
 <ul>
-<li><code>git reset HEAD^</code>      #回退到上一个版本</li>
-<li><code>git reset HEAD^^</code>    #回退到上上一个版本</li>
-<li><code>git reset HEAD^ hello.txt</code>    #回退 hello.txt 文件版本到上一个版本</li>
-<li><code>git reset 052e</code>           #回退到指定版本</li>
-</ul>
-</li>
-<li>–soft 用于回退到某个版本
+<li><code>git reset HEAD^</code> #回退到上一个版本</li>
+<li><code>git reset HEAD^^</code> #回退到上上一个版本</li>
+<li><code>git reset HEAD^ hello.txt</code> #回退 hello.txt 文件版本到上一个版本</li>
+<li><code>git reset 052e</code> #回退到指定版本</li>
+</ul></li>
+<li>--soft 用于回退到某个版本
 <ul>
-<li><code>git reset --soft HEAD~3</code>       #回退到上上上一个版本</li>
+<li><code>git reset --soft HEAD~3</code> #回退到上上上一个版本</li>
 <li><code>git reset --soft</code></li>
-</ul>
-</li>
-<li>–hard 参数撤销工作区中所有为提交的修改内容，将工作区和暂存区所有文件都回退到上一个版本并删除所有的提交信息
+</ul></li>
+<li>--hard 参数撤销工作区中所有为提交的修改内容，将工作区和暂存区所有文件都回退到上一个版本并删除所有的提交信息
 <ul>
-<li><code>git reset --hard HEAD~3</code>     #回退到上上上个版本</li>
-<li><code>git reset --hard origin/master</code>   #回退到和远程一致的版本</li>
-<li><code>git reset --hard HEAD^</code>       #回退到上个版本</li>
+<li><code>git reset --hard HEAD~3</code> #回退到上上上个版本</li>
+<li><code>git reset --hard origin/master</code> #回退到和远程一致的版本</li>
+<li><code>git reset --hard HEAD^</code> #回退到上个版本</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>执行git reset HEAD 命令已经取消之前的git add操作，但不希望包含在下一提交的<strong>快照</strong>中的缓存。使用git commit -am “message” 提交</p>
+<p>执行git reset HEAD 命令已经取消之前的git add操作，但不希望包含在下一提交的<strong>快照</strong>中的缓存。使用git commit -am "message" 提交</p>
 <p>解释：git reset 是版本回退命令，但是在执行它之后，远程库并不会因此而改变，这也从另一方面说明了分布式管理的好处：这在于一人撤销提交操作，不会影响到其他人的提交操作，既保证了合作也保证了独立。那么问题来了，怎样来合并不同的版本库呢？不停地使用git pull命令或者git fetch 和git merge从而保证远程库和本地库保持一致？</p>
 <p>remarks:需要注意的是，可以使用git reflog来显示最近执行的commit操作以及reset操作，进而可以指定版本号进行回退。值得注意的是，本地版本库允许有多次不同的提交，使用reset命令只可以订从最早提交的开始到指定的提交结束从而进行上传或者是返回后对指定版本号下的内容进行修改。但是倘若已经提交到了远程库，这时候再在本地版本库长记性reset命令，会导致HEAD指针与当前origin/master不符，即HEAD指针落后于当前的origin/master是不行的。如果强行在上传后执行reset命令，再次提交时就会出现错误。错误提示信息如下：</p>
-<p>! [rejected]        master -&gt; master (non-fast-forward)</p>
-<p>error: failed to push some refs to ‘<a target="_blank" rel="noopener external nofollow noreferrer" href="https://gitee.com/QingShanxl/lixianlei.git">https://gitee.com/QingShanxl/lixianlei.git</a>’</p>
+<p>! [rejected] master -&gt; master (non-fast-forward)</p>
+<p>error: failed to push some refs to 'https://gitee.com/QingShanxl/lixianlei.git'</p>
 <p>hint: <font color="red">Updates were rejected because the tip of your current branch is behind</font></p>
-<p>hint: <font color="red">its remote counterpart. </font>Integrate the remote changes (e.g. ‘git pull …’) before pushing again.</p>
-<p>hint: See the ‘Note about fast-forwards’ in ‘git push --help’ for details.</p>
-<p><font color='cornflowerblue'>the main error has signed in color “red”</font></p>
-<h3 id="6-rm-命令"><a class="header-anchor" href="#6-rm-命令">¶</a>6 rm 命令</h3>
+<p>hint: <font color="red">its remote counterpart. </font>Integrate the remote changes (e.g. 'git pull ...') before pushing again.</p>
+<p>hint: See the 'Note about fast-forwards' in 'git push --help' for details.</p>
+<p><font color='cornflowerblue'>the main error has signed in color "red"</font></p>
+<h3 id="rm-命令">6 rm 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>git rm <file></td>
 <td>删除工作区文件</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git rm -f <file></td>
 <td>强制删除文件(如果删除之前修改过并且保存到暂存区的话，必须强制删除)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git rm -cached <file></td>
 <td>删除暂存区的文件(工作区保留)</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git rm -f *</td>
 <td>删除此目录下的所有文件和子目录</td>
 </tr>
 </tbody>
 </table>
 <p>可以递归删除，如果<file>是一个文件夹，则会递归删除此文件夹及其内部的子目录和所有文件</p>
-<h3 id="7-mv-命令"><a class="header-anchor" href="#7-mv-命令">¶</a>7 mv 命令</h3>
+<h3 id="mv-命令">7 mv 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>git mv <file> <new file></td>
 <td>重命名</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git mv <file> <destination direction></td>
 <td>移动文件到某一指定目录</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git mv -f <file> <new file></td>
 <td>重命名(新文件名已经存在，但依然要重命名)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="8-log-命令"><a class="header-anchor" href="#8-log-命令">¶</a>8 log 命令</h3>
+<h3 id="log-命令">8 log 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>git log</td>
 <td>显示提交历史</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git log --oneline</td>
 <td>按行显示提交历史</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git log --graph</td>
 <td>显示提交历史中什么时候出现分支以及分支合并</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git log --reverse</td>
 <td>反向显示提交历史</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git log -p -num</td>
 <td>显示最近num次提交历史中差异以及补丁信息</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git log --author</td>
 <td>指定作者显示提交信息</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git log --stat</td>
 <td>简要显示提交历史</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git log --since</td>
-<td>显示指定时间之后的提交历史(参数可以用–after代替)</td>
+<td>显示指定时间之后的提交历史(参数可以用--after代替)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git log --until</td>
-<td>显示指定时间之前的提交历史(参数可以用–before代替)</td>
+<td>显示指定时间之前的提交历史(参数可以用--before代替)</td>
 </tr>
 </tbody>
 </table>
-<h3 id="9-remote命令"><a class="header-anchor" href="#9-remote命令">¶</a>9 remote命令</h3>
+<h3 id="remote命令">9 remote命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>git remote -v</td>
 <td>显示所有远程仓库</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git remote show <remote></td>
 <td>显示指定远程仓库的信息</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git remote add <shortname> <url></td>
 <td>添加远程代码库</td>
 </tr>
-<tr>
+<tr class="even">
 <td>git remote rm <shortname></td>
 <td>删除远程版本库(删除的是本地仓库对远程仓库的引用)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>git remote rename <shortname> <new shortname></td>
 <td>重命名</td>
 </tr>
 </tbody>
 </table>
-<h3 id="10-fetch命令"><a class="header-anchor" href="#10-fetch命令">¶</a>10 fetch命令</h3>
+<h3 id="fetch命令">10 fetch命令</h3>
 <p>git fetch命令用于从远程库下载修改内容，其后需要 git merge 命令用于合并代码库。保证在远程库中做出的修改在本地体现。</p>
 <p>测试用例：</p>
 <ul>
@@ -617,34 +611,34 @@
 <li><code>git merge origin/master</code></li>
 <li>最终在本地的Readme.txt 文件中显示了修改</li>
 </ul>
-<h3 id="11-push-命令"><a class="header-anchor" href="#11-push-命令">¶</a>11 push 命令</h3>
+<h3 id="push-命令">11 push 命令</h3>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>命令</th>
 <th>命令解释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>git push &lt;远程主机名&gt; &lt;本地分支名&gt;</td>
+<tr class="odd">
+<td>git push <远程主机名> <本地分支名></td>
 <td>上传代码到远程仓库</td>
 </tr>
-<tr>
-<td>git push --force &lt;远程主机名&gt; &lt;本地分支名&gt;</td>
+<tr class="even">
+<td>git push --force <远程主机名> <本地分支名></td>
 <td>强制上传</td>
 </tr>
-<tr>
-<td>git push &lt;远程主机名&gt; --delete &lt;本地分支名&gt;</td>
+<tr class="odd">
+<td>git push <远程主机名> --delete <本地分支名></td>
 <td>删除本地分支</td>
 </tr>
 </tbody>
 </table>
-<h3 id="12-pull-命令"><a class="header-anchor" href="#12-pull-命令">¶</a>12 pull 命令</h3>
+<h3 id="pull-命令">12 pull 命令</h3>
 <p>格式：<code>git pull &lt;远程主机名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;</code></p>
-<p>相当于 <code>git fetch</code> 和  <code>git merge</code> 的合成</p>
-<h2 id="2-多人协作"><a class="header-anchor" href="#2-多人协作">¶</a>2 多人协作</h2>
-<p>在多人协作方面，不同人并不可见当前其他成员正在建立或使用的分支，即使执行checkout命令，也不能转化到他进行操作的分支上。例如，一名成员创建了&quot;w#2&quot;分支，另外一名成员在进行分支跳转时只能跳转到以前的分支或者master分支，不能直接跳转到当前成员创建的&quot;w#2&quot;分支上，这样，有利于分支管理，不需要过多的合并操作。</p>
+<p>相当于 <code>git fetch</code> 和 <code>git merge</code> 的合成</p>
+<h2 id="多人协作">2 多人协作</h2>
+<p>在多人协作方面，不同人并不可见当前其他成员正在建立或使用的分支，即使执行checkout命令，也不能转化到他进行操作的分支上。例如，一名成员创建了"w#2"分支，另外一名成员在进行分支跳转时只能跳转到以前的分支或者master分支，不能直接跳转到当前成员创建的"w#2"分支上，这样，有利于分支管理，不需要过多的合并操作。</p>
 <p>或者说，本地用户建立的远程分支会提交到远程库上，可以通过git push origin 分支名来指定提交的分支。另外就是就是不同的用户想要在相同的分支上去操作，不必在本地新建同名的分支，只不过在提交的时候需要不同的指定，例如将更改从master提交到w#2，可以通过这样一条命令来制定操作：git push origin w#2,这样就从当前分支提交到了远程的w#2分支，但是本地看不到不同分支间的差距</p>
 
             </div>

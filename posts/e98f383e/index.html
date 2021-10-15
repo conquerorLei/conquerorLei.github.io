@@ -16,12 +16,12 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="¶第二高的薪水 ¶题目地址 176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。 问题1：如果很多人并列第一高的薪水呢 使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输出全部">
+  <meta name="description" content="第二高的薪水 题目地址 176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。 问题1：如果很多人并列第一高的薪水呢 使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 刷题:第二高的薪水">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/e98f383e/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="¶第二高的薪水 ¶题目地址 176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。 问题1：如果很多人并列第一高的薪水呢 使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输出全部">
+<meta property="og:description" content="第二高的薪水 题目地址 176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。 问题1：如果很多人并列第一高的薪水呢 使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110092352564.png">
 <meta property="article:published_time" content="2021-10-09T15:27:31.000Z">
@@ -207,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      895 字
+      891 字
     </span>
   
 
@@ -262,30 +262,32 @@
               </p>
             
             <div class="markdown-body">
-              <h3 id="第二高的薪水"><a class="header-anchor" href="#第二高的薪水">¶</a>第二高的薪水</h3>
-<h4 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h4>
+              <h3 id="第二高的薪水">第二高的薪水</h3>
+<h4 id="题目地址">题目地址</h4>
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/second-highest-salary/">176. 第二高的薪水 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h4 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h4>
+<h4 id="题目分析">题目分析</h4>
 <p>第二高的薪水，其实想过去很简单。直接使用order by语句进行一个排序操作，使用limit只选择一条，由于需要跳过第一高的薪水，那么需要使用offset。</p>
 <p><strong>问题1</strong>：如果很多人并列第一高的薪水呢</p>
 <p>使用distinct关键字，因为题目要求的是只输出薪水，并没有要求输出全部的排名第二的薪水</p>
 <p><strong>问题2</strong>：如果没有第二高的薪水呢</p>
 <p>按照题目要求，没有第二高的薪水是需要输出null的。那么使用ifnull进行判断就好了</p>
-<h4 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h4>
+<h4 id="代码">代码</h4>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"># Write your MySQL query statement below<br><span class="hljs-keyword">select</span> ifnull(<br>    (<span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> Salary <br>    <span class="hljs-keyword">from</span> Employee<br>    <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> Salary <span class="hljs-keyword">desc</span><br>    limit <span class="hljs-number">1</span> <span class="hljs-keyword">offset</span> <span class="hljs-number">1</span>),<span class="hljs-keyword">null</span><br>) <span class="hljs-keyword">as</span> SecondHighestSalary;<br></code></pre></div></td></tr></table></figure>
-<hr>
-<h3 id="第N高的薪水"><a class="header-anchor" href="#第N高的薪水">¶</a>第N高的薪水</h3>
+<hr />
+<h3 id="第n高的薪水">第N高的薪水</h3>
 <p>紧跟着就是第N高的薪水，一块写了算了</p>
 <p>题目地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/nth-highest-salary/">177. 第N高的薪水 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
 <p>基本思路和上面第二高的薪水是一样的</p>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">FUNCTION</span> getNthHighestSalary(N <span class="hljs-type">INT</span>) <span class="hljs-keyword">RETURNS</span> <span class="hljs-type">INT</span><br><span class="hljs-keyword">BEGIN</span><br>    <span class="hljs-keyword">declare</span> m <span class="hljs-type">int</span>;<br>    <span class="hljs-keyword">set</span> m <span class="hljs-operator">=</span> N<span class="hljs-number">-1</span>;<br>  <span class="hljs-keyword">RETURN</span> (<br>      # Write your MySQL query statement below.<br>      <span class="hljs-keyword">select</span> ifnull(<br>          (<span class="hljs-keyword">select</span> <span class="hljs-keyword">distinct</span> Salary<br>          <span class="hljs-keyword">from</span> Employee<br>          <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> Salary <span class="hljs-keyword">desc</span><br>          limit <span class="hljs-number">1</span> <span class="hljs-keyword">offset</span> m),<span class="hljs-keyword">null</span><br>      )<br>  );<br><span class="hljs-keyword">END</span><br></code></pre></div></td></tr></table></figure>
 <div class="note note-warning">
-            <p>其实没有什么不一样的，但是第三行和第四行是需要注意一下的。</p><p><strong>问题1</strong>：为什么是跳过N-1</p><p>这个很简单，没有什么好说的，第二高的薪水你不是跳过1条记录吗</p><p><strong>问题2</strong>：为什么不能在offset后面直接加N-1</p><p><font color='red'>因为语法要求在offset后面不可以有运算。同样的，limit后面也不允许</font></p><p>关于第四行，直接对N–也是可行的</p>
+            <p>其实没有什么不一样的，但是第三行和第四行是需要注意一下的。</p><p><strong>问题1</strong>：为什么是跳过N-1</p><p>这个很简单，没有什么好说的，第二高的薪水你不是跳过1条记录吗</p><p><strong>问题2</strong>：为什么不能在offset后面直接加N-1</p><p><font color='red'>因为语法要求在offset后面不可以有运算。同样的，limit后面也不允许</font></p><p>关于第四行，直接对N--也是可行的</p>
           </div>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110092352564.png" srcset="/img/loading.gif" lazyload alt="力扣刷题"></p>
-<hr>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110092352564.png" srcset="/img/loading.gif" lazyload alt="力扣刷题" /></p>
+<hr />
 <p>关于ifnull</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

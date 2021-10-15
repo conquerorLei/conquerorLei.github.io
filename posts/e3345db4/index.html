@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.8k 字
+      3.7k 字
     </span>
   
 
@@ -260,107 +260,99 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://www.geekxh.com/assets/img/3.305e9fcd.jpg" srcset="/img/loading.gif" lazyload alt="数组"></p>
+              <p><img src="https://www.geekxh.com/assets/img/3.305e9fcd.jpg" srcset="/img/loading.gif" lazyload alt="数组" /></p>
 <span id="more"></span>
-<h4 id="数组"><a class="header-anchor" href="#数组">¶</a>数组</h4>
+<h4 id="数组">数组</h4>
 <p>是多个相同类型的数据按照一定的顺序排列的集合，使用一个名字命名并通过标号的方式对这次为数据进行统一的管理。</p>
-<h4 id="相关概念"><a class="header-anchor" href="#相关概念">¶</a>相关概念</h4>
-<ol>
+<h4 id="相关概念">相关概念</h4>
+<ol type="1">
 <li>数组名</li>
 <li>元素</li>
 <li>角标</li>
 <li>数组的长度：元素的个数</li>
 </ol>
-<h4 id="特点"><a class="header-anchor" href="#特点">¶</a>特点</h4>
-<ol>
+<h4 id="特点">特点</h4>
+<ol type="1">
 <li>数组是有序排列的</li>
 </ol>
 <div class="note note-info">
             <p>需要注意的是，这个有序指的不是元素本身在数组中是有序的，比如1、2、3、4、5、6、7、8、9，指的是数组中各个元素的排列是有序的，按照标号进行的一个位置排序，不是对内部元素的排序</p>
           </div>
-<ol start="2">
-<li>
-<p>数组是引用类型的变量。数组中的元素可以是基本数据类型，也可以是引用数据类型。</p>
-</li>
-<li>
-<p>创建数组对象时是在内存中开辟的一段连续的内存空间</p>
-</li>
-<li>
-<p>数组一旦建立，长度不可修改</p>
-</li>
+<ol start="2" type="1">
+<li><p>数组是引用类型的变量。数组中的元素可以是基本数据类型，也可以是引用数据类型。</p></li>
+<li><p>创建数组对象时是在内存中开辟的一段连续的内存空间</p></li>
+<li><p>数组一旦建立，长度不可修改</p></li>
 </ol>
-<h4 id="分类"><a class="header-anchor" href="#分类">¶</a>分类</h4>
-<ol>
+<h4 id="分类">分类</h4>
+<ol type="1">
 <li>按照维度：可以分为一维数组和二维数组</li>
 <li>按照数组中元素：可以是基本数据类型元素的数组，可以是引用数据类型元素的数组</li>
 </ol>
-<h4 id="一维数组的使用"><a class="header-anchor" href="#一维数组的使用">¶</a>一维数组的使用</h4>
-<h5 id="声明和初始化"><a class="header-anchor" href="#声明和初始化">¶</a>声明和初始化</h5>
-<p>静态初始化:数组初始化和数组元素的赋值同时进行
-动态初始化：数组初始化合数组元素的赋值操作分开操作</p>
+<h4 id="一维数组的使用">一维数组的使用</h4>
+<h5 id="声明和初始化">声明和初始化</h5>
+<p>静态初始化:数组初始化和数组元素的赋值同时进行 动态初始化：数组初始化合数组元素的赋值操作分开操作</p>
 <div class="note note-info">
             <p>数组一旦初始化完成，其长度就确定了</p>
           </div>
 <div class="note note-success">
             <p>可以为<font color='red'>int[] nums</font>也可以是<font color='red'>int nums[]</font></p>
           </div>
-<h5 id="调用数组指定位置的元素"><a class="header-anchor" href="#调用数组指定位置的元素">¶</a>调用数组指定位置的元素</h5>
+<h5 id="调用数组指定位置的元素">调用数组指定位置的元素</h5>
 <p>通过下角标的方式调用</p>
 <div class="note note-success">
             <p>数组的角标从0开始的，到数组的长度-1结束</p>
           </div>
-<h5 id="获取数组的长度"><a class="header-anchor" href="#获取数组的长度">¶</a>获取数组的长度</h5>
+<h5 id="获取数组的长度">获取数组的长度</h5>
 <p>根据数组的属性：<font color='red'>length</font></p>
-<h5 id="遍历数组"><a class="header-anchor" href="#遍历数组">¶</a>遍历数组</h5>
+<h5 id="遍历数组">遍历数组</h5>
 <p>循环，直接for或者while都可以</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span>[] nums ;<span class="hljs-comment">//声明</span><br>        <span class="hljs-comment">//静态初始化:数组初始化和数组元素的赋值同时进行</span><br>        nums = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[] &#123;<span class="hljs-number">1001</span>,<span class="hljs-number">1002</span>,<span class="hljs-number">1003</span>,<span class="hljs-number">1004</span>&#125;;<br>        <span class="hljs-comment">//动态初始化：数组初始化合数组元素的赋值操作分开操作</span><br>        String[] names = <span class="hljs-keyword">new</span> String[<span class="hljs-number">5</span>];<br>        names[<span class="hljs-number">0</span>] = <span class="hljs-string">&quot;zhangsan&quot;</span>;<br>        names[<span class="hljs-number">1</span>] = <span class="hljs-string">&quot;lisi&quot;</span>;<br>        names[<span class="hljs-number">2</span>] = <span class="hljs-string">&quot;WangWu&quot;</span>;<br>        names[<span class="hljs-number">3</span>] = <span class="hljs-string">&quot;chenqi&quot;</span>;<br>        names[<span class="hljs-number">4</span>] = <span class="hljs-string">&quot;zhouyang&quot;</span>;<br><br>        <span class="hljs-comment">// foreach默认情况下是正向遍历</span><br>        <span class="hljs-keyword">for</span>(String s:names)&#123;<br>            System.out.println(s);<br>        &#125;<br>        <span class="hljs-comment">// 逆向遍历</span><br>        <span class="hljs-keyword">int</span> length = nums.length;<br>        <span class="hljs-keyword">while</span>((--length)&gt;-<span class="hljs-number">1</span>)&#123;<br>            System.out.println(nums[length]);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<h5 id="数组的默认初始化值"><a class="header-anchor" href="#数组的默认初始化值">¶</a>数组的默认初始化值</h5>
+<h5 id="数组的默认初始化值">数组的默认初始化值</h5>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>数组元素数据类型</th>
 <th>默认值</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>int</td>
 <td>0</td>
 </tr>
-<tr>
+<tr class="even">
 <td>float/double</td>
 <td>0.0</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>char</td>
-<td>0或者’\u0000’，而非’0’</td>
+<td>0或者''，而非'0'</td>
 </tr>
-<tr>
+<tr class="even">
 <td>boolean</td>
 <td>false(<font color='red'>底层false是0</font>)</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>引用数据类型</td>
 <td>null</td>
 </tr>
 </tbody>
 </table>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest01</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span>[] arr1 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">4</span>];<br>        System.out.println(arr1[<span class="hljs-number">0</span>]);<br>        System.out.println(<span class="hljs-string">&quot;-------------------&quot;</span>);<br>        <span class="hljs-keyword">float</span>[] arr2 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">float</span>[<span class="hljs-number">4</span>];<br>        System.out.println(arr2[<span class="hljs-number">0</span>]);<br>        System.out.println(<span class="hljs-string">&quot;-------------------&quot;</span>);<br>        <span class="hljs-keyword">char</span>[] arr3 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">char</span>[<span class="hljs-number">4</span>];<br>        System.out.println(<span class="hljs-string">&quot;----&quot;</span>+arr3[<span class="hljs-number">0</span>]+<span class="hljs-string">&quot;****&quot;</span>);<br>        <span class="hljs-keyword">if</span>(arr3[<span class="hljs-number">0</span>] == <span class="hljs-number">0</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;hello&quot;</span>);<br>        &#125;<br>        System.out.println(<span class="hljs-string">&quot;-------------------&quot;</span>);<br>        <span class="hljs-keyword">boolean</span>[] arr4 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">boolean</span>[<span class="hljs-number">4</span>];<br>        System.out.println(arr4[<span class="hljs-number">0</span>]);<br>        System.out.println(<span class="hljs-string">&quot;-------------------&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<h5 id="一维数组的内存解析"><a class="header-anchor" href="#一维数组的内存解析">¶</a>一维数组的内存解析</h5>
+<h5 id="一维数组的内存解析">一维数组的内存解析</h5>
 <p>JVM中内存空间</p>
-<ol>
+<ol type="1">
 <li>栈(Stack)：存放的是局部变量，<font color='red'>放在方法中的变量都叫局部变量</font></li>
 <li>堆(heap)：存放的是<font color='red'>new出来的结构（对象数组）</font></li>
 <li>方法取(Method Area)
-<ol>
+<ol type="1">
 <li>常量池</li>
 <li>静态域</li>
-</ol>
-</li>
+</ol></li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>    <span class="hljs-keyword">int</span>[] arr = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">5</span>];<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>分析第二行的内存结构</p>
-<ol>
+<ol type="1">
 <li>arr是局部变量，故而其名称应该存在栈中</li>
 <li>数据存储是new出来的，故而数据存储在堆中</li>
 </ol>
@@ -370,34 +362,36 @@
 <div class="note note-success">
             <p>另外就是，栈是有弹栈操作的，只要栈中的数据弹出栈，例如弹出了数组首地址，这样的话，堆中的数据就会在之后的对一段时间被JVM的垃圾回收机制回收</p>
           </div>
-<h4 id="二维数组的使用"><a class="header-anchor" href="#二维数组的使用">¶</a>二维数组的使用</h4>
+<h4 id="二维数组的使用">二维数组的使用</h4>
 <p>多位数组的概念，其实本质上和数组元素类型是有关系的。由于数组元素可以是引用数据类型，而数组也是引用数据类型，那么为什么不可以数组的元素是一个数组呢？</p>
 <p>二维数组的概念就是一个数组作为另外一个数组的元素存在</p>
 <div class="note note-info">
             <p>从数组的底层实现来看，其实没有多维数组</p>
           </div>
-<h5 id="初始化"><a class="header-anchor" href="#初始化">¶</a>初始化</h5>
+<h5 id="初始化">初始化</h5>
 <div class="note note-primary">
-            <p>以下两个是相通的</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">int</span>[][] nums = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>];<br><span class="hljs-keyword">int</span>[] nums[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>];<br></code></pre></div></td></tr></table></figure>
+            <p>以下两个是相通的</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java"><span class="hljs-keyword">int</span>[][] nums = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>];<br><span class="hljs-keyword">int</span>[] nums[] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>];<br></code></pre></div></td></tr></table></figure>
           </div>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 静态初始化</span><br><span class="hljs-keyword">int</span>[][] arr = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[][]&#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;,&#123;<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;,&#123;<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>&#125;&#125;;<br><span class="hljs-comment">//动态初始化</span><br>String[][] arr1 = <span class="hljs-keyword">new</span> String[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>];<br>String[][] arr2 = <span class="hljs-keyword">new</span> String[<span class="hljs-number">3</span>][]; <span class="hljs-comment">// 两个的区别在于没有对列进行赋值。</span><br></code></pre></div></td></tr></table></figure>
-<h5 id="调用指定位置的元素"><a class="header-anchor" href="#调用指定位置的元素">¶</a>调用指定位置的元素</h5>
+<h5 id="调用指定位置的元素">调用指定位置的元素</h5>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">System.out.println(arr[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]);<br>System.out.println(arr1[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);<br><br>arr2[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> String[<span class="hljs-number">4</span>];<br></code></pre></div></td></tr></table></figure>
 <div class="note note-info">
             <p>对于第四行，初始的情况下没有对列进行初始化，故而，在此需要初始化，否则直接调用会出现空指针异常</p>
           </div>
-<h5 id="获取数组的长度-v2"><a class="header-anchor" href="#获取数组的长度-v2">¶</a>获取数组的长度</h5>
+<h5 id="获取数组的长度-1">获取数组的长度</h5>
 <p>arr.length表示一共多少个一个数组，arr[0].length表示当前下标下的数组的长度。</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">System.out.println(arr.length);<br>System.out.println(arr[<span class="hljs-number">0</span>].length);<br>System.out.println(arr[<span class="hljs-number">1</span>].length);<br></code></pre></div></td></tr></table></figure>
-<h5 id="遍历二维数组"><a class="header-anchor" href="#遍历二维数组">¶</a>遍历二维数组</h5>
+<h5 id="遍历二维数组">遍历二维数组</h5>
 <p>两层循环，直接就可以了。</p>
-<h5 id="默认初始化值"><a class="header-anchor" href="#默认初始化值">¶</a>默认初始化值</h5>
+<h5 id="默认初始化值">默认初始化值</h5>
 <p>外层元素默认情况下为<font color='red'>一个地址的值</font>，内层元素默认初始化值见一维数组的初始化值。对于内层数组没有初始化的情况下，外层数组的下标对应的值为<font color='red'>null</font></p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArrayTest02</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-comment">// 静态初始化</span><br>        <span class="hljs-keyword">int</span>[][] arr = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[][]&#123;&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;,&#123;<span class="hljs-number">4</span>,<span class="hljs-number">5</span>&#125;,&#123;<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>&#125;&#125;;<br>        <span class="hljs-comment">//动态初始化</span><br>        String[][] arr1 = <span class="hljs-keyword">new</span> String[<span class="hljs-number">3</span>][<span class="hljs-number">4</span>];<br>        String[][] arr2 = <span class="hljs-keyword">new</span> String[<span class="hljs-number">3</span>][]; <span class="hljs-comment">// 两个的区别在于没有对列进行赋值。</span><br>        <span class="hljs-keyword">int</span>[][] arr3 = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[<span class="hljs-number">2</span>][<span class="hljs-number">3</span>];<br><br>        System.out.println(arr[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]);<br>        System.out.println(arr1[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]);<br><br>        <span class="hljs-comment">// 初始的情况下没有对列进行初始化，故而，在此需要初始化，否则直接调用会出现空指针异常</span><br>        arr2[<span class="hljs-number">0</span>] = <span class="hljs-keyword">new</span> String[<span class="hljs-number">4</span>];<br><br>        System.out.println(arr.length);<br>        System.out.println(arr[<span class="hljs-number">0</span>].length);<br>        System.out.println(arr[<span class="hljs-number">1</span>].length);<br><br>        System.out.println(arr3); <span class="hljs-comment">// [[I@1540e19d</span><br>        System.out.println(arr3[<span class="hljs-number">0</span>]); <span class="hljs-comment">// [I@677327b6</span><br>        System.out.println(arr3[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]); <span class="hljs-comment">// 0</span><br>        <br>        System.out.println(arr2[<span class="hljs-number">1</span>]); <span class="hljs-comment">// null</span><br>        System.out.println(arr2[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>]); <span class="hljs-comment">// NullPointerException</span><br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<h4 id="异常"><a class="header-anchor" href="#异常">¶</a>异常</h4>
-<h5 id="IndexOutOfBoundException"><a class="header-anchor" href="#IndexOutOfBoundException">¶</a>IndexOutOfBoundException</h5>
-<h5 id="NullPointerException"><a class="header-anchor" href="#NullPointerException">¶</a>NullPointerException</h5>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<h4 id="异常">异常</h4>
+<h5 id="indexoutofboundexception">IndexOutOfBoundException</h5>
+<h5 id="nullpointerexception">NullPointerException</h5>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

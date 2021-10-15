@@ -205,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      819 字
+      817 字
     </span>
   
 
@@ -260,16 +260,16 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" srcset="/img/loading.gif" lazyload alt="MySQL子查询"></p>
+              <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109202004594.png" srcset="/img/loading.gif" lazyload alt="MySQL子查询" /></p>
 <span id="more"></span>
-<h3 id="in-exists"><a class="header-anchor" href="#in-exists">¶</a>in/exists</h3>
+<h3 id="inexists">in/exists</h3>
 <p><font color='cornflowerblue'>in</font>和<font color='cornflowerblue'>exists</font>都可用于子查询。以下是他们两个的区别</p>
 <ul>
 <li><font color='cornflowerblue'>in</font>在使用的过程中，会缓存子查询的结果集，然后对主查询的每个记录进行查询</li>
 <li><font color='cornflowerblue'>exists</font>在使用的过程中，不会缓存子查询的结果集。先对主查询进行查询，然后根据子查询是否为真来进行确定结果集是否存入主查询的结果集。</li>
 </ul>
 <p>最大的区别有两个：</p>
-<ol>
+<ol type="1">
 <li>有没有对子查询结果进行缓存</li>
 <li>先进行的是主查询还是子查询</li>
 </ol>
@@ -279,7 +279,7 @@
             <p><font color='cornflowerblue'>exists</font>的执行流程就是，先进行主查询得到一个表，然后对这个临时表中的每个记录都进行<font color='cornflowerblue'>where</font>之后的条件判断，如果成立则返回<font color='lawngreen'>true</font>，不成立返回<font color='lawngreen'>false</font>。返回<font color='lawngreen'>true</font>则将此记录存入主查询的结果集，返回<font color='lawngreen'>false</font>则不存入。一种通俗的理解就是，将主查询的每一行带入子查询进行查询，如果子查询返回的结果与空进行判断，如果为空则返回<font color='lawngreen'>true</font>，如果返回<font color='lawngreen'>true</font>那么就将这条记录存到主查询的结果集；反之，如果子查询的结果为空，那么就不存。</p>
           </div>
 <p>这样的话，其实字段一样或者不一样意义都不大，因为我只是看有没有返回的结果，而不是说具体看返回的结果是什么。</p>
-<h3 id="all-any-some"><a class="header-anchor" href="#all-any-some">¶</a>all/any/some</h3>
+<h3 id="allanysome">all/any/some</h3>
 <p><strong>区别</strong>：</p>
 <ul>
 <li><font color='cornflowerblue'>all</font>表示的是只有所有的数据都满足条件，条件才成立</li>
@@ -294,7 +294,9 @@
 <p><strong>all和any的特殊情况</strong>：</p>
 <p>对于<font color='cornflowerblue'>all</font>如果表示空表，那么返回<font color='lawngreen'>true</font>；如果子查询含有<font color='lawngreen'>NULL</font>，那么结果就为空</p>
 <p>对于<font color='cornflowerblue'>any</font>，无论是空表还是子查询含有<font color='lawngreen'>NULL</font>，结果都是<font color='lawngreen'>NULL</font></p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>
