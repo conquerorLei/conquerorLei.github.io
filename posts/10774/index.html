@@ -1,22 +1,39 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
-  <link rel="icon" href="/img/logo.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Vim配置美化">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/10774/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708233232.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210709005447.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210630145458519.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/%E6%AD%A3%E7%A1%AE%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210701234633933.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708234718.png">
+<meta property="article:published_time" content="2021-06-30T06:30:48.000Z">
+<meta property="article:modified_time" content="2021-09-19T13:51:11.233Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="Gvim">
+<meta property="article:tag" content="Vim">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210708233232.png">
   
   <title>Vim配置美化 - conquerorLei</title>
 
@@ -37,7 +54,6 @@
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +78,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -76,8 +92,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -151,13 +168,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -191,21 +209,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.4k 字
+      6.1k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      41
-       分钟
+      19 分钟
     </span>
   
 
@@ -259,7 +274,7 @@
 <h1>vim使用说明</h1>
 <h2 id="使用Vim打开文件"><a class="header-anchor" href="#使用Vim打开文件">¶</a>使用Vim打开文件</h2>
 <p>win+R打开运行，在运行中输入cmd打开命令提示符，在命令提示符中输入一下代码</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">vim $&#123;FilePath&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vim $&#123;FilePath&#125;<br></code></pre></div></td></tr></table></figure>
 <div class="note note-success">
             <blockquote><p>这边需要主要的时候，以下代码是有<font color='red'>错误</font>的😮（直呼好家伙）</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210630145458519.png" srcset="/img/loading.gif" lazyload alt="cmd-Vim打开文件"></p><p>原因是路径内部有<font color='cornflowerblue'>空格</font>，无法正确地寻址<code>IDEA workstation</code></p></blockquote>
           </div>
@@ -605,79 +620,79 @@
 <h2 id="基础配置"><a class="header-anchor" href="#基础配置">¶</a>基础配置</h2>
 <h3 id="设置快捷键打开-vimrc"><a class="header-anchor" href="#设置快捷键打开-vimrc">¶</a>设置快捷键打开_vimrc</h3>
 <p>由于经常需要打开<code>_vimrc</code>，所以这里为<code>_vimrc</code>设置快捷键，在普通模式下直接输入rc即可打开文件<code>_vimrc</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">map rc : e $HOME\_vimrc<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map rc : e $HOME\_vimrc<br></code></pre></div></td></tr></table></figure>
 <h3 id="为Vim配置默认编码"><a class="header-anchor" href="#为Vim配置默认编码">¶</a>为Vim配置默认编码</h3>
 <p>将编码设置为UTF-8，方便以后我们中文注释的Coding</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set encoding=utf-8<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set encoding=utf-8<br></code></pre></div></td></tr></table></figure>
 <h3 id="为Vim配置代码高亮"><a class="header-anchor" href="#为Vim配置代码高亮">¶</a>为Vim配置代码高亮</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">syntax on <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">syntax on <br></code></pre></div></td></tr></table></figure>
 <h3 id="将gVim的语言修改为英文方便使用"><a class="header-anchor" href="#将gVim的语言修改为英文方便使用">¶</a>将gVim的语言修改为英文方便使用</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">language C <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">language C <br></code></pre></div></td></tr></table></figure>
 <h3 id="向下兼容vi"><a class="header-anchor" href="#向下兼容vi">¶</a>向下兼容vi</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">set nocompatible<br>filetype on<br>filetype indent on<br>filetype plugin on<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set nocompatible<br>filetype on<br>filetype indent on<br>filetype plugin on<br></code></pre></div></td></tr></table></figure>
 <h3 id="在可视化下兼容鼠标"><a class="header-anchor" href="#在可视化下兼容鼠标">¶</a>在可视化下兼容鼠标</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set mouse=a<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set mouse=a<br></code></pre></div></td></tr></table></figure>
 <h3 id="将缩进设置为空格"><a class="header-anchor" href="#将缩进设置为空格">¶</a>将缩进设置为空格</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">let &amp;t_ut=&#x27;&#x27;<br>set expandtab <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">let &amp;t_ut=&#x27;&#x27;<br>set expandtab <br></code></pre></div></td></tr></table></figure>
 <h3 id="缩进配置为4空格"><a class="header-anchor" href="#缩进配置为4空格">¶</a>缩进配置为4空格</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">set tabstop=4				<br>set shiftwidth=4<br>set softtabstop=4<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set tabstop=4				<br>set shiftwidth=4<br>set softtabstop=4<br></code></pre></div></td></tr></table></figure>
 <h3 id="渲染Tab和空格"><a class="header-anchor" href="#渲染Tab和空格">¶</a>渲染Tab和空格</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set listchars=tab:▸\ ,trail:▫	<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set listchars=tab:▸\ ,trail:▫	<br></code></pre></div></td></tr></table></figure>
 <h3 id="设置光标滚动停止行"><a class="header-anchor" href="#设置光标滚动停止行">¶</a>设置光标滚动停止行</h3>
 <p>就是往下滚的时候除非到行尾，保证当前选中行至少是倒数第五行，向上同理</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set scrolloff=5<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set scrolloff=5<br></code></pre></div></td></tr></table></figure>
 <h3 id="开启退格跨行退格"><a class="header-anchor" href="#开启退格跨行退格">¶</a>开启退格跨行退格</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set backspace=indent,eol,start	<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set backspace=indent,eol,start	<br></code></pre></div></td></tr></table></figure>
 <h3 id="开启代码折叠"><a class="header-anchor" href="#开启代码折叠">¶</a>开启代码折叠</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set foldmethod=indent<br>set foldlevel=99<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set foldmethod=indent<br>set foldlevel=99<br></code></pre></div></td></tr></table></figure>
 <h3 id="在三种模式下采用三种光标-仅gVim"><a class="header-anchor" href="#在三种模式下采用三种光标-仅gVim">¶</a>在三种模式下采用三种光标[仅gVim]</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">let &amp;t_SI = &quot;\&lt;Esc&gt;]50;CursorShape=1\x7&quot;<br>let &amp;t_SR = &quot;\&lt;Esc&gt;]50;CursorShape=2\x7&quot;<br>let &amp;t_EI = &quot;\&lt;Esc&gt;]50;CursorShape=0\x7&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">let &amp;t_SI = &quot;\&lt;Esc&gt;]50;CursorShape=1\x7&quot;<br>let &amp;t_SR = &quot;\&lt;Esc&gt;]50;CursorShape=2\x7&quot;<br>let &amp;t_EI = &quot;\&lt;Esc&gt;]50;CursorShape=0\x7&quot;<br></code></pre></div></td></tr></table></figure>
 <h3 id="永远保留命令行"><a class="header-anchor" href="#永远保留命令行">¶</a>永远保留命令行</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set laststatus=2<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set laststatus=2<br></code></pre></div></td></tr></table></figure>
 <h3 id="自动缩进"><a class="header-anchor" href="#自动缩进">¶</a>自动缩进</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set autoindent	<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set autoindent	<br></code></pre></div></td></tr></table></figure>
 <h3 id="设置字体-仅gVim"><a class="header-anchor" href="#设置字体-仅gVim">¶</a>设置字体[仅gVim]</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set guifont=Powerline_Consolas:h12:cANSI:qDRAFT<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set guifont=Powerline_Consolas:h12:cANSI:qDRAFT<br></code></pre></div></td></tr></table></figure>
 <h3 id="隐藏gVim的四个滚动条"><a class="header-anchor" href="#隐藏gVim的四个滚动条">¶</a>隐藏gVim的四个滚动条</h3>
 <p>隐藏gVim的四个滚动条如果被激活了F2再次关闭</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs shell">map &lt;silent&gt; &lt;F2&gt; :if &amp;guioptions =~# &#x27;T&#x27; &lt;Bar&gt;<br>		\set guioptions-=T &lt;Bar&gt;<br>		\set guioptions-=m &lt;bar&gt;<br>	\else &lt;Bar&gt;<br>		\set guioptions =T &lt;Bar&gt;<br>		\set guioptions =m &lt;Bar&gt;<br>	\endif&lt;CR&gt;<br>set guioptions-=m   &quot;Hide Menu<br>set guioptions-=T   &quot;Hide Tool-Bar<br>set guioptions-=r   &quot;hide right scroll<br>set guioptions-=b   &quot;hide buttom scoll<br>set guioptions-=L   &quot;hide left scroll<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map &lt;silent&gt; &lt;F2&gt; :if &amp;guioptions =~# &#x27;T&#x27; &lt;Bar&gt;<br>		\set guioptions-=T &lt;Bar&gt;<br>		\set guioptions-=m &lt;bar&gt;<br>	\else &lt;Bar&gt;<br>		\set guioptions =T &lt;Bar&gt;<br>		\set guioptions =m &lt;Bar&gt;<br>	\endif&lt;CR&gt;<br>set guioptions-=m   &quot;Hide Menu<br>set guioptions-=T   &quot;Hide Tool-Bar<br>set guioptions-=r   &quot;hide right scroll<br>set guioptions-=b   &quot;hide buttom scoll<br>set guioptions-=L   &quot;hide left scroll<br></code></pre></div></td></tr></table></figure>
 <h3 id="设置相对行号"><a class="header-anchor" href="#设置相对行号">¶</a>设置相对行号</h3>
 <p>尽管我觉得这个很不好用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set number			<br>set relativenumber<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set number			<br>set relativenumber<br></code></pre></div></td></tr></table></figure>
 <h3 id="突出显示选中的字符所在行列"><a class="header-anchor" href="#突出显示选中的字符所在行列">¶</a>突出显示选中的字符所在行列</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">set cursorline<br>set cursorcolumn<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set cursorline<br>set cursorcolumn<br></code></pre></div></td></tr></table></figure>
 <h3 id="自动换行"><a class="header-anchor" href="#自动换行">¶</a>自动换行</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set wrap<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set wrap<br></code></pre></div></td></tr></table></figure>
 <h3 id="显示输入的命令-右下角"><a class="header-anchor" href="#显示输入的命令-右下角">¶</a>显示输入的命令(右下角)</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set showcmd<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set showcmd<br></code></pre></div></td></tr></table></figure>
 <h3 id="输入命令的时候Tab显示提示"><a class="header-anchor" href="#输入命令的时候Tab显示提示">¶</a>输入命令的时候Tab显示提示</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">set wildmenu<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set wildmenu<br></code></pre></div></td></tr></table></figure>
 <h3 id="智能查找-高亮显示结果"><a class="header-anchor" href="#智能查找-高亮显示结果">¶</a>智能查找 高亮显示结果</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">set hlsearch	<br>exec &quot;nohlsearch&quot;	<br>set incsearch	<br>set ignorecase		<br>set smartcase<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">set hlsearch	<br>exec &quot;nohlsearch&quot;	<br>set incsearch	<br>set ignorecase		<br>set smartcase<br></code></pre></div></td></tr></table></figure>
 <h3 id="设置前缀建"><a class="header-anchor" href="#设置前缀建">¶</a>设置前缀建</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">let mapleader = &quot;\&lt;space&gt;&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">let mapleader = &quot;\&lt;space&gt;&quot;<br></code></pre></div></td></tr></table></figure>
 <h3 id="复制粘贴到系统剪贴板"><a class="header-anchor" href="#复制粘贴到系统剪贴板">¶</a>复制粘贴到系统剪贴板</h3>
 <p>注意的是我们的y和p只能在vim内部复制粘贴，想要复制粘贴到系统剪贴板需要用另一个命令，我把他换为<leader>+y,然后与y使用无异</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">vnoremap &lt;Leader&gt;y &quot;+y<br>nmap &lt;Leader&gt;p &quot;+p<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">vnoremap &lt;Leader&gt;y &quot;+y<br>nmap &lt;Leader&gt;p &quot;+p<br></code></pre></div></td></tr></table></figure>
 <p>也就是说这边的应该为<code>空格+y</code>组合成复制粘贴到系统剪切板</p>
 <h3 id="快捷保存-刷新"><a class="header-anchor" href="#快捷保存-刷新">¶</a>快捷保存 刷新</h3>
 <p>这里用S保存但是要声明不适用于s</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">map S : w&lt;CR&gt;<br>map s &lt;nop&gt;<br>map Q :q&lt;CR&gt;<br>map R :source $MYVIMRC&lt;CR&gt;<br>noremap &lt;LEADER&gt;&lt;CR&gt;  :nohlsearch&lt;CR&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map S : w&lt;CR&gt;<br>map s &lt;nop&gt;<br>map Q :q&lt;CR&gt;<br>map R :source $MYVIMRC&lt;CR&gt;<br>noremap &lt;LEADER&gt;&lt;CR&gt;  :nohlsearch&lt;CR&gt;<br></code></pre></div></td></tr></table></figure>
 <h3 id="设置分屏"><a class="header-anchor" href="#设置分屏">¶</a>设置分屏</h3>
 <p>Vim下可以将窗口分为很多部分方便多代码同时调试，可以向上左下右扩展，但是命令有点长，我们直接写快捷键,sp+h/j/k/l就是分别向四个方向扩展</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">map spl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;<br>map sph :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;<br>map spj :set splitbelow&lt;CR&gt;:split&lt;CR&gt;<br>map spk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map spl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;<br>map sph :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;<br>map spj :set splitbelow&lt;CR&gt;:split&lt;CR&gt;<br>map spk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;<br></code></pre></div></td></tr></table></figure>
 <p>然后我们需要将光标在多个窗口间移动，设置快捷键，Alt+h/j/k/l是向四个方向移动光标</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">map &lt;A-h&gt; &lt;C-w&gt;h<br>map &lt;A-j&gt; &lt;C-w&gt;j<br>map &lt;A-k&gt; &lt;C-w&gt;k<br>map &lt;A-l&gt; &lt;C-w&gt;l<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map &lt;A-h&gt; &lt;C-w&gt;h<br>map &lt;A-j&gt; &lt;C-w&gt;j<br>map &lt;A-k&gt; &lt;C-w&gt;k<br>map &lt;A-l&gt; &lt;C-w&gt;l<br></code></pre></div></td></tr></table></figure>
 <p>调整所在窗口的大小,Alt++/_是水平+/-,Alt±/=是垂直的,自己看下在键盘上的位置就知道了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">map &lt;A-=&gt; :vertical resize+5 &lt;CR&gt; <br>map &lt;A--&gt; :vertical resize-5 &lt;CR&gt; <br>map &lt;A-+&gt; :resize+5 &lt;CR&gt; <br>map &lt;A-_&gt; :resize-5 &lt;CR&gt; <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map &lt;A-=&gt; :vertical resize+5 &lt;CR&gt; <br>map &lt;A--&gt; :vertical resize-5 &lt;CR&gt; <br>map &lt;A-+&gt; :resize+5 &lt;CR&gt; <br>map &lt;A-_&gt; :resize-5 &lt;CR&gt; <br></code></pre></div></td></tr></table></figure>
 <p>转置窗口，左右边上下，上下变左右</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">map sv &lt;C-w&gt;t&lt;c-W&gt;H<br>map sv &lt;C-w&gt;t&lt;c-W&gt;K<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map sv &lt;C-w&gt;t&lt;c-W&gt;H<br>map sv &lt;C-w&gt;t&lt;c-W&gt;K<br></code></pre></div></td></tr></table></figure>
 <h3 id="增加删除tabe标签"><a class="header-anchor" href="#增加删除tabe标签">¶</a>增加删除tabe标签</h3>
 <p>Tabe是Vim中相当于浏览器的tab一样的东西
 分别是增加2，切换2，移动*2</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell">map tu :tabe&lt;CR&gt;<br>map tc :tabc&lt;CR&gt;<br>map tp :-tabnext&lt;CR&gt;<br>map tn :+tabnext&lt;CR&gt;<br>map tmn :-tabmove&lt;CR&gt;<br>map tmi :+tabmove&lt;CR&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">map tu :tabe&lt;CR&gt;<br>map tc :tabc&lt;CR&gt;<br>map tp :-tabnext&lt;CR&gt;<br>map tn :+tabnext&lt;CR&gt;<br>map tmn :-tabmove&lt;CR&gt;<br>map tmi :+tabmove&lt;CR&gt;<br></code></pre></div></td></tr></table></figure>
 <h3 id="插入模式移动光标"><a class="header-anchor" href="#插入模式移动光标">¶</a>插入模式移动光标</h3>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">inoremap &lt;C-l&gt; &lt;Right&gt;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">inoremap &lt;C-l&gt; &lt;Right&gt;<br></code></pre></div></td></tr></table></figure>
 <h2 id="插件安装"><a class="header-anchor" href="#插件安装">¶</a>插件安装</h2>
 <h3 id="插件管理器"><a class="header-anchor" href="#插件管理器">¶</a>插件管理器</h3>
 <p>我选择的是vim-plugin，使用git克隆插件管理器github仓库，仓库主页：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug">junegunn/vim-plug: Minimalist Vim Plugin Manager (github.com)</a>，克隆地址：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/junegunn/vim-plug.git">https://github.com/junegunn/vim-plug.git</a></p>
@@ -802,7 +817,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -836,7 +851,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -892,6 +907,10 @@
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -902,23 +921,18 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -952,6 +966,9 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
         },
         options: {
           renderActions: {

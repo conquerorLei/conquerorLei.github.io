@@ -1,22 +1,35 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
-  <link rel="icon" href="/img/logo.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="markdown语法以及Typora使用(基础)">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/22355/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.1c814dc097c6b9e8f01e0723e3f174c5?rik=tFfEkQqbMMCs%2bA&amp;riu=http%3a%2f%2fd2.alternativeto.net%2fdist%2fs%2ftypora_263651_full.png%3fformat%3djpg%26width%3d1600%26height%3d1600%26mode%3dmin%26upscale%3dfalse&amp;ehk=mhloWvxal7paKjZK81sY%2bRjo6i2HcYWh59RoDiZItZ4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210625154530.png">
+<meta property="og:image" content="https://conquerorlei.github.io/posts/22355/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84">
+<meta property="article:published_time" content="2021-06-13T05:12:45.000Z">
+<meta property="article:modified_time" content="2021-09-19T13:51:10.328Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="Markdown">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.1c814dc097c6b9e8f01e0723e3f174c5?rik=tFfEkQqbMMCs%2bA&amp;riu=http%3a%2f%2fd2.alternativeto.net%2fdist%2fs%2ftypora_263651_full.png%3fformat%3djpg%26width%3d1600%26height%3d1600%26mode%3dmin%26upscale%3dfalse&amp;ehk=mhloWvxal7paKjZK81sY%2bRjo6i2HcYWh59RoDiZItZ4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
   
   <title>markdown语法以及Typora使用(基础) - conquerorLei</title>
 
@@ -37,7 +50,6 @@
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +74,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -76,8 +88,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -151,13 +164,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -191,21 +205,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      3.2k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      20
-       分钟
+      10 分钟
     </span>
   
 
@@ -263,12 +274,12 @@
 <h2 id="标题"><a class="header-anchor" href="#标题">¶</a>标题</h2>
 <p>官网在标题的设定上，提供了两种形式，<code>Setext</code>和<code>atx</code>，以下在代码块中展示</p>
 <h3 id="Setext"><a class="header-anchor" href="#Setext">¶</a>Setext</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* 一级标题 *</span>/<br><span class="hljs-section">This is a H1</span><br><span class="hljs-section">============</span><br>/<span class="hljs-emphasis">* 二级标题 *</span>/<br><span class="hljs-section">This is a H2</span><br><span class="hljs-section">------------</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* 一级标题 *</span>/<br><span class="hljs-section">This is a H1</span><br><span class="hljs-section">============</span><br>/<span class="hljs-emphasis">* 二级标题 *</span>/<br><span class="hljs-section">This is a H2</span><br><span class="hljs-section">------------</span><br></code></pre></div></td></tr></table></figure>
 <div class="note note-info">
             <p>一级标题是以&quot;<font color='red'>====</font>“作为底线，二级标题是以”<font color='cornflowerblue'>—</font>&quot;作为底线</p><blockquote><p>两个需要注意的点：</p><blockquote><ol><li>无论底线为&quot;<font color='red'>=</font>“还是”<font color='cornflowerblue'>-</font>&quot;，无论数量为多少个都会有效果，不用卡数量</li><li>底线行不能有其他的字符</li></ol></blockquote></blockquote>
           </div>
 <h3 id="atx"><a class="header-anchor" href="#atx">¶</a>atx</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># This is a H1</span><br><span class="hljs-section">## This is a H2</span><br><span class="hljs-section">### This is a H3</span><br><span class="hljs-section">#### This is a H4</span><br><span class="hljs-section">##### This is a H5</span><br><span class="hljs-section">###### This is a H6</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-section"># This is a H1</span><br><span class="hljs-section">## This is a H2</span><br><span class="hljs-section">### This is a H3</span><br><span class="hljs-section">#### This is a H4</span><br><span class="hljs-section">##### This is a H5</span><br><span class="hljs-section">###### This is a H6</span><br></code></pre></div></td></tr></table></figure>
 <div class="note note-success">
             <p>设置标题，只需要在标题前加上&quot;<font color='red'>#</font>&quot;就好了</p><blockquote><p>需要注意一下两点：</p><blockquote><ol><li>需要设置为几级标题就添加几个&quot;<font color='red'>#</font>&quot;</li><li>一共有六级标题，也就是说最多只能设置六级标题</li><li>最后一个&quot;<font color='red'>#</font>&quot;和标题首字符之间有一个空格，否则就会不适用</li></ol></blockquote></blockquote>
           </div>
@@ -316,18 +327,18 @@
           </div>
 <h2 id="代码块-Code-Block"><a class="header-anchor" href="#代码块-Code-Block">¶</a>代码块 Code Block</h2>
 <h3 id="行内代码"><a class="header-anchor" href="#行内代码">¶</a>行内代码</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-code">`This is &quot;code in line&quot;`</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-code">`This is &quot;code in line&quot;`</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><code>This is &quot;code in line&quot;</code></p>
 <h3 id="多行代码"><a class="header-anchor" href="#多行代码">¶</a>多行代码</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-code">```java</span><br><span class="hljs-code">public class Test&#123;</span><br><span class="hljs-code">	.....</span><br><span class="hljs-code">&#125;</span><br><span class="hljs-code">```</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-code">```java</span><br><span class="hljs-code">public class Test&#123;</span><br><span class="hljs-code">	.....</span><br><span class="hljs-code">&#125;</span><br><span class="hljs-code">```</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>&#123;<br>    .....<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Test</span></span>&#123;<br>    .....<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <div class="note note-success">
             <blockquote><p>需要注意两点：</p><blockquote><ol><li>无论是行内代码还是多行代码，都是<font color='red'>反引号</font></li><li>多行代码可以指定语言，在最开始的三个<font color='red'>反引号</font>之后加上语言</li><li>markdown基本上支持所有主流语言</li></ol></blockquote></blockquote>
           </div>
 <h3 id="任务列表"><a class="header-anchor" href="#任务列表">¶</a>任务列表</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ul>
 <li>
@@ -366,9 +377,9 @@
             <blockquote><p>这边就不用符号展示了，渲染出来不好看，所以我直接写汉字了</p><p>反引号在键盘左上角<font color='cornflowerblue'>TAB</font>键的上面😉</p></blockquote>
           </div>
 <h2 id="引用"><a class="header-anchor" href="#引用">¶</a>引用</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; this is a quote</span><br><span class="hljs-quote">&gt; &gt; this is a quote in quote(maybe you will use this:wink:)</span><br><span class="hljs-quote">&gt; # this is a H1 in quote</span><br><span class="hljs-quote">&gt; `this is a &quot;code in line&quot; in quote`</span><br><span class="hljs-quote">&gt; ```java</span><br><span class="hljs-quote">&gt; public class Test&#123;</span><br><span class="hljs-quote">&gt;     Public static void main(String[] args)&#123;</span><br><span class="hljs-quote">&gt;         System.out.println(&quot;This is a multiple line code&quot;);</span><br><span class="hljs-quote">&gt;     &#125;</span><br><span class="hljs-quote">&gt; &#125;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-quote">&gt; this is a quote</span><br><span class="hljs-quote">&gt; &gt; this is a quote in quote(maybe you will use this:wink:)</span><br><span class="hljs-quote">&gt; # this is a H1 in quote</span><br><span class="hljs-quote">&gt; `this is a &quot;code in line&quot; in quote`</span><br><span class="hljs-quote">&gt; ```java</span><br><span class="hljs-quote">&gt; public class Test&#123;</span><br><span class="hljs-quote">&gt;     Public static void main(String[] args)&#123;</span><br><span class="hljs-quote">&gt;         System.out.println(&quot;This is a multiple line code&quot;);</span><br><span class="hljs-quote">&gt;     &#125;</span><br><span class="hljs-quote">&gt; &#125;</span><br></code></pre></div></td></tr></table></figure>
 <blockquote></blockquote>
-<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><br>**效果：**<br><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-built_in">this</span> is a quote</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">&gt; <span class="hljs-built_in">this</span> is a quote <span class="hljs-keyword">in</span> quote(maybe you will use <span class="hljs-built_in">this</span>:wink:)</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"># <span class="hljs-built_in">this</span> is a H1 <span class="hljs-keyword">in</span> quote</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">`this is a &quot;code in line&quot; in quote`</span></span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">``</span><span class="hljs-string">`java</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">public class Test&#123;</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">    Public static void main(String[] args)&#123;</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">        System.out.println(&quot;This is a multiple line code&quot;);</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">    &#125;</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">&#125;</span></span><br></code></pre></td></tr></table></figure>
+<figure class="highlight node-repl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs node-repl"><br>**效果：**<br><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-built_in">this</span> is a quote</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript">&gt; <span class="hljs-built_in">this</span> is a quote <span class="hljs-keyword">in</span> quote(maybe you will use <span class="hljs-built_in">this</span>:wink:)</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"># <span class="hljs-built_in">this</span> is a H1 <span class="hljs-keyword">in</span> quote</span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">`this is a &quot;code in line&quot; in quote`</span></span><br><span class="hljs-meta">&gt;</span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">``</span><span class="hljs-string">`java</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">public class Test&#123;</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">    Public static void main(String[] args)&#123;</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">        System.out.println(&quot;This is a multiple line code&quot;);</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">    &#125;</span></span><br><span class="hljs-meta">&gt;</span> <span class="javascript"><span class="hljs-string">&#125;</span></span><br></code></pre></div></td></tr></table></figure>
 <h3 id="Typora快捷键-v3"><a class="header-anchor" href="#Typora快捷键-v3">¶</a>Typora快捷键</h3>
 <table>
 <thead>
@@ -386,7 +397,7 @@
 </table>
 <h2 id="列表"><a class="header-anchor" href="#列表">¶</a>列表</h2>
 <h3 id="无序列表"><a class="header-anchor" href="#无序列表">¶</a>无序列表</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">*</span> 无序列表<br><span class="hljs-bullet">	*</span> 无序列表<br><span class="hljs-code">	</span><br><span class="hljs-code">- 无序列表	</span><br><span class="hljs-code">	- 无序列表</span><br><span class="hljs-code">	</span><br><span class="hljs-code">+ 无序列表	</span><br><span class="hljs-code">	+ 无序列表</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-bullet">*</span> 无序列表<br><span class="hljs-bullet">	*</span> 无序列表<br><span class="hljs-code">	</span><br><span class="hljs-code">- 无序列表	</span><br><span class="hljs-code">	- 无序列表</span><br><span class="hljs-code">	</span><br><span class="hljs-code">+ 无序列表	</span><br><span class="hljs-code">	+ 无序列表</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ul>
 <li>无序列表
@@ -410,7 +421,7 @@
 </li>
 </ul>
 <h3 id="有序列表"><a class="header-anchor" href="#有序列表">¶</a>有序列表</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 有序列表	<br><span class="hljs-bullet">	1.</span> 有序列表	<br><span class="hljs-bullet">	2.</span> 有序列表<br><span class="hljs-bullet">2.</span> 有序列表<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-bullet">1.</span> 有序列表	<br><span class="hljs-bullet">	1.</span> 有序列表	<br><span class="hljs-bullet">	2.</span> 有序列表<br><span class="hljs-bullet">2.</span> 有序列表<br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ol>
 <li>有序列表
@@ -457,7 +468,7 @@
 </tbody>
 </table>
 <h2 id="链接"><a class="header-anchor" href="#链接">¶</a>链接</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">[<span class="hljs-string">example</span>](<span class="hljs-link">https://www.example.com/</span>)[<span class="hljs-string">本地链接</span>]:markdown语法以及Typora使用.md &quot;本地链接&quot;[本地链接]:b[b]:markdown语法以及Typora使用.md &quot;本地链接&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">[<span class="hljs-string">example</span>](<span class="hljs-link">https://www.example.com/</span>)[<span class="hljs-string">本地链接</span>]:markdown语法以及Typora使用.md &quot;本地链接&quot;[本地链接]:b[b]:markdown语法以及Typora使用.md &quot;本地链接&quot;<br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.example.com/">example</a></p>
 <div class="note note-info">
@@ -465,14 +476,14 @@
           </div>
 <h2 id="强调"><a class="header-anchor" href="#强调">¶</a>强调</h2>
 <h3 id="斜体"><a class="header-anchor" href="#斜体">¶</a>斜体</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* 斜体 *</span>/<br><br><span class="hljs-emphasis">*强调*</span><br><br><span class="hljs-emphasis">_强调_</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* 斜体 *</span>/<br><br><span class="hljs-emphasis">*强调*</span><br><br><span class="hljs-emphasis">_强调_</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><em>强调</em>
 <em>强调</em>
 <strong>强调</strong>
 <strong>强调</strong></p>
 <h3 id="加粗"><a class="header-anchor" href="#加粗">¶</a>加粗</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* 加粗 *</span>/<br><br><span class="hljs-strong">**强调**</span><br><br><span class="hljs-strong">__强调__</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* 加粗 *</span>/<br><br><span class="hljs-strong">**强调**</span><br><br><span class="hljs-strong">__强调__</span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><strong>强调</strong>
 <strong>强调</strong></p>
@@ -499,7 +510,7 @@
 </tbody>
 </table>
 <h2 id="图片"><a class="header-anchor" href="#图片">¶</a>图片</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown">![<span class="hljs-string">图片替代文字</span>](<span class="hljs-link">图片路径</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">![<span class="hljs-string">图片替代文字</span>](<span class="hljs-link">图片路径</span>)<br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><img src="%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84" srcset="/img/loading.gif" lazyload alt="图片路径"></p>
 <p>更高级的用法在于图床的使用，这个将在高级应用中提到</p>
@@ -522,7 +533,7 @@
 </tbody>
 </table>
 <h2 id="表格"><a class="header-anchor" href="#表格">¶</a>表格</h2>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">|Column1|column2|column3|<br><br>|-------|-------|-------|<br><br>|123	|132	|321	|<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">|Column1|column2|column3|<br><br>|-------|-------|-------|<br><br>|123	|132	|321	|<br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <table>
 <thead>
@@ -672,7 +683,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -706,7 +717,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -762,6 +773,10 @@
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -772,23 +787,18 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -822,6 +832,9 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
         },
         options: {
           renderActions: {

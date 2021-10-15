@@ -1,22 +1,36 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
-  <link rel="icon" href="/img/logo.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
+  <meta name="description" content="¶题目地址 20. 有效的括号 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 这个分析其实很简单不是嘛，但凡是牵扯到符号匹配的，考虑栈的特性先入后出，然后根据右边括号与栈顶元素的匹配情况考虑是都继续匹配 时间复杂度为O(n)，空间复杂度为O(1) ¶代码 1234567891011121314151617181920212223242526272829303132c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有效括号">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/c774a81f/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:description" content="¶题目地址 20. 有效的括号 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 这个分析其实很简单不是嘛，但凡是牵扯到符号匹配的，考虑栈的特性先入后出，然后根据右边括号与栈顶元素的匹配情况考虑是都继续匹配 时间复杂度为O(n)，空间复杂度为O(1) ¶代码 1234567891011121314151617181920212223242526272829303132c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110112143386.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110112333018.png">
+<meta property="article:published_time" content="2021-10-11T13:33:28.000Z">
+<meta property="article:modified_time" content="2021-10-11T15:41:54.641Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="Daily">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110112143386.png">
   
   <title>有效括号 - conquerorLei</title>
 
@@ -37,7 +51,6 @@
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +75,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -76,8 +89,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -151,13 +165,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -191,21 +206,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      414 字
+      1.8k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
-       分钟
+      5 分钟
     </span>
   
 
@@ -257,11 +269,11 @@
 <p>这个分析其实很简单不是嘛，但凡是牵扯到符号匹配的，考虑栈的特性先入后出，然后根据右边括号与栈顶元素的匹配情况考虑是都继续匹配</p>
 <p>时间复杂度为O(n)，空间复杂度为O(1)</p>
 <h3 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isValid</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        Stack&lt;Character&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        <span class="hljs-keyword">char</span>[] c = s.toCharArray();<br>        <span class="hljs-keyword">int</span> len = c.length;<br>        <span class="hljs-keyword">char</span> temp;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; len; i++)&#123;<br>            <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;(&#x27;</span> || c[i] == <span class="hljs-string">&#x27;[&#x27;</span> || c[i] == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                stack.push(c[i]);<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;)&#x27;</span> || c[i] == <span class="hljs-string">&#x27;]&#x27;</span> || c[i] == <span class="hljs-string">&#x27;&#125;&#x27;</span>)&#123;<br>                <span class="hljs-keyword">if</span>(stack.isEmpty()) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                &#125;<br>                temp = stack.pop();<br>                <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;)&#x27;</span> &amp;&amp; temp == <span class="hljs-string">&#x27;(&#x27;</span>)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;]&#x27;</span> &amp;&amp; temp == <span class="hljs-string">&#x27;[&#x27;</span>)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;&#125;&#x27;</span> &amp;&amp; temp == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(stack.isEmpty()) &#123;<br>        	<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isValid</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        Stack&lt;Character&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        <span class="hljs-keyword">char</span>[] c = s.toCharArray();<br>        <span class="hljs-keyword">int</span> len = c.length;<br>        <span class="hljs-keyword">char</span> temp;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i &lt; len; i++)&#123;<br>            <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;(&#x27;</span> || c[i] == <span class="hljs-string">&#x27;[&#x27;</span> || c[i] == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                stack.push(c[i]);<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;)&#x27;</span> || c[i] == <span class="hljs-string">&#x27;]&#x27;</span> || c[i] == <span class="hljs-string">&#x27;&#125;&#x27;</span>)&#123;<br>                <span class="hljs-keyword">if</span>(stack.isEmpty()) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                &#125;<br>                temp = stack.pop();<br>                <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;)&#x27;</span> &amp;&amp; temp == <span class="hljs-string">&#x27;(&#x27;</span>)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;]&#x27;</span> &amp;&amp; temp == <span class="hljs-string">&#x27;[&#x27;</span>)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">if</span>(c[i] == <span class="hljs-string">&#x27;&#125;&#x27;</span> &amp;&amp; temp == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(stack.isEmpty()) &#123;<br>        	<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110112143386.png" srcset="/img/loading.gif" lazyload alt="未优化提交结果"></p>
 <h3 id="优化"><a class="header-anchor" href="#优化">¶</a>优化</h3>
 <p>为什么要优化？因为内存消耗太大了，另外就是if结构太多了，代替为switch和foreach结构</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isValid</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        Stack&lt;Character&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        <span class="hljs-keyword">char</span>[] cs = s.toCharArray();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c:cs)&#123;<br>            <span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27;(&#x27;</span> || c == <span class="hljs-string">&#x27;[&#x27;</span> || c == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                stack.push(c);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">if</span>(stack.isEmpty()) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                &#125;<br>                <span class="hljs-keyword">switch</span>(c)&#123;<br>                    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;)&#x27;</span>:<br>                        <span class="hljs-keyword">if</span>(stack.peek() == <span class="hljs-string">&#x27;(&#x27;</span>)&#123;<br>                            stack.pop();<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;]&#x27;</span>:<br>                        <span class="hljs-keyword">if</span>(stack.peek() == <span class="hljs-string">&#x27;[&#x27;</span>)&#123;<br>                            stack.pop();<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;&#125;&#x27;</span>:<br>                        <span class="hljs-keyword">if</span>(stack.peek() == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                            stack.pop();<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> stack.empty();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isValid</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        Stack&lt;Character&gt; stack = <span class="hljs-keyword">new</span> Stack&lt;&gt;();<br>        <span class="hljs-keyword">char</span>[] cs = s.toCharArray();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">char</span> c:cs)&#123;<br>            <span class="hljs-keyword">if</span>(c == <span class="hljs-string">&#x27;(&#x27;</span> || c == <span class="hljs-string">&#x27;[&#x27;</span> || c == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                stack.push(c);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">if</span>(stack.isEmpty()) &#123;<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                &#125;<br>                <span class="hljs-keyword">switch</span>(c)&#123;<br>                    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;)&#x27;</span>:<br>                        <span class="hljs-keyword">if</span>(stack.peek() == <span class="hljs-string">&#x27;(&#x27;</span>)&#123;<br>                            stack.pop();<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;]&#x27;</span>:<br>                        <span class="hljs-keyword">if</span>(stack.peek() == <span class="hljs-string">&#x27;[&#x27;</span>)&#123;<br>                            stack.pop();<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;&#125;&#x27;</span>:<br>                        <span class="hljs-keyword">if</span>(stack.peek() == <span class="hljs-string">&#x27;&#123;&#x27;</span>)&#123;<br>                            stack.pop();<br>                        &#125;<span class="hljs-keyword">else</span>&#123;<br>                            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> stack.empty();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110112333018.png" srcset="/img/loading.gif" lazyload alt="优化后判题结果"></p>
 <p>近乎100%</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
@@ -384,7 +396,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -418,7 +430,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -474,6 +486,10 @@
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -484,23 +500,18 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -534,6 +545,9 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
         },
         options: {
           renderActions: {

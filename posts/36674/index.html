@@ -1,22 +1,41 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
-  <link rel="icon" href="/img/logo.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="hexo+github搭建个人博客">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/36674/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201039.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523201639.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523203717.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png">
+<meta property="article:published_time" content="2021-05-23T11:36:12.000Z">
+<meta property="article:modified_time" content="2021-09-19T13:51:09.650Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Github">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.7bbe64c2282a997092613d004f0222f2?rik=vAgHvLOc8EDfzQ&amp;riu=http%3a%2f%2ftelcruel.gitee.io%2fmedias%2ffeatureimages%2fhexo.png&amp;ehk=NdmbPZkO%2fgkJrZYV8Mc7nAe1dGbDqERFSjSUfMid5VI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
   
   <title>hexo+github搭建个人博客 - conquerorLei</title>
 
@@ -37,7 +56,6 @@
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +80,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -76,8 +94,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -151,13 +170,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -191,21 +211,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      2.5k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
-       分钟
+      8 分钟
     </span>
   
 
@@ -276,20 +293,20 @@
 <h1>连接Github</h1>
 <h2 id="设置用户名和邮箱"><a class="header-anchor" href="#设置用户名和邮箱">¶</a>设置用户名和邮箱</h2>
 <p>在桌面上右键，点击<font color='cornflowerblue'>git bash here</font>，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 设置github全局用户名</span><br>git config --global user.name &quot;你的GitHub 用户名&quot;<br><span class="hljs-meta">#</span><span class="bash"> 设置github全局邮箱</span><br>git config --global user.email &quot;你的GitHub 邮箱&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 设置github全局用户名</span><br>git config --global user.name &quot;你的GitHub 用户名&quot;<br><span class="hljs-meta">#</span><span class="bash"> 设置github全局邮箱</span><br>git config --global user.email &quot;你的GitHub 邮箱&quot;<br></code></pre></div></td></tr></table></figure>
 <div class="note note-primary">
-            <blockquote><p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p><p>如果想要知道有没有设置成功，按照以下命名进行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --list --global<br></code></pre></td></tr></table></figure><p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p></blockquote>
+            <blockquote><p>注意，这里每次输入一句并回车后并没有任何显示，但不要认为没有设置成功。</p><p>如果想要知道有没有设置成功，按照以下命名进行</p><figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git config --list --global<br></code></pre></div></td></tr></table></figure><p>从输出的配置中查找<code>user.name</code>和<code>user.email</code>，如果存在说明设置成功了</p></blockquote>
           </div>
 <h2 id="创建并配置SSH秘钥"><a class="header-anchor" href="#创建并配置SSH秘钥">¶</a>创建并配置SSH秘钥</h2>
 <p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">ssh-keygen -t rsa -C &quot;你的GitHub 邮箱&quot;<br></code></pre></div></td></tr></table></figure>
 <p>进入 [C:\Users\用户名\.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 <code>id_rsa.pub</code> 文件并复制里面的内容。</p>
 <p>登陆 <code>GitHub</code> ，进入 Settings 页面，选择左边栏的 <code>SSH and GPG keys</code>，点击 <code>New SSH key</code>。</p>
 <p>Title 随便取个名字，粘贴复制的 <code>id_rsa.pub</code> 内容到 Key 中，点击 Add SSH key 完成添加。</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523204050.png" srcset="/img/loading.gif" lazyload alt="image-20210523204048789"></p>
 <h2 id="验证链接"><a class="header-anchor" href="#验证链接">¶</a>验证链接</h2>
 <p>在<font color='cornflowerblue'>git bash here</font>弹出的命令提示符，在里面输入以下语句，出现 “Are you sure……”，输入 yes 回车确认。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ssh -T git@github.com<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">ssh -T git@github.com<br></code></pre></div></td></tr></table></figure>
 <p>连接成功的，会弹出以下字样</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523205341.png" srcset="/img/loading.gif" lazyload alt="image-20210523205339419"></p>
 <div class="note note-success">
@@ -312,15 +329,15 @@
 <p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexo。打开该文件夹，右键 点击<code>Git Bash Here</code>。</p>
 <h2 id="下载安装hexo程序"><a class="header-anchor" href="#下载安装hexo程序">¶</a>下载安装hexo程序</h2>
 <p>使用<code>npm</code>安装</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install -g hexo-cli<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">npm install -g hexo-cli<br></code></pre></div></td></tr></table></figure>
 <div class="note note-info">
             <blockquote><p>说明：由于采用的是国外的下载源，所以网速慢是正常的，可能会有很长一段时间没有反应，耐心等待</p></blockquote>
           </div>
 <h2 id="Hexo初始化和本地预览"><a class="header-anchor" href="#Hexo初始化和本地预览">¶</a>Hexo初始化和本地预览</h2>
 <p>在<code>Git Bash Here</code>弹出的命令提示符中输入一下命令，初始化并安装组件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span><br>hexo init<br><span class="hljs-meta">#</span><span class="bash"> 安装组件</span><br>npm install<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> Hexo程序初始化文件夹hexo</span><br>hexo init<br><span class="hljs-meta">#</span><span class="bash"> 安装组件</span><br>npm install<br></code></pre></div></td></tr></table></figure>
 <p>本地预览，输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清理，渲染生成页面，启动服务端</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo s<br></code></pre></div></td></tr></table></figure>
 <p>访问<code>Http://localhost:4000/</code>，出现默认界面，本地博客安装成功</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523212719.png" srcset="/img/loading.gif" lazyload alt="image-20210523212717096"></p>
 <div class="note note-info">
@@ -328,14 +345,14 @@
           </div>
 <h1>部署hexo到Github pages</h1>
 <p>首先是安装<code>hexo-deployer-git</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">npm install hexo-deployer-git --save<br></code></pre></div></td></tr></table></figure>
 <p>然后按照图片展示的修改博客文件夹根目录下的<code>_config.yml</code>末尾部分，修改后保存</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210523213658.png" srcset="/img/loading.gif" lazyload alt="image-20210523213657537"></p>
 <div class="note note-primary">
             <blockquote><p>说明：</p><ul><li>:    后面有一个空格，一定要注意这一点</li><li>另外就是<code>repo</code>使用的是你的博客仓库的SSH地址，因为我们是通过SSH授权连接的</li></ul></blockquote>
           </div>
 <p>最后就是部署，在<code>git bash here</code>弹出的命令行中输入以下命令</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 清除缓存，渲染产生页面，部署发布</span><br>hexo clean &amp;&amp; hexo g &amp;&amp; hexo d<br></code></pre></div></td></tr></table></figure>
 <p>这样，一个未经过任何配置的个人博客就已经制作好啦！下一篇文章为hexo的配置，主体的安装配置和基础美化。</p>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
             </div>
@@ -454,7 +471,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -488,7 +505,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -544,6 +561,10 @@
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -554,23 +575,18 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -604,6 +620,9 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
         },
         options: {
           renderActions: {

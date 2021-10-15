@@ -1,22 +1,43 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
-  <link rel="icon" href="/img/logo.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
+  <meta name="description" content="最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。 我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404  ¶问题分析 这个时候百思不得其解，怎么办，本地hexo s就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，他直接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo部署异常:部署后访问页面404">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/15c96483/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:description" content="最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。 我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404  ¶问题分析 这个时候百思不得其解，怎么办，本地hexo s就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，他直接">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220959175.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221018516.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221000543.png">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.751e5f9f342de01f8463b01112edb128?rik=2gqn0%2bf4McaYxg&amp;riu=http%3a%2f%2fi-1.onegreen.net%2f2021%2f0120%2ffdf56f562fd846e48a96b306c8855245.jpg&amp;ehk=ZECJ1Js2nGmsXOpdKEXlnAcRWOh0gRrVUkGGPBa6U54%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221021841.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221033156.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221058824.png">
+<meta property="article:published_time" content="2021-09-22T01:49:01.000Z">
+<meta property="article:modified_time" content="2021-09-22T03:10:36.470Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Git">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png">
   
   <title>Hexo部署异常:部署后访问页面404 - conquerorLei</title>
 
@@ -37,7 +58,6 @@
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +82,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -76,8 +96,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -151,13 +172,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -191,21 +213,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      630 字
+      1k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
-       分钟
+      3 分钟
     </span>
   
 
@@ -271,7 +290,7 @@
 <li>输入 <code>cd .deploy_git</code>，一定要有这一步，因为<font color='orange'>Hexo</font>文件夹本身不是一个<font color='orange'>Git</font>文件夹</li>
 <li>输入以下命令查看当前Git文件夹的配置信息</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --local -l<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git config --local -l<br></code></pre></div></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221021841.png" srcset="/img/loading.gif" lazyload alt="查看配置信息结果"></p>
 <div class="note note-warning">
             <p>core.ignorecase=<font color='red'>true</font>表示忽略大小写，也就是说，他认为<font color='orange'>Ajax</font>和<font color='orange'>AJAX</font>是一样的</p>
@@ -279,7 +298,7 @@
 <ol start="4">
 <li>关闭core.ignorecase</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">git config --local core.ignorecase false<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git config --local core.ignorecase false<br></code></pre></div></td></tr></table></figure>
 <h4 id="使用本地文件编辑器"><a class="header-anchor" href="#使用本地文件编辑器">¶</a>使用本地文件编辑器</h4>
 <ol>
 <li>进入<code>.deploy_git/.git</code>文件夹，需要注意的是，这边的<code>.git</code>是隐藏的，需要查看隐藏文件。都是老司机，这个我就不教了奥</li>
@@ -292,7 +311,7 @@
 <p>记得清理以下之前的重复文件夹，删除一下GitHub的远程文件夹，防止会出现无用界面的情况，就比如，这种情况</p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221058824.png" srcset="/img/loading.gif" lazyload alt="文件夹重复，且Ajax是无效文件夹"></p>
 <p>来，又是一顿猛如虎的操作😎</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd .deploy_git<br>git pull<br>ls<br>git rm -rf --cached categories<br>git rm -rf --cached tags<br>git commit -m &#x27;delete the categories and tags&#x27;<br>git push<br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd .deploy_git<br>git pull<br>ls<br>git rm -rf --cached categories<br>git rm -rf --cached tags<br>git commit -m &#x27;delete the categories and tags&#x27;<br>git push<br></code></pre></div></td></tr></table></figure>
 <div class="note note-success">
             <p>不要怂，本地的categories和tags都不会删除，只会删除远程仓库里面的两个文件夹。</p>
           </div>
@@ -421,7 +440,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -455,7 +474,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -511,6 +530,10 @@
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -521,23 +544,18 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -571,6 +589,9 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
         },
         options: {
           renderActions: {

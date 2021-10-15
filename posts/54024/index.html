@@ -1,22 +1,39 @@
 
 
 <!DOCTYPE html>
-<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+<html lang="zh-CN" data-default-color-scheme=auto>
 
 
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.jpg">
-  <link rel="icon" href="/img/logo.jpg">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="markdown语法以及Typora使用(高级)">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/54024/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614205214.png">
+<meta property="article:published_time" content="2021-06-14T07:25:30.000Z">
+<meta property="article:modified_time" content="2021-09-19T13:51:10.361Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="Ahk">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://tse3-mm.cn.bing.net/th/id/OIP-C.T3gp1ZzeErqutziChra-HAHaE8?pid=ImgDet&amp;rs=1">
   
   <title>markdown语法以及Typora使用(高级) - conquerorLei</title>
 
@@ -37,7 +54,6 @@
   
     <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
   
-
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -62,7 +78,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -76,8 +92,9 @@
   <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>ConquerorLei</strong>&nbsp;</a>
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -151,13 +168,14 @@
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -191,21 +209,18 @@
 
 <div class="mt-1">
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 字
+      3.3k 字
     </span>
   
 
   
-    
     <span class="post-meta mr-2">
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
-       分钟
+      10 分钟
     </span>
   
 
@@ -258,7 +273,7 @@
 <h1>HTML+CSS</h1>
 <p>相信很多看过<code>Markdown</code>官方使用文档的小伙伴都知道<code>Markdown</code>的初衷：成为一种适用于网络的书写语言。以下内容引用自<a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.markdown.cn/#overview">Markdown中文官网</a></p>
 <div class="note note-success">
-            <blockquote><p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p><p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p><p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html">这是一个普通段落。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><br>这是另一个普通段落。<br></code></pre></td></tr></table></figure><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p><p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p><p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p></blockquote>
+            <blockquote><p>Markdown 不是想要取代 HTML，甚至也没有要和它相近，它的语法种类很少，只对应 HTML 标记的一小部分。Markdown 的构想不是要使得 HTML 文档更容易书写。在我看来， HTML 已经很容易写了。Markdown 的理念是，能让文档更容易读、写和随意改。HTML 是一种发布的格式，Markdown 是一种书写的格式。就这样，Markdown 的格式语法只涵盖纯文本可以涵盖的范围。</p><p>不在 Markdown 涵盖范围之内的标签，都可以直接在文档里面用 HTML 撰写。不需要额外标注这是 HTML 或是 Markdown；只要直接加标签就可以了。</p><p>要制约的只有一些 HTML 区块元素――比如 <code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code> 等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown 的生成器有足够智能，不会在 HTML 区块标签外加上不必要的 <code>&lt;p&gt;</code> 标签。</p><p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p><figure class="highlight html"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs html">这是一个普通段落。<br><br><span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Foo<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span><br><br>这是另一个普通段落。<br></code></pre></div></td></tr></table></figure><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<em>强调</em>会没有效果。</p><p>HTML 的区段（行内）标签如 <code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code> 可以在 Markdown 的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用 Markdown 格式，而直接采用 HTML 标签来格式化。举例说明：如果比较喜欢 HTML 的/ <code>&lt;a&gt;</code> 或 <code>&lt;img&gt;</code> 标签，可以直接使用这些标签，而不用 Markdown 提供的链接或是图像标签语法。</p><p>和处在 HTML 区块标签间不同，Markdown 语法在 HTML 区段标签间是有效的。</p></blockquote>
           </div>
 <p>通过以上部分，我们可以很清楚地看到，Markdown兼容HTML，那么，是不是也可以使用层叠样式表来控制样式呢？</p>
 <p>答案是肯定的，以下为在添加自定义CSS</p>
@@ -280,14 +295,14 @@
 </ul>
 <h3 id="任务列表CSS控制样式"><a class="header-anchor" href="#任务列表CSS控制样式">¶</a>任务列表CSS控制样式</h3>
 <p>在基础篇中的任务列表，就可以通过CSS控制样式</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs CSS"><span class="hljs-selector-class">.task-list-done</span> &#123;<br>    <span class="hljs-comment">/* styles for completed tasks */</span><br>    <span class="hljs-attribute">text-decoration</span>: line-through;<br>&#125;<br><span class="hljs-selector-class">.task-list-not-done</span> &#123;<br>    <span class="hljs-comment">/* styles for incomplete tasks */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs CSS"><span class="hljs-selector-class">.task-list-done</span> &#123;<br>    <span class="hljs-comment">/* styles for completed tasks */</span><br>    <span class="hljs-attribute">text-decoration</span>: line-through;<br>&#125;<br><span class="hljs-selector-class">.task-list-not-done</span> &#123;<br>    <span class="hljs-comment">/* styles for incomplete tasks */</span><br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><strong>测试用例：</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [ ] 输出倒逼输入<br><span class="hljs-bullet">-</span> [x] 写博客<br></code></pre></div></td></tr></table></figure>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162441.png" srcset="/img/loading.gif" lazyload alt="添加自定义CSS之前"></p>
 <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210614162649.png" srcset="/img/loading.gif" lazyload alt="添加自定义CSS之后"></p>
 <h2 id="使用HTML标签"><a class="header-anchor" href="#使用HTML标签">¶</a>使用HTML标签</h2>
 <p>例如上述任务列表更改了CSS本质上其实是对文本内容添加了删除线，如果不嫌麻烦的话，未免不可以使用HTML标签</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [x] <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span></span>写博客<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown"><span class="hljs-bullet">-</span> [ ] 写博客<br><span class="hljs-bullet">-</span> [x] <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">del</span>&gt;</span></span>写博客<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">del</span>&gt;</span></span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <ul>
 <li>[ ] 写博客</li>
@@ -295,7 +310,7 @@
 </ul>
 <p>相比提到的<a href="a1">任务列表CSS控制样式</a> ，这个步骤繁琐了一些，emmm，不过也还好了，配合<a href="#a2">HotKey</a>使用，貌似还是可以的</p>
 <h3 id="字体颜色"><a class="header-anchor" href="#字体颜色">¶</a>字体颜色</h3>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* the usual value of color ： red | blue | green | yellow *</span>/<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">/<span class="hljs-emphasis">* the usual value of color ： red | blue | green | yellow *</span>/<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">font</span> <span class="hljs-attr">color</span>=<span class="hljs-string">&#x27;red&#x27;</span>&gt;</span></span>红色<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">font</span>&gt;</span></span><br></code></pre></div></td></tr></table></figure>
 <p><strong>效果：</strong></p>
 <p><font color='red'>红色</font></p>
 <p>其他的<font>属性也可以进行更改</p>
@@ -322,11 +337,11 @@
 <h2 id="实例"><a class="header-anchor" href="#实例">¶</a>实例</h2>
 <h3 id="Typora字体颜色"><a class="header-anchor" href="#Typora字体颜色">¶</a>Typora字体颜色</h3>
 <p>对于<code>&lt;font&gt;</code>标签，我们需要填充属性例如颜色，这样我们可以使用以下的代码进行</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs json">#IfWinActive ahk_exe Typora.exe<br>&#123;<br>    ; Ctrl+Alt+O 橙色<br>    ^!o::addFontColor(<span class="hljs-string">&quot;orange&quot;</span>)<br> <br>    ; Ctrl+Alt+R 红色<br>    ^!r::addFontColor(<span class="hljs-string">&quot;red&quot;</span>)<br> <br>    ; Ctrl+Alt+B 浅蓝色<br>    ^!b::addFontColor(<span class="hljs-string">&quot;cornflowerblue&quot;</span>)<br>	<br>	; Ctrl+Alt+G 荧光绿色<br>	^!g::addFontColor(<span class="hljs-string">&quot;lawngreen&quot;</span>)<br>	<br>	; Ctrl+Alt+T 黄色<br>	^!t::addFontColor(<span class="hljs-string">&quot;tomato&quot;</span>)<br>&#125;<br> <br>; 快捷增加字体颜色<br>addFontColor(color)&#123;<br>    clipboard := <span class="hljs-string">&quot;&quot;</span> ; 清空剪切板<br>    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制<br>    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;<br>    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴<br>    If(clipboard = <span class="hljs-string">&quot;&quot;</span>)&#123;<br>        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充<br>    &#125;else&#123;<br>        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json">#IfWinActive ahk_exe Typora.exe<br>&#123;<br>    ; Ctrl+Alt+O 橙色<br>    ^!o::addFontColor(<span class="hljs-string">&quot;orange&quot;</span>)<br> <br>    ; Ctrl+Alt+R 红色<br>    ^!r::addFontColor(<span class="hljs-string">&quot;red&quot;</span>)<br> <br>    ; Ctrl+Alt+B 浅蓝色<br>    ^!b::addFontColor(<span class="hljs-string">&quot;cornflowerblue&quot;</span>)<br>	<br>	; Ctrl+Alt+G 荧光绿色<br>	^!g::addFontColor(<span class="hljs-string">&quot;lawngreen&quot;</span>)<br>	<br>	; Ctrl+Alt+T 黄色<br>	^!t::addFontColor(<span class="hljs-string">&quot;tomato&quot;</span>)<br>&#125;<br> <br>; 快捷增加字体颜色<br>addFontColor(color)&#123;<br>    clipboard := <span class="hljs-string">&quot;&quot;</span> ; 清空剪切板<br>    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制<br>    SendInput &#123;TEXT&#125;&lt;font color=&#x27;%color%&#x27;&gt;<br>    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴<br>    If(clipboard = <span class="hljs-string">&quot;&quot;</span>)&#123;<br>        SendInput &#123;TEXT&#125;&lt;/font&gt; ; Typora 在这不会自动补充<br>    &#125;else&#123;<br>        SendInput &#123;TEXT&#125;&lt;/ ; Typora中自动补全标签<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <h3 id="Typora页内跳转"><a class="header-anchor" href="#Typora页内跳转">¶</a>Typora页内跳转</h3>
 <p>Markdown是有两种页内跳转的，但是对于上传到网络上的博客，Markdown自成一派的页内跳转就没有什么用了，html识别不了，所以我一般喜欢使用<code>&lt;a&gt;</code>，以下为我设置的快键代码</p>
 <p><strong>未完待续</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><br></code></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json"><br></code></pre></div></td></tr></table></figure>
 <blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
@@ -353,11 +368,11 @@
                     
                       <a class="hover-with-bg" href="/tags/CSS/">CSS</a>
                     
+                      <a class="hover-with-bg" href="/tags/Markdown/">Markdown</a>
+                    
                       <a class="hover-with-bg" href="/tags/Ahk/">Ahk</a>
                     
                       <a class="hover-with-bg" href="/tags/HTML/">HTML</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Markdown/">Markdown</a>
                     
                   </div>
                 
@@ -453,7 +468,7 @@
     
 
     
-      <a id="scroll-top-button" href="#" role="button">
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
     
@@ -487,7 +502,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/timeDate.js"></script> </div> 
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
   </div>
   
   <div class="statistics">
@@ -543,6 +558,10 @@
 <!-- Plugins -->
 
 
+  <script  src="/js/local-search.js" ></script>
+
+
+
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -553,23 +572,18 @@
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-
-
-
-  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
 
 
 
@@ -603,6 +617,9 @@
       MathJax = {
         tex: {
           inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
         },
         options: {
           renderActions: {
