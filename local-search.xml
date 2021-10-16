@@ -8,7 +8,7 @@
     <link href="/posts/d430231f/"/>
     <url>/posts/d430231f/</url>
     
-    <content type="html"><![CDATA[<h2 id="问题描述">问题描述</h2><p>为什么使用Pandoc？因为Hexo的页面渲染器并不是都支持LeTex数学公式的渲染，最开始使用的是hexo-renderer-kramed，但是之后再进行对LeTex编写的表格进行渲染的时候，出现了<font color='red'>Misplaced </font>报错，但是在Typora中公式没有显示异常，而且根据LeTex官方文档中关于Array的描述中，是允许出现，于是我便注意到可能还Kramed对<code>\</code>的转义不全的问题。对此，我修改过Kramed js中的某一部分源码，但是很明显不太管用。于是我开始尝试使用hexo-renderer-pandoc去渲染页面。在我意料之中，pandoc很强大，直接可以渲染出。但是随之而来的问题的图片渲染出现了问题。</p><p>pandoc对于图片渲染的问题主要发生在css样式和图注上，最主要的特征就是图片没有按照样式居中，另外图注出现了两次，一次是按照我规定的样式居中显示的，一次是和正文一样，居左显示的，显然，这是很丑的。那我应该怎么去避免呢</p><h2 id="问题分析">问题分析</h2><p>关于此问题的描述，最开始我是提交在Fluid Github仓库的Issue：<a href="https://github.com/fluid-dev/hexo-theme-fluid/issues/597">使用pandoc引擎出现图片渲染两个caption问题 · Issue #597 · fluid-dev/hexo-theme-fluid (github.com)</a>，最后我竟然自己通过翻文档解决了</p><p>是这样的，我当时测试是在本地测试的，并没有部署到Github上，这也就是给了我对比的内容。我经过两个对比，单线Kramed将图渲染成了<code>&lt;p&gt;</code>标签，但是Pandoc将图渲染成了<code>&lt;figure&gt;</code>标签，并且多了一个<code>&lt;figcaption&gt;</code></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110161040056.png" alt="问题图像" /></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110161045401.png" alt="对比图" />很明显发现，问题图像出现的问题一个是标签不一样，另外一个由于<code>&lt;figure&gt;</code>的性质，多出现一个标签<code>&lt;figcaption&gt;</code>，与其中一个<code>&lt;p class = 'image-caption'&gt;</code>重复。这样的话，就出现了一个样式的问题。怎么解决呢？</p><h2 id="解决方案">解决方案</h2><p>其实最开始想到的应该是，让两个标签的样式一致，但是这个时候出现的问题很是奇怪。首先如果对图片进行以下处理，也就是对题目进行空处理，就不会出现两个标题的问题，但是，我的文件太多，我有不想一一修改，而且，还需要对项目样式文件进行修改，或者添加自定义的css文件，前端小白的我，有点不太想写。</p><figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">![](图片路径)<br></code></pre></div></td></tr></table></figure><p>哪有什么其他的解决方案呢？</p><p>好家伙，翻看了一堆关于Pandoc的文档，终于在Pandoc的官方文档中找到了答案。以下是我捕捉到的一些关于Pandoc的特性的信息，首先是关于Extensions，由于<code>Pandoc</code>功能实现强大，我们只能采用<code>Pandoc</code>提供的一种特别的方式进行<code>Pandoc</code>渲染避免操作。这个操作是通过删除<a href="https://pandoc.org/MANUAL.html#extensions">Extensions</a>，实现的,其中对于Extensions功能表述为</p><blockquote><p>The behavior of some of the readers and writers can be adjusted by enabling or disabling various extensions.</p></blockquote><p>翻译过来也就是：<font color='orange'>可以通过启用或禁用各种扩展来调整一些读写器和写入器的行为。</font> 关于参数<code>implicit_figures</code>则是参考以下链接获得的<a href="https://pandoc.org/MANUAL.html#images">Pandoc's Markdown:Images</a></p><p>这样的话，只需要在项目配置结点中添加以下内容即可以避免图片被渲染成<code>&lt;figure&gt;</code></p><figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">pandoc:</span><br>  <span class="hljs-attr">extensions:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;-implicit_figures&#x27;</span><br></code></pre></div></td></tr></table></figure><div class="note note-primary">            <p>注意减号，默认情况下是有此后缀的，去掉此后缀才可以避免渲染成<code>&lt;figure&gt;</code></p>          </div><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    <content type="html"><![CDATA[<h2 id="问题描述">问题描述</h2><p>为什么使用<code>Pandoc</code>？因为<code>Hexo</code>的页面渲染器并不是都支持<code>LeTex</code>数学公式的渲染，最开始使用的是<code>hexo-renderer-kramed</code>，但是之后再进行对<code>LeTex</code>编写的表格进行渲染的时候，出现了<font color='red'>Misplaced </font>报错，但是在Typora中公式没有显示异常，而且根据<code>LeTex</code>官方文档中关于Array的描述中，是允许出现<code>\hline</code>的，于是我便注意到可能还<code>Kramed</code>对<code>\</code>的转义不全的问题。对此，我修改过<code>Kramed js</code>中的某一部分源码，但是很明显不太管用。</p><p>于是我开始尝试使用<code>hexo-renderer-pandoc</code>去渲染页面。</p><p>在我意料之中，<code>pandoc</code>很强大，直接可以渲染出<code>\hline</code>。但是随之而来的问题的图片渲染出现了问题。</p><p><code>pandoc</code>对于图片渲染的问题主要发生在<code>css</code>样式和图注上，最主要的特征就是图片没有按照样式居中，另外图注出现了两次，一次是按照我规定的样式居中显示的，一次是和正文一样，居左显示的，显然，这是很丑的。那我应该怎么去避免呢</p><h2 id="问题分析">问题分析</h2><p>关于此问题的描述，最开始我是提交在Fluid Github仓库的Issue：<a href="https://github.com/fluid-dev/hexo-theme-fluid/issues/597">使用pandoc引擎出现图片渲染两个caption问题 · Issue #597 · fluid-dev/hexo-theme-fluid (github.com)</a>，最后我竟然自己通过翻文档解决了</p><p>是这样的，我当时测试是在本地测试的，并没有部署到<code>Github</code>上，这也就是给了我对比的内容。我经过两个对比，单线<code>Kramed</code>将图渲染成了<code>&lt;p&gt;</code>标签，但是<code>Pandoc</code>将图渲染成了<code>&lt;figure&gt;</code>标签，并且多了一个<code>&lt;figcaption&gt;</code></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110161040056.png" alt="问题图像" /></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110161045401.png" alt="对比图" />很明显发现，问题图像出现的问题一个是标签不一样，另外一个由于<code>&lt;figure&gt;</code>的性质，多出现一个标签<code>&lt;figcaption&gt;</code>，与其中一个<code>&lt;p class = 'image-caption'&gt;</code>重复。这样的话，就出现了一个样式的问题。怎么解决呢？</p><h2 id="解决方案">解决方案</h2><p>其实最开始想到的应该是，让两个标签的样式一致，但是这个时候出现的问题很是奇怪。首先如果对图片进行以下处理，也就是对题目进行空处理，就不会出现两个标题的问题，但是，我的文件太多，我有不想一一修改，而且，还需要对项目样式文件进行修改，或者添加自定义的<code>css</code>文件，前端小白的我，有点不太想写。</p><figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">![](图片路径)<br></code></pre></div></td></tr></table></figure><p>哪有什么其他的解决方案呢？</p><p>好家伙，翻看了一堆关于<code>Pandoc</code>的文档，终于在<code>Pandoc</code>的官方文档中找到了答案。以下是我捕捉到的一些关于<code>Pandoc</code>的特性的信息，首先是关于<font color='lawngreen'>Extensions</font>，由于<code>Pandoc</code>功能实现强大，我们只能采用<code>Pandoc</code>提供的一种特别的方式进行<code>Pandoc</code>渲染避免操作。这个操作是通过删除<a href="https://pandoc.org/MANUAL.html#extensions">Extensions</a>，实现的,其中对于<font color='lawngreen'>Extensions</font>功能表述为</p><blockquote><p>The behavior of some of the readers and writers can be adjusted by enabling or disabling various extensions.</p></blockquote><p>翻译过来也就是：<font color='orange'>可以通过启用或禁用各种扩展来调整一些读写器和写入器的行为。</font> 关于参数<code>implicit_figures</code>则是参考以下链接获得的<a href="https://pandoc.org/MANUAL.html#images">Pandoc's Markdown:Images</a></p><p>这样的话，只需要在项目配置结点中添加以下内容即可以避免图片被渲染成<code>&lt;figure&gt;</code></p><figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">pandoc:</span><br>  <span class="hljs-attr">extensions:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;-implicit_figures&#x27;</span><br></code></pre></div></td></tr></table></figure><div class="note note-primary">            <p>注意减号，默认情况下是有此后缀的，去掉此后缀才可以避免渲染成<code>&lt;figure&gt;</code></p>          </div><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
     
     
     <categories>
@@ -615,9 +615,9 @@
     
     <categories>
       
-      <category>Software</category>
-      
       <category>环境搭建</category>
+      
+      <category>Software</category>
       
       <category>Error</category>
       
@@ -1630,9 +1630,9 @@
     
     <categories>
       
-      <category>Software</category>
-      
       <category>环境搭建</category>
+      
+      <category>Software</category>
       
       <category>Error</category>
       
@@ -1671,9 +1671,9 @@
     
     <categories>
       
-      <category>Software</category>
-      
       <category>环境搭建</category>
+      
+      <category>Software</category>
       
       <category>Error</category>
       
