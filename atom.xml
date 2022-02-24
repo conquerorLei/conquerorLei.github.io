@@ -6,7 +6,7 @@
   <link href="https://conquerorlei.github.io/atom.xml" rel="self"/>
   
   <link href="https://conquerorlei.github.io/"/>
-  <updated>2021-10-16T03:13:21.990Z</updated>
+  <updated>2022-02-24T12:54:57.915Z</updated>
   <id>https://conquerorlei.github.io/</id>
   
   <author>
@@ -17,11 +17,102 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>工厂模式+策略模式实现消除if-else</title>
+    <link href="https://conquerorlei.github.io/posts/44788a85/"/>
+    <id>https://conquerorlei.github.io/posts/44788a85/</id>
+    <published>2022-02-23T10:40:31.000Z</published>
+    <updated>2022-02-24T12:54:57.915Z</updated>
+    
+    <content type="html"><![CDATA[<p>现实编程过程中会出现很多if-else叠加的场景，比如最近在编写一个Spring Boot项目，在服务层抛出了很多异常，在控制层对服务层抛出的异常进行了处理，而对于Spring Boot项目而言，能够使用ExceptionHandler注解直接捕获所有抛出的异常，但是在进行异常处理的时候，需要向前端返回状态码，每一个异常都对应了一个状态码。具体原因是为了让注解看着不那么臃肿，所以对异常进行了分类组合进行继承，只需要捕获基类就好；其次，我们并不知道捕获的异常实际上是哪个异常，这就牵扯到了对捕获的异常进行instanceof判断，随着业务代码的逐渐深入，if-else就会越来越多，长此以往对于代码的可读性有一定的影响。本文从设计模式的角度对上述业务场景进行了优化，使用策略模式和工厂模式对代码进行了重构。</p><h2 id="策略模式">策略模式</h2><h3 id="简介">简介</h3><p>策略模式中定义了一组同类型的算法，用不同的类进行封装，可以根据实际业务场景进行切换，以下为其书籍说明</p><blockquote><p>Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.</p></blockquote><p>举个例子说明一下，我们在购买商品的时候会出现很多选择问题，在很多商场对于不同商品会有不同折扣，这个时候我们常见的操作就是if-else进行判断，但是一旦参与折扣的商品变得多的，后期对于一些折扣的修改与删除，再去翻原来的if-else列表，有点不太方便，这样将一个个折扣看成一个一个策略，在结账时根据用户购买的商品进行折扣策略的智能选择。能够对代码进行优化使其更具有可读性。</p><blockquote><p>可能会有人杠哈，就是一个全局搜索嘛，看不起谁呢？其实本身能够使用if-else进行实现也是可以的，但是在学习阶段，我们还是要以能写出高质量代码来约束自己；并且实际业务场景也不一定像文中提到的那么简单，所以时候就显示出来策略模式的优越性了。如果在if-else中写了大量的代码，后期对代码的修改和维护也很不方便。</p></blockquote><p>以下从代码角度进行一个解释</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">Option option = 商品选择<br><span class="hljs-keyword">if</span>(option == 鞋子)&#123;<br>    鞋子打折算法;<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(option == 衣服)&#123;<br>    衣服打折算法;<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(option == ...)&#123;<br>    ...打折算法;<br>&#125;<br></code></pre></div></td></tr></table></figure><p>上述的代码主要违反了OOP的两个原则，分别为：</p><ul><li><p>单一职责原则：一个类只有一个修改的原因，但是上述代码后端逻辑一旦变化，那么当前方法也将被改变</p></li><li><p>开闭原则：对扩展开放，对修改关闭。一旦后期需要对商品的折扣信息进行修改增加或者删除，那么都会违反开闭原则</p></li></ul><p>在阿里提供的《Java开发手册》中，这样写道</p><blockquote><p>超过3层的 if-else 的逻辑判断代码可以使用卫语句、策略模式、状态模式等来实现</p></blockquote><h3 id="结合项目进行分析">结合项目进行分析</h3><p>本项目中由于出现了很多的异常，不同的异常要返回不同的状态码，所以最开始就是很多的if-else叠加，随着业务的开发，if-else甚至超过了8个，以下为起始版本</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@ExceptionHandler(&#123;ServiceException.class, FileUploadException.class&#125;)</span> <span class="hljs-comment">// 用于统一处理抛出的异常</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> JsonResult&lt;Void&gt; <span class="hljs-title">handleException</span><span class="hljs-params">(Throwable e)</span></span>&#123;<br>    JsonResult&lt;Void&gt; result = <span class="hljs-keyword">new</span> JsonResult&lt;&gt;(e);<br>    <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> UsernameDuplicatedException)&#123;<br>        result.setState(<span class="hljs-number">4000</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> InsertException)&#123;<br>        result.setState(<span class="hljs-number">5000</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> UsernameNotFoundException)&#123;<br>        result.setState(<span class="hljs-number">5001</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> PasswordNotMatchException)&#123;<br>        result.setState(<span class="hljs-number">5002</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> UpdateException)&#123;<br>        result.setState(<span class="hljs-number">5003</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileEmptyException)&#123;<br>        result.setState(<span class="hljs-number">6000</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileOverSizedException)&#123;<br>        result.setState(<span class="hljs-number">6001</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileTypeException)&#123;<br>        result.setState(<span class="hljs-number">6002</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileUploadIOException)&#123;<br>        result.setState(<span class="hljs-number">6003</span>);<br>    &#125;<br>    result.setMessage(e.getMessage());<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></div></td></tr></table></figure><p>好家伙，你看这代码，你快乐不，是不是很快乐？等到之后项目产生的异常比较多的时候再对if-else进行重构的时候就会出现很多问题，反正很不方便。 首先我们对代码进行一个review，捕获异常，根据异常类型进行返回不同的状态码。很容易就观察到，每一个if-else进行的工作都相同，那么可以将一个一个的if-else看成一个又一个的策略，这些策略完成的任务基本是相同的，那么我们的架构就可以是一个接口多个实现。 现在这一部分处理完了，我们再有新的异常抛出就可以新建类实现定义的接口，很大程度上能够避免控制层的修改。 现在的问题就是怎么让webapp自动抉择策略用于处理异常 ## 工厂模式 工厂模式其实类比现有的工厂，工厂将原料转化为产品。在OOP中，工厂模式就是代替new进行创建对象的过程，是一种比较常见的实例化对象的方式。 上一步对策略模式的分析表示最后少一步让策略自动选择，而这些策略是一个一个类，实际执行的是我们实现的接口方法。也就是说我们需要根据异常类型实例化对应的策略类，执行该策略类的接口方法。这些策略类有相同的接口，可以通过一个策略工厂进行实例化策略类的对象。 ## 一些细节 现在还有一个问题，就是我们需要将这些策略类和一个个异常类进行对应，每一个异常都是不一样的。我们很容易的想到的就是区分类的方式就是通过类名进行区分每一个类，那我们就可以是用注解Component对每一个策略类进行注解，这样这些策略类都会注册到Spring Boot程序中，另外Component注解还有一个属性value，我们可以使用每一个异常类的名称配置策略类Component注解，那么异常和异常处理策略就对应起来了。 &gt; 这一部分我没有想到什么好的办法对其进行对应，索性就是用异常名称了，欢迎大佬在评论区进行指教</p><p>最后策略工厂通过传入的异常名称进行匹配获取策略并创建运行其接口方法最终完成异常处理。异常名称与策略类使用键值对的形式储存在Map中。 全部实现后的handleException方法如下： <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@ExceptionHandler(&#123;ServiceException.class, FileUploadException.class&#125;)</span> <span class="hljs-comment">// 用于统一处理抛出的异常</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> JsonResult&lt;Void&gt; <span class="hljs-title">handleException</span><span class="hljs-params">(Throwable e)</span></span>&#123;<br>    JsonResult&lt;Void&gt; result = <span class="hljs-keyword">new</span> JsonResult&lt;&gt;(e);<br>    ExceptionSettleStrategy settlementInstance = strategyFactory.getSettlementInstance(e.getClass().getSimpleName());<br>    result.setState(settlementInstance.getResult());<br>    result.setMessage(e.getMessage());<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></div></td></tr></table></figure> 清爽多了吧 ## 整体架构 <img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224203717.png" alt="整体架构图" /> &gt; 上述架构并没有将策略全部画出</p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224204018.png" alt="策略类" /> <img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224204123.png" alt="异常" /> ## 代码 ### 异常处理策略接口 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lxl.store.strategy;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ExceptionSettleStrategy</span> </span>&#123;<br>    <span class="hljs-function">Integer <span class="hljs-title">getResult</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure> ### 部分策略类 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lxl.store.strategy;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2022/01/22 23:54</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component(value = &quot;UsernameNotFoundException&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsernameNotFoundStrategy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ExceptionSettleStrategy</span></span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getResult</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">5001</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure> ### 策略工厂 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lxl.store.strategy;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Service;<br><br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.concurrent.ConcurrentHashMap;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2022/01/23 00:04</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExceptionSettleStrategyFactory</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, ExceptionSettleStrategy&gt; map = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ExceptionSettleStrategy <span class="hljs-title">getSettlementInstance</span><span class="hljs-params">(String name)</span></span>&#123;<br>        ExceptionSettleStrategy ess = map.get(name);<br>        <span class="hljs-keyword">if</span>(ess == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;未定义异常&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ess;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;现实编程过程中会出现很多if-else叠加的场景，比如最近在编写一个Spring Boot项目，在服务层抛出了很多异常，在控制层对服务层抛出的异常进行了处理，而对于Spring Boot项目而言，能够使用ExceptionHandler注解直接捕获所有抛出的异常，但是在进行</summary>
+      
+    
+    
+    
+    <category term="Programming Language" scheme="https://conquerorlei.github.io/categories/Programming-Language/"/>
+    
+    <category term="Java" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/"/>
+    
+    <category term="Apply" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/Apply/"/>
+    
+    <category term="FrameWork" scheme="https://conquerorlei.github.io/categories/FrameWork/"/>
+    
+    <category term="SpringBoot" scheme="https://conquerorlei.github.io/categories/FrameWork/SpringBoot/"/>
+    
+    
+    <category term="SpringBoot" scheme="https://conquerorlei.github.io/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RPC实现原理深入分析</title>
+    <link href="https://conquerorlei.github.io/posts/e91a2fa5/"/>
+    <id>https://conquerorlei.github.io/posts/e91a2fa5/</id>
+    <published>2021-10-18T12:44:56.000Z</published>
+    <updated>2021-10-19T07:33:00.620Z</updated>
+    
+    <content type="html"><![CDATA[<p>RPC产品应该是什么样的</p><h2 id="consumer">Consumer</h2><ul><li><p>连接管理</p><p>保持与服务提供长连接，用于传输请求数据也返回结果</p></li><li><p>负载均衡</p></li><li><p>请求路由</p></li><li><p>超时处理</p></li><li><p>健康检查</p></li></ul><h2 id="provider">Provider</h2><ul><li>队列/线程池</li><li>超时丢弃</li><li>优雅关闭</li><li>过载保护</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;RPC产品应该是什么样的&lt;/p&gt;
+&lt;h2 id=&quot;consumer&quot;&gt;Consumer&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;连接管理&lt;/p&gt;
+&lt;p&gt;保持与服务提供长连接，用于传输请求数据也返回结果&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;负载均衡&lt;/p&gt;&lt;/li&gt;
+&lt;li</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java &#39;==&#39;和equals的区别</title>
+    <link href="https://conquerorlei.github.io/posts/6a76c857/"/>
+    <id>https://conquerorlei.github.io/posts/6a76c857/</id>
+    <published>2021-10-17T02:49:02.000Z</published>
+    <updated>2021-10-17T09:10:00.442Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介">简介</h2><p>==和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？</p><h2 id="section">==</h2><p>首先需要明确的是，==符号可以用来比较基本数据类型和引用数据类型之间的。</p><ol type="1"><li>如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为<font color='red'>存在基本数据类型之间的类型提升</font>(需要注意，关于boolean需要特别注意)</li><li>如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址是否相同，即<font color='red'>两个对象是否指向同一个对象实体</font></li></ol><p>关于==运算符，尽管泛泛地可以认为是上述规则，但是对于String类型的对象，由于其创建的方式有两种，所以是有一部分的特别之处，具体请参考：<a href="https://conquerorlei.github.io/posts/173a1aaf/">Java中String、StringBuffer、StringBuilder之间的区别 - conquerorLei</a></p><h2 id="equals方法">equals方法</h2><div class="note note-success">            <p>Indicate whether some other object "is equals to" this one.</p>          </div><p>在Java官方的API文档中，对Object根类中的方法的解释是泛泛的，首先我们应该确定一下几点</p><ol type="1"><li><p>equals是一个方法，而不是一个运算符</p></li><li><p>只能适用于引用数据类型而不能适用于基本数据类型</p><p>因为Java中所有的引用数据类型都继承至Object类，Object类中的方法equals()自然也就被继承下来了</p></li><li><p>Object中定义的equals方法和==符号的作用是相等的</p></li><li><p>equals方法重写之后比较的不是两个对象的地址是否相同，比较的是对象的"实体内容"是否相同</p></li></ol><h3 id="自定义类如何重写一个equals方法">自定义类如何重写一个equals方法</h3><p>通常情况下，如果我们自定义类对equals方法对两个对象的实体内容是否相同，那么就需要重写equals方法</p><p>首先说明比较通用的步骤</p><ol type="1"><li>相比较两个对象的地址是否相同，如果相同直接返回true</li><li>如果传入的对象为<font color='red'>null</font>，直接返回false</li><li>判断当前类是否和传入对象的类相同，直接使用的是<font color='red'>getclass()</font>方法，相同则接着判断，不相同返回false</li><li>继续对内部的属性进行是否相同的判断，<font color='lawngreen'>首先需要做的是强制类型转换</font>，因为这个时候我们已经可以确定传入参数的类了，对内部的属性判断的过程是一个相同的过程，主要是分为基本数据类型和引用数据类型的判断。</li><li>如果上述的判断过程都没有返回true，那么直接返回false。</li></ol><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == obj)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    <span class="hljs-keyword">if</span> (obj == <span class="hljs-keyword">null</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (getClass() != obj.getClass())<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    GeometricObject other = (GeometricObject) obj;<br>    <span class="hljs-keyword">if</span> (color == <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-keyword">if</span> (other.color != <span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!color.equals(other.color))<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure><h2 id="主要区别">主要区别</h2><p><span class="math display">\[\begin{array}{l|rr}比较类型 &amp; == &amp; equals\\\hline基本数据类型 &amp; 比较值的大小 &amp; {\color{red} 不可比较}\\引用数据类型 &amp; 地址值是否相同 &amp; 可以通过重写的方法确定实体内容是否相同\end{array}\]</span></p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;简介&lt;/h2&gt;
+&lt;p&gt;==和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;==&lt;/h2&gt;
+&lt;p&gt;首先需要明确的是，==符号可以用来比较基本数据类型和引用数据类型之间的。</summary>
+      
+    
+    
+    
+    <category term="Programming Language" scheme="https://conquerorlei.github.io/categories/Programming-Language/"/>
+    
+    <category term="Java" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/"/>
+    
+    <category term="Base" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/Base/"/>
+    
+    
+    <category term="Sundry" scheme="https://conquerorlei.github.io/tags/Sundry/"/>
+    
+    <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hexo Pandoc引擎渲染下出现图片两个caption的问题</title>
     <link href="https://conquerorlei.github.io/posts/d430231f/"/>
     <id>https://conquerorlei.github.io/posts/d430231f/</id>
     <published>2021-10-16T02:01:45.000Z</published>
-    <updated>2021-10-16T03:13:21.990Z</updated>
+    <updated>2021-10-16T03:13:29.897Z</updated>
     
     <content type="html"><![CDATA[<h2 id="问题描述">问题描述</h2><p>为什么使用<code>Pandoc</code>？因为<code>Hexo</code>的页面渲染器并不是都支持<code>LeTex</code>数学公式的渲染，最开始使用的是<code>hexo-renderer-kramed</code>，但是之后再进行对<code>LeTex</code>编写的表格进行渲染的时候，出现了<font color='red'>Misplaced </font>报错，但是在Typora中公式没有显示异常，而且根据<code>LeTex</code>官方文档中关于Array的描述中，是允许出现<code>\hline</code>的，于是我便注意到可能还<code>Kramed</code>对<code>\</code>的转义不全的问题。对此，我修改过<code>Kramed js</code>中的某一部分源码，但是很明显不太管用。</p><p>于是我开始尝试使用<code>hexo-renderer-pandoc</code>去渲染页面。</p><p>在我意料之中，<code>pandoc</code>很强大，直接可以渲染出<code>\hline</code>。但是随之而来的问题的图片渲染出现了问题。</p><p><code>pandoc</code>对于图片渲染的问题主要发生在<code>css</code>样式和图注上，最主要的特征就是图片没有按照样式居中，另外图注出现了两次，一次是按照我规定的样式居中显示的，一次是和正文一样，居左显示的，显然，这是很丑的。那我应该怎么去避免呢</p><h2 id="问题分析">问题分析</h2><p>关于此问题的描述，最开始我是提交在Fluid Github仓库的Issue：<a href="https://github.com/fluid-dev/hexo-theme-fluid/issues/597">使用pandoc引擎出现图片渲染两个caption问题 · Issue #597 · fluid-dev/hexo-theme-fluid (github.com)</a>，最后我竟然自己通过翻文档解决了</p><p>是这样的，我当时测试是在本地测试的，并没有部署到<code>Github</code>上，这也就是给了我对比的内容。我经过两个对比，单线<code>Kramed</code>将图渲染成了<code>&lt;p&gt;</code>标签，但是<code>Pandoc</code>将图渲染成了<code>&lt;figure&gt;</code>标签，并且多了一个<code>&lt;figcaption&gt;</code></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110161040056.png" alt="问题图像" /></p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110161045401.png" alt="对比图" />很明显发现，问题图像出现的问题一个是标签不一样，另外一个由于<code>&lt;figure&gt;</code>的性质，多出现一个标签<code>&lt;figcaption&gt;</code>，与其中一个<code>&lt;p class = 'image-caption'&gt;</code>重复。这样的话，就出现了一个样式的问题。怎么解决呢？</p><h2 id="解决方案">解决方案</h2><p>其实最开始想到的应该是，让两个标签的样式一致，但是这个时候出现的问题很是奇怪。首先如果对图片进行以下处理，也就是对题目进行空处理，就不会出现两个标题的问题，但是，我的文件太多，我有不想一一修改，而且，还需要对项目样式文件进行修改，或者添加自定义的<code>css</code>文件，前端小白的我，有点不太想写。</p><figure class="highlight markdown"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs markdown">![](图片路径)<br></code></pre></div></td></tr></table></figure><p>哪有什么其他的解决方案呢？</p><p>好家伙，翻看了一堆关于<code>Pandoc</code>的文档，终于在<code>Pandoc</code>的官方文档中找到了答案。以下是我捕捉到的一些关于<code>Pandoc</code>的特性的信息，首先是关于<font color='lawngreen'>Extensions</font>，由于<code>Pandoc</code>功能实现强大，我们只能采用<code>Pandoc</code>提供的一种特别的方式进行<code>Pandoc</code>渲染避免操作。这个操作是通过删除<a href="https://pandoc.org/MANUAL.html#extensions">Extensions</a>，实现的,其中对于<font color='lawngreen'>Extensions</font>功能表述为</p><blockquote><p>The behavior of some of the readers and writers can be adjusted by enabling or disabling various extensions.</p></blockquote><p>翻译过来也就是：<font color='orange'>可以通过启用或禁用各种扩展来调整一些读写器和写入器的行为。</font> 关于参数<code>implicit_figures</code>则是参考以下链接获得的<a href="https://pandoc.org/MANUAL.html#images">Pandoc's Markdown:Images</a></p><p>这样的话，只需要在项目配置结点中添加以下内容即可以避免图片被渲染成<code>&lt;figure&gt;</code></p><figure class="highlight yml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yml"><span class="hljs-attr">pandoc:</span><br>  <span class="hljs-attr">extensions:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">&#x27;-implicit_figures&#x27;</span><br></code></pre></div></td></tr></table></figure><div class="note note-primary">            <p>注意减号，默认情况下是有此后缀的，去掉此后缀才可以避免渲染成<code>&lt;figure&gt;</code></p>          </div><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
     
@@ -538,107 +629,6 @@
     <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
     
     <category term="JavaBean" scheme="https://conquerorlei.github.io/tags/JavaBean/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 属性赋值的先后顺序</title>
-    <link href="https://conquerorlei.github.io/posts/20ff7cfb/"/>
-    <id>https://conquerorlei.github.io/posts/20ff7cfb/</id>
-    <published>2021-09-24T13:28:16.000Z</published>
-    <updated>2021-10-09T14:55:47.705Z</updated>
-    
-    <content type="html"><![CDATA[<p>以下均可以对属性进行赋值</p><ol type="1"><li>默认初始化</li><li>显式初始化</li><li>构造器中初始化</li><li>通过"对象.方法"或者"对象.属性"的方式，赋值</li></ol><p>以上操作的先后顺序：1-&gt;2-&gt;3-&gt;4</p><hr /><p>其实还有更多的属性赋值方法，在属性声明时直接对属性进行赋值操作，使用块结构，使用static块结构。</p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;以下均可以对属性进行赋值&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;默认初始化&lt;/li&gt;
-&lt;li&gt;显式初始化&lt;/li&gt;
-&lt;li&gt;构造器中初始化&lt;/li&gt;
-&lt;li&gt;通过&quot;对象.方法&quot;或者&quot;对象.属性&quot;的方式，赋值&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;以上操作的先后顺序</summary>
-      
-    
-    
-    
-    <category term="Programming Language" scheme="https://conquerorlei.github.io/categories/Programming-Language/"/>
-    
-    <category term="Java" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/"/>
-    
-    <category term="Base" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/Base/"/>
-    
-    
-    <category term="Sundry" scheme="https://conquerorlei.github.io/tags/Sundry/"/>
-    
-    <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java类的成员:构造器(constructor)</title>
-    <link href="https://conquerorlei.github.io/posts/3ae29dee/"/>
-    <id>https://conquerorlei.github.io/posts/3ae29dee/</id>
-    <published>2021-09-23T14:57:59.000Z</published>
-    <updated>2021-10-09T14:55:47.707Z</updated>
-    
-    <content type="html"><![CDATA[<p>构造器也叫构造方法</p><div class="note note-primary">            <p>construct:建设、建造</p><p>construction:建造，建筑；创立，构建；构造，结构；建筑物；语法结构；解释，理解</p><p><font color='red'>constructor:建设者</font></p>          </div><p>构造器和类重名</p><h3 id="构造器的使用">构造器的使用</h3><div class="note note-primary">            <ol type="1"><li>如果没有显式地定义类的构造器，则系统默认提供一个无参构造函数。</li><li>定义构造器的格式：<font color='red'>权限修饰符</font> <font color='orange'>类名</font>(<font color='cornflowerblue'>参数列表</font>){}</li><li>一个类中可以出现多个构造器，原理是<font color='lawngreen'>方法的重载</font></li><li>一旦显式定义构造器，则系统不会在提供无参构造函数；如果想要使用无参构造函数，那么必须显式构造无参构造函数</li></ol>          </div><ol type="1"><li>创建对象</li></ol><p>语法格式：new + 构造器</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">class_name instance = <span class="hljs-keyword">new</span> class_name(parameter_list);<br></code></pre></div></td></tr></table></figure><ol start="2" type="1"><li><p>对域进行初始化</p><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br>    <span class="hljs-keyword">private</span> String name;<br><br>    <span class="hljs-comment">// 自定义无参构造方法，或者说成是无参构造器</span><br>    <span class="hljs-comment">// 定义了有参构造方法，必须显示构造无参构造器</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = <span class="hljs-number">18</span>;<br>        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 定义有参构造函数，利用的原理是重载</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">(<span class="hljs-keyword">int</span> age,String name)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = age;<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || a &gt; <span class="hljs-number">130</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;数据非法&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">this</span>.age = a;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.age;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(name.equals(<span class="hljs-string">&quot;&quot;</span>))<br>        <span class="hljs-keyword">this</span>.name = name;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> name;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure><blockquote class="blockquote-center"><p>人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</p></blockquote></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;构造器也叫构造方法&lt;/p&gt;
-&lt;div class=&quot;note note-primary&quot;&gt;
-            &lt;p&gt;construct:建设、建造&lt;/p&gt;&lt;p&gt;construction:建造，建筑；创立，构建；构造，结构；建筑物；语法结构；解释，理解&lt;/p&gt;&lt;p</summary>
-      
-    
-    
-    
-    <category term="Programming Language" scheme="https://conquerorlei.github.io/categories/Programming-Language/"/>
-    
-    <category term="Java" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/"/>
-    
-    <category term="Base" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/Base/"/>
-    
-    
-    <category term="Sundry" scheme="https://conquerorlei.github.io/tags/Sundry/"/>
-    
-    <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 面向对象特征:封装与隐藏</title>
-    <link href="https://conquerorlei.github.io/posts/e407191c/"/>
-    <id>https://conquerorlei.github.io/posts/e407191c/</id>
-    <published>2021-09-23T13:52:52.000Z</published>
-    <updated>2021-10-09T14:55:47.706Z</updated>
-    
-    <content type="html"><![CDATA[<p>为什么要封装？封装的作用和含义是什么？</p><p>隐藏对象内部的复杂性，只对外公开简单的接口。便于外接调用，从而提高系统的可扩展性，可维护性。</p><p>通俗地说，<font color='orange'>就是把该隐藏的隐藏，该暴露的暴露</font>。这就是封装性的设计思想。</p><ol type="1"><li>当我们创建一个对象之后，我们可以通过"对象.属性"的方式对对象的属性进行赋值，但是赋值操作要受属性的数据类型和存储范围的制约。但是，在实际问题中，我们往往需要给属性赋值加上额外的限制条件。这个条件不能在域的声明时体现，我们只能通过方法的调用来实现。同时，我们要避免用户在使用"对象.属性"进行赋值---&gt;属性的封装</li><li></li></ol><p>程序设计追求<font color='red'>高内聚低耦合</font></p><p>高内聚：类的内部数据操作细节自己完成，不允许外部干涉</p><p>低耦合：仅对外暴露少量的方法用于使用</p><h3 id="封装性的体现">封装性的体现</h3><ul><li>我们将属性私有化，只能通过公共的(<font color='cornflowerblue'>public</font>)<font color='orange'>get</font>和<font color='orange'>set</font>方法获取和修改属性</li><li>将方法私有化，不对外暴露，只能通过内部方法调用</li><li>单例模式</li></ul><h3 id="权限修饰符">权限修饰符</h3><p>封装性的体现，需要权限修饰符的配合</p><h4 id="java规定四种权限">Java规定四种权限</h4><p>从小到大排列：<font color='red'>private &lt; 缺省 &lt; protected &lt; public</font></p><p>这些权限修饰符置于类的成员的定义之前，用来限定对象对该类成员的访问权限。总结来说，它体现了类以及类的内部结构在被调用是的可见性的大小。</p><table><thead><tr class="header"><th>修饰符</th><th>类内部</th><th>同一个包</th><th>不同包的子类</th><th>同一个工程</th></tr></thead><tbody><tr class="odd"><td>private</td><td><span class="math inline">\(\checkmark\)</span></td><td></td><td></td><td></td></tr><tr class="even"><td>(缺省)</td><td><span class="math inline">\(\checkmark\)</span></td><td><span class="math inline">\(\checkmark\)</span></td><td></td><td></td></tr><tr class="odd"><td>protected</td><td><span class="math inline">\(\checkmark\)</span></td><td><span class="math inline">\(\checkmark\)</span></td><td><span class="math inline">\(\checkmark\)</span></td><td></td></tr><tr class="even"><td>public</td><td><span class="math inline">\(\checkmark\)</span></td><td><span class="math inline">\(\checkmark\)</span></td><td><span class="math inline">\(\checkmark\)</span></td><td><span class="math inline">\(\checkmark\)</span></td></tr></tbody></table><p>四种权限可以修饰类的内部结构：属性、方法、构造器、<font color='orange'>内部类</font></p><div class="note note-warning">            <p><font color='red'>对于class，只能使用public或者缺省</font></p><ul><li>public类可以在任意地方被访问</li><li>缺省类只可以在同一个包内部的类访问</li></ul>          </div><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/23 22:48</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> age;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Person</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.age = <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setAge</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(a &lt; <span class="hljs-number">0</span> || a &gt; <span class="hljs-number">130</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;数据非法&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">this</span>.age = a;<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getAge</span><span class="hljs-params">()</span></span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.age;<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.study.oop;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2021/09/23 22:52</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PersonTest</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        Person p1 = <span class="hljs-keyword">new</span> Person();<br>        p1.setAge(<span class="hljs-number">25</span>);<br>        System.out.println(p1.getAge());<br>        p1.setAge(<span class="hljs-number">145</span>);<br>    &#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;为什么要封装？封装的作用和含义是什么？&lt;/p&gt;
-&lt;p&gt;隐藏对象内部的复杂性，只对外公开简单的接口。便于外接调用，从而提高系统的可扩展性，可维护性。&lt;/p&gt;
-&lt;p&gt;通俗地说，&lt;font color=&#39;orange&#39;&gt;就是把该隐藏的隐藏，该暴露的暴露&lt;/font&gt;。这就是封</summary>
-      
-    
-    
-    
-    <category term="Programming Language" scheme="https://conquerorlei.github.io/categories/Programming-Language/"/>
-    
-    <category term="Java" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/"/>
-    
-    <category term="Base" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/Base/"/>
-    
-    
-    <category term="Sundry" scheme="https://conquerorlei.github.io/tags/Sundry/"/>
-    
-    <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
     
   </entry>
   

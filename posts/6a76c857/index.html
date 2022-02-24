@@ -13,28 +13,24 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除">
-<meta property="og:url" content="https://conquerorlei.github.io/posts/35421/index.html">
+  <meta name="description" content="简介 &#x3D;&#x3D;和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？ &#x3D;&#x3D; 首先需要明确的是，&#x3D;&#x3D;符号可以用来比较基本数据类型和引用数据类型之间的。  如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意) 如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java &#39;&#x3D;&#x3D;&#39;和equals的区别">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/6a76c857/index.html">
 <meta property="og:site_name" content="conquerorLei">
+<meta property="og:description" content="简介 &#x3D;&#x3D;和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？ &#x3D;&#x3D; 首先需要明确的是，&#x3D;&#x3D;符号可以用来比较基本数据类型和引用数据类型之间的。  如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意) 如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802111831.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112135.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112646.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112804.png">
-<meta property="article:published_time" content="2021-08-01T10:13:39.000Z">
-<meta property="article:modified_time" content="2021-09-22T00:19:00.121Z">
+<meta property="article:published_time" content="2021-10-17T02:49:02.000Z">
+<meta property="article:modified_time" content="2021-10-17T09:10:00.442Z">
 <meta property="article:author" content="conquerorLei">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="Sundry">
+<meta property="article:tag" content="OOP">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png">
   
-  <title>Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除 - conquerorLei</title>
+  <title>Java &#39;==&#39;和equals的区别 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -189,7 +185,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除">
+            <span class="h2" id="subtitle" title="Java &#39;==&#39;和equals的区别">
               
             </span>
 
@@ -199,8 +195,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-08-01 18:13" pubdate>
-        2021-08-01 18:13
+      <time datetime="2021-10-17 10:49" pubdate>
+        2021-10-17 10:49
       </time>
     </span>
   
@@ -210,7 +206,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      626 字
+      1.5k 字
     </span>
   
 
@@ -219,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      5 分钟
     </span>
   
 
@@ -256,45 +252,56 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hexo部署警告&#39;warning: LF will be replaced by CRLF&#39;去除</h1>
+            <h1 style="display: none">Java &#39;==&#39;和equals的区别</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-22 08:19
+                  本文最后更新于：2021-10-17 17:10
                 
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210801184921.png" srcset="/img/loading.gif" lazyload alt="warning: LF will be replaced by CRLF" /></p>
-<span id="more"></span>
-<h1 id="问题描述">问题描述</h1>
-<p>在Windows环境下使用Hexo d 进行部署时，在命令提示符中会出现以下警告信息，一般情况下，都会弹出一大串</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">The file will have its original line endings in your working directory<br>warning: LF will be replaced by CRLF in tags/ECS/index.html.<br></code></pre></div></td></tr></table></figure>
-<h1 id="问题分析">问题分析</h1>
-<p>其实警告意思很简单，就是Git会将CRLF将被替换为LF，因为每次部署他都会弹出一大堆，让我很恼火。所以我就想把它们关掉。最开始，因为我的Markdown文档是我本地编辑的，没有仔细看问题描述的情况下我直接使用了Notepad++进行了CRLF替换为LF，但是全部替换完了才发现hexo本身的很多网站配置文件例如.js文件里面采用的行尾也是CRLF，最终还是决定将此功能禁用。</p>
-<h1 id="问题解决策略">问题解决策略</h1>
-<h2 id="notepad修改crlf为lf">notepad++修改CRLF为LF</h2>
-<h3 id="打开视图显示行尾符">打开视图显示行尾符</h3>
-<p>按照以下路径寻址：视图-&gt;显示符号-&gt;显示行尾符</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802111831.png" srcset="/img/loading.gif" lazyload alt="显示行尾符" /></p>
-<p>这样就可以查看行尾符是CRLF还是LF</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112135.png" srcset="/img/loading.gif" lazyload alt="查看行尾符" /></p>
-<h3 id="使用替换修改">使用替换修改</h3>
-<ul>
-<li>使用Ctrl+H打开替换面板</li>
-<li>在查找目标中输入</li>
-<li>在替换内容中输入</li>
-<li>并且勾选正则表达式</li>
-<li>点击全部替换就好</li>
-</ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112646.png" srcset="/img/loading.gif" lazyload alt="替换面板" /></p>
-<p>结果如下：</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210802112804.png" srcset="/img/loading.gif" lazyload alt="替换结果" /></p>
-<h2 id="mingw64面板直接禁用git配置">MinGW64面板直接禁用Git配置</h2>
-<p>直接在MinGW64面板输入一下命令即可</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git config --global core.autocrlf false<br></code></pre></div></td></tr></table></figure>
-<h1 id="总结">总结</h1>
-<p>其实就从根本上解决问题而言，第二种方法是最好的。</p>
+              <h2 id="简介">简介</h2>
+<p>==和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？</p>
+<h2 id="section">==</h2>
+<p>首先需要明确的是，==符号可以用来比较基本数据类型和引用数据类型之间的。</p>
+<ol type="1">
+<li>如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为<font color='red'>存在基本数据类型之间的类型提升</font>(需要注意，关于boolean需要特别注意)</li>
+<li>如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址是否相同，即<font color='red'>两个对象是否指向同一个对象实体</font></li>
+</ol>
+<p>关于==运算符，尽管泛泛地可以认为是上述规则，但是对于String类型的对象，由于其创建的方式有两种，所以是有一部分的特别之处，具体请参考：<a href="https://conquerorlei.github.io/posts/173a1aaf/">Java中String、StringBuffer、StringBuilder之间的区别 - conquerorLei</a></p>
+<h2 id="equals方法">equals方法</h2>
+<div class="note note-success">
+            <p>Indicate whether some other object "is equals to" this one.</p>
+          </div>
+<p>在Java官方的API文档中，对Object根类中的方法的解释是泛泛的，首先我们应该确定一下几点</p>
+<ol type="1">
+<li><p>equals是一个方法，而不是一个运算符</p></li>
+<li><p>只能适用于引用数据类型而不能适用于基本数据类型</p>
+<p>因为Java中所有的引用数据类型都继承至Object类，Object类中的方法equals()自然也就被继承下来了</p></li>
+<li><p>Object中定义的equals方法和==符号的作用是相等的</p></li>
+<li><p>equals方法重写之后比较的不是两个对象的地址是否相同，比较的是对象的"实体内容"是否相同</p></li>
+</ol>
+<h3 id="自定义类如何重写一个equals方法">自定义类如何重写一个equals方法</h3>
+<p>通常情况下，如果我们自定义类对equals方法对两个对象的实体内容是否相同，那么就需要重写equals方法</p>
+<p>首先说明比较通用的步骤</p>
+<ol type="1">
+<li>相比较两个对象的地址是否相同，如果相同直接返回true</li>
+<li>如果传入的对象为<font color='red'>null</font>，直接返回false</li>
+<li>判断当前类是否和传入对象的类相同，直接使用的是<font color='red'>getclass()</font>方法，相同则接着判断，不相同返回false</li>
+<li>继续对内部的属性进行是否相同的判断，<font color='lawngreen'>首先需要做的是强制类型转换</font>，因为这个时候我们已经可以确定传入参数的类了，对内部的属性判断的过程是一个相同的过程，主要是分为基本数据类型和引用数据类型的判断。</li>
+<li>如果上述的判断过程都没有返回true，那么直接返回false。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == obj)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    <span class="hljs-keyword">if</span> (obj == <span class="hljs-keyword">null</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (getClass() != obj.getClass())<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    GeometricObject other = (GeometricObject) obj;<br>    <span class="hljs-keyword">if</span> (color == <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-keyword">if</span> (other.color != <span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!color.equals(other.color))<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<h2 id="主要区别">主要区别</h2>
+<p><span class="math display">\[
+\begin{array}{l|rr}
+比较类型 &amp; == &amp; equals\\
+\hline
+基本数据类型 &amp; 比较值的大小 &amp; {\color{red} 不可比较}\\
+引用数据类型 &amp; 地址值是否相同 &amp; 可以通过重写的方法确定实体内容是否相同
+\end{array}
+\]</span></p>
 <blockquote class="blockquote-center">
 人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
 </blockquote>
@@ -307,15 +314,11 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Software/">Software</a>
+                      <a class="hover-with-bg" href="/categories/Programming-Language/">Programming Language</a>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/categories/Error/">Error</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Software/Git/">Git</a>
+                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Base/">Base</a>
                     
                   </div>
                 
@@ -323,9 +326,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
+                      <a class="hover-with-bg" href="/tags/Sundry/">Sundry</a>
                     
-                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
+                      <a class="hover-with-bg" href="/tags/OOP/">OOP</a>
                     
                   </div>
                 
@@ -342,9 +345,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/55983/">
+                      <a href="/posts/e91a2fa5/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">vscode C/C++头文件问题</span>
+                        <span class="hidden-mobile">RPC实现原理深入分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -352,8 +355,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/29958/">
-                        <span class="hidden-mobile">SpringBoot远程debug</span>
+                      <a href="/posts/d430231f/">
+                        <span class="hidden-mobile">Hexo Pandoc引擎渲染下出现图片两个caption的问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

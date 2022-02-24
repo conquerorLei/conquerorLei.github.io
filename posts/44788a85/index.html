@@ -1,0 +1,624 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/avatar1.png">
+  <link rel="icon" href="/img/avatar1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="学习总结 学习经历 个人小站">
+  <meta name="author" content="conquerorLei">
+  <meta name="keywords" content="">
+  <meta name="description" content="现实编程过程中会出现很多if-else叠加的场景，比如最近在编写一个Spring Boot项目，在服务层抛出了很多异常，在控制层对服务层抛出的异常进行了处理，而对于Spring Boot项目而言，能够使用ExceptionHandler注解直接捕获所有抛出的异常，但是在进行异常处理的时候，需要向前端返回状态码，每一个异常都对应了一个状态码。具体原因是为了让注解看着不那么臃肿，所以对异常进行了分类组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工厂模式+策略模式实现消除if-else">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/44788a85/index.html">
+<meta property="og:site_name" content="conquerorLei">
+<meta property="og:description" content="现实编程过程中会出现很多if-else叠加的场景，比如最近在编写一个Spring Boot项目，在服务层抛出了很多异常，在控制层对服务层抛出的异常进行了处理，而对于Spring Boot项目而言，能够使用ExceptionHandler注解直接捕获所有抛出的异常，但是在进行异常处理的时候，需要向前端返回状态码，每一个异常都对应了一个状态码。具体原因是为了让注解看着不那么臃肿，所以对异常进行了分类组">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224203717.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224204018.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224204123.png">
+<meta property="article:published_time" content="2022-02-23T10:40:31.000Z">
+<meta property="article:modified_time" content="2022-02-24T12:54:57.915Z">
+<meta property="article:author" content="conquerorLei">
+<meta property="article:tag" content="SpringBoot">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224203717.png">
+  
+  <title>工厂模式+策略模式实现消除if-else - conquerorLei</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/atom-one-dark-reasonable.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+  
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+<link rel="stylesheet" href="/css/custom/blockquote.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"conquerorlei.github.io","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":5,"color":"#29d","options":{"showSpinner":true,"trickleSpeed":50}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"gGnXPTwx7LCM36SI22iGp8Ja-gzGzoHsz","app_key":"zTfsXLFosfiA6qfXiNR8rtan","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="conquerorLei" type="application/atom+xml">
+</head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>ConquerorLei</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" rel="external nofollow noreferrer" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="工厂模式+策略模式实现消除if-else">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-23 18:40" pubdate>
+        2022-02-23 18:40
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">工厂模式+策略模式实现消除if-else</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2022-02-24 20:54
+                
+              </p>
+            
+            <div class="markdown-body">
+              <p>现实编程过程中会出现很多if-else叠加的场景，比如最近在编写一个Spring Boot项目，在服务层抛出了很多异常，在控制层对服务层抛出的异常进行了处理，而对于Spring Boot项目而言，能够使用ExceptionHandler注解直接捕获所有抛出的异常，但是在进行异常处理的时候，需要向前端返回状态码，每一个异常都对应了一个状态码。具体原因是为了让注解看着不那么臃肿，所以对异常进行了分类组合进行继承，只需要捕获基类就好；其次，我们并不知道捕获的异常实际上是哪个异常，这就牵扯到了对捕获的异常进行instanceof判断，随着业务代码的逐渐深入，if-else就会越来越多，长此以往对于代码的可读性有一定的影响。本文从设计模式的角度对上述业务场景进行了优化，使用策略模式和工厂模式对代码进行了重构。</p>
+<h2 id="策略模式">策略模式</h2>
+<h3 id="简介">简介</h3>
+<p>策略模式中定义了一组同类型的算法，用不同的类进行封装，可以根据实际业务场景进行切换，以下为其书籍说明</p>
+<blockquote>
+<p>Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.</p>
+</blockquote>
+<p>举个例子说明一下，我们在购买商品的时候会出现很多选择问题，在很多商场对于不同商品会有不同折扣，这个时候我们常见的操作就是if-else进行判断，但是一旦参与折扣的商品变得多的，后期对于一些折扣的修改与删除，再去翻原来的if-else列表，有点不太方便，这样将一个个折扣看成一个一个策略，在结账时根据用户购买的商品进行折扣策略的智能选择。能够对代码进行优化使其更具有可读性。</p>
+<blockquote>
+<p>可能会有人杠哈，就是一个全局搜索嘛，看不起谁呢？其实本身能够使用if-else进行实现也是可以的，但是在学习阶段，我们还是要以能写出高质量代码来约束自己；并且实际业务场景也不一定像文中提到的那么简单，所以时候就显示出来策略模式的优越性了。如果在if-else中写了大量的代码，后期对代码的修改和维护也很不方便。</p>
+</blockquote>
+<p>以下从代码角度进行一个解释</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">Option option = 商品选择<br><span class="hljs-keyword">if</span>(option == 鞋子)&#123;<br>    鞋子打折算法;<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(option == 衣服)&#123;<br>    衣服打折算法;<br>&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(option == ...)&#123;<br>    ...打折算法;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>上述的代码主要违反了OOP的两个原则，分别为：</p>
+<ul>
+<li><p>单一职责原则：一个类只有一个修改的原因，但是上述代码后端逻辑一旦变化，那么当前方法也将被改变</p></li>
+<li><p>开闭原则：对扩展开放，对修改关闭。一旦后期需要对商品的折扣信息进行修改增加或者删除，那么都会违反开闭原则</p></li>
+</ul>
+<p>在阿里提供的《Java开发手册》中，这样写道</p>
+<blockquote>
+<p>超过3层的 if-else 的逻辑判断代码可以使用卫语句、策略模式、状态模式等来实现</p>
+</blockquote>
+<h3 id="结合项目进行分析">结合项目进行分析</h3>
+<p>本项目中由于出现了很多的异常，不同的异常要返回不同的状态码，所以最开始就是很多的if-else叠加，随着业务的开发，if-else甚至超过了8个，以下为起始版本</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@ExceptionHandler(&#123;ServiceException.class, FileUploadException.class&#125;)</span> <span class="hljs-comment">// 用于统一处理抛出的异常</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> JsonResult&lt;Void&gt; <span class="hljs-title">handleException</span><span class="hljs-params">(Throwable e)</span></span>&#123;<br>    JsonResult&lt;Void&gt; result = <span class="hljs-keyword">new</span> JsonResult&lt;&gt;(e);<br>    <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> UsernameDuplicatedException)&#123;<br>        result.setState(<span class="hljs-number">4000</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> InsertException)&#123;<br>        result.setState(<span class="hljs-number">5000</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> UsernameNotFoundException)&#123;<br>        result.setState(<span class="hljs-number">5001</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> PasswordNotMatchException)&#123;<br>        result.setState(<span class="hljs-number">5002</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> UpdateException)&#123;<br>        result.setState(<span class="hljs-number">5003</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileEmptyException)&#123;<br>        result.setState(<span class="hljs-number">6000</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileOverSizedException)&#123;<br>        result.setState(<span class="hljs-number">6001</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileTypeException)&#123;<br>        result.setState(<span class="hljs-number">6002</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(e <span class="hljs-keyword">instanceof</span> FileUploadIOException)&#123;<br>        result.setState(<span class="hljs-number">6003</span>);<br>    &#125;<br>    result.setMessage(e.getMessage());<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<p>好家伙，你看这代码，你快乐不，是不是很快乐？等到之后项目产生的异常比较多的时候再对if-else进行重构的时候就会出现很多问题，反正很不方便。 首先我们对代码进行一个review，捕获异常，根据异常类型进行返回不同的状态码。很容易就观察到，每一个if-else进行的工作都相同，那么可以将一个一个的if-else看成一个又一个的策略，这些策略完成的任务基本是相同的，那么我们的架构就可以是一个接口多个实现。 现在这一部分处理完了，我们再有新的异常抛出就可以新建类实现定义的接口，很大程度上能够避免控制层的修改。 现在的问题就是怎么让webapp自动抉择策略用于处理异常 ## 工厂模式 工厂模式其实类比现有的工厂，工厂将原料转化为产品。在OOP中，工厂模式就是代替new进行创建对象的过程，是一种比较常见的实例化对象的方式。 上一步对策略模式的分析表示最后少一步让策略自动选择，而这些策略是一个一个类，实际执行的是我们实现的接口方法。也就是说我们需要根据异常类型实例化对应的策略类，执行该策略类的接口方法。这些策略类有相同的接口，可以通过一个策略工厂进行实例化策略类的对象。 ## 一些细节 现在还有一个问题，就是我们需要将这些策略类和一个个异常类进行对应，每一个异常都是不一样的。我们很容易的想到的就是区分类的方式就是通过类名进行区分每一个类，那我们就可以是用注解Component对每一个策略类进行注解，这样这些策略类都会注册到Spring Boot程序中，另外Component注解还有一个属性value，我们可以使用每一个异常类的名称配置策略类Component注解，那么异常和异常处理策略就对应起来了。 &gt; 这一部分我没有想到什么好的办法对其进行对应，索性就是用异常名称了，欢迎大佬在评论区进行指教</p>
+<p>最后策略工厂通过传入的异常名称进行匹配获取策略并创建运行其接口方法最终完成异常处理。异常名称与策略类使用键值对的形式储存在Map中。 全部实现后的handleException方法如下： <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@ExceptionHandler(&#123;ServiceException.class, FileUploadException.class&#125;)</span> <span class="hljs-comment">// 用于统一处理抛出的异常</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> JsonResult&lt;Void&gt; <span class="hljs-title">handleException</span><span class="hljs-params">(Throwable e)</span></span>&#123;<br>    JsonResult&lt;Void&gt; result = <span class="hljs-keyword">new</span> JsonResult&lt;&gt;(e);<br>    ExceptionSettleStrategy settlementInstance = strategyFactory.getSettlementInstance(e.getClass().getSimpleName());<br>    result.setState(settlementInstance.getResult());<br>    result.setMessage(e.getMessage());<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></div></td></tr></table></figure> 清爽多了吧 ## 整体架构 <img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224203717.png" srcset="/img/loading.gif" lazyload alt="整体架构图" /> &gt; 上述架构并没有将策略全部画出</p>
+<img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224204018.png" srcset="/img/loading.gif" lazyload alt="策略类" /> <img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220224204123.png" srcset="/img/loading.gif" lazyload alt="异常" /> ## 代码 ### 异常处理策略接口 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lxl.store.strategy;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ExceptionSettleStrategy</span> </span>&#123;<br>    <span class="hljs-function">Integer <span class="hljs-title">getResult</span><span class="hljs-params">()</span></span>;<br>&#125;<br></code></pre></div></td></tr></table></figure> ### 部分策略类 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lxl.store.strategy;<br><br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2022/01/22 23:54</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Component(value = &quot;UsernameNotFoundException&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UsernameNotFoundStrategy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ExceptionSettleStrategy</span></span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Integer <span class="hljs-title">getResult</span><span class="hljs-params">()</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">5001</span>;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure> ### 策略工厂 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.lxl.store.strategy;<br><br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Service;<br><br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.concurrent.ConcurrentHashMap;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> LiXianLei</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@time</span> 2022/01/23 00:04</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ExceptionSettleStrategyFactory</span> </span>&#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, ExceptionSettleStrategy&gt; map = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;&gt;();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> ExceptionSettleStrategy <span class="hljs-title">getSettlementInstance</span><span class="hljs-params">(String name)</span></span>&#123;<br>        ExceptionSettleStrategy ess = map.get(name);<br>        <span class="hljs-keyword">if</span>(ess == <span class="hljs-keyword">null</span>)&#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">&quot;未定义异常&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> ess;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Programming-Language/">Programming Language</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
+                    
+                      <a class="hover-with-bg" href="/categories/FrameWork/">FrameWork</a>
+                    
+                      <a class="hover-with-bg" href="/categories/FrameWork/SpringBoot/">SpringBoot</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/SpringBoot/">SpringBoot</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/e91a2fa5/">
+                        <span class="hidden-mobile">RPC实现原理深入分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      var light = 'github-light';
+      var dark = 'github-dark';
+      var schema = document.documentElement.getAttribute('data-user-color-scheme');
+      if (schema === 'dark') {
+        schema = dark;
+      } else {
+        schema = light;
+      }
+      window.UtterancesThemeLight = light;
+      window.UtterancesThemeDark = dark;
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'conquerorLei/conquerorLei.github.io');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('label', 'utterances');
+      
+      s.setAttribute('theme', schema);
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    })
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/custom/duration.js"></script> </div> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":true,"trickleSpeed":50})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
