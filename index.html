@@ -201,6 +201,64 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/posts/e05b1b3/" target="_self">
+          MySQL:过滤空值
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/e05b1b3/" target="_self">
+          
+          
+            
+          
+          现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示
+ 现在需要做的就是过滤数据库中no和product_date字段为空的数据
+过滤字段为null的方法
+过滤空字段，如果按照我的第一想法
+12SELECT * FROM batchWHERE no != null AND product_date != null; 
+
+但是显然这是不行的，这是一个不好的编程方式，因为我们所
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-19 21:47" pubdate>
+              2022-03-19
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Database/">Database</a>
+            
+              <a href="/categories/Database/MySQL/">MySQL</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/SQL/">SQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/posts/44788a85/" target="_self">
           工厂模式+策略模式实现消除if-else
         </a>
@@ -418,64 +476,6 @@ Provider
               <a href="/tags/Fluid/">Fluid</a>
             
               <a href="/tags/Pandoc/">Pandoc</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/posts/992ddf57/" target="_self">
-          Java对象拷贝
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/posts/992ddf57/" target="_self">
-          
-          
-            
-          
-          简介
-按照惯性思维，我们总喜欢在Java中使用赋值操作完成拷贝操作。但是对于引用类型的数据，直接使用等号复制的仅仅是一个引用，此时如果我们对其中一个进行更改，另外一个也会接着更改，因为本质上这两个就是引用的同一个对象。
-1234567891011121314151617package com.conquerorlei.test;import com.conquerorlei.bean.Stud
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-13 21:54" pubdate>
-              2021-10-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Programming-Language/">Programming Language</a>
-            
-              <a href="/categories/Programming-Language/Java/">Java</a>
-            
-              <a href="/categories/Programming-Language/Java/Base/">Base</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/OOP/">OOP</a>
-            
-              <a href="/tags/Base/">Base</a>
             
           </div>
         

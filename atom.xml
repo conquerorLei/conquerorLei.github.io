@@ -6,7 +6,7 @@
   <link href="https://conquerorlei.github.io/atom.xml" rel="self"/>
   
   <link href="https://conquerorlei.github.io/"/>
-  <updated>2022-02-24T13:02:17.038Z</updated>
+  <updated>2022-03-19T14:16:11.447Z</updated>
   <id>https://conquerorlei.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL:过滤空值</title>
+    <link href="https://conquerorlei.github.io/posts/e05b1b3/"/>
+    <id>https://conquerorlei.github.io/posts/e05b1b3/</id>
+    <published>2022-03-19T13:47:07.000Z</published>
+    <updated>2022-03-19T14:16:11.447Z</updated>
+    
+    <content type="html"><![CDATA[<p>现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319215650.png" alt="包含null字段的表单" /> 现在需要做的就是过滤数据库中no和product_date字段为空的数据</p><h2 id="过滤字段为null的方法">过滤字段为null的方法</h2><p>过滤空字段，如果按照我的第一想法</p><figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">!=</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">!=</span> <span class="hljs-keyword">null</span>; <br></code></pre></div></td></tr></table></figure><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319220137.png" alt="查询结果" /></p><p>但是显然这是不行的，这是一个不好的编程方式，因为我们所熟知的，<code>null</code>在MySQl中是一个关键字，所以我们尽量不会选择这种来进行比较。</p><p>以下为几个过滤空值的方法</p><figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">/* 不使用关键字的写法 */</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">!=</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">!=</span> <span class="hljs-string">&#x27;&#x27;</span>; <br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;&#x27;</span>;<br><span class="hljs-comment">/* 使用关键字的写法 */</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></div></td></tr></table></figure><p>但是上述两种写法，第一种也就是不使用关键字的写法时很糟糕的，因为我的<code>product_date</code>字段使用的datatime数据类型，默认为NULL，但是又不能直接使用'NULL'判断。</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221347.png" alt="第一种写法的错误" /></p><p>那么最好的方式就是使用第二种写法，也就是使用is not null，这是对对象最直接的判断，对所有的数据类型都适用</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221552.png" alt="正确过滤后的结果" /></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://gitee.com/QingShanxl/pictures/raw/master/img/20220319215650.png&quot; alt=&quot;包含null字段</summary>
+      
+    
+    
+    
+    <category term="Database" scheme="https://conquerorlei.github.io/categories/Database/"/>
+    
+    <category term="MySQL" scheme="https://conquerorlei.github.io/categories/Database/MySQL/"/>
+    
+    
+    <category term="SQL" scheme="https://conquerorlei.github.io/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>工厂模式+策略模式实现消除if-else</title>
@@ -593,42 +620,6 @@
     <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
     
     <category term="Keywords" scheme="https://conquerorlei.github.io/tags/Keywords/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java JavaBean相关</title>
-    <link href="https://conquerorlei.github.io/posts/a1b11bfa/"/>
-    <id>https://conquerorlei.github.io/posts/a1b11bfa/</id>
-    <published>2021-09-24T13:40:49.000Z</published>
-    <updated>2021-10-09T14:55:47.704Z</updated>
-    
-    <content type="html"><![CDATA[<p>JavaBase是什么？</p><p>JavaBean是一种Java语言写成的可重用组件</p><p>指的是符合以下标准的Java类</p><ul><li>类是公共的，使用<font color='cornflowerblue'>public</font>权限修饰符修饰</li><li>有一个<font color='orange'>无参的公共的构造器</font></li><li>有属性，且有对应的get、set方法</li></ul><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorLei.java;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Customer</span> </span>&#123;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> id;<br><span class="hljs-keyword">private</span> String name;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Customer</span><span class="hljs-params">()</span> </span>&#123;<br><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setId</span><span class="hljs-params">(<span class="hljs-keyword">int</span> id)</span> </span>&#123;<br><span class="hljs-keyword">this</span>.id = id;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getId</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">return</span> id;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setName</span><span class="hljs-params">(String name)</span> </span>&#123;<br><span class="hljs-keyword">this</span>.name = name;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getName</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-keyword">return</span> name;<br>&#125;<br>&#125;<br><br></code></pre></div></td></tr></table></figure><hr /><p>JavaBean相关的知识还有很多，特别是Java Web，JavaBean和数据库中表是有一定关系的。</p><blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;JavaBase是什么？&lt;/p&gt;
-&lt;p&gt;JavaBean是一种Java语言写成的可重用组件&lt;/p&gt;
-&lt;p&gt;指的是符合以下标准的Java类&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;类是公共的，使用&lt;font color=&#39;cornflowerblue&#39;&gt;public&lt;/font&gt;权</summary>
-      
-    
-    
-    
-    <category term="Programming Language" scheme="https://conquerorlei.github.io/categories/Programming-Language/"/>
-    
-    <category term="Java" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/"/>
-    
-    <category term="Base" scheme="https://conquerorlei.github.io/categories/Programming-Language/Java/Base/"/>
-    
-    
-    <category term="Sundry" scheme="https://conquerorlei.github.io/tags/Sundry/"/>
-    
-    <category term="OOP" scheme="https://conquerorlei.github.io/tags/OOP/"/>
-    
-    <category term="JavaBean" scheme="https://conquerorlei.github.io/tags/JavaBean/"/>
     
   </entry>
   

@@ -13,25 +13,28 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo异常:Template render error:(unknown path)unexpected end of file">
-<meta property="og:url" content="https://conquerorlei.github.io/posts/af15db9a/index.html">
+  <meta name="description" content="现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示  现在需要做的就是过滤数据库中no和product_date字段为空的数据 过滤字段为null的方法 过滤空字段，如果按照我的第一想法 12SELECT * FROM batchWHERE no !&#x3D; null AND product_date !&#x3D; null;   但是显然这是不行的，这是一个不好的编程方式，因为我们所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL:过滤空值">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/e05b1b3/index.html">
 <meta property="og:site_name" content="conquerorLei">
+<meta property="og:description" content="现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示  现在需要做的就是过滤数据库中no和product_date字段为空的数据 过滤字段为null的方法 过滤空字段，如果按照我的第一想法 12SELECT * FROM batchWHERE no !&#x3D; null AND product_date !&#x3D; null;   但是显然这是不行的，这是一个不好的编程方式，因为我们所">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172035551.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172050267.jpeg">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172105539.png">
-<meta property="article:published_time" content="2021-09-17T12:23:53.000Z">
-<meta property="article:modified_time" content="2021-09-19T13:51:09.777Z">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319215650.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319220137.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221347.png">
+<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221552.png">
+<meta property="article:published_time" content="2022-03-19T13:47:07.000Z">
+<meta property="article:modified_time" content="2022-03-19T14:16:11.447Z">
 <meta property="article:author" content="conquerorLei">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172035551.png">
+<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319215650.png">
   
-  <title>Hexo异常:Template render error:(unknown path)unexpected end of file - conquerorLei</title>
+  <title>MySQL:过滤空值 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -186,7 +189,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hexo异常:Template render error:(unknown path)unexpected end of file">
+            <span class="h2" id="subtitle" title="MySQL:过滤空值">
               
             </span>
 
@@ -196,8 +199,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-17 20:23" pubdate>
-        2021-09-17 20:23
+      <time datetime="2022-03-19 21:47" pubdate>
+        2022-03-19 21:47
       </time>
     </span>
   
@@ -207,7 +210,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      597 字
+      609 字
     </span>
   
 
@@ -253,37 +256,28 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hexo异常:Template render error:(unknown path)unexpected end of file</h1>
+            <h1 style="display: none">MySQL:过滤空值</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-19 21:51
+                  本文最后更新于：2022-03-19 22:16
                 
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172035551.png" srcset="/img/loading.gif" lazyload alt="Template render error" /></p>
-<span id="more"></span>
-<h3 id="问题描述">问题描述</h3>
-<p>在渲染的过程中遇见了以上问题，我直接就是一顿崩溃。对于某一个页面渲染失败，主要是文章中出现了nunjucks语法的字符。</p>
-<h3 id="问题定位策略">问题定位策略</h3>
-<p>关于新出现的问题以及定位问题的策略相关</p>
-<p>无论是谁在工作、还是日常生活都会出现问题，遇见问题先不要慌，先发个朋友圈？</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172050267.jpeg" srcset="/img/loading.gif" lazyload alt="开个玩笑" /></p>
-<p>遇见问题了就去查问题啊，不要怕找不到一模一样的问题，先找一堆相关的问题，然后慢慢来呗。</p>
-<ol type="1">
-<li>根据查到的问题及其解决方案确定出现这类问题的原因</li>
-<li>根据原因回忆你在操作过程中可能出现的类似的情况</li>
-<li>然后对操作进行复盘大致确定问题可能出现的范围</li>
-<li>对范围内的类似情况进行逐一排查</li>
-</ol>
-<h3 id="问题解决">问题解决</h3>
-<p>在网上一查，无论是哪个网站提供的说法不是Hexo无法渲染大括号，还是存在<code>&#123;&#123;&#125;&#125;</code>，<code>&#123;#</code>，<code>'&#123;</code>，<code>&#123;% %&#125;</code>之类的，首先一点是Hexo是支持<code>&#123;%note%&#125;</code>标签的，但是我仔细收寻了我的文档，确定以及肯定我的文档当中没有除最后一个之外的其他三个。那就着重找最后一个呗。</p>
-<p>对全局的 <code>&#123;%note%&#125;</code>进行排查，这有在这里才会出现Hexo无法转义的字符，或者说成是标签。可能出现的情况就是对于单一标签缺少一个大括号或者一个%，这样的话，使用文本编辑器里面的查找功能，很快就能定位到问题，果然就是缺少一个右括号，问题解决。:wink:</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109172105539.png" srcset="/img/loading.gif" lazyload alt="缺少右括号" /></p>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
+              <p>现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319215650.png" srcset="/img/loading.gif" lazyload alt="包含null字段的表单" /> 现在需要做的就是过滤数据库中no和product_date字段为空的数据</p>
+<h2 id="过滤字段为null的方法">过滤字段为null的方法</h2>
+<p>过滤空字段，如果按照我的第一想法</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">!=</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">!=</span> <span class="hljs-keyword">null</span>; <br></code></pre></div></td></tr></table></figure>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319220137.png" srcset="/img/loading.gif" lazyload alt="查询结果" /></p>
+<p>但是显然这是不行的，这是一个不好的编程方式，因为我们所熟知的，<code>null</code>在MySQl中是一个关键字，所以我们尽量不会选择这种来进行比较。</p>
+<p>以下为几个过滤空值的方法</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">/* 不使用关键字的写法 */</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">!=</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">!=</span> <span class="hljs-string">&#x27;&#x27;</span>; <br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;&#x27;</span>;<br><span class="hljs-comment">/* 使用关键字的写法 */</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></div></td></tr></table></figure>
+<p>但是上述两种写法，第一种也就是不使用关键字的写法时很糟糕的，因为我的<code>product_date</code>字段使用的datatime数据类型，默认为NULL，但是又不能直接使用'NULL'判断。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221347.png" srcset="/img/loading.gif" lazyload alt="第一种写法的错误" /></p>
+<p>那么最好的方式就是使用第二种写法，也就是使用is not null，这是对对象最直接的判断，对所有的数据类型都适用</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221552.png" srcset="/img/loading.gif" lazyload alt="正确过滤后的结果" /></p>
 
             </div>
             <hr>
@@ -293,11 +287,9 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
+                      <a class="hover-with-bg" href="/categories/Database/">Database</a>
                     
-                      <a class="hover-with-bg" href="/categories/Error/">Error</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
+                      <a class="hover-with-bg" href="/categories/Database/MySQL/">MySQL</a>
                     
                   </div>
                 
@@ -305,7 +297,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
+                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
                     
                   </div>
                 
@@ -322,18 +314,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/823de3f/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL CRUD:插入查询结果</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/cdb4d508/">
-                        <span class="hidden-mobile">Hexo渲染异常:Converting circular structure to JSON</span>
+                      <a href="/posts/44788a85/">
+                        <span class="hidden-mobile">工厂模式+策略模式实现消除if-else</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>MySQL:过滤空值</title>
+    <link href="/posts/e05b1b3/"/>
+    <url>/posts/e05b1b3/</url>
+    
+    <content type="html"><![CDATA[<p>现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319215650.png" alt="包含null字段的表单" /> 现在需要做的就是过滤数据库中no和product_date字段为空的数据</p><h2 id="过滤字段为null的方法">过滤字段为null的方法</h2><p>过滤空字段，如果按照我的第一想法</p><figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">!=</span> <span class="hljs-keyword">null</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">!=</span> <span class="hljs-keyword">null</span>; <br></code></pre></div></td></tr></table></figure><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319220137.png" alt="查询结果" /></p><p>但是显然这是不行的，这是一个不好的编程方式，因为我们所熟知的，<code>null</code>在MySQl中是一个关键字，所以我们尽量不会选择这种来进行比较。</p><p>以下为几个过滤空值的方法</p><figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-comment">/* 不使用关键字的写法 */</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">!=</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">!=</span> <span class="hljs-string">&#x27;&#x27;</span>; <br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;&#x27;</span>;<br><span class="hljs-comment">/* 使用关键字的写法 */</span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> batch<br><span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">AND</span> product_date <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>;<br></code></pre></div></td></tr></table></figure><p>但是上述两种写法，第一种也就是不使用关键字的写法时很糟糕的，因为我的<code>product_date</code>字段使用的datatime数据类型，默认为NULL，但是又不能直接使用'NULL'判断。</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221347.png" alt="第一种写法的错误" /></p><p>那么最好的方式就是使用第二种写法，也就是使用is not null，这是对对象最直接的判断，对所有的数据类型都适用</p><p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20220319221552.png" alt="正确过滤后的结果" /></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Database</category>
+      
+      <category>MySQL</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>SQL</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>工厂模式+策略模式实现消除if-else</title>
     <link href="/posts/44788a85/"/>
     <url>/posts/44788a85/</url>
@@ -692,13 +719,13 @@
     
     <categories>
       
-      <category>环境搭建</category>
-      
       <category>Software</category>
       
-      <category>Hexo</category>
+      <category>环境搭建</category>
       
       <category>Error</category>
+      
+      <category>Hexo</category>
       
       <category>Git</category>
       
@@ -1077,9 +1104,9 @@
       
       <category>环境搭建</category>
       
-      <category>Hexo</category>
-      
       <category>Error</category>
+      
+      <category>Hexo</category>
       
     </categories>
     
@@ -1106,9 +1133,9 @@
       
       <category>环境搭建</category>
       
-      <category>Hexo</category>
-      
       <category>Error</category>
+      
+      <category>Hexo</category>
       
     </categories>
     
@@ -1676,9 +1703,9 @@
       
       <category>Algorithm</category>
       
-      <category>CPP</category>
-      
       <category>Data Structure</category>
+      
+      <category>CPP</category>
       
     </categories>
     
@@ -1707,9 +1734,9 @@
     
     <categories>
       
-      <category>环境搭建</category>
-      
       <category>Software</category>
+      
+      <category>环境搭建</category>
       
       <category>Error</category>
       
@@ -1748,13 +1775,13 @@
     
     <categories>
       
-      <category>环境搭建</category>
-      
       <category>Software</category>
       
-      <category>Hexo</category>
+      <category>环境搭建</category>
       
       <category>Error</category>
+      
+      <category>Hexo</category>
       
       <category>Git</category>
       
@@ -2019,11 +2046,11 @@
       
       <tag>CSS</tag>
       
+      <tag>Markdown</tag>
+      
       <tag>Ahk</tag>
       
       <tag>HTML</tag>
-      
-      <tag>Markdown</tag>
       
     </tags>
     
