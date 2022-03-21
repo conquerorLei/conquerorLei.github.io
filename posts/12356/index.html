@@ -268,20 +268,20 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" srcset="/img/loading.gif" lazyload alt="Picgo" /></p>
+              <p><img src="https://ian-study.oss-cn-shanghai.aliyuncs.com/picgo.png" srcset="/img/loading.gif" lazyload alt="Picgo"></p>
 <span id="more"></span>
-<h1 id="picgogitee实现markdown图片上传自动化">picgo+gitee实现markdown图片上传自动化</h1>
-<h2 id="工具">1 工具</h2>
+<h1>picgo+gitee实现markdown图片上传自动化</h1>
+<h2 id="1-工具"><a class="header-anchor" href="#1-工具">¶</a>1 工具</h2>
 <p>markdown编辑工具：typora</p>
-<p>图片上传工具：picgo 2.3.0 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
+<p>图片上传工具：picgo 2.3.0      <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Molunerfinn/PicGo/releases">下载地址</a></p>
 <p>图床仓库：gitee</p>
-<h2 id="picgo配置">2 picgo配置</h2>
+<h2 id="2-picgo配置"><a class="header-anchor" href="#2-picgo配置">¶</a>2 picgo配置</h2>
 <p>picgo的配置很简单，主要在于插件的下载以及相关的gitee配置。</p>
-<h3 id="picgo插件下载"><strong>2.1</strong> picgo插件下载</h3>
+<h3 id="2-1-picgo插件下载"><a class="header-anchor" href="#2-1-picgo插件下载">¶</a><strong>2.1</strong> picgo插件下载</h3>
 <p>若想要picgo支持gitee作为图床，需要下载插件，在picgo界面上选择<code>插件设置</code>，在搜索框中直接搜索gitee，会弹出以下界面，两个二选一即可。<font color='red'>安装完成后一定要重启picgo</font>，这样才能在图床设置中找到gitee图床</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" srcset="/img/loading.gif" lazyload alt="PicGo下载Gitee插件" /></p>
-<h3 id="图床设置--gitee图床"><strong>2.2</strong> 图床设置--&gt;gitee图床</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" srcset="/img/loading.gif" lazyload alt="PicGo设置Gitee图床" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226232647.png" srcset="/img/loading.gif" lazyload alt="PicGo下载Gitee插件"></p>
+<h3 id="2-2-图床设置–-gitee图床"><a class="header-anchor" href="#2-2-图床设置–-gitee图床">¶</a><strong>2.2</strong>  图床设置–&gt;gitee图床</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226233412.png" srcset="/img/loading.gif" lazyload alt="PicGo设置Gitee图床"></p>
 <p>初始进入以后上述输入框都应该是空的，相应的意思如下</p>
 <ul>
 <li><font color='cornflowerblue'>owner</font>：gitee账户的用户名，不清楚的可以在个人设置中查看</li>
@@ -290,40 +290,40 @@
 <li><font color='cornflowerblue'>token</font>：个人令牌，对你的图床仓库进行个人令牌设定就会出现token，复制到这里就可以</li>
 <li><font color='cornflowerblue'>message</font>：可填可不填，就是上传图片相当于一次git push操作，commit需要文本信息用来提示你这次上传是干嘛的</li>
 </ul>
-<h2 id="gitee图床仓库设置">3 gitee图床仓库设置</h2>
-<h3 id="新建仓库">3.1 新建仓库</h3>
+<h2 id="3-gitee图床仓库设置"><a class="header-anchor" href="#3-gitee图床仓库设置">¶</a>3 gitee图床仓库设置</h2>
+<h3 id="3-1-新建仓库"><a class="header-anchor" href="#3-1-新建仓库">¶</a>3.1 新建仓库</h3>
 <p>和平常新建仓库没有什么区别，有几点注意事项</p>
 <ul>
 <li>需要设置为开源</li>
 <li>需要使用Readme文件初始化仓库</li>
 </ul>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" srcset="/img/loading.gif" lazyload alt="创建仓库" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226234635.png" srcset="/img/loading.gif" lazyload alt="创建仓库"></p>
 <p>图中标注的地方需要注意一下</p>
-<h3 id="创建个人令牌token">3.2 创建个人令牌（token）</h3>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" srcset="/img/loading.gif" lazyload alt="获取私人令牌" /></p>
+<h3 id="3-2-创建个人令牌（token）"><a class="header-anchor" href="#3-2-创建个人令牌（token）">¶</a>3.2 创建个人令牌（token）</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226235244.png" srcset="/img/loading.gif" lazyload alt="获取私人令牌"></p>
 <p><font color='red'>tips</font>：其实，这里省略了以个步骤，就是原始打开第二步之后不会直接弹出如图所示界面，需要新建一个令牌，点击的是一个加号</p>
 <p>按照上述步骤进行操作之后，就会得到一个token，<font color='red'>pay attention</font>：token只会出现一次，所以复制下来保存到本地的文件当中。</p>
 <p>将刚刚获取的token粘贴到picgo中的gitee配置里面去，点击确定就大功告成。</p>
 <p>这样picgo上传的图片就会上传到gitee中仓库里。</p>
-<h2 id="typora与picgo结合使用">4 typora与picgo结合使用</h2>
-<h3 id="picgo设置">4.1 picgo设置</h3>
+<h2 id="4-typora与picgo结合使用"><a class="header-anchor" href="#4-typora与picgo结合使用">¶</a>4 typora与picgo结合使用</h2>
+<h3 id="4-1-picgo设置"><a class="header-anchor" href="#4-1-picgo设置">¶</a>4.1 picgo设置</h3>
 <p>picgo中需要配置一下服务器，也就是<code>设置server</code></p>
 <p>开启server之后的默认配置就是127.0.0.1:36677，不需要修改什么。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" srcset="/img/loading.gif" lazyload alt="PicGo设置Server" /></p>
-<h3 id="typora设置">4.2 typora设置</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000426.png" srcset="/img/loading.gif" lazyload alt="PicGo设置Server"></p>
+<h3 id="4-2-typora设置"><a class="header-anchor" href="#4-2-typora设置">¶</a>4.2 typora设置</h3>
 <p>在typora中的偏好设置中找到图像，按照picgo的本地安装路径进行相应的修改。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" srcset="/img/loading.gif" lazyload alt="Typora设置上传" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000143.png" srcset="/img/loading.gif" lazyload alt="Typora设置上传"></p>
 <p>图中标记的三个地方需要修改。可以点击<code>验证图片上传选项</code>，如图显示表示typora已经成功使用picgo上传图片到仓库</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" srcset="/img/loading.gif" lazyload alt="验证成功提示" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210227000653.png" srcset="/img/loading.gif" lazyload alt="验证成功提示"></p>
 <p>至此结束。</p>
-<h2 id="常见问题">5 常见问题</h2>
+<h2 id="5-常见问题"><a class="header-anchor" href="#5-常见问题">¶</a>5 常见问题</h2>
 <p>这里让人感觉很奇怪的是一段时间后总会出现一些莫名其妙的问题，这里对常见的问题做一个记录</p>
-<h3 id="q1-验证失败">5.1 Q1 验证失败</h3>
+<h3 id="5-1-Q1-验证失败"><a class="header-anchor" href="#5-1-Q1-验证失败">¶</a>5.1 Q1 验证失败</h3>
 <p>使用typora验证图床上传功能时显示验证失败，错误信息为：</p>
 <figure class="highlight json"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;success&quot;</span>:<span class="hljs-literal">false</span>,<span class="hljs-attr">&quot;message&quot;</span>:<span class="hljs-string">&quot;upload error&quot;</span>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><strong>更改方案</strong></p>
 <p>好家伙，别提这个，提起来就气。原本是只有Typora不能上传，改着改着PicGo软件也不能上传了。不过还好，最终出来了。</p>
-<ol type="1">
+<ol>
 <li>打开PicGo软件</li>
 <li>打开相册</li>
 <li>删除Typora相关图标</li>
@@ -333,13 +333,10 @@
 <p>或许可能是私人令牌的问题，重新获取下令牌</p>
 <p><font color='cornflowerblue'>上述方法不是最终解决办法，因为这样的话每次上传都需要删除，太麻烦了</font></p>
 <p><font color='red'>终极办法：</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" srcset="/img/loading.gif" lazyload alt="打开时间戳重命名" /></p>
-<h3 id="q2-无法获取picgo-js">5.2 Q2 无法获取PicGo js</h3>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713205507.png" srcset="/img/loading.gif" lazyload alt="打开时间戳重命名"></p>
+<h3 id="5-2-Q2-无法获取PicGo-js"><a class="header-anchor" href="#5-2-Q2-无法获取PicGo-js">¶</a>5.2 Q2 无法获取PicGo js</h3>
 <p>由于PicGo的配置文件很难写，所以我的做法很简单粗暴，直接重新配置了一遍PicGo。</p>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
-
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
             </div>
             <hr>
             <div>

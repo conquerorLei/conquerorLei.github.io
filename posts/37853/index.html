@@ -261,19 +261,17 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" srcset="/img/loading.gif" lazyload alt="python pip" /></p>
+              <p><img src="https://jolliesjunction.com/wp-content/uploads/2020/10/Python-PIP-2-1024x536.jpg" srcset="/img/loading.gif" lazyload alt="python pip"></p>
 <span id="more"></span>
 <p>更新<code>pip</code>的时候出现了问题。由于最近一直在使用<code>python</code>+<code>tensorflow</code>进行神经网络训练，需要安装很多包，在安装<code>scikit-learn</code>的时候提示需要更新<code>pip</code>到最新版本。于是，就更新了一下，然后就出现了<code>ModuleNotFoundError: No module named 'pip'</code>这个问题。以下是我的解决办法</p>
-<h1 id="解决办法">解决办法</h1>
+<h1>解决办法</h1>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 如果它尚未安装，此调用将安装pip，否则不会执行任何操作。</span><br>python -m ensurepip<br><span class="hljs-meta">#</span><span class="bash"> 再进行安装</span><br>python -m pip install --upgrade pip<br></code></pre></div></td></tr></table></figure>
-<h1 id="原因">原因</h1>
+<h1>原因</h1>
 <p>相信大多数小伙伴在进行<code>pip</code>更新的时候都没有进行版本绑定，这样位于<code>pip</code>路径下的<code>pip-script.py</code>就没有更新相应的<code>pip</code>绑定版本信息。</p>
 <div class="note note-primary">
-            <p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p><p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
+            <p>自<code>Python 2.7.9</code>以来的版本都增加了新功能，<code>ensurepip</code>软件包支持将pip安装程序引导到现有的<code>Python</code>安装或虚拟环境中。 这种引导方式反映了<code>pip</code>是一个独立的项目，它有自己的发布周期，最新的稳定版本与<code>CPython</code>参考解释器的维护和功能版本捆绑在一起。</p><p>在大多数情况下，<code>Python</code>的最终用户不需要直接调用该模块（因为默认情况下应该引导<code>pip</code>），但是如果在安装<code>Python</code>时（或创建虚拟环境时）跳过安装<code>pip</code>，或者在<font color='red'><strong>明确卸载点。</strong></font></p>
           </div>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
             <hr>

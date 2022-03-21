@@ -206,7 +206,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      730 字
+      711 字
     </span>
   
 
@@ -261,36 +261,34 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="new and delete" /></p>
+              <p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.75e864a4e25ca1c9c85e4a0ab8f2b5d1?rik=mDvqPbGZ%2blrDhA&amp;riu=http%3a%2f%2fpediaa.com%2fwp-content%2fuploads%2f2018%2f10%2fDifference-Between-new-and-delete-Operator-Comparison-Summary.jpg&amp;ehk=TUN%2fIoWa9NY8G3HdETaw5j%2f08sAVFfDeQ6e4482cQJA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="new and delete"></p>
 <span id="more"></span>
-<h1 id="问题描述">问题描述</h1>
+<h1>问题描述</h1>
 <p>今天在进行链表的学习的时候，进行单链表的初始化的时候遇见了一下问题，问题长这样</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" srcset="/img/loading.gif" lazyload alt="cannot convert" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202108201746565.png" srcset="/img/loading.gif" lazyload alt="cannot convert"></p>
 <div class="note note-success">
-            <p><font color='red'>cannot convert 'LNode* <em>' to 'LinkedList' {aka 'LNode </em>'} in assignment</font></p>
+            <p><font color='red'>cannot convert ‘LNode* *’ to ‘LinkedList’ {aka ‘LNode *’} in assignment</font></p>
           </div>
 <p>发生问题的代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">initList</span><span class="hljs-params">(LinkedList &amp;l)</span></span><br><span class="hljs-function"></span>&#123;<br>    l = <span class="hljs-keyword">new</span> LinkedList; <span class="hljs-comment">//问题所在行</span><br>    <span class="hljs-keyword">if</span> (l == <span class="hljs-literal">NULL</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>    l-&gt;next = <span class="hljs-literal">NULL</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p>结构体定义如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span></span><br><span class="hljs-class">&#123;</span><br>    <span class="hljs-keyword">int</span> data;<br>    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">LNode</span> *<span class="hljs-title">next</span>;</span><br>&#125; LNode, *LinkedList;<br></code></pre></div></td></tr></table></figure>
-<h1 id="分析">分析</h1>
+<h1>分析</h1>
 <p>按照我对结构体的定义，<code>LNode *</code>和<code>LinkedList</code>，这两个进行声明结点的时候是等价的，都是生成了一个指针，指向新开辟的空间，这即是那个结点。</p>
 <p>等等！</p>
 <p>cpp使用new进行创建的时候也是创建的指针（<font color='red'>对象指针</font>），好家伙，那使用new在声明一个指针变量不就成了指针的指针了嘛，就像是你进行了以下谜之操作：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">int</span> *intp;<br><span class="hljs-keyword">int</span> *s = <span class="hljs-keyword">new</span> intp*;<br></code></pre></div></td></tr></table></figure>
 <blockquote>
-<p>对不起，我刚刚好像就做了:disappointed_relieved:</p>
+<p>对不起，我刚刚好像就做了😥</p>
 </blockquote>
 <div class="note note-primary">
             <p><font color='red'>typedef</font>那句相当于定义了<code>int *</code>为一个新的名称<code>intp</code>，而进行定义指针变量时使用了<code>intp *</code>，相当于新建了一个指针的指针变量，和前面的<code>int *</code>当然是不匹配的</p>
           </div>
 <p><font color='cornflowerblue'>需要注意的是，使用new时，要注意到它本身返回的就是一个指针对象</font></p>
-<h1 id="改动">改动</h1>
+<h1>改动</h1>
 <p>就很简单啊，直接还成不是指针的<code>LNode</code>就好了啊</p>
 <figure class="highlight cpp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cpp">l = <span class="hljs-keyword">new</span> LNode;<br></code></pre></div></td></tr></table></figure>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
             <hr>

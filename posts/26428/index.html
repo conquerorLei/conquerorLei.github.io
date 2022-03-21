@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.3k 字
+      1.4k 字
     </span>
   
 
@@ -270,68 +270,66 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.57RW8_Q_6IjmGeqg2ss8OgHaEo?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Java" /></p>
+              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.57RW8_Q_6IjmGeqg2ss8OgHaEo?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Java"></p>
 <span id="more"></span>
-<h1 id="前言">前言</h1>
+<h1>前言</h1>
 <p>最近需要部署SpringBoot项目，但是原本装的jdk版本是1.8，运行jar要求的源发行版是52.0，jdk1.8是不满足要求的，主要是运行都运行不了，但是又不想卸载jdk1.8，这里提供java多版本切换的方法。</p>
-<h1 id="java下载">Java下载</h1>
+<h1>Java下载</h1>
 <p>这个原本不想说的，但是，唉，真正试过的都知道，好家伙，下载window x64 installer还需要登录，当然不怕麻烦的申请一个Orcle的号也行。如果不想申请，又想下载jdk，这边提供一个网址。</p>
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="http://bugmenot.com/view/oracle.com">下载账号网页</a></p>
 <p>可能会和谐的哦，这边在提供一个账号和密码</p>
 <div class="note note-primary">
-            <blockquote><p><strong>用户名：</strong><code>2696671285@qq.com</code> <strong>密码：</strong><code>Oracle123</code></p></blockquote>
+            <blockquote><p><strong>用户名：</strong><code>2696671285@qq.com</code><strong>密码：</strong><code>Oracle123</code></p></blockquote>
           </div>
 <p>使用这些账号密码就可以了。</p>
 <p>另外一些攻略提示可以通过监控网页元素，即F12进入开发者模式，获取下载链接，我试过了，或许下载链接后，进入迅雷，<font color='red'>提示有下载，但是访问不到资源</font></p>
-<h1 id="java安装">Java安装</h1>
+<h1>Java安装</h1>
 <p>这个就不用说了吧，按照<code>JDK</code>的安装程序提示一步一步做就好了，中间又有一个<code>JDK</code>的安装路径问题，我选择的是默认，即<code>C:\Program Files\Java</code></p>
 <p>如果你在<code>JDK</code>安装过程中更改了路径，记得把这个路径记住。</p>
 <p>另外，需要注意的是，自jdk11以来jdk的包里面就不包括jre文件夹了，需要自己生成一个</p>
 <p>步骤如下：</p>
-<ol type="1">
+<ol>
 <li>使用管理员权限打开cmd</li>
 <li>进入jdk的安装路径</li>
 <li>执行以下命令</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 进入安装路径</span><br>cd C:\Program Files\Java\jdk-14.0.2<br><span class="hljs-meta"></span><br><span class="hljs-meta">#</span><span class="bash"> 生成jre文件夹</span><br>bin\jlink.exe --module-path jmods --add-modules java.desktop --output jre<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203221.png" srcset="/img/loading.gif" lazyload alt="生成jre文件夹" /></p>
-<h1 id="环境变量配置">环境变量配置</h1>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203221.png" srcset="/img/loading.gif" lazyload alt="生成jre文件夹"></p>
+<h1>环境变量配置</h1>
 <p>下面就是重头戏了，<font color='red'>敲黑板！！！</font></p>
-<h2 id="修改java_home为java8_home">修改JAVA_HOME为JAVA8_HOME</h2>
+<h2 id="修改JAVA-HOME为JAVA8-HOME"><a class="header-anchor" href="#修改JAVA-HOME为JAVA8-HOME">¶</a>修改JAVA_HOME为JAVA8_HOME</h2>
 <p>按照以下路径检索高级系统设置：<font color='cornflowerblue'>设置-&gt;系统-&gt;关于-&gt;高级系统设置</font></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210713181617867.png" srcset="/img/loading.gif" lazyload alt="高级系统寻址" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/image-20210713181617867.png" srcset="/img/loading.gif" lazyload alt="高级系统寻址"></p>
 <p>点击：<font color='cornflowerblue'>高级-&gt;环境变量-&gt;系统变量</font>，在这里将原本的<code>JAVA_HOME</code>改为<code>JAVA8_HOME</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713194556.png" srcset="/img/loading.gif" lazyload alt="修改JAVA_HOME" /></p>
-<h2 id="添加你新安装的jdk">添加你新安装的jdk</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713194556.png" srcset="/img/loading.gif" lazyload alt="修改JAVA_HOME"></p>
+<h2 id="添加你新安装的jdk"><a class="header-anchor" href="#添加你新安装的jdk">¶</a>添加你新安装的jdk</h2>
 <p>我安装的是jdk-14.0.2，将系统变量命名为<code>JAVA14_HOME</code></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713194921.png" srcset="/img/loading.gif" lazyload alt="添加新的JAVA_HOME" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713194921.png" srcset="/img/loading.gif" lazyload alt="添加新的JAVA_HOME"></p>
 <div class="note note-primary">
-            <blockquote><p><font color='red'>变量值即为你的安装路径</font></p></blockquote>
+            <blockquote><p><font color='red'>变量值即为你的安装路径</font></p></blockquote>
           </div>
-<h2 id="添加变量java_home">添加变量JAVA_HOME</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713195341.png" srcset="/img/loading.gif" lazyload alt="添加JAVA_HOME" /></p>
+<h2 id="添加变量JAVA-HOME"><a class="header-anchor" href="#添加变量JAVA-HOME">¶</a>添加变量JAVA_HOME</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713195341.png" srcset="/img/loading.gif" lazyload alt="添加JAVA_HOME"></p>
 <div class="note note-success">
-            <blockquote><p>变量值结构为：<font color='red'>%变量名%</font></p><p>中间的变量名即为你想要使用的jdk版本</p></blockquote>
+            <blockquote><p>变量值结构为：<font color='red'>%变量名%</font></p><p>中间的变量名即为你想要使用的jdk版本</p></blockquote>
           </div>
 <p>之前配置过jdk1.8的都配置过紫色框框里面的内容，这里是不需要改的</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203444.png" srcset="/img/loading.gif" lazyload alt="环境变量" /></p>
-<h1 id="查看java版本">查看java版本</h1>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203939.png" srcset="/img/loading.gif" lazyload alt="查看java版本" /></p>
-<h1 id="错误解决方案">错误解决方案</h1>
-<h2 id="生成jre失败">生成jre失败</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204256.png" srcset="/img/loading.gif" lazyload alt="生成jre文件夹错误" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203444.png" srcset="/img/loading.gif" lazyload alt="环境变量"></p>
+<h1>查看java版本</h1>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713203939.png" srcset="/img/loading.gif" lazyload alt="查看java版本"></p>
+<h1>错误解决方案</h1>
+<h2 id="生成jre失败"><a class="header-anchor" href="#生成jre失败">¶</a>生成jre失败</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204256.png" srcset="/img/loading.gif" lazyload alt="生成jre文件夹错误"></p>
 <p>解决方案：</p>
 <p><font color='red'>使用管理员权限打开cmd</font></p>
-<h2 id="java和javac版本不一致">java和javac版本不一致</h2>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204718.png" srcset="/img/loading.gif" lazyload alt="java与javac版本不一致" /></p>
+<h2 id="java和javac版本不一致"><a class="header-anchor" href="#java和javac版本不一致">¶</a>java和javac版本不一致</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204718.png" srcset="/img/loading.gif" lazyload alt="java与javac版本不一致"></p>
 <p>原因：</p>
-<p>同时安装了jdk14.0.2和jre14.0.2，且PATH变量中，C:32或者C:Files (x86)Files%JAVA_HOME%。在Windows命令行下执行命令时，先从当前目录搜素，然后按照PATH设置的路径依次查找命令，而JRE安装时会将java.exe安装到C:32目录下，所以执行java -version命令时，查看的是jre的版本，而javac -version时查看的jdk的版本。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204850.png" srcset="/img/loading.gif" lazyload alt="环境变量" /></p>
+<p>同时安装了jdk14.0.2和jre14.0.2，且PATH变量中，C:\WINDOWS\system32或者C:\Program Files (x86)\Common Files\Oracle\Java\javapath目录在%JAVA_HOME%\bin之前。在Windows命令行下执行命令时，先从当前目录搜素，然后按照PATH设置的路径依次查找命令，而JRE安装时会将java.exe安装到C:\WINDOWS\system32目录下，所以执行java -version命令时，查看的是jre的版本，而javac -version时查看的jdk的版本。</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210713204850.png" srcset="/img/loading.gif" lazyload alt="环境变量"></p>
 <p>解决方案：</p>
 <p>将<code>%JAVA_HOME%\bin</code>和<code>%JAVA_HOME%\jre\bin</code>移动到所有包含java以及<code>C:\WINDOWS\system32</code>的目录前面，这样就可以完美解决了</p>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
             <hr>

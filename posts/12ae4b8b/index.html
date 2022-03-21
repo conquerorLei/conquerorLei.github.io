@@ -16,12 +16,12 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="题目地址 1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢  想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的">
+  <meta name="description" content="¶题目地址 1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢  想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的分数呢">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分割字符串的最大分数">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/12ae4b8b/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="题目地址 1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢  想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的">
+<meta property="og:description" content="¶题目地址 1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢  想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的分数呢">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110101515451.png">
 <meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110101549627.png">
@@ -208,7 +208,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      701 字
+      704 字
     </span>
   
 
@@ -263,18 +263,16 @@
               </p>
             
             <div class="markdown-body">
-              <h3 id="题目地址">题目地址</h3>
+              <h3 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h3>
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/maximum-score-after-splitting-a-string/">1422. 分割字符串的最大得分 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h3 id="题目分析">题目分析</h3>
+<h3 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h3>
 <p>最开始想的肯定是暴力解法，总不能看不起盲僧。但是暴力的问题就是超时。怎么去优化让它不超时呢</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110101515451.png" srcset="/img/loading.gif" lazyload alt="如果暴力不是为了超时" /></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110101515451.png" srcset="/img/loading.gif" lazyload alt="如果暴力不是为了超时"></p>
 <p>想来想去，还是贪心点好了。首先是先求出来最左分割得出的分数，同时定义两个变量a、b分别记录左边0的个数和右边1的个数，定义指针指向首个分割点；可是我贪心啊，万一后面还是有更高的分数呢？然后指针后移，每次后移都对指向的点进行0、1判断，根据判断结果增加或者减少a、b的值，每次后移都要进行最大值判断。这样的话，时间复杂度是O(n)</p>
-<h3 id="代码">代码</h3>
+<h3 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h3>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">maxScore</span><span class="hljs-params">(String s)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> max = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>,b = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> len = s.length();<br>        <span class="hljs-keyword">if</span>(s.charAt(<span class="hljs-number">0</span>) == <span class="hljs-string">&#x27;0&#x27;</span>)&#123;<br>            a++;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j &lt; len;j++)&#123;<br>            <span class="hljs-keyword">if</span>(s.charAt(j) == <span class="hljs-string">&#x27;1&#x27;</span>)&#123;<br>                b++;<br>            &#125;<br>        &#125;<br>        max = a+b;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>;i &lt; len-<span class="hljs-number">1</span>;i++)&#123;<br>            <span class="hljs-keyword">if</span>(s.charAt(i) == <span class="hljs-string">&#x27;0&#x27;</span>)&#123;<br>                a++;<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                b--;<br>            &#125;<br>            max = Math.max(max,a+b);<br>        &#125;<br>        <span class="hljs-keyword">return</span> max;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110101549627.png" srcset="/img/loading.gif" lazyload alt="image-20211010154936596" /></p>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110101549627.png" srcset="/img/loading.gif" lazyload alt="image-20211010154936596"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
             <hr>
@@ -288,9 +286,9 @@
                     
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
-                    
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
                     
                       <a class="hover-with-bg" href="/categories/Algorithm/%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95/">贪心算法</a>
                     

@@ -16,12 +16,12 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="题目地址 415. 字符串相加 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 题目中给定了要求，不允许调用内库中的关于大整数运算的库 那也行，直接使用小学使用的竖式进行加法运算不就可以了吗？ok，理论存在，实践开始。 两数加法，我们都知道加法原则，直接就是对位相加，超10进位，对10取余拖下来 不带进位加法 \[ \begin{array}{r} {1">
+  <meta name="description" content="¶题目地址 415. 字符串相加 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 题目中给定了要求，不允许调用内库中的关于大整数运算的库 那也行，直接使用小学使用的竖式进行加法运算不就可以了吗？ok，理论存在，实践开始。 两数加法，我们都知道加法原则，直接就是对位相加，超10进位，对10取余拖下来 不带进位加法 $$ \begin{array}{r} {1}\ {1}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="非负整数字符串相加">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/b75c4dbd/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="题目地址 415. 字符串相加 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 题目中给定了要求，不允许调用内库中的关于大整数运算的库 那也行，直接使用小学使用的竖式进行加法运算不就可以了吗？ok，理论存在，实践开始。 两数加法，我们都知道加法原则，直接就是对位相加，超10进位，对10取余拖下来 不带进位加法 \[ \begin{array}{r} {1">
+<meta property="og:description" content="¶题目地址 415. 字符串相加 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 题目中给定了要求，不允许调用内库中的关于大整数运算的库 那也行，直接使用小学使用的竖式进行加法运算不就可以了吗？ok，理论存在，实践开始。 两数加法，我们都知道加法原则，直接就是对位相加，超10进位，对10取余拖下来 不带进位加法 $$ \begin{array}{r} {1}\ {1}">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110120921361.png">
 <meta property="article:published_time" content="2021-10-12T00:37:04.000Z">
@@ -207,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      916 字
+      915 字
     </span>
   
 
@@ -262,32 +262,33 @@
               </p>
             
             <div class="markdown-body">
-              <h3 id="题目地址">题目地址</h3>
+              <h3 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h3>
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/add-strings/">415. 字符串相加 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h3 id="题目分析">题目分析</h3>
+<h3 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h3>
 <p>题目中给定了要求，<font color='red'>不允许调用内库中的关于大整数运算的库</font></p>
 <p>那也行，直接使用小学使用的竖式进行加法运算不就可以了吗？ok，理论存在，实践开始。</p>
 <p>两数加法，我们都知道加法原则，直接就是对位相加，超10进位，对10取余拖下来</p>
-<p><strong>不带进位加法</strong> <span class="math display">\[
+<p><strong>不带进位加法</strong>
+$$
 \begin{array}{r}
-{1}\ {1} \\
-+{1} \ {2}\ {3}\\
+{1}\ {1} \
++{1} \ {2}\ {3}\
 \hline
 {1}\ {3}\ {4}
 \end{array}
-\]</span> <strong>带进位加法</strong> <span class="math display">\[
-\begin{array}{r}4\ 5\ 6\\ +\quad_17_17\\ \hline 5\ 3\ 3\end{array}
-\]</span></p>
+$$
+<strong>带进位加法</strong>
+$$
+\begin{array}{r}4\ 5\ 6\ +\quad_17_17\ \hline 5\ 3\ 3\end{array}
+$$</p>
 <p>这样的话，直接定义两个尾指针，从后依次向前遍历(每次遍历尾指针自减)，每次遍历都会对位相加，对加法结果除10作为进位，对10取余作为剩下位。</p>
 <div class="note note-warning">
-            <p><font color='red'>不建议采用String s = "";然后对s用+进行拼接的形式</font>，这样的效率实在是太低。建议直接使用<code>StringBuffer</code>或者<code>StringBuilder</code></p>
+            <p><font color='red'>不建议采用String s = “”;然后对s用+进行拼接的形式</font>，这样的效率实在是太低。建议直接使用<code>StringBuffer</code>或者<code>StringBuilder</code></p>
           </div>
-<h3 id="代码">代码</h3>
+<h3 id="代码"><a class="header-anchor" href="#代码">¶</a>代码</h3>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">addStrings</span><span class="hljs-params">(String num1, String num2)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> p1 = num1.length() - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> p2 = num2.length() - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> carry = <span class="hljs-number">0</span>;<span class="hljs-comment">//进位</span><br>        StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();<br>        <span class="hljs-keyword">while</span>(p1 &gt;= <span class="hljs-number">0</span> || p2 &gt;= <span class="hljs-number">0</span>)&#123;<br>            <span class="hljs-keyword">int</span> a = p1 &gt;= <span class="hljs-number">0</span> ? num1.charAt(p1) - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">int</span> b = p2 &gt;= <span class="hljs-number">0</span> ? num2.charAt(p2) - <span class="hljs-string">&#x27;0&#x27;</span> : <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">int</span> sum = a + b + carry;<br>            sb.append(sum % <span class="hljs-number">10</span>);<br>            carry = sum / <span class="hljs-number">10</span>;<br>            p1--;<br>            p2--;<br>        &#125;<br>        <span class="hljs-keyword">if</span>(carry != <span class="hljs-number">0</span>) sb.append(carry);<br>        <span class="hljs-keyword">return</span> sb.reverse().toString();<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110120921361.png" srcset="/img/loading.gif" lazyload alt="力扣结果" /></p>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
-</blockquote>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110120921361.png" srcset="/img/loading.gif" lazyload alt="力扣结果"></p>
+<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
 
             </div>
             <hr>
@@ -301,9 +302,9 @@
                     
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
-                    
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
                     
                       <a class="hover-with-bg" href="/categories/Algorithm/%E6%A8%A1%E6%8B%9F%E6%B3%95/">模拟法</a>
                     
