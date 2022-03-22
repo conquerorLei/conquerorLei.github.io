@@ -66,7 +66,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -260,23 +259,26 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jwkxrc4PXMB0RJnrhP67zgHaEK?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Http"></p>
+              <p><img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.jwkxrc4PXMB0RJnrhP67zgHaEK?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Http" /></p>
 <span id="more"></span>
-<h1>404 not found</h1>
+<h1 id="not-found">404 not found</h1>
 <p>404表示资源没有找到，由于Tomcat容器的问题，在前端页面例如jsp、html中有对css、js文件的相对寻址。这样在由于不同文件的更目录不同，就会出现不同的基址，过程中出现了不少的资源无法访问的异常</p>
 <p>解决办法：</p>
 <figure class="highlight jsp"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs jsp">&lt;!-- 设置基址 --&gt;<br>&lt;%--&lt;base href=<span class="hljs-string">&quot;http://localhost:8080/public_platform_war_exploded/&quot;</span>/&gt;--%&gt;<br>&lt;%--&lt;base href=<span class="hljs-string">&quot;http://188.131.151.113:8080/public_platform/&quot;</span>/&gt;--%&gt;<br>&lt;base href=<span class="hljs-string">&quot;$&#123;pageContext.request.contextPath&#125;/&quot;</span>/&gt;<br></code></pre></div></td></tr></table></figure>
 <p>最开始，是在本地编程，所以设置的基址为localhost，后来上云服务器之后需要不断地在localhost和188.131.151.113之间进行切换，很麻烦，经过查询jsp相关可知，采用<base href="${pageContext.request.contextPath}/"/>可以直接处理本地和云差异引起的资源访问异常。</p>
-<h1>500异常</h1>
+<h1 id="异常">500异常</h1>
 <p>500一般都是后端业务逻辑出问题了才会出现出现500异常，其实也是一些例如request和session设置属性不对应，页面跳转异常等其他问题。</p>
-<h1>使用配对异常</h1>
+<h1 id="使用配对异常">使用配对异常</h1>
 <p>一般而言，若是对request进行属性设置，则需要使用</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">request.getRequestDispatcher(<span class="hljs-string">&quot;跳转地址&quot;</span>).forward(request,response);<br></code></pre></div></td></tr></table></figure>
 <p>进行数据转发，若使用</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">response.sendRedirect(<span class="hljs-string">&quot;跳转地址&quot;</span>);<br></code></pre></div></td></tr></table></figure>
 <p>就会出现无法获取request属性的错误</p>
 <p>使用session再进行重定向就不会出现问题，session周期要比request周期长，上述过程一次request周期已经结束</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
+
             </div>
             <hr>
             <div>

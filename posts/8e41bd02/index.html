@@ -17,12 +17,12 @@
 ok，废话不多说，淦！">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="绝了，学了这么久还是只会insert into，像是个废人 ok，废话不多说，淦！">
+  <meta name="description" content="绝了，学了这么久还是只会insert into，像是个废人 ok，废话不多说，淦！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL insert into和select into">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/8e41bd02/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="绝了，学了这么久还是只会insert into，像是个废人 ok，废话不多说，淦！">
+<meta property="og:description" content="绝了，学了这么久还是只会insert into，像是个废人 ok，废话不多说，淦！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-09T08:27:52.000Z">
 <meta property="article:modified_time" content="2021-10-09T14:55:47.710Z">
@@ -67,7 +67,6 @@ ok，废话不多说，淦！">
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -206,7 +205,7 @@ ok，废话不多说，淦！">
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      560 字
+      557 字
     </span>
   
 
@@ -266,20 +265,22 @@ ok，废话不多说，淦！">
 <span id="more"></span>
 <p>今天在牛客上刷了一道题：<font color='red'>某打车公司要将驾驶里程（drivedistanced）超过5000里的司机信息转存到一张称为seniordrivers 的表中，他们的详细情况被记录在表drivers 中</font></p>
 <p>我惊醒，这不就是insert into嘛，小菜一碟，后来想起来真的是，我是fw</p>
-<h3 id="insert-into"><a class="header-anchor" href="#insert-into">¶</a>insert into</h3>
+<h3 id="insert-into">insert into</h3>
 <p>isnert into 常用于<strong>向表中插入新行</strong></p>
 <div class="note note-primary">
             <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> table_name <span class="hljs-keyword">VALUES</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>,....)<br><span class="hljs-comment">-- 指定所要插入数据的列：</span><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> table_name (列<span class="hljs-number">1</span>, 列<span class="hljs-number">2</span>,...) <span class="hljs-keyword">VALUES</span> (值<span class="hljs-number">1</span>, 值<span class="hljs-number">2</span>,....)<br></code></pre></div></td></tr></table></figure>
           </div>
-<h3 id="select-into"><a class="header-anchor" href="#select-into">¶</a>select into</h3>
+<h3 id="select-into">select into</h3>
 <p>SELECT INTO 语句<strong>从一个表中选取数据，然后把数据插入另一个表中</strong>。常用于创建表的备份复件或者用于对记录进行存档。</p>
 <div class="note note-primary">
             <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SQL"><span class="hljs-comment">-- 把所有的列插入新表 </span><br><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">INTO</span> new_table_name [<span class="hljs-keyword">IN</span> externaldatabase] <br><span class="hljs-keyword">FROM</span> old_tablename<br></code></pre></div></td></tr></table></figure>
           </div>
-<h3 id="题目答案"><a class="header-anchor" href="#题目答案">¶</a>题目答案</h3>
+<h3 id="题目答案">题目答案</h3>
 <figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">into</span> seniordrivers<br><span class="hljs-keyword">where</span> drivedistanced <span class="hljs-operator">&gt;</span> <span class="hljs-number">5000</span><br><span class="hljs-keyword">from</span> drivers;<br></code></pre></div></td></tr></table></figure>
 <p>这是什么数据库的写法，Get</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

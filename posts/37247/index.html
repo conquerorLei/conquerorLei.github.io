@@ -69,7 +69,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -208,7 +207,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      406 字
+      382 字
     </span>
   
 
@@ -263,22 +262,24 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Tomcat"></p>
+              <p><img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.lQuo7r8qRszV5aGAWcJt6wHaD4?pid=ImgDet&amp;rs=1" srcset="/img/loading.gif" lazyload alt="Tomcat" /></p>
 <span id="more"></span>
-<h1>1099端口已经被占用</h1>
+<h1 id="端口已经被占用">1099端口已经被占用</h1>
 <p>经常会出现tomcat被占用的情况，并且经过反复核对没有其他项目在本地tomcat服务器上运行，本次项目也没有运行但是在编译运行的过程中idea会报<code>Address localhost:1099 is already in use</code>的错误，本次学习到了如何强行关闭占用端口号的<code>java</code>程序。</p>
-<h2 id="win-R打开控制面板"><a class="header-anchor" href="#win-R打开控制面板">¶</a>win+R打开控制面板</h2>
-<h2 id="查询1099"><a class="header-anchor" href="#查询1099">¶</a>查询1099</h2>
-<p>输入 <code>netstat -ano | find &quot;1099&quot;</code>，回车后看到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" srcset="/img/loading.gif" lazyload alt="1099-1"></p>
-<h2 id="查询20560"><a class="header-anchor" href="#查询20560">¶</a>查询20560</h2>
-<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find &quot;20560&quot;</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" srcset="/img/loading.gif" lazyload alt="1099-2"></p>
-<h2 id="杀进程"><a class="header-anchor" href="#杀进程">¶</a>杀进程</h2>
+<h2 id="winr打开控制面板">win+R打开控制面板</h2>
+<h2 id="查询1099">查询1099</h2>
+<p>输入 <code>netstat -ano | find "1099"</code>，回车后看到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231240.png" srcset="/img/loading.gif" lazyload alt="1099-1" /></p>
+<h2 id="查询20560">查询20560</h2>
+<p>将上图中最后一列数据记录下来，执行以下指令 <code>tasklist | find "20560"</code>，其中20560就是上图最后一列的值，执行后得到以下结果</p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231242.png" srcset="/img/loading.gif" lazyload alt="1099-2" /></p>
+<h2 id="杀进程">杀进程</h2>
 <p>杀掉刚刚查询到的进程，执行以下指令 <code>killtask /f /t /im java.exe</code>，得到以下结果</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210226231244.png" srcset="/img/loading.gif" lazyload /></p>
 <p>1.5 现在就可以运行了，当然最好的习惯还是记得关闭tomcat服务</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

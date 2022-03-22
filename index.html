@@ -48,7 +48,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -201,6 +200,60 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/posts/7c6d1dd8/" target="_self">
+          2021/3/21笔试简答总结
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/posts/7c6d1dd8/" target="_self">
+          
+          
+            
+          
+          2021年3月21日参加了笔试，对笔试内容进行了一个大致的复盘
+HashMap的实现原理
+简单来说，HashMap对数据的存储是把key和value封装为一个对象也就是Entry进行存储的，每一个Entry都会存储在Entry[]中
+
+在进行数据存储的过程中，对需要插入的Entry计算Hash值，根据Hash值计算其在Entry[]中的存储位置，再根据Equals方法获取其在链表中的位置
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-03-21 20:26" pubdate>
+              2022-03-21
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%B1%82%E8%81%8C%E7%BB%8F%E9%AA%8C/">求职经验</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%B1%82%E8%81%8C/">求职</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/posts/e05b1b3/" target="_self">
           MySQL:过滤空值
         </a>
@@ -213,13 +266,12 @@
             
           
           现在我有一张库存表，查询到的数据里面有某些字段是空的，如下图所示
-
-现在需要做的就是过滤数据库中no和product_date字段为空的数据
-¶过滤字段为null的方法
+ 现在需要做的就是过滤数据库中no和product_date字段为空的数据
+过滤字段为null的方法
 过滤空字段，如果按照我的第一想法
 12SELECT * FROM batchWHERE no != null AND product_date != null; 
 
-但是显然这是不行的，这是一个不好的编程方式，因为我们所熟知的，n
+但是显然这是不行的，这是一个不好的编程方式，因为我们所
         </a>
       </p>
 
@@ -330,26 +382,16 @@
             
           
           RPC产品应该是什么样的
-¶Consumer
-
+Consumer
 
 连接管理
 保持与服务提供长连接，用于传输请求数据也返回结果
-
-
 负载均衡
-
-
 请求路由
-
-
 超时处理
-
-
 健康检查
 
-
-¶Provider
+Provider
 
 队列/线程池
 超时丢弃
@@ -392,13 +434,13 @@
           
             
           
-          ¶简介
+          简介
 ==和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？
-¶==
+==
 首先需要明确的是，==符号可以用来比较基本数据类型和引用数据类型之间的。
 
 如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意)
-如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址是否相同
+如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址
         </a>
       </p>
 
@@ -430,63 +472,6 @@
               <a href="/tags/Sundry/">Sundry</a>
             
               <a href="/tags/OOP/">OOP</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/posts/d430231f/" target="_self">
-          Hexo Pandoc引擎渲染下出现图片两个caption的问题
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/posts/d430231f/" target="_self">
-          
-          
-            
-          
-          ¶问题描述
-为什么使用Pandoc？因为Hexo的页面渲染器并不是都支持LeTex数学公式的渲染，最开始使用的是hexo-renderer-kramed，但是之后再进行对LeTex编写的表格进行渲染的时候，出现了Misplaced \hline报错，但是在Typora中公式没有显示异常，而且根据LeTex官方文档中关于Array的描述中，是允许出现\hline的，于是我便注意到可能还Kramed对
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-10-16 10:01" pubdate>
-              2021-10-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
-            
-              <a href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Hexo/">Hexo</a>
-            
-              <a href="/tags/Fluid/">Fluid</a>
-            
-              <a href="/tags/Pandoc/">Pandoc</a>
             
           </div>
         

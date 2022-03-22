@@ -16,12 +16,12 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="¶简介 &#x3D;&#x3D;和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？ ¶&#x3D;&#x3D; 首先需要明确的是，&#x3D;&#x3D;符号可以用来比较基本数据类型和引用数据类型之间的。  如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意) 如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址是否相同">
+  <meta name="description" content="简介 &#x3D;&#x3D;和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？ &#x3D;&#x3D; 首先需要明确的是，&#x3D;&#x3D;符号可以用来比较基本数据类型和引用数据类型之间的。  如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意) 如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java &#39;&#x3D;&#x3D;&#39;和equals的区别">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/6a76c857/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="¶简介 &#x3D;&#x3D;和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？ ¶&#x3D;&#x3D; 首先需要明确的是，&#x3D;&#x3D;符号可以用来比较基本数据类型和引用数据类型之间的。  如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意) 如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址是否相同">
+<meta property="og:description" content="简介 &#x3D;&#x3D;和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？ &#x3D;&#x3D; 首先需要明确的是，&#x3D;&#x3D;符号可以用来比较基本数据类型和引用数据类型之间的。  如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为存在基本数据类型之间的类型提升(需要注意，关于boolean需要特别注意) 如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-10-17T02:49:02.000Z">
 <meta property="article:modified_time" content="2022-02-24T12:57:59.492Z">
@@ -67,7 +67,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -261,39 +260,31 @@
               </p>
             
             <div class="markdown-body">
-              <h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
+              <h2 id="简介">简介</h2>
 <p>==和equals在java中都可以进行比较两个数据是否相同，那么这两者之间有什么区别呢？</p>
-<h2 id=""><a class="header-anchor" href="#">¶</a>==</h2>
+<h2 id="section">==</h2>
 <p>首先需要明确的是，==符号可以用来比较基本数据类型和引用数据类型之间的。</p>
-<ol>
+<ol type="1">
 <li>如果比较的是基本数据类型变量，那么不一定需要两个变量的类型相同，因为<font color='red'>存在基本数据类型之间的类型提升</font>(需要注意，关于boolean需要特别注意)</li>
 <li>如果比较的是引用数据类型，那么比较的是两个对象在内存中存储的地址是否相同，即<font color='red'>两个对象是否指向同一个对象实体</font></li>
 </ol>
 <p>关于==运算符，尽管泛泛地可以认为是上述规则，但是对于String类型的对象，由于其创建的方式有两种，所以是有一部分的特别之处，具体请参考：<a href="https://conquerorlei.github.io/posts/173a1aaf/">Java中String、StringBuffer、StringBuilder之间的区别 - conquerorLei</a></p>
-<h2 id="equals方法"><a class="header-anchor" href="#equals方法">¶</a>equals方法</h2>
+<h2 id="equals方法">equals方法</h2>
 <div class="note note-success">
-            <p>Indicate whether some other object “is equals to” this one.</p>
+            <p>Indicate whether some other object "is equals to" this one.</p>
           </div>
 <p>在Java官方的API文档中，对Object根类中的方法的解释是泛泛的，首先我们应该确定一下几点</p>
-<ol>
-<li>
-<p>equals是一个方法，而不是一个运算符</p>
-</li>
-<li>
-<p>只能适用于引用数据类型而不能适用于基本数据类型</p>
-<p>因为Java中所有的引用数据类型都继承至Object类，Object类中的方法equals()自然也就被继承下来了</p>
-</li>
-<li>
-<p>Object中定义的equals方法和==符号的作用是相等的</p>
-</li>
-<li>
-<p>equals方法重写之后比较的不是两个对象的地址是否相同，比较的是对象的&quot;实体内容&quot;是否相同</p>
-</li>
+<ol type="1">
+<li><p>equals是一个方法，而不是一个运算符</p></li>
+<li><p>只能适用于引用数据类型而不能适用于基本数据类型</p>
+<p>因为Java中所有的引用数据类型都继承至Object类，Object类中的方法equals()自然也就被继承下来了</p></li>
+<li><p>Object中定义的equals方法和==符号的作用是相等的</p></li>
+<li><p>equals方法重写之后比较的不是两个对象的地址是否相同，比较的是对象的"实体内容"是否相同</p></li>
 </ol>
-<h3 id="自定义类如何重写一个equals方法"><a class="header-anchor" href="#自定义类如何重写一个equals方法">¶</a>自定义类如何重写一个equals方法</h3>
+<h3 id="自定义类如何重写一个equals方法">自定义类如何重写一个equals方法</h3>
 <p>通常情况下，如果我们自定义类对equals方法对两个对象的实体内容是否相同，那么就需要重写equals方法</p>
 <p>首先说明比较通用的步骤</p>
-<ol>
+<ol type="1">
 <li>相比较两个对象的地址是否相同，如果相同直接返回true</li>
 <li>如果传入的对象为<font color='red'>null</font>，直接返回false</li>
 <li>判断当前类是否和传入对象的类相同，直接使用的是<font color='red'>getclass()</font>方法，相同则接着判断，不相同返回false</li>
@@ -301,16 +292,18 @@
 <li>如果上述的判断过程都没有返回true，那么直接返回false。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-meta">@Override</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">equals</span><span class="hljs-params">(Object obj)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == obj)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>    <span class="hljs-keyword">if</span> (obj == <span class="hljs-keyword">null</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (getClass() != obj.getClass())<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    GeometricObject other = (GeometricObject) obj;<br>    <span class="hljs-keyword">if</span> (color == <span class="hljs-keyword">null</span>) &#123;<br>        <span class="hljs-keyword">if</span> (other.color != <span class="hljs-keyword">null</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!color.equals(other.color))<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">if</span> (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<h2 id="主要区别"><a class="header-anchor" href="#主要区别">¶</a>主要区别</h2>
-<p>$$
+<h2 id="主要区别">主要区别</h2>
+<p><span class="math display">\[
 \begin{array}{l|rr}
-比较类型 &amp; == &amp; equals\
+比较类型 &amp; == &amp; equals\\
 \hline
-基本数据类型 &amp; 比较值的大小 &amp; {\color{red} 不可比较}\
+基本数据类型 &amp; 比较值的大小 &amp; {\color{red} 不可比较}\\
 引用数据类型 &amp; 地址值是否相同 &amp; 可以通过重写的方法确定实体内容是否相同
 \end{array}
-$$</p>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+\]</span></p>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

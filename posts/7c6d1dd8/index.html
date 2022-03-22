@@ -16,30 +16,20 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。 我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404  问题分析 这个时候百思不得其解，怎么办，本地hexo s就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，">
+  <meta name="description" content="2021年3月21日参加了笔试，对笔试内容进行了一个大致的复盘 HashMap的实现原理 简单来说，HashMap对数据的存储是把key和value封装为一个对象也就是Entry进行存储的，每一个Entry都会存储在Entry[]中  在进行数据存储的过程中，对需要插入的Entry计算Hash值，根据Hash值计算其在Entry[]中的存储位置，再根据Equals方法获取其在链表中的位置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo部署异常:部署后访问页面404">
-<meta property="og:url" content="https://conquerorlei.github.io/posts/15c96483/index.html">
+<meta property="og:title" content="2021&#x2F;3&#x2F;21笔试简答总结">
+<meta property="og:url" content="https://conquerorlei.github.io/posts/7c6d1dd8/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。 我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404  问题分析 这个时候百思不得其解，怎么办，本地hexo s就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，">
+<meta property="og:description" content="2021年3月21日参加了笔试，对笔试内容进行了一个大致的复盘 HashMap的实现原理 简单来说，HashMap对数据的存储是把key和value封装为一个对象也就是Entry进行存储的，每一个Entry都会存储在Entry[]中  在进行数据存储的过程中，对需要插入的Entry计算Hash值，根据Hash值计算其在Entry[]中的存储位置，再根据Equals方法获取其在链表中的位置">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220959175.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221018516.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221000543.png">
-<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.751e5f9f342de01f8463b01112edb128?rik=2gqn0%2bf4McaYxg&amp;riu=http%3a%2f%2fi-1.onegreen.net%2f2021%2f0120%2ffdf56f562fd846e48a96b306c8855245.jpg&amp;ehk=ZECJ1Js2nGmsXOpdKEXlnAcRWOh0gRrVUkGGPBa6U54%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221021841.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221033156.png">
-<meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221058824.png">
-<meta property="article:published_time" content="2021-09-22T01:49:01.000Z">
-<meta property="article:modified_time" content="2021-09-22T03:10:36.470Z">
+<meta property="article:published_time" content="2022-03-21T12:26:42.000Z">
+<meta property="article:modified_time" content="2022-03-22T03:21:06.229Z">
 <meta property="article:author" content="conquerorLei">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Git">
+<meta property="article:tag" content="求职">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png">
   
-  <title>Hexo部署异常:部署后访问页面404 - conquerorLei</title>
+  <title>2021/3/21笔试简答总结 - conquerorLei</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -193,7 +183,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Hexo部署异常:部署后访问页面404">
+            <span class="h2" id="subtitle" title="2021/3/21笔试简答总结">
               
             </span>
 
@@ -203,8 +193,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-09-22 09:49" pubdate>
-        2021-09-22 09:49
+      <time datetime="2022-03-21 20:26" pubdate>
+        2022-03-21 20:26
       </time>
     </span>
   
@@ -214,7 +204,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.9k 字
     </span>
   
 
@@ -223,7 +213,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3 分钟
+      6 分钟
     </span>
   
 
@@ -260,64 +250,128 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hexo部署异常:部署后访问页面404</h1>
+            <h1 style="display: none">2021/3/21笔试简答总结</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：2021-09-22 11:10
+                  本文最后更新于：2022-03-22 11:21
                 
               </p>
             
             <div class="markdown-body">
-              <p>最近对博客进行了大改动，不管是tags页面还是categories页面都进行了不小的改动，但是改完之后部署却出现了问题。</p>
-<p>我在本地进行部署的时候，没有任何问题，但是一旦部署到GitHub上，诶，他就冒404</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220956328.png" srcset="/img/loading.gif" lazyload alt="不知道你喜不喜欢" /></p>
-<h3 id="问题分析">问题分析</h3>
-<p>这个时候百思不得其解，怎么办，本地<code>hexo s</code>就没有访问的问题，但是一旦部署到GitHub上就有问题。这个时候我想到了去GitHub上面看仓库内部文件，好家伙，不看不知道，<font color='orange'>他直接没有对我的tags内部的文件夹进行更新</font>，什么意思？</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109220959175.png" srcset="/img/loading.gif" lazyload alt="本地渲染后的tags文件夹" /></p>
-<p>但是我的<code>.deploy_git</code>文件夹下面的文件名却没有被更改，这个文件夹下面的文件夹才会被<font color='orange'>Push</font>到<font color='orange'>GitHub</font>仓库。</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221018516.png" srcset="/img/loading.gif" lazyload alt=".deploy_git文件夹" /></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221000543.png" srcset="/img/loading.gif" lazyload alt="部署到GitHub的文件夹" /></p>
-<p>好家伙，这是个什么意思？专门搞我心态？</p>
-<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.751e5f9f342de01f8463b01112edb128?rik=2gqn0%2bf4McaYxg&amp;riu=http%3a%2f%2fi-1.onegreen.net%2f2021%2f0120%2ffdf56f562fd846e48a96b306c8855245.jpg&amp;ehk=ZECJ1Js2nGmsXOpdKEXlnAcRWOh0gRrVUkGGPBa6U54%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="烦死了" /></p>
-<p>后来，经过查阅资料才知道，<font color='orange'>Git</font>对大小写是不敏感的，这样的话，我改动了tags的大小写，是没有用的，因为他会默认，两个是一样的。所以部署之后页面没有更改。</p>
-<p>既然知道原因了，那就改呗</p>
-<h3 id="解决方案">解决方案</h3>
-<h4 id="使用git-bash进行更改">使用<code>git bash</code>进行更改</h4>
+              <p>2021年3月21日参加了笔试，对笔试内容进行了一个大致的复盘</p>
+<h2 id="hashmap的实现原理">HashMap的实现原理</h2>
+<p>简单来说，HashMap对数据的存储是把key和value封装为一个对象也就是Entry进行存储的，每一个Entry都会存储在Entry[]中</p>
+<ul>
+<li><p>在进行数据存储的过程中，对需要插入的Entry计算Hash值，根据Hash值计算其在Entry[]中的存储位置，再根据Equals方法获取其在链表中的位置</p></li>
+<li><p>当需要取出一个Entry时，也会根据hash算法计算其在其在数组中的位置，再根据Equals方法在链表中取出该Equals</p></li>
+</ul>
+<h2 id="springboot的自动装配原理">SpringBoot的自动装配原理</h2>
+<p><code>SpringBoot</code>在启动的时候会通过<code>@EnableAutoConfiguration</code>注解找到<code>META-INF/spring.factories</code>配置文件中的所有自动配置类，并对其进行加载，这些自动配置类都是以<code>AutoConfiguration</code>结尾来命名的，它实际上就是一个<code>JavaConfig</code>形式的<code>Spring</code>容器配置类，通过<code>@Bean</code>导入到<code>Spring</code>容器中，以<code>Properties</code>结尾命名的类是和配置文件进行绑定的。他能通过这些以<code>Properties</code>结尾命名的类中取得全局文件中配置的属性，我们可以通过修改配置文件对应的属性来修改自动配置的默认值，来完成自定义配置</p>
+<h2 id="jvm的组成">JVM的组成</h2>
 <ol type="1">
-<li>在hexo安装目录下右键<code>git bash</code></li>
-<li>输入 <code>cd .deploy_git</code>，一定要有这一步，因为<font color='orange'>Hexo</font>文件夹本身不是一个<font color='orange'>Git</font>文件夹</li>
-<li>输入以下命令查看当前Git文件夹的配置信息</li>
+<li>类加载器(ClassLoader)</li>
+<li>运行时数据区(Runtime Data Area)</li>
+<li>执行引擎(Execution Engine)</li>
+<li>本地库接口(Native Interface)</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git config --local -l<br></code></pre></div></td></tr></table></figure>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221021841.png" srcset="/img/loading.gif" lazyload alt="查看配置信息结果" /></p>
-<div class="note note-warning">
-            <p>core.ignorecase=<font color='red'>true</font>表示忽略大小写，也就是说，他认为<font color='orange'>Ajax</font>和<font color='orange'>AJAX</font>是一样的</p>
-          </div>
-<ol start="4" type="1">
-<li>关闭core.ignorecase</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git config --local core.ignorecase false<br></code></pre></div></td></tr></table></figure>
-<h4 id="使用本地文件编辑器">使用本地文件编辑器</h4>
-<ol type="1">
-<li>进入<code>.deploy_git/.git</code>文件夹，需要注意的是，这边的<code>.git</code>是隐藏的，需要查看隐藏文件。都是老司机，这个我就不教了奥</li>
-<li>右键<code>config</code>文件，使用你的文本编辑器打开，我使用的是notepad++：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://notepad-plus-plus.org/">notepad-plus-plus.org</a></li>
-</ol>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221033156.png" srcset="/img/loading.gif" lazyload alt="被打开的config文件" /></p>
-<ol start="3" type="1">
-<li>直接修改就可以了，记得保存</li>
-</ol>
-<p>记得清理以下之前的重复文件夹，删除一下GitHub的远程文件夹，防止会出现无用界面的情况，就比如，这种情况</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202109221058824.png" srcset="/img/loading.gif" lazyload alt="文件夹重复，且Ajax是无效文件夹" /></p>
-<p>来，又是一顿猛如虎的操作:sunglasses:</p>
-<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">cd .deploy_git<br>git pull<br>ls<br>git rm -rf --cached categories<br>git rm -rf --cached tags<br>git commit -m &#x27;delete the categories and tags&#x27;<br>git push<br></code></pre></div></td></tr></table></figure>
-<div class="note note-success">
-            <p>不要怂，本地的categories和tags都不会删除，只会删除远程仓库里面的两个文件夹。</p>
-          </div>
-<p>修改之后重新部署，就没有问题啦:wink:</p>
-<blockquote class="blockquote-center">
-人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+<p>程序在执行之前先要把Java代码转化为字节码(class文件)，jvm首先需要把字节码通过一定的方式-<strong>类加载器(ClassLoader)</strong>-把文件加载到内存中<strong>运行时数据区(Runtime Data Area)</strong>，而字节码文件是JVM的一套指令集规范，并不能直接交给底层操作系统去执行，因此需要特定的命令解析器<strong>执行引擎(Execution Engine)</strong>将字节码翻译成底层系统指令再交由CPU去执行，而这个过程中需要调用其他语言的接口也就是<strong>本地库文件(Native Interface)</strong>来实现整个程序的功能。</p>
+<h2 id="get和post的区别">GET和POST的区别</h2>
+<table>
+<thead>
+<tr class="header">
+<th>比较项</th>
+<th>GET</th>
+<th>POST</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>后退刷新</td>
+<td>无害</td>
+<td>数据会被重新提交</td>
+</tr>
+<tr class="even">
+<td>书签</td>
+<td>可收藏为书签</td>
+<td>不可收藏为书签</td>
+</tr>
+<tr class="odd">
+<td>缓存</td>
+<td>能被缓存</td>
+<td>不能被缓存</td>
+</tr>
+<tr class="even">
+<td>历史</td>
+<td>参数保留在浏览器历史中</td>
+<td>参数不会保存在浏览器历史中</td>
+</tr>
+<tr class="odd">
+<td>对数据长度的限制</td>
+<td>URL的最大长度是2048个字符</td>
+<td>无限制</td>
+</tr>
+<tr class="even">
+<td>对数据类型的限制</td>
+<td>ASCII字符</td>
+<td>无限制</td>
+</tr>
+<tr class="odd">
+<td>安全性</td>
+<td>由于是在URL明文对数据进行发送，所以安全性是相对较差的</td>
+<td>参数不会保存在浏览器历史或者web服务器日志中</td>
+</tr>
+<tr class="even">
+<td>可见性</td>
+<td>URL中可见</td>
+<td>URL中不可见</td>
+</tr>
+</tbody>
+</table>
+<p>这样来说，GET和POST的区别如下：</p>
+<ul>
+<li>GET用于获取信息，是无副作用的，是幂等性，且可以缓存</li>
+<li>POST用于修改服务器上的数据，有副作用，非幂等，不可缓存</li>
+</ul>
+<h2 id="redis的数据类型">Redis的数据类型</h2>
+<ul>
+<li>string 二进制安全的字符串</li>
+<li>Lists 按插入值排序的字符串元素的集合。他们基本上就是链表</li>
+<li>Sets 不重复且无序的字符串元素的集合</li>
+<li>Sorted sets 类似Sets，但是每个字符串元素都关联到一个叫score浮动数值</li>
+<li>Hashes 由field和关联的value组成的map</li>
+<li>Bit Arrays ton过特殊的命令，可以将string值当做一系列可以设置和清除的bits</li>
+<li>HyperLogLogs 这是一个被用于估计一个set中匀速数量的概率性的数据结构</li>
+<li>Stream 5.0版本新增，可以用来做持久化的消息队列</li>
+</ul>
+<h2 id="在浏览器中输入url后执行的全部过程">在浏览器中输入URL后，执行的全部过程</h2>
+<ul>
+<li>浏览器向DNS服务器发送DNS查询请求 -&gt; 完成域名到IP地址的转换</li>
+<li>客户端向web服务器发送HTTP请求
+<ul>
+<li>HTTP请求是一个基于TCP协议之上的应用层协议，所以需要建立TCP连接，三次握手</li>
+</ul></li>
+<li>服务器给浏览器进行一个302永久重定向响应</li>
+<li>发送相应数据给客户端</li>
+<li>浏览器对服务器的相应数据进行响应
+<ul>
+<li>浏览器响应服务器相应的资源，会对资源进行一些缓存，缓存完成之后浏览器会关闭TCP连接</li>
+</ul></li>
+</ul>
+<h2 id="ajax是什么ajax有什么作用ajax过程">AJAX是什么？AJAX有什么作用？AJAX过程？</h2>
+<blockquote>
+<p>这一部分将在别的博客中进行补充</p>
 </blockquote>
+<h2 id="如何使用sql进行分页">如何使用SQL进行分页</h2>
+<p>很显然，直接使用limit关键字就好了，只不过需要对页数和页面大小进行传入。</p>
+<figure class="highlight sql"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">table</span> limit (#&#123;<span class="hljs-keyword">start</span>&#125; <span class="hljs-operator">-</span> <span class="hljs-number">1</span>) <span class="hljs-operator">*</span> #&#123;size&#125;, #&#123;size&#125;<br></code></pre></div></td></tr></table></figure>
+<h2 id="创建线程的几种方式">创建线程的几种方式</h2>
+<ol type="1">
+<li>继承Thread类实现创建线程</li>
+<li>实现Runnable接口，重写run方法</li>
+<li>实现Callable接口，重写call方法</li>
+<li>通过线程池创建线程</li>
+</ol>
 
             </div>
             <hr>
@@ -327,15 +381,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Software/">Software</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Error/">Error</a>
-                    
-                      <a class="hover-with-bg" href="/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/Hexo/">Hexo</a>
-                    
-                      <a class="hover-with-bg" href="/categories/Software/Git/">Git</a>
+                      <a class="hover-with-bg" href="/categories/%E6%B1%82%E8%81%8C%E7%BB%8F%E9%AA%8C/">求职经验</a>
                     
                   </div>
                 
@@ -343,9 +389,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Hexo/">Hexo</a>
-                    
-                      <a class="hover-with-bg" href="/tags/Git/">Git</a>
+                      <a class="hover-with-bg" href="/tags/%E6%B1%82%E8%81%8C/">求职</a>
                     
                   </div>
                 
@@ -362,18 +406,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/e407191c/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Java 面向对象特征:封装与隐藏</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/1e97cd8b/">
-                        <span class="hidden-mobile">MySQL 索引特性</span>
+                      <a href="/posts/e05b1b3/">
+                        <span class="hidden-mobile">MySQL:过滤空值</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

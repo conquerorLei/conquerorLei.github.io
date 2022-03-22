@@ -16,12 +16,12 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="¶简介 String是常用的类，也是面试经常问到的类 StringBuffer和StringBuilder是两个操作字符串的类 说明：以下代码运行结果均使用Eclipse运行代码获得 ¶String String是final修饰的，因此不可以被继承 字符串在Java中不可变的，因此适合在多线程下使用 ¶创建 在我们使用双引号创建一个字符串的时候，JVM首先在字符串池中寻找具有相同的值的字符串。 1">
+  <meta name="description" content="简介 String是常用的类，也是面试经常问到的类 StringBuffer和StringBuilder是两个操作字符串的类 说明：以下代码运行结果均使用Eclipse运行代码获得 String String是final修饰的，因此不可以被继承 字符串在Java中不可变的，因此适合在多线程下使用 创建 在我们使用双引号创建一个字符串的时候，JVM首先在字符串池中寻找具有相同的值的字">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中String、StringBuffer、StringBuilder之间的区别">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/173a1aaf/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="¶简介 String是常用的类，也是面试经常问到的类 StringBuffer和StringBuilder是两个操作字符串的类 说明：以下代码运行结果均使用Eclipse运行代码获得 ¶String String是final修饰的，因此不可以被继承 字符串在Java中不可变的，因此适合在多线程下使用 ¶创建 在我们使用双引号创建一个字符串的时候，JVM首先在字符串池中寻找具有相同的值的字符串。 1">
+<meta property="og:description" content="简介 String是常用的类，也是面试经常问到的类 StringBuffer和StringBuilder是两个操作字符串的类 说明：以下代码运行结果均使用Eclipse运行代码获得 String String是final修饰的，因此不可以被继承 字符串在Java中不可变的，因此适合在多线程下使用 创建 在我们使用双引号创建一个字符串的时候，JVM首先在字符串池中寻找具有相同的值的字">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/QingShanxl/pictures/raw/master/img/202110131631076.png">
 <meta property="article:published_time" content="2021-10-13T08:01:57.000Z">
@@ -68,7 +68,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -262,25 +261,25 @@
               </p>
             
             <div class="markdown-body">
-              <h2 id="简介"><a class="header-anchor" href="#简介">¶</a>简介</h2>
+              <h2 id="简介">简介</h2>
 <p>String是常用的类，也是面试经常问到的类</p>
 <p>StringBuffer和StringBuilder是两个操作字符串的类</p>
 <p>说明：以下代码运行结果均使用Eclipse运行代码获得</p>
-<h2 id="String"><a class="header-anchor" href="#String">¶</a>String</h2>
+<h2 id="string">String</h2>
 <p>String是final修饰的，因此<font color='red'>不可以被继承</font></p>
 <p>字符串在Java中不可变的，因此<font color='orange'>适合在多线程下使用</font></p>
-<h3 id="创建"><a class="header-anchor" href="#创建">¶</a>创建</h3>
+<h3 id="创建">创建</h3>
 <p>在我们使用双引号创建一个字符串的时候，JVM首先在字符串池中寻找具有相同的值的字符串。</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs Java">String str = <span class="hljs-string">&quot;abc&quot;</span>;<br></code></pre></div></td></tr></table></figure>
 <p>如果找到了则返回字符串池字符串对象的引用。否则，他会在字符串中创建字符串对象并返回引用。<font color='lawngreen'>JVM通过在不同的线程中引用相同的对象，节省了大量的内存</font></p>
 <p>如果使用new运算符创建字符串，则会在堆中创建它。也就是，使用new和直接使用双引号创建对象是不一样的，存储位置都不一样的，以下为一个测试</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.conquerorlei.test;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StringTest</span> </span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>		<span class="hljs-comment">// 字符串常量池中</span><br>		String str1 = <span class="hljs-string">&quot;abc&quot;</span>;<br>		String str2 = <span class="hljs-string">&quot;abc&quot;</span>;<br>		System.out.println(str1 == str2);<br>		<span class="hljs-comment">// 堆上</span><br>		String str3 = <span class="hljs-keyword">new</span> String(<span class="hljs-string">&quot;abc&quot;</span>);<br>		System.out.println(str1 == str3);<br>		<span class="hljs-comment">// 使用equals进行判断时在各种都相同的比较内部值是否相同</span><br>		System.out.println(str1.equals(str3));<br>	&#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><strong>结果输出：</strong></p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110131631076.png" srcset="/img/loading.gif" lazyload alt="结果"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/202110131631076.png" srcset="/img/loading.gif" lazyload alt="结果" /></p>
 <div class="note note-success">
             <p>两个字符串只有在他们具有相同字符的时候才会想等，equals方法是区分大小写的，如果不想区分大小写，应该使用equalsIgnoreCase方法。</p>
           </div>
-<h3 id="冒牌的魔法：运算符-以及"><a class="header-anchor" href="#冒牌的魔法：运算符-以及">¶</a>冒牌的魔法：运算符+以及+=</h3>
+<h3 id="冒牌的魔法运算符以及">冒牌的魔法：运算符+以及+=</h3>
 <p>运算符<code>+</code>是为字符串重载的，可以使用<code>+</code>进行字符串拼接。但是，在这个运算的内部是通过<code>StringBuilder</code>执行拼接动作的。</p>
 <p>其实Java中是没有重载概念的，但是这里的String中的+、=都有点类似C++中的运算符重载，这是为什么？</p>
 <p>其实，这只不过是Java编译器做了一些手脚</p>
@@ -288,27 +287,29 @@
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">String str1 = <span class="hljs-string">&quot;abc&quot;</span>;<br>String str2 = str + <span class="hljs-string">&quot;def&quot;</span>;<br></code></pre></div></td></tr></table></figure>
 <p>编译的过程中会自动转化为以下语句</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java">String str1 = <span class="hljs-string">&quot;abc&quot;</span>;<br>String str2 = (<span class="hljs-keyword">new</span> StringBuilder(String.valueof(str1))).append(<span class="hljs-string">&quot;def&quot;</span>).toString();<br></code></pre></div></td></tr></table></figure>
-<h2 id="拼接字符串"><a class="header-anchor" href="#拼接字符串">¶</a>拼接字符串</h2>
+<h2 id="拼接字符串">拼接字符串</h2>
 <p>由于String在Java是不可变的，所以每次当我们执行字符串拼接的时候时，都会生成一个新的String并丢弃旧的String。这些重复的操作将会产生大量的垃圾冗余。</p>
 <p>所以Java提供了StringBuilder和StringBuffer类，应用于字符串操作。</p>
 <p>StringBuffer和StringBuilder是java中的可变对象，提供了append、insert、delete、substring方法</p>
-<h3 id="StringBuffer和StringBuilder区别"><a class="header-anchor" href="#StringBuffer和StringBuilder区别">¶</a>StringBuffer和StringBuilder区别</h3>
-<p>$$
+<h3 id="stringbuffer和stringbuilder区别">StringBuffer和StringBuilder区别</h3>
+<p><span class="math display">\[
 \begin{array}{c|rr}
-Difference &amp; StringBuffer &amp; StrignBuilder\
-\hline
-线程 &amp; 安全 &amp; 不安全\
-同步 &amp; 同步 &amp; 不同步\
-速度 &amp; 慢 &amp; 快\
+Difference &amp; StringBuffer &amp; StrignBuilder\\
+\hline 
+线程 &amp; 安全 &amp; 不安全\\
+同步 &amp; 同步 &amp; 不同步\\
+速度 &amp; 慢 &amp; 快\\
 出现版本 &amp; 始于Java1.0 &amp; 始于Java1.5
 \end{array}
-$$</p>
+\]</span></p>
 <p>在Java1.4之前，StringBuffer是字符串操作的唯一选择。<font color='red'>StringBuffer既是缺点又是优点的地方在于它的所有的方法都是同步的</font>。StringBuffer提供线程安全，但是是以性能为代价的。</p>
 <p>而StringBuilder除了不是同步线程不安全之外和StringBuffer是一样的，他和StringBuffer类似。</p>
 <div class="note note-primary">
             <p>如果是在单线程环境或者无关线程安全的情况下要使用StringBuilder，这种情况下效率才是王者。</p>
           </div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>

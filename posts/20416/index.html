@@ -69,7 +69,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -263,67 +262,70 @@
               </p>
             
             <div class="markdown-body">
-              <p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" srcset="/img/loading.gif" lazyload alt="Hexo.NexT.Scheme"></p>
+              <p><img src="https://pic3.zhimg.com/v2-c61415ce69a768b10b2ca953f456d471_b.jpg" srcset="/img/loading.gif" lazyload alt="Hexo.NexT.Scheme" /></p>
 <span id="more"></span>
 <p>Hexo环境搭建结束后，如果想要更近一步个性化，就需要调整配置啦</p>
 <p>以下是我对Hexo的配置，主体我选择的是Next主题。Next主题足够轻量简约，不会对Github pages 造成很大的压力，如有大量的动画渲染，可能会造成网页渲染过慢等缺点。这里写一下通配。</p>
-<h1>Hexo配置</h1>
-<h2 id="安装并更换Next主题"><a class="header-anchor" href="#安装并更换Next主题">¶</a>安装并更换Next主题</h2>
+<h1 id="hexo配置">Hexo配置</h1>
+<h2 id="安装并更换next主题">安装并更换Next主题</h2>
 <p>在hexo的根目录下右键<code>git bash here</code>，在里面输入以下代码</p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell">git clone https://github.com/next-theme/hexo-theme-next themes/next<br></code></pre></div></td></tr></table></figure>
 <p>克隆完成后，只要修改一下根目录下的<code>_config.yml</code>，在里面找到theme并启用next就可以了</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" srcset="/img/loading.gif" lazyload alt="image-20210524171757123"></p>
-<h2 id="个人信息修改"><a class="header-anchor" href="#个人信息修改">¶</a>个人信息修改</h2>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210524171808.png" srcset="/img/loading.gif" lazyload alt="image-20210524171757123" /></p>
+<h2 id="个人信息修改">个人信息修改</h2>
 <p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># Site</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">hexo//</span> <span class="hljs-string">站点名称</span><br><span class="hljs-attr">subtitle:</span> <span class="hljs-string">//</span> <span class="hljs-string">副标题</span><br><span class="hljs-attr">description:</span> <span class="hljs-string">//</span> <span class="hljs-string">站点描述</span><br><span class="hljs-attr">keywords:</span> <span class="hljs-string">//</span> <span class="hljs-string">关键词用于检索站点</span><br><span class="hljs-attr">author:</span> <span class="hljs-string">John</span> <span class="hljs-string">Doe</span> <span class="hljs-string">//</span> <span class="hljs-string">作者</span><br><span class="hljs-attr">language:</span> <span class="hljs-string">en</span> <span class="hljs-string">//</span> <span class="hljs-string">语言</span><br><span class="hljs-attr">timezone:</span> <span class="hljs-string">&#x27;&#x27;</span><br></code></pre></div></td></tr></table></figure>
 <div class="note note-success">
-            <blockquote><p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 <a target="_blank" rel="noopener external nofollow noreferrer" href="https://username.github.io/">https://username.github.io/</a> 打开的网页，那个就是你的站点，站点的标题就是。</p></blockquote>
+            <blockquote><p>说明：站点无需解释，就是你通过http://localhost:4000/ 或者 https://username.github.io/ 打开的网页，那个就是你的站点，站点的标题就是。</p></blockquote>
           </div>
-<h1>next主题配置</h1>
-<h2 id="代码高亮"><a class="header-anchor" href="#代码高亮">¶</a>代码高亮</h2>
-<h3 id="使用highlight-js"><a class="header-anchor" href="#使用highlight-js">¶</a>使用highlight.js</h3>
+<h1 id="next主题配置">next主题配置</h1>
+<h2 id="代码高亮">代码高亮</h2>
+<h3 id="使用highlight.js">使用highlight.js</h3>
 <p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">highlight:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">auto_detect:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">tab_replace:</span> <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-attr">wrap:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">hljs:</span> <span class="hljs-literal">false</span><br></code></pre></div></td></tr></table></figure>
 <p>修改一下<code>themes/next/_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">codeblock:</span><br>  <span class="hljs-comment"># Code Highlight theme</span><br>  <span class="hljs-comment"># All available themes: https://theme-next.js.org/highlight/</span><br>  <span class="hljs-attr">theme:</span><br>    <span class="hljs-attr">light:</span> <span class="hljs-string">atom-one-dark-reasonable</span><br>    <span class="hljs-attr">dark:</span> <span class="hljs-string">atom-one-dark-reasonable</span><br></code></pre></div></td></tr></table></figure>
-<h3 id="使用Prism"><a class="header-anchor" href="#使用Prism">¶</a>使用Prism</h3>
+<h3 id="使用prism">使用Prism</h3>
 <p>修改一下根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">prismjs:</span><br>  <span class="hljs-comment">#enable: false</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">preprocess:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">tab_replace:</span> <span class="hljs-string">&quot;&quot;</span><br></code></pre></div></td></tr></table></figure>
 <p>修改一下<code>themes/next/_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-attr">codeblock:</span><br><span class="hljs-comment"># Code Highlight theme</span><br><span class="hljs-comment"># All available themes: https://theme-next.js.org/highlight/</span><br>  <span class="hljs-string">...</span><br>  <span class="hljs-attr">theme:</span><br>    <span class="hljs-attr">light:</span> <span class="hljs-string">atom-one-dark-reasonable</span><br>    <span class="hljs-attr">dark:</span> <span class="hljs-string">atom-one-dark-reasonable</span><br>  <span class="hljs-string">...</span><br></code></pre></div></td></tr></table></figure>
 <div class="note note-info">
-            <blockquote><p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p><p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://theme-next.js.org/highlight/">https://theme-next.js.org/highlight/</a></p></blockquote>
+            <blockquote><p>需要注意的是，next提供了两种高亮的方案，但是只能使用其中一种</p><p>另外，如果不知道想要那个，可以去这个网址预览预览效果</p><p>https://theme-next.js.org/highlight/</p></blockquote>
           </div>
-<h2 id="主页和归档页分页"><a class="header-anchor" href="#主页和归档页分页">¶</a>主页和归档页分页</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件">¶</a>安装插件</h3>
+<h2 id="主页和归档页分页">主页和归档页分页</h2>
+<h3 id="安装插件">安装插件</h3>
 <p>首先是安装插件<code>hexo-generator-index</code>和<code>hexo-generator-archive</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 主页分页插件</span><br>npm install hexo-generator-index --save<br><span class="hljs-meta">#</span><span class="bash"> 归档页分页插件</span><br>npm install hexo-generator-archive --save<br></code></pre></div></td></tr></table></figure>
-<h3 id="修改文件"><a class="header-anchor" href="#修改文件">¶</a>修改文件</h3>
+<h3 id="修改文件">修改文件</h3>
 <p>其次就是对配置文件的设置</p>
 <div class="note note-primary">
-            <blockquote><p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p><p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p></blockquote>
+            <blockquote><p>想要文章美观一点，主页文章不能太多，5片就够。归档页就15篇吧，不用一直往下翻</p><p>另外需要注意的是，根目录下的配置文件是修改，主题路径下的配置文件是添加</p></blockquote>
           </div>
 <p>根目录下的<code>_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># Home page setting</span><br><span class="hljs-comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span><br><span class="hljs-comment"># per_page: Posts displayed per page. (0 = disable pagination)</span><br><span class="hljs-comment"># order_by: Posts order. (Order by date descending by default)</span><br><span class="hljs-attr">index_generator:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">&quot;&quot;</span><br>  <span class="hljs-attr">per_page:</span> <span class="hljs-number">5</span><br>  <span class="hljs-attr">order_by:</span> <span class="hljs-string">-date</span><br></code></pre></div></td></tr></table></figure>
 <p><code>themes/next/_config.yml</code></p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># ---------------------------------------------------------------</span><br><span class="hljs-comment"># archive generator settings</span><br><span class="hljs-comment"># See:</span><br><span class="hljs-comment"># ---------------------------------------------------------------</span><br><span class="hljs-comment"># 归档页面</span><br><span class="hljs-attr">archive_generator:</span><br>  <span class="hljs-attr">per_page:</span> <span class="hljs-number">15</span><br>  <span class="hljs-attr">yearly:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-attr">monthly:</span> <span class="hljs-literal">true</span><br></code></pre></div></td></tr></table></figure>
-<h2 id="本地搜索"><a class="header-anchor" href="#本地搜索">¶</a>本地搜索</h2>
-<h3 id="安装插件-v2"><a class="header-anchor" href="#安装插件-v2">¶</a>安装插件</h3>
+<h2 id="本地搜索">本地搜索</h2>
+<h3 id="安装插件-1">安装插件</h3>
 <figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 安装插件，用于生成博客索引数据（在博客根目录下执行下列命令）：</span><br>npm install hexo-generator-search --save<br></code></pre></div></td></tr></table></figure>
-<h3 id="修改配置文件"><a class="header-anchor" href="#修改配置文件">¶</a>修改配置文件</h3>
+<h3 id="修改配置文件">修改配置文件</h3>
 <p>在站点配置文件 <code>_config.yml</code> 中添加如下内容：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># Search </span><br><span class="hljs-attr">search:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">search.xml</span><br>  <span class="hljs-attr">field:</span> <span class="hljs-string">post</span><br>  <span class="hljs-attr">format:</span> <span class="hljs-string">html</span><br>  <span class="hljs-attr">limit:</span> <span class="hljs-number">10000</span><br></code></pre></div></td></tr></table></figure>
 <p>在主题配置文件 <code>_config.yml</code> 中找到如下内容：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs yaml"><span class="hljs-comment"># Local Search</span><br><span class="hljs-comment"># Dependencies: https://github.com/next-theme/hexo-generator-searchdb</span><br><span class="hljs-attr">local_search:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>  <span class="hljs-comment"># If auto, trigger search by changing input.</span><br>  <span class="hljs-comment"># If manual, trigger search by pressing enter key or search button.</span><br>  <span class="hljs-attr">trigger:</span> <span class="hljs-string">auto</span><br>  <span class="hljs-comment"># Show top n results per article, show all results by setting to -1</span><br>  <span class="hljs-attr">top_n_per_article:</span> <span class="hljs-number">1</span><br>  <span class="hljs-comment"># Unescape html strings to the readable one.</span><br>  <span class="hljs-attr">unescape:</span> <span class="hljs-literal">false</span><br>  <span class="hljs-comment"># Preload the search data when the page loads.</span><br>  <span class="hljs-attr">preload:</span> <span class="hljs-literal">false</span><br></code></pre></div></td></tr></table></figure>
-<h2 id="随机引用颜色"><a class="header-anchor" href="#随机引用颜色">¶</a>随机引用颜色</h2>
-<p>按照 <a target="_blank" rel="noopener external nofollow noreferrer" href="http://theme-next.iissnan.com/tag-plugins.html">http://theme-next.iissnan.com/tag-plugins.html</a> 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
+<h2 id="随机引用颜色">随机引用颜色</h2>
+<p>按照 http://theme-next.iissnan.com/tag-plugins.html 上面关于引用的内置标签的说明，next主题可以使用Bootstrap的标签<code>&#123;%note%&#125;</code>，可以实现多种颜色</p>
 <p>官方：</p>
 <figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">&#123;% note class_name %&#125; Content (md partial supported) &#123;% endnote %&#125;<br></code></pre></div></td></tr></table></figure>
 <p>以下为使用方法，直接在markdown文档中写标签就好</p>
-<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" srcset="/img/loading.gif" lazyload alt="image-20210525215139140"></p>
+<p><img src="https://gitee.com/QingShanxl/pictures/raw/master/img/20210525215156.png" srcset="/img/loading.gif" lazyload alt="image-20210525215139140" /></p>
 <p>如果想要更加方便的使用这个标签，使用autohotkey的用户，这里有一份代码</p>
 <figure class="highlight js"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs js">#IfWinActive ahk_exe Typora.exe<br>&#123;<br>    ; Ctrl+Alt+N 添加bootstrap note标签<br>	^!n::addBootstrapNote()<br>&#125;<br><span class="hljs-function"><span class="hljs-title">addBootstrapNote</span>(<span class="hljs-params"></span>)</span>&#123;<br>	<span class="hljs-attr">classname</span>:=[<span class="hljs-string">&quot;primary&quot;</span>,<span class="hljs-string">&quot;success&quot;</span>,<span class="hljs-string">&quot;info&quot;</span>,<span class="hljs-string">&quot;warning&quot;</span>,<span class="hljs-string">&quot;danger&quot;</span>]<br>	Random, x, <span class="hljs-number">0</span>, <span class="hljs-number">3</span><br>	<span class="hljs-attr">c</span>:=classname[x]<br>    <span class="hljs-attr">clipboard</span> := <span class="hljs-string">&quot;&quot;</span> ; 清空剪切板<br>    Send &#123;ctrl down&#125;c&#123;ctrl up&#125; ; 复制<br>    SendInput &#123;TEXT&#125;&#123;<span class="hljs-string">`% note %c% `</span>%&#125;&#123;<span class="hljs-string">`% endnote `</span>%&#125;<br>    SendInput &#123;ctrl down&#125;v&#123;ctrl up&#125; ; 粘贴<br>&#125;<br></code></pre></div></td></tr></table></figure>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
+
             </div>
             <hr>
             <div>

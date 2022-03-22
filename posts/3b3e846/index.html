@@ -16,12 +16,12 @@
   <meta name="description" content="学习总结 学习经历 个人小站">
   <meta name="author" content="conquerorLei">
   <meta name="keywords" content="">
-  <meta name="description" content="¶题目地址 1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 基本思路不是很简单？ 既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(模拟算法) 但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(后面这句才符合我)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为">
+  <meta name="description" content="题目地址 1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 基本思路不是很简单？ 既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(模拟算法) 但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(后面这句才符合我)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="换酒问题">
 <meta property="og:url" content="https://conquerorlei.github.io/posts/3b3e846/index.html">
 <meta property="og:site_name" content="conquerorLei">
-<meta property="og:description" content="¶题目地址 1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com) ¶题目分析 基本思路不是很简单？ 既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(模拟算法) 但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(后面这句才符合我)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为">
+<meta property="og:description" content="题目地址 1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com) 题目分析 基本思路不是很简单？ 既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(模拟算法) 但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(后面这句才符合我)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.e35e7bd5dbfe5abc91f025fb7147a43c?rik=B4PiIjvT%2bflRGg&amp;riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180907%2f635c9726470449c1a65c688516a3c4b7.gif&amp;ehk=7yMeyB3x3m43kx%2bGBAzD%2fw9YL52yoiDclnkQ6M95msU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0">
 <meta property="article:published_time" content="2021-10-09T13:50:11.000Z">
@@ -68,7 +68,6 @@
   
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/toubudaziji.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
-<link rel="stylesheet" href="/css/custom/blockquote.css">
 
 
 
@@ -207,7 +206,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 字
+      1.1k 字
     </span>
   
 
@@ -262,15 +261,15 @@
               </p>
             
             <div class="markdown-body">
-              <h3 id="题目地址"><a class="header-anchor" href="#题目地址">¶</a>题目地址</h3>
+              <h3 id="题目地址">题目地址</h3>
 <p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://leetcode-cn.com/problems/water-bottles/">1518. 换酒问题 - 力扣（LeetCode） (leetcode-cn.com)</a></p>
-<h3 id="题目分析"><a class="header-anchor" href="#题目分析">¶</a>题目分析</h3>
+<h3 id="题目分析">题目分析</h3>
 <p>基本思路不是很简单？</p>
 <p>既然可以换酒瓶，我喝够了能换的酒瓶数就拿着空酒瓶就去换啊，能换一个是一个(<font color='red'>模拟算法</font>)</p>
 <p>但是有的时候我喝够了可以换的酒瓶数，但是我贪心我懒我不想去换或者说我对自己的生活有规划(<font color='cornflowerblue'>后面这句才符合我</font>)，那我就先攒着，直到剩下的不能再换了再去换，喝完了再攒着，直到我没法换了为止(<font color='red'>贪心递归</font>)</p>
-<h3 id="代码展示"><a class="header-anchor" href="#代码展示">¶</a>代码展示</h3>
+<h3 id="代码展示">代码展示</h3>
 <p>好了，不贫了，直接上才艺</p>
-<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.e35e7bd5dbfe5abc91f025fb7147a43c?rik=B4PiIjvT%2bflRGg&amp;riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180907%2f635c9726470449c1a65c688516a3c4b7.gif&amp;ehk=7yMeyB3x3m43kx%2bGBAzD%2fw9YL52yoiDclnkQ6M95msU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="上才艺"></p>
+<p><img src="https://tse1-mm.cn.bing.net/th/id/R-C.e35e7bd5dbfe5abc91f025fb7147a43c?rik=B4PiIjvT%2bflRGg&amp;riu=http%3a%2f%2f5b0988e595225.cdn.sohucs.com%2fimages%2f20180907%2f635c9726470449c1a65c688516a3c4b7.gif&amp;ehk=7yMeyB3x3m43kx%2bGBAzD%2fw9YL52yoiDclnkQ6M95msU%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" srcset="/img/loading.gif" lazyload alt="上才艺" /></p>
 <p><strong>模拟</strong>：</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numExchange;<br>            numBottles -= numExchange;<br>            numBottles++;<br>        &#125;<br>        <span class="hljs-keyword">return</span> numBottles + sum;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <p><strong>递归</strong>：</p>
@@ -278,9 +277,11 @@
 <p><strong>贪心算法</strong>：</p>
 <figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">numWaterBottles</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numBottles, <span class="hljs-keyword">int</span> numExchange)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(numBottles &lt; numExchange)<span class="hljs-keyword">return</span> numBottles;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">while</span>(numBottles &gt;= numExchange)&#123;<br>            sum += numBottles - numBottles%numExchange;<br>            numBottles = numBottles/numExchange + numBottles%numExchange;<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum + numBottles;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
 <div class="note note-success">
-            <p>有没有感觉其实贪心算法其实只是展开了递归，减少了递归的栈容量消耗。</p><p>其实内存相差无几。</p>
+            <p>有没有感觉其实贪心算法其实只是展开了递归，减少了递归的栈容量消耗。</p><p>其实内存相差无几。</p>
           </div>
-<blockquote class="blockquote-center">人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波</blockquote>
+<blockquote class="blockquote-center">
+人的一切痛苦，本质上是对自己的无能的愤怒<br>王小波
+</blockquote>
 
             </div>
             <hr>
@@ -294,9 +295,9 @@
                     
                       <a class="hover-with-bg" href="/categories/Programming-Language/Java/">Java</a>
                     
-                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
-                    
                       <a class="hover-with-bg" href="/categories/Algorithm/">Algorithm</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Programming-Language/Java/Apply/">Apply</a>
                     
                       <a class="hover-with-bg" href="/categories/Algorithm/%E9%80%92%E5%BD%92/">递归</a>
                     
